@@ -220,6 +220,12 @@
 .h-item {
     position: relative;
 }
+.h-item.h-item--gemstone-hover:hover {
+    color: var(--gemstone-color) !important;
+}
+.h-item.h-item--purple-hover:hover {
+    color: var(--purple-color) !important;
+}
 .h-item:first-child .h-item__link{
     padding-left: 0
 }
@@ -250,14 +256,6 @@
 
 .h-item__link span {
     font-weight: 400;
-}
-
-.h-item__link.bg-hover:hover {
-    background-color: var(--hover-color--);
-}
-
-.h-item__link.text--hover:hover {
-    color: var(--hover-color--);
 }
 
 ul.v-list {}
@@ -517,4 +515,16 @@ svg.booking-oto-rating-stars__hollow-star {
     background-color: #f5f5f5;
     overflow: hidden;
     position: relative;
+}
+// default svg
+svg.bo-svg-icon {
+    display: inline-block;
+    fill: currentColor;
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+}
+svg.bo-svg-icon--sm {
+    width: 1rem;
+    height: 1rem;
 }

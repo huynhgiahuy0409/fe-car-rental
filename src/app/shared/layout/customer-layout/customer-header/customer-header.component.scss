@@ -6,3 +6,27 @@
 .header--bg{
     background-color: var(--primary-color);
 }
+.header__logo{
+    margin-right: 60px
+}
+.header__menu{
+
+}
+.sign-in-btn,.sign-up-btn{
+    color: var(--primary-text-color) !important
+}
+.sign-in-btn:hover,.sign-up-btn:hover{
+    color: var(--purple-color) !important
+}
+.sign-up-btn{
+    border-color: var(--primary-text-color) !important
+}
+.sign-up-btn:hover{
+    border-color: var(--purple-color) !important
+}
+.wheel-svg-icon{
+   
+}
+.header__become-owner{
+    margin-right: 60px;
+}
