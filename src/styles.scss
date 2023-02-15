@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/customize-style/common-style.scss";
+@import "./assets/customize-style/flex-custom.scss";
+@import "./assets/customize-style/grid.scss";
+@import "./assets/customize-style/responsive.scss";
+// @import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+    --primary-color: black;
+    --primary-text-color: white;
+    --gemstone-color: #00a550;
+    --purple-color: #5d5fef;
+    --dark-cyan: #159093;
+}
+
+// reset
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+    cursor: pointer;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    background-color: rgb(248 248 248);
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+input {
+    outline: none;
+    border: none
+}
+
+/* Common */
