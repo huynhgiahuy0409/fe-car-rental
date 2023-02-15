@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerHeaderComponent } from './customer-header/customer-header.component';
 import { CustomerFooterComponent } from './customer-footer/customer-footer.component';
+import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 
 
 
@@ -11,11 +12,13 @@ import { CustomerFooterComponent } from './customer-footer/customer-footer.compo
     CustomerFooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialAngularModule
   ],
   exports: [
     CustomerHeaderComponent,
-    CustomerFooterComponent
+    CustomerFooterComponent,
+    
   ]
 })
 export class CustomerLayoutModule { }
