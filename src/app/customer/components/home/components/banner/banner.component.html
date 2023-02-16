@@ -88,8 +88,7 @@
                                             </mat-form-field>
                                         </div>
                                         <div class="search-form__control">
-                                            <label class="home-label w-fit">Bắt
-                                                đầu</label>
+                                            <label class="home-label w-fit">Bắt đầu</label>
                                             <div class="row sm-gutters">
                                                 <div class="col l-6">
                                                     <mat-form-field
@@ -129,6 +128,53 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="search-form__control">
+                                            <label class="home-label w-fit">Kết thúc</label>
+                                            <div class="row sm-gutters">
+                                                <div class="col l-6">
+                                                    <mat-form-field
+                                                        style="width: 100%"
+                                                        appearance="fill">
+                                                        <mat-label>Chọn một ngày</mat-label>
+                                                        <input matInput
+                                                            [matDatepicker]="picker"
+                                                            />
+                                                        <mat-datepicker-toggle
+                                                            matIconSuffix
+                                                            [for]="picker">
+                                                            <mat-icon
+                                                                style="color:
+                                                                var(--primary-text-color)"
+                                                                matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                                        </mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col l-6">
+                                                    <mat-form-field
+                                                        appearance="fill"
+                                                        style="width: 100%">
+                                                        <mat-label>Chọn giờ
+                                                        </mat-label>
+                                                        <mat-select
+                                                            [(value)]="selectedQuantity">
+                                                            <mat-option
+                                                                *ngFor="let hr
+                                                                of hrs"
+                                                                [value]="selectedQuantity">
+                                                                {{ hr }}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button mat-raised-button class="w-fit" style="color: var(--gemstone-color)">
+                                            <div class="d-flex-bo align-items-center-bo">
+                                                <mat-icon>search</mat-icon>
+                                                Tìm xe ngay
+                                            </div>
+                                        </button>
                                     </form>
                                     <form id="driver__search-form"></form>
                                 </div>

@@ -1,7 +1,6 @@
 .banner {
     padding: 100px 0 130px;
     position: relative;
-    height: 500px;
     box-sizing: content-box;
     background-image: url('https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
     background-position: center bottom;
@@ -97,7 +96,9 @@
 .search-wrapper {
     background-color: rgba(0, 0, 0, .6);
     height: 100%;
-    padding: 25px
+    padding: 25px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 5px;
 }
 
 label.home-label {
@@ -112,7 +113,8 @@ label.home-label {
 
 .service-box {
     padding: 15px 30px;
-    border-radius: 5px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 5px;
     background-color: rgba(0, 0, 0, .4);
     height: 130px;
     margin-top: 10px;
@@ -155,50 +157,83 @@ i.service-box__icon.service-box__icon--driver {
     width: 75px;
     height: 76px;
 }
-form.search-form{
-    
-}
-form.search-form .search-form__control{
+
+form.search-form {}
+
+form.search-form .search-form__control {
     margin-bottom: 15px
 }
+
 // customize material angular
-::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: unset;
 }
+
 ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
     color: white;
     font-size: 1.4rem;
 }
+
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
     border-bottom-color: rgba(255, 255, 255, 0.85)
 }
+
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple::before {
     border-bottom-color: #fff
 }
+
 :host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
     background-color: white !important;
 }
+
 ::ng-deep .mat-form-field-underline {
-    background-color: white !important;;
+    background-color: white !important;
+    ;
 }
-::ng-deep .mdc-text-field--focused .mdc-line-ripple--active{
+
+::ng-deep .mdc-text-field--focused .mdc-line-ripple--active {
     border-bottom-color: #fff
 }
-::ng-deep .mdc-text-field--filled .mdc-line-ripple::after{
+
+::ng-deep .mdc-text-field--filled .mdc-line-ripple::after {
     border-bottom-color: var(--gemstone-color)
 }
+
 ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: var(--primary-text-color)
-}   
+}
+
 ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
     color: var(--gemstone-color)
 }
+
 ::ng-deep .mat-mdc-select-value {
     color: var(--primary-text-color);
 }
+
 ::ng-deep .mat-mdc-select-arrow {
     color: var(--primary-text-color);
 }
+
 ::ng-deep .mat-mdc-form-field.mat-focused.mat-primary .mat-mdc-select-arrow {
     color: var(--gemstone-color)
+}
+
+::ng-deep .mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--gemstone-color)
+}
+
+::ng-deep .mat-calendar-body-selected {
+    background-color: var(--gemstone-color);
+    color: #fff;
+}
+::ng-deep .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: var(--gemstone-color-hover)
+}
+
+::ng-deep .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: var(--gemstone-color-hover)
+}
+::ng-deep .mdc-text-field .mdc-text-field__input {
+    caret-color: var(--gemstone-color);
 }
