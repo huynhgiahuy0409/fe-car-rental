@@ -1,0 +1,142 @@
+<div class="banner">
+    <div class="grid">
+        <div class="row">
+            <div class="col l-12">
+                <div class="banner__insurance-partner">
+                    <p class="title">đối tác bảo hiểm</p>
+                    <div class="partner-logo">
+                        <div class="row">
+                            <div class="partner-logo col l-4">
+                                <img
+                                    class="image-fit"
+                                    src="https://www.mioto.vn/static/media/global-care.f6fdc8ef.png"
+                                    alt=""
+                                    />
+                            </div>
+                            <div class="partner-logo col l-4">
+                                <img
+                                    class="image-fit"
+                                    src="https://www.mioto.vn/static/media/mic.e9091023.png"
+                                    alt=""
+                                    />
+                            </div>
+                            <div class="partner-logo col l-4">
+                                <img
+                                    class="image-fit"
+                                    src="https://www.mioto.vn/static/media/l_pjico.bb9b4a65.png"
+                                    alt=""
+                                    />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner__search-by-service">
+                    <h1 class="slogan landing-text">
+                        CAR RENTAL - CÙNG BẠN TRÊN MỌI <br />
+                        HÀNH TRÌNH
+                    </h1>
+                    <div class="search-by-service__box">
+                        <div class="row sm-gutters">
+                            <div class="col l-4">
+                                <div
+                                    class="service-box service-box--first"
+                                    [class.active]="serviceType ===
+                                    'SELF_DRIVING'"
+                                    (click)="serviceType= 'SELF_DRIVING'">
+                                    <i class="service-box__icon
+                                        service-box__icon--selfdrive"></i>
+                                    <p>Xe tự lái</p>
+                                </div>
+                                <div
+                                    class="service-box"
+                                    [class.active]="serviceType === 'DRIVER'"
+                                    (click)="serviceType= 'DRIVER'">
+                                    <i class="service-box__icon
+                                        service-box__icon--driver"></i>
+                                    <p>Xe có tài xế</p>
+                                </div>
+                            </div>
+                            <div class="col l-8">
+                                <div class="search-wrapper">
+                                    <form id="self-driving__search-form"
+                                        class="search-form">
+                                        <div class="search-form__control">
+                                            <label class="home-label w-fit">Địa
+                                                điểm</label>
+                                            <mat-form-field style="display:
+                                                block" appearance="fill">
+                                                <mat-label>Nhập thành phố, quận,
+                                                    địa chỉ,...</mat-label>
+                                                <input
+                                                    type="text"
+                                                    matInput
+                                                    [matAutocomplete]="auto"
+                                                    [formControl]="addressControl"
+                                                    />
+                                                <mat-autocomplete
+                                                    #auto="matAutocomplete">
+                                                    <mat-option
+                                                        *ngFor="
+                                                        let option of
+                                                        filteredAddressOptions |
+                                                        async
+                                                        "
+                                                        [value]="option">
+                                                        {{ option }}
+                                                    </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="search-form__control">
+                                            <label class="home-label w-fit">Bắt
+                                                đầu</label>
+                                            <div class="row sm-gutters">
+                                                <div class="col l-6">
+                                                    <mat-form-field
+                                                        style="width: 100%"
+                                                        appearance="fill">
+                                                        <mat-label>Chọn một ngày</mat-label>
+                                                        <input matInput
+                                                            [matDatepicker]="picker"
+                                                            />
+                                                        <mat-datepicker-toggle
+                                                            matIconSuffix
+                                                            [for]="picker">
+                                                            <mat-icon
+                                                                style="color:
+                                                                var(--primary-text-color)"
+                                                                matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                                        </mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col l-6">
+                                                    <mat-form-field
+                                                        appearance="fill"
+                                                        style="width: 100%">
+                                                        <mat-label>Chọn giờ
+                                                        </mat-label>
+                                                        <mat-select
+                                                            [(value)]="selectedQuantity">
+                                                            <mat-option
+                                                                *ngFor="let hr
+                                                                of hrs"
+                                                                [value]="selectedQuantity">
+                                                                {{ hr }}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form id="driver__search-form"></form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

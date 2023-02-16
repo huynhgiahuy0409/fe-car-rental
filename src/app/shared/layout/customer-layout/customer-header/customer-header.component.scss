@@ -2,10 +2,11 @@
     height: 60px;
     color: var(--primary-text-color);
     font-size: 1.6rem;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 999;
 }
 .header--bg{
     background-color: var(--primary-color);
