@@ -101,6 +101,9 @@
     border-bottom-right-radius: 5px;
 }
 
+.search-form{
+    animation: fadeIn .5s linear;
+}
 label.home-label {
     font-weight: 600;
     color: #00a550;
@@ -125,6 +128,7 @@ label.home-label {
 
 .service-box.active {
     background-color: rgba(0, 0, 0, .6);
+    border-right: 2px solid #fff;
 }
 
 .service-box.service-box--first {
@@ -165,6 +169,8 @@ form.search-form .search-form__control {
 }
 
 // customize material angular
+
+// +Customize form field + autocomplate
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: unset;
 }
@@ -236,4 +242,14 @@ form.search-form .search-form__control {
 }
 ::ng-deep .mdc-text-field .mdc-text-field__input {
     caret-color: var(--gemstone-color);
+}
+// +Customize tabs
+::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: var(--gemstone-color);
+}
+::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+    border-color: var(--gemstone-color);
+}
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color: var(--primary-text-color)
 }
