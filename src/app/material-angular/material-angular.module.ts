@@ -10,18 +10,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE, NativeDateAdapter } from '@angula
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
-export const ISO_FORMAT = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'YYYY-MM-DD',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 
 @NgModule({
   declarations: [],
@@ -36,6 +27,8 @@ export const ISO_FORMAT = {
     MatNativeDateModule,
     MatSelectModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
     MatStepperModule
   ],
 })
