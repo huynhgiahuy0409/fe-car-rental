@@ -32,9 +32,9 @@
                 <div class="h-list d-flex-bo flex-row-reverse-bo">
                     <div class="header__menu">
                         <div class="h-list">
-                            <div class="h-item h-item--genstome-hover">
-                                <a href="" class="h-item__link">
-                                    <button class="sign-up-btn" mat-button>Đăng nhập</button>
+                            <div class="h-item h-item--gemstone-hover">
+                                <a class="h-item__link">
+                                    <button class="sign-up-btn" mat-button (click)="openLoginFormDialog('400ms', '200ms')">Đăng nhập</button>
                                 </a>
                             </div>
                             <div class="h-item h-item--genstome-hover">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="header__become-owner">
                         <div class="h-list">
-                            <div class="h-item h-item--gemstome-hover">
+                            <div class="h-item h-item--gemstone-hover">
                                 <a routerLink="car-owner/register" class="h-item__link d-flex-bo align-items-center-bo">
                                     <svg class="bo-svg-icon mr-r-5" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill-rule="evenodd" clip-rule="evenodd"

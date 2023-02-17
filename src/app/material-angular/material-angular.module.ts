@@ -12,7 +12,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -29,7 +29,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTabsModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule
   ],
 })
 

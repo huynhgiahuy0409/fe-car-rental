@@ -233,11 +233,9 @@
 .h-item {
   position: relative;
 }
-.h-item.h-item--gemstone-hover:hover {
+
+.h-item:hover.h-item--gemstone-hover {
   color: var(--gemstone-color) !important;
-}
-.h-item.h-item--purple-hover:hover {
-  color: var(--purple-color) !important;
 }
 .h-item:first-child .h-item__link {
   padding-left: 0;
