@@ -6,20 +6,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatNativeDateModule, MAT_DATE_LOCALE, NativeDateAdapter} from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export const ISO_FORMAT = {
   parse: {
-      dateInput: 'LL',
+    dateInput: 'LL',
   },
   display: {
-      dateInput: 'YYYY-MM-DD',
-      monthYearLabel: 'MMM YYYY',
-      dateA11yLabel: 'LL',
-      monthYearA11yLabel: 'MMMM YYYY',
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
   },
 };
 
@@ -34,10 +34,10 @@ export const ISO_FORMAT = {
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatStepperModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatStepperModule
   ],
 })
 
-export class MaterialAngularModule {}
+export class MaterialAngularModule { }
