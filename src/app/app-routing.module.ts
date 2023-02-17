@@ -16,7 +16,7 @@ const routes: Routes = [
     path: 'car-owner',
     loadChildren: () =>
       import('./car-owner/car-owner.module').then((m) => m.CarOwnerModule),
-  }
+  },
 ];
 
 @NgModule({
