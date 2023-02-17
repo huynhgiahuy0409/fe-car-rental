@@ -6,8 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -18,8 +20,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule ,
-    MatSelectModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatStepperModule
   ],
 })
-export class MaterialAngularModule {}
+export class MaterialAngularModule { }

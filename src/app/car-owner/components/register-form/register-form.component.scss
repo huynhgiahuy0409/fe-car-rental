@@ -1,0 +1,29 @@
+.owner__register {
+  &-form {
+    background: var(--secondary-color);
+  }
+  &-container {
+    padding-top: 5%;
+  }
+  &-content {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+::ng-deep {
+  &.mat-step-icon {
+    padding: 30px;
+    font-size: 150%;
+  }
+
+  &.mat-step-icon-state-number {
+    font-weight: 600;
+  }
+
+  &.mat-step-icon-state-edit,
+  .mat-step-icon-selected {
+    background-color: var(--gemstone-color) !important;
+  }
+}

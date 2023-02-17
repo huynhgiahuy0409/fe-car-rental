@@ -10,11 +10,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./components/home/home.module').then((m) => m.HomeModule),
       },
-      {
-        path: 'car-owner',
-        loadChildren: () =>
-          import('./components/car-owner/car-owner.module').then((m) => m.CarOwnerModule),
-      }
     ]
   },
 ];
