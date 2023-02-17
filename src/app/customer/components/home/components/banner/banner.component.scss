@@ -253,3 +253,26 @@ form.search-form .search-form__control {
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
     color: var(--primary-text-color)
 }
+// radio
+::ng-deep .mdc-form-field{
+    color: var(--primary-text-color) !important
+}
+::ng-deep .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple{
+    background-color: var(--gemstone-color-hover);
+}
+::ng-deep .mat-ripple{
+    display: none;
+}
+::ng-deep .mat-mdc-checkbox.mat-accent {
+    --mdc-checkbox-selected-checkmark-color: var(--primary-text-color);
+    --mdc-checkbox-selected-focus-icon-color: var(--gemstone-color);
+    --mdc-checkbox-selected-hover-icon-color: var(--gemstone-color);
+    --mdc-checkbox-selected-icon-color: var(--gemstone-color);
+    --mdc-checkbox-selected-pressed-icon-color: var(--gemstone-color);
+    --mdc-checkbox-unselected-focus-icon-color: var(--primary-text-color);
+    --mdc-checkbox-unselected-hover-icon-color: var(--primary-text-color);
+    --mdc-checkbox-disabled-selected-icon-color: var(--primary-text-color);
+    --mdc-checkbox-disabled-unselected-icon-color: var(--primary-text-color);
+    --mdc-checkbox-unselected-icon-color: var(--primary-text-color);
+    --mdc-checkbox-unselected-pressed-icon-color: var(--primary-text-color);
+}
