@@ -12,10 +12,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'car-owner',
+    loadChildren: () =>
+      import('./car-owner/car-owner.module').then((m) => m.CarOwnerModule),
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
