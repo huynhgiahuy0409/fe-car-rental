@@ -1,0 +1,39 @@
+.prominent-place{
+
+}
+.destination-slt{
+    position: relative;
+    margin-top: 80px;
+    padding-bottom: 40px;
+}
+.destination-slt .title-car{
+    color: #6E6E6E;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    margin-bottom: 24px
+}
+.airport-slt{
+    position: relative;
+    padding-top: 20px;
+}
+.airport-note{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.airport-note span{
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    padding-left: 25%;
+}
+.airport-carousel-container{
+    max-width: 880px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
