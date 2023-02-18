@@ -8,12 +8,11 @@ import { PromoComponent } from './components/promo/promo.component';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
     BannerComponent,
-    PromoComponent
+    PromoComponent,
   ],
   imports: [
     CommonModule,
