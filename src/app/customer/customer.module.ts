@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CustomerLayoutModule } from '../shared/layout/customer-layout/customer-layout.module';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerComponent } from './customer.component';
-import { SignUpComponent } from './components/home/components/sign-up/sign-up.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [

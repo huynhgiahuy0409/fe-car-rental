@@ -5,20 +5,24 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { PromoComponent } from './components/promo/promo.component';
-import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProminentPlaceModule } from './components/prominent-place/prominent-place.module';
+import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
+import { OwnerComponent } from './components/owner/owner.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     BannerComponent,
     PromoComponent,
+    OwnerComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HomeRoutingModule,
+    ProminentPlaceModule,
     MaterialAngularModule
   ]
 })
