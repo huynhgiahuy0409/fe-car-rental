@@ -13,7 +13,7 @@ $border-radius: 12px;
     border-radius: unset;
     overflow: hidden;
     position: relative;
-
+    font-size: 1.6rem;
     &:before {
         content: "";
         position: absolute;
@@ -29,7 +29,13 @@ $border-radius: 12px;
     .form {
         display: block;
         position: relative;
-
+        .forget-password{
+            margin: 0 40px 30px;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--gemstone-color);
+            cursor: pointer;
+        }
         h2 {
             background: #f5f5fa;
             display: block;
@@ -94,12 +100,30 @@ $border-radius: 12px;
             position: relative;
             cursor: pointer;
             box-sizing: border-box;
-            padding: 0 40px 45px 40px;
+            padding: 0 40px 10px 40px;
             margin: 0;
             border: 0;
             background: transparent;
             outline: none;
-
+            &.social-btn{
+                padding: 10px 5px;
+                height: 45px;
+                font-size: 1.4rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: var(--primary-text-color);
+                border-radius: 5px;
+                margin-right: 10px
+            }
+            &.social-btn:last-child{
+                margin-right:unset
+            }
+            &.facebook-btn{
+                background-color: rgb(65,103,178);
+            }
+            &.google-btn{
+                background-color:rgb(243,73,56)
+            }
             .arrow-wrapper {
                 transition: all 0.45s ease-in-out;
                 position: relative;
