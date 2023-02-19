@@ -1,16 +1,147 @@
-<div class="h-100vh owner__register-form">
+<div class="owner__register-form">
     <div class="owner__register-container">
         <div class="owner__register-content bg-white">
             <mat-stepper [linear]="true" #stepper>
-                <mat-step [stepControl]="firstFormGroup">
-                    <form [formGroup]="firstFormGroup">
+                <mat-step [stepControl]="carInformationFormGroup">
+                    <form [formGroup]="carInformationFormGroup">
                         <ng-template matStepLabel>Thông tin</ng-template>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Name</mat-label>
-                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h1>Biển số xe</h1>
+                            <p class="cl-danger register__car-subtitle">Lưu ý: Biển số sẽ không thể thay đổi sau khi
+                                đăng kí.</p>
+                        </div>
+                        <mat-form-field class="input__car-form" appearance="outline">
+                            <mat-label class="cl-black">Biển số xe</mat-label>
+                            <input matInput placeholder="Biển số xe" formControlName="carNumberPlate" required>
+                            <mat-error
+                                *ngIf="carInformationFormGroup.hasError('pattern') || !carInformationFormGroup.hasError('required')">
+                                Vui lòng nhập biển số xe hợp lệ
+                            </mat-error>
                         </mat-form-field>
-                        <div>
-                            <button mat-button matStepperNext>Next</button>
+                        <!-- end form field -->
+
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h1>Thông tin cơ bản</h1>
+                            <p class="cl-danger register__car-subtitle">Lưu ý: Các thông tin cơ bản sẽ không thể thay
+                                đổi sau khi đăng kí.
+                            </p>
+                        </div>
+                        <div class="d-flex-bo flex-wrap-bo basic__information-container">
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Hãng xe</mat-label>
+                                <mat-select matInput formControlName="carBrand">
+                                    <mat-option value="0">Audi</mat-option>
+                                    <mat-option value="1">Vinfast</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn hãng xe
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Mẫu xe</mat-label>
+                                <mat-select matInput formControlName="carModel">
+                                    <mat-option value="0">Audi A1</mat-option>
+                                    <mat-option value="1">Vinfast Lux A2.0</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn mẫu xe
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Số ghế</mat-label>
+                                <mat-select matInput formControlName="carSeats">
+                                    <mat-option *ngFor="let i of carSeatRange;" [value]="i">{{i}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn số ghế
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Năm sản xuất</mat-label>
+                                <mat-select matInput formControlName="carProdYear">
+                                    <mat-option *ngFor="let i of carProduceYearRange;" [value]="i">{{i}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn năm sản xuất
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Truyền động</mat-label>
+                                <mat-select matInput formControlName="carTransmission">
+                                    <mat-option value="0">Số tự động</mat-option>
+                                    <mat-option value="1">Số sàn</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn truyền động của xe
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Loại nhiên liệu</mat-label>
+                                <mat-select matInput formControlName="carFuel">
+                                    <mat-option value="0">Xăng</mat-option>
+                                    <mat-option value="1">Dầu diesel</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn nhiên liệu của xe
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- end form field -->
+
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h1>Mức tiêu thụ nhiên liệu</h1>
+                            <p class="text-secondary register__car-subtitle">Số lít nhiên liệu cho quãng đường 100km.
+                            </p>
+                        </div>
+                        <div class="d-flex-bo flex-wrap-bo basic__information-container">
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Mức tiêu thụ nhiên liệu</mat-label>
+                                <input matInput placeholder="Mức tiêu thụ nhiên liệu"
+                                    formControlName="carFuelConsumption" required>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng nhập mức tiêu thụ hợp lệ
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- end form field -->
+
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h1>Mô tả</h1>
+                        </div>
+                        <div class="d-flex-bo flex-wrap-bo basic__information-container mr-t-10">
+                            <mat-form-field class="w-fit" appearance="outline">
+                                <textarea matInput placeholder="Mô tả" formControlName="carDescription"
+                                    required></textarea>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng nhập mô tả
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- end form field -->
+
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h1>Tính năng</h1>
+                        </div>
+                        <div
+                            class="d-flex-bo flex-wrap-bo align-items-center-bo text-center car__information-features mr-t-10">
+                            <div class="car__information-feature" *ngFor="let item of carFeaturesTemplate"
+                                (click)="handleClickFeature(item.id)">
+                                <div class="car__features-item" [id]="item?.id">
+                                    <img [src]="item.iconUrl" alt="404" width="30">
+                                    <p>{{item?.title}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end form field -->
+
+                        <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer">
+                            <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
+                            <button mat-button matStepperNext class="btn__primary">Kế tiếp</button>
                         </div>
                     </form>
                 </mat-step>
