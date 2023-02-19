@@ -1,4 +1,5 @@
 .prominent-car-item-wrapper{
+    padding: 5px;
 }
 .prominent-car-item-wrapper h3{
     font-size: 1.6rem;
@@ -9,10 +10,11 @@
 
 .prominent-car-item {
     margin-right: 15px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px;
     overflow: hidden;
     position: relative;
     color: #141414;
+    cursor: pointer;
 }
 .prominent-car-item:hover .prominent-car-item__image::before {
     visibility: visible;
@@ -79,7 +81,7 @@
 }
 
 .desc-car{
-
+    padding: 5px;
 }
 .desc-car__name{
     display: flex;
@@ -149,4 +151,8 @@
     background-position: -147px -220px;
     margin-right: 3px;
     transform: scale(.8);
+}
+// carousel
+.carousel-arrow.carousel-arrow--next{
+    right: 15px
 }
