@@ -1,6 +1,7 @@
+import { ForgetPasswordComponent } from './../forget-password/forget-password.component';
 import { tap, timer } from 'rxjs';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-login-dialog',
@@ -10,7 +11,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class CustomerLoginDialogComponent {
   @ViewChild('login')
   loginEleRef!: ElementRef
-  constructor(private dialogRef: MatDialogRef<CustomerLoginDialogComponent>){
+  constructor(private dialogRef: MatDialogRef<CustomerLoginDialogComponent>, private matDialog: MatDialog){
      
   }
 
@@ -25,5 +26,12 @@ export class CustomerLoginDialogComponent {
         }, 2000);
       }),
     ).subscribe()
+  }
+  
+  onClickForgetPassword(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.matDialog.open(ForgetPasswordComponent, {
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }

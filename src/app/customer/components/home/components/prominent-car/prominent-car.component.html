@@ -1,0 +1,14 @@
+<div class="prominent-place">
+    <div class="destination-slt">
+        <div class="grid m-wide">
+            <div class="row">
+                <div class="col l-12">
+                    <h3 class="title-car">
+                        <ng-content select=".title-car"></ng-content>
+                    </h3>
+                    <app-prominent-car-carousel [carouselDotsActive]="true" [itemList]="categories"></app-prominent-car-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

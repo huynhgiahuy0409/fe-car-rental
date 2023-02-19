@@ -1,0 +1,24 @@
+<div class="prominent-place">
+    <div class="destination-slt" [style.background]="setDestinationSltBgClr()">
+        <div class="grid m-wide">
+            <div class="row">
+                <div class="col l-12">
+                    <h3 class="title-car">
+                        <ng-content select=".title-car"></ng-content>
+                    </h3>
+                    <app-destination-carousel [primaryClr]="primaryClr" [itemList]="categories"></app-destination-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="airport-slt" [style.backgroundColor]="tertiaryClr">
+        <div class="airport-note" [style.backgroundColor]="primaryClr">
+            <span>
+                <ng-content select=".airport-note"></ng-content>
+            </span>
+        </div>
+        <div class="grid airport-carousel-container">
+            <app-airport-carousel [primaryClr]="primaryClr" [secondaryClr]="secondaryClr" [itemList]="categories" [carouselDotsActive]="true"></app-airport-carousel>
+        </div>
+    </div>
+</div>
