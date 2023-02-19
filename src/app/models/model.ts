@@ -1,13 +1,18 @@
-export interface RedirectInfo{
+export interface RedirectInfo {
     label: string,
     path: string
 }
-export interface IsoLongFormat{
+export interface IsoLongFormat {
     year: number,
     month: number,
     date: number
 }
-export interface TimeFormat{
+export interface TimeFormat {
     hour: number,
     minute: number
+}
+export interface CarFeatureElement {
+    id: string,
+    iconUrl: string,
+    title: string
 }
