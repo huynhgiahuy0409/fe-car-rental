@@ -1,9 +1,11 @@
 .owner__register {
   &-form {
+    min-height: 100vh;
     background: var(--secondary-color);
   }
   &-container {
     padding-top: 5%;
+    padding-bottom: 5%;
   }
   &-content {
     width: 70%;
@@ -25,5 +27,134 @@
   &.mat-step-icon-state-edit,
   .mat-step-icon-selected {
     background-color: var(--gemstone-color) !important;
+  }
+  &.mat-horizontal-content-container {
+    margin: 30px 10px;
+  }
+  &.mat-horizontal-stepper-header-container {
+    margin: 20px 100px;
+  }
+}
+
+.register {
+  &__car {
+    &-title {
+      margin-top: 20px;
+    }
+    &-subtitle {
+      margin: 1em 0 2.5em;
+      font-size: 140%;
+    }
+  }
+}
+
+.input {
+  &__car-form {
+    width: 47%;
+  }
+}
+
+.basic__information {
+  &-container {
+    gap: 40px;
+  }
+  &-field {
+    flex: 0 0 47%;
+  }
+}
+
+.car__information {
+  &-features {
+    gap: 40px;
+  }
+  &-feature {
+    flex: 0 0 30%;
+  }
+}
+
+.car__features {
+  &-item {
+    border: 2px solid var(--secondary-text);
+    padding: 20px 0;
+    font-size: 170%;
+    border-radius: 5px;
+    i {
+      font-size: 220%;
+    }
+    &.active {
+      border: 2px solid var(--gemstone-color);
+    }
+  }
+}
+
+.car__information__footer {
+  margin-top: 10em;
+  column-gap: 40px;
+
+  .btn__primary,
+  .btn__secondary {
+    flex: 0 0 46%;
+    padding: 2em 0;
+    font-size: 150%;
+    text-transform: uppercase;
+  }
+
+  .btn__primary {
+    background-color: var(--gemstone-color);
+    color: var(--white);
+  }
+
+  .btn__secondary {
+    background-color: var(--secondary-text);
+    color: var(--white);
+  }
+}
+
+//mobile
+@media screen and (max-width: 739px) {
+  ::ng-deep {
+    &.mat-step-icon {
+      padding: 20px;
+    }
+    &.mat-horizontal-stepper-header-container {
+      margin: 0px;
+    }
+  }
+  .input {
+    &__car-form {
+      width: 100%;
+    }
+  }
+  .basic__information {
+    &-field {
+      flex: 0 0 100%;
+    }
+  }
+  .car__information {
+    &-feature {
+      flex: 0 0 40%;
+    }
+  }
+  .car__information__footer {
+    column-gap: 10px;
+  }
+}
+
+//tablet
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+  .car__information {
+    &-feature {
+      flex: 0 0 27%;
+      gap: 0px;
+    }
+  }
+}
+//tablet
+@media screen and (min-width: 1023px) {
+  .car__information {
+    &-feature {
+      flex: 0 0 28%;
+      gap: 20px;
+    }
   }
 }

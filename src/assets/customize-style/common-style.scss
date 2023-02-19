@@ -599,8 +599,8 @@ svg.bo-svg-icon--sm {
   box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.1) !important;
 }
 
-.h-100vh {
-  height: 100vh;
+.mh-100vh {
+  min-height: 100vh;
 }
 
 .pos-rel {
@@ -613,4 +613,16 @@ svg.bo-svg-icon--sm {
 
 .bg-white {
   background-color: var(--white);
+}
+
+.cl-danger {
+  color: red;
+}
+
+.cl-black {
+  color: black;
+}
+
+.text-secondary {
+  color: var(--secondary-text);
 }
