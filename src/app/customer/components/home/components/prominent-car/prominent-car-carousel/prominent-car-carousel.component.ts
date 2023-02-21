@@ -15,6 +15,7 @@ import { CarouselService } from 'src/app/customer/services/carousel.service';
   selector: 'app-prominent-car-carousel',
   templateUrl: './prominent-car-carousel.component.html',
   styleUrls: ['./prominent-car-carousel.component.scss'],
+  providers: [CarouselService]
 })
 export class ProminentCarCarouselComponent {
   @Input()
