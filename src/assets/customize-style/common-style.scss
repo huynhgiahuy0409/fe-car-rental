@@ -97,21 +97,21 @@
   margin: 5px;
   display: inline-block;
 }
-.btn.btn--m{
-    height: 46px;
-    line-height: 46px;
-    padding: 0 20px;
-    font-size: 1.6rem;
+.btn.btn--m {
+  height: 46px;
+  line-height: 46px;
+  padding: 0 20px;
+  font-size: 1.6rem;
 }
-.btn.btn-secondary{
-    color: #fff;
-    background-color: #141414;
-    box-shadow: none;
+.btn.btn-secondary {
+  color: #fff;
+  background-color: #141414;
+  box-shadow: none;
 }
-.btn.btn-primary{
-    color: #fff;
-    background-color: var(--gemstone-color);
-    box-shadow: none;
+.btn.btn-primary {
+  color: #fff;
+  background-color: var(--gemstone-color);
+  box-shadow: none;
 }
 
 .btn.btn-raised:hover {
@@ -455,31 +455,31 @@ li.v-item.bg--hover:hover {
 .image-carousel__item {
   width: 100%;
 }
-.carousel-dots{
-    position: absolute;
-    bottom: 10px;
-    margin: auto;
-    align-items: center;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  margin: auto;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
 }
-.carousel-dots.carousel-dots--show{
-    display: flex;
+.carousel-dots.carousel-dots--show {
+  display: flex;
 }
-.carousel-dot{
-    width: 12px;
-    height: 12px;
-    border-radius: 100rem;
-    background-color: rgba(255, 255, 255, 0.687);
-    border: 1px solid var(--primary-color--);
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 100rem;
+  background-color: rgba(255, 255, 255, 0.687);
+  border: 1px solid var(--primary-color--);
 }
-.carousel-dot.carousel-dot--active{
-    background-color: var(--primary-color--);
-    animation: fadeIn .1s linear
+.carousel-dot.carousel-dot--active {
+  background-color: var(--primary-color--);
+  animation: fadeIn 0.1s linear;
 }
-.carousel-dot:not(:first-child){
-    margin-left: 5px;
+.carousel-dot:not(:first-child) {
+  margin-left: 5px;
 }
 // rating star
 .booking-oto-rating-stars {
@@ -625,4 +625,32 @@ svg.bo-svg-icon--sm {
 
 .text-secondary {
   color: var(--secondary-text);
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.d-none {
+  display: none;
+}
+
+.align-between {
+  align-content: space-between;
+}
+
+.g-20 {
+  gap: 20px;
+}
+
+.fs-150 {
+  font-size: 150%;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.bg-gemstone {
+  background-color: var(--gemstone-color);
 }

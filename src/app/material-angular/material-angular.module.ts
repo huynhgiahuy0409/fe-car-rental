@@ -10,9 +10,11 @@ import { MatNativeDateModule, MAT_DATE_LOCALE, NativeDateAdapter } from '@angula
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [],
@@ -30,7 +32,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCheckboxModule,
     MatRadioModule,
     MatStepperModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatSliderModule,
   ],
 })
 

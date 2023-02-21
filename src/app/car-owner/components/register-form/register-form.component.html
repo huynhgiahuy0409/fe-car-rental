@@ -145,13 +145,188 @@
                         </div>
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="secondFormGroup" label="Cho thuê">
-                    <form [formGroup]="secondFormGroup">
-                        <mat-form-field appearance="fill">
-                            <mat-label>Address</mat-label>
-                            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                                required>
+
+                <!-- second form -->
+                <mat-step [stepControl]="forRentFormGroup" label="Cho thuê">
+                    <form [formGroup]="forRentFormGroup">
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h1>Đơn giá thuê mặc định</h1>
+                            <p class="text-secondary register__car-subtitle">Đơn giá áp dụng cho tất cả các ngày. Bạn có
+                                thuể tuỳ chỉnh giá khác cho các ngày đặc biệt (cuối tuần, lễ, tết...) trong
+                                mục quản lý xe sau khi đăng kí.
+                            </p>
+                            <p class="text-secondary register__car-subtitle">Giá đề xuất: {{recommendPriceInFormat}}
+                            </p>
+                        </div>
+                        <mat-form-field class="input__car-form" appearance="outline">
+                            <mat-label class="cl-black">Đơn giá thuê mặc định</mat-label>
+                            <input matInput placeholder="Đơn giá thuê mặc định" formControlName="defaultPrice" required>
+                            <mat-error
+                                *ngIf="carInformationFormGroup.hasError('pattern') || !carInformationFormGroup.hasError('required')">
+                                Vui lòng nhập đơn giá thuê mặc định hợp lệ
+                            </mat-error>
                         </mat-form-field>
+                        <!-- end form field -->
+
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h1>Giảm giá</h1>
+                            </div>
+                            <div class="discount__status-field ml-auto" [formGroup]="toggleDiscountGroup">
+                                <mat-slide-toggle formControlName="isDiscount">
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+
+                        <div *ngIf="toggleDiscountGroup.get('isDiscount')?.value===true"
+                            [formGroup]="toggleDiscountGroup" class="d-flex-bo flex-wrap-bo discount__field-group">
+                            <div class="discount__field mobile-fw-flex">
+                                <p class="discount__subtitle">Giảm giá thuê tuần (% trên đơn giá)</p>
+                                <mat-slider min="1" max="100" step="1">
+                                    <input matSliderThumb formControlName="discountPercentByWeek">
+                                </mat-slider>
+                                <p class="discount__subtitle">
+                                    {{toggleDiscountGroup.get('discountPercentByWeek')?.value+"%"}}</p>
+                            </div>
+                            <div class="discount__field flex-end mobile-fw-flex">
+                                <p class="discount__subtitle">Giảm giá thuê tháng (% trên đơn giá)</p>
+                                <mat-slider min="1" max="100" step="1">
+                                    <input matSliderThumb formControlName="discountPercentByMonth">
+                                </mat-slider>
+                                <p class="discount__subtitle">
+                                    {{toggleDiscountGroup.get('discountPercentByMonth')?.value+"%"}}</p>
+                            </div>
+                        </div>
+                        <!-- end form field -->
+
+                        <!-- start form field -->
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h1>Đặt xe nhanh</h1>
+                            </div>
+                            <div class="discount__status-field ml-auto" [formGroup]="toggleFastRentGroup">
+                                <mat-slide-toggle formControlName="isFastRent">
+                                </mat-slide-toggle>
+                            </div>
+                            <p class="cl-danger register__car-subtitle">Bật tính năng cho phép khách hàng đặt xe
+                                ngay lập tức không cần chủ xe phê duyệt. (Phù hợp với chủ xe không thường xuyên
+                                online hoặc kiểm tra điện thoại)
+                                Lưu ý : Bạn cần đảm bảo việc cần cập nhật lịch bận xe thường xuyên, trường hợp hủy
+                                chuyến sau
+                                khi khách đặt cọc vì chưa cập nhật
+                                lịch bận sẽ áp dụng phí hủy chuyến (100% tiền đặt cọc)
+
+                            </p>
+                        </div>
+
+                        <div *ngIf="toggleFastRentGroup.get('isFastRent')?.value===true"
+                            [formGroup]="toggleFastRentGroup" class="d-flex-bo flex-wrap-bo align-between g-20">
+                            <mat-form-field class="fast__rent-6 mobile-fw-flex" appearance="outline">
+                                <mat-label class="cl-black">Giới hạn từ</mat-label>
+                                <mat-select matInput formControlName="limitFrom">
+                                    <mat-option value="6">6 tiếng tới</mat-option>
+                                    <mat-option value="12">12 tiếng tới</mat-option>
+                                    <mat-option value="24">24 tiếng tới</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="fast__rent-6 mobile-fw-flex" appearance="outline">
+                                <mat-label class="cl-black">Giới hạn từ</mat-label>
+                                <mat-select matInput formControlName="untilWeek">
+                                    <mat-option value="1">1 tiếng tới</mat-option>
+                                    <mat-option value="2">2 tiếng tới ( khuyến nghị )</mat-option>
+                                    <mat-option value="3">3 tiếng tới</mat-option>
+                                    <mat-option value="4">4 tiếng tới</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h1>Địa chỉ xe</h1>
+                            </div>
+                        </div>
+
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container address__div-input">
+                            <div class="discount__status-field fs-150">
+                                <p>{{forRentFormGroup.get("defaultLocation")?.value}}</p>
+                            </div>
+                            <div class="discount__status-field ml-auto" (click)="toggleAddressModal()">
+                                <img src="https://n1-cstg.mioto.vn/v4/p/m/icons/features/map.png" alt="404" width="20">
+                            </div>
+                        </div>
+
+                        <div id="myModal" class="modal__address" *ngIf="showAddressModal===true">
+                            <div class="modal__address-content">
+                                <span class="close" (click)="toggleAddressModal()">&times;</span>
+                                <div class="modal__address-title">
+                                    <h1>Chỉnh sửa địa chỉ</h1>
+                                </div>
+                                <div class="modal__address-fields">
+                                    <h2>Địa chỉ <span class="cl-danger">*</span></h2>
+                                    <div class="modal__address-field" [formGroup]="addressFormGroup">
+                                        <p class="fs-150 text-secondary">Tỉnh/ Thành phố</p>
+                                        <mat-form-field appearance="outline" class="w-fit">
+                                            <mat-select matInput formControlName="city"
+                                                (selectionChange)="onChangeCity()" placeholder="Chọn Tỉnh/ Thành phố">
+                                                <mat-option [value]="item.areaCode"
+                                                    *ngFor="let item of cities">{{item.name}}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="!addressFormGroup.hasError('required')">
+                                                Vui lòng chọn tỉnh/thành phố
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <p class="fs-150 text-secondary">Quận/ Huyện</p>
+                                        <mat-form-field appearance="outline" class="w-fit">
+                                            <mat-select matInput formControlName="district"
+                                                (selectionChange)="onChangeDistrict()" placeholder="Chọn quận/ huyện">
+                                                <mat-option [value]="item.id"
+                                                    *ngFor="let item of fetchedDistricts">{{item.name}}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="!addressFormGroup.hasError('required')">
+                                                Vui lòng chọn quận/ huyện
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <p class="fs-150 text-secondary">Phường/ Xã</p>
+                                        <mat-form-field appearance="outline" class="w-fit">
+                                            <mat-select matInput formControlName="ward" placeholder="Chọn Phường/ Xã">
+                                                <mat-option [value]="item.id"
+                                                    *ngFor="let item of fetchedWards">{{item.name}}</mat-option>
+                                            </mat-select>
+                                            <mat-error *ngIf="!addressFormGroup.hasError('required')">
+                                                Vui lòng chọn phường/ xã
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <p class="fs-150 text-secondary">Đường</p>
+                                        <mat-form-field appearance="outline" class="w-fit">
+                                            <input matInput placeholder="Nhập tên đường/ tòa nhà"
+                                                formControlName="street" required [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of fetchedLocation"
+                                                    [value]="option.address">
+                                                    {{option.address}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                            <mat-error *ngIf="!addressFormGroup.hasError('required')">
+                                                Vui lòng nhập đường hợp lệ
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <button class="btn__location-action bg-black" (click)="toggleAddressModal()">Hủy
+                                            bỏ</button>
+                                        <button class=" btn__location-action ml-10 bg-gemstone"
+                                            [disabled]="this.addressFormGroup.status==='INVALID'?true:''"
+                                            (click)="onSubmitAddress()">Áp
+                                            dụng</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div>
                             <button mat-button matStepperPrevious>Back</button>
                             <button mat-button matStepperNext>Next</button>

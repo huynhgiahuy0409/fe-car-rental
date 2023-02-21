@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { CAR_FEATURES } from 'src/app/models/constance';
-import { CarFeatureElement } from 'src/app/models/model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { CAR_FEATURES, CITIES } from 'src/app/models/constance';
+import { AddressField, CarFeatureElement, DistrictAddressResponse, Location, LocationResponse, WardsAddressResponse, City } from 'src/app/models/model';
+import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
+import { CarOwnerService } from '../../services/car-owner.service';
 
 @Component({
   selector: 'app-register-form',
@@ -10,21 +13,121 @@ import { CarFeatureElement } from 'src/app/models/model';
 })
 
 export class RegisterFormComponent {
-
   carSeatRange!: Number[];
   carProduceYearRange!: Number[];
   carFeatures!: String[];
   carFeaturesTemplate!: CarFeatureElement[];
+  recommendPrice = 500000;
+  recommendPriceInFormat = getMoneyFormat(this.recommendPrice);
+  showAddressModal = false;
+  fetchedDistricts: AddressField[];
+  fetchedWards!: AddressField[];
+  fetchedLocation!: Location[];
+  cities: City[] = CITIES;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService) {
     this.carSeatRange = [];
     this.carProduceYearRange = [];
     this.carFeatures = [];
     this.carFeaturesTemplate = [];
+    this.fetchedDistricts = [];
+    this.fetchedWards = [];
+    this.fetchedLocation = [];
   }
+
+  carInformationFormGroup = this._formBuilder.group({
+    //remove all the values at the first index in array down below to clear form value
+    carNumberPlate: ['51A-123.56', [Validators.required, Validators.pattern(/^[0-9]{2}[A-z]{1,2}-[0-9]{3}\.[0-9]{2}$/)]],
+    carBrand: ['0', Validators.required],
+    carModel: ['0', Validators.required],
+    carSeats: ['4', Validators.required],
+    carProdYear: ['2000', Validators.required],
+    carTransmission: ['0', Validators.required],
+    carFuel: ['0', Validators.required],
+    carFuelConsumption: ['20', [Validators.required, Validators.min(0), Validators.max(50)]],
+    carDescription: ['test', Validators.required],
+  });
+
+  toggleDiscountGroup = new FormGroup({
+    isDiscount: new FormControl(true),
+    discountPercentByWeek: new FormControl(1),
+    discountPercentByMonth: new FormControl(1)
+  });
+
+  toggleFastRentGroup = new FormGroup({
+    isFastRent: new FormControl(false),
+    limitFrom: new FormControl("6"),
+    untilWeek: new FormControl("2"),
+  });
+
+  forRentFormGroup = this._formBuilder.group({
+    //remove this.recommendPrice to clear form value
+    defaultPrice: [this.recommendPrice, [Validators.required, Validators.min(100000), Validators.max(5000000)]],
+    defaultLocation: ['Địa chỉ mặc định để giao nhận xe.', Validators.required],
+  });
+
+  addressFormGroup = this._formBuilder.group({
+    street: ['', Validators.required],
+    district: ['', Validators.required],
+    ward: ['', Validators.required],
+    city: ['', Validators.required]
+  });
 
   ngOnInit(): void {
     this.initDynamicData();
+    this.onChangeStreet();
+  }
+
+  onChangeCity() {
+    const areaCode = Number(this.addressFormGroup.get('city')?.value);
+    this.carServices.getDistrictByAreaCode(areaCode).subscribe((res: DistrictAddressResponse) => {
+      this.fetchedDistricts = res.data.districts;
+    });
+  }
+
+  onChangeDistrict() {
+    const districtCode = Number(this.addressFormGroup.get('district')?.value);
+    this.carServices.getWardsByDistrict(districtCode).subscribe((res: WardsAddressResponse) => {
+      this.fetchedWards = res.data.wards;
+    })
+  }
+
+  onChangeStreet() {
+    this.addressFormGroup.get('street')?.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(location => {
+      this.carServices.searchAddress(String(location)).subscribe((res: LocationResponse) => {
+        this.fetchedLocation = res.data.locations;
+      });
+    });
+  }
+
+  onSubmitAddress() {
+    const cityCode = Number(this.addressFormGroup.get('city')?.value);
+    const districtCode = Number(this.addressFormGroup.get('district')?.value);
+    const wardCode = Number(this.addressFormGroup.get('ward')?.value);
+    const street = this.addressFormGroup.get('street')?.value;
+
+    const cityName = this.findCityNameByCode(cityCode);
+    const districtName = this.findDistrictNameByCode(districtCode);
+    const wardName = this.findWardNameByCode(wardCode);
+
+    const finalLocation = `${street}, ${wardName}, ${districtName}, ${cityName}`;
+    this.forRentFormGroup.get('defaultLocation')?.setValue(finalLocation);
+    this.toggleAddressModal();
+  }
+
+  findCityNameByCode(areaCode: number) {
+    const foundCity = this.cities.find((city) => city.areaCode === areaCode);
+    return foundCity?.name;
+  }
+
+  findDistrictNameByCode(districtCode: number) {
+    const foundDistrict = this.fetchedDistricts.find((district) => district.id === districtCode);
+    return foundDistrict?.name;
+  }
+
+  findWardNameByCode(wardCode: number) {
+    const foundWard = this.fetchedWards.find((ward) => ward.id === wardCode);
+    return foundWard?.name;
   }
 
   initDynamicData() {
@@ -33,8 +136,11 @@ export class RegisterFormComponent {
     this.carFeaturesTemplate = CAR_FEATURES;
   }
 
-  handleClickFeature(elm: String) {
+  toggleAddressModal() {
+    this.showAddressModal = !this.showAddressModal;
+  }
 
+  handleClickFeature(elm: String) {
     const foundFeature = this.carFeatures.find((feature) => feature === elm);
 
     if (foundFeature) {
@@ -48,21 +154,4 @@ export class RegisterFormComponent {
     }
     console.log(this.carFeatures);
   }
-
-  carInformationFormGroup = this._formBuilder.group({
-    carNumberPlate: ['', [Validators.required, Validators.pattern(/^[0-9]{2}[A-z]{1,2}-[0-9]{3}\.[0-9]{2}$/)]],
-    carBrand: ['', Validators.required],
-    carModel: ['', Validators.required],
-    carSeats: ['', Validators.required],
-    carProdYear: ['', Validators.required],
-    carTransmission: ['', Validators.required],
-    carFuel: ['', Validators.required],
-    carFuelConsumption: ['', [Validators.required, Validators.min(0), Validators.max(50)]],
-    carDescription: ['', Validators.required],
-  });
-
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-
 }

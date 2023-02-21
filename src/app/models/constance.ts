@@ -1,4 +1,9 @@
-import { CarFeatureElement } from "./model";
+import { CarFeatureElement, City } from "./model";
+
+export const ADDRESS_API = "https://cors-anywhere.herokuapp.com/https://m-common.mioto.vn/address/";
+export const GET_DISTRICTS_BY_CITY = `${ADDRESS_API}districts-by-city`;
+export const GET_WARDS_BY_DISTRICT = `${ADDRESS_API}wards-by-district`;
+export const SEARCH_ADDRESS = "https://cors-anywhere.herokuapp.com/https://m-common.mioto.vn/lbs/search-address";
 
 export const CAR_FEATURES: CarFeatureElement[] = [
     {
@@ -92,3 +97,69 @@ export const CAR_FEATURES: CarFeatureElement[] = [
         title: "Túi khí an toàn"
     },
 ]
+
+export const CITIES: City[] = [
+    { areaCode: 89, name: "An Giang" },
+    { areaCode: 77, name: "Bà Rịa - Vũng Tàu" },
+    { areaCode: 24, name: "Bắc Giang" },
+    { areaCode: 6, name: "Bắc Kạn" },
+    { areaCode: 95, name: "Bạc Liêu" },
+    { areaCode: 27, name: "Bắc Ninh" },
+    { areaCode: 83, name: "Bến Tre" },
+    { areaCode: 52, name: "Bình Định" },
+    { areaCode: 74, name: "Bình Dương" },
+    { areaCode: 70, name: "Bình Phước" },
+    { areaCode: 60, name: "Bình Thuận" },
+    { areaCode: 96, name: "Cà Mau" },
+    { areaCode: 92, name: "Cần Thơ" },
+    { areaCode: 4, name: "Cao Bằng" },
+    { areaCode: 48, name: "Đà Nẵng" },
+    { areaCode: 66, name: "Đắk Lắk" },
+    { areaCode: 67, name: "Đắk Nông" },
+    { areaCode: 11, name: "Điện Biên" },
+    { areaCode: 75, name: "Đồng Nai" },
+    { areaCode: 87, name: "Đồng Tháp" },
+    { areaCode: 64, name: "Gia Lai" },
+    { areaCode: 2, name: "Hà Giang" },
+    { areaCode: 35, name: "Hà Nam" },
+    { areaCode: 1, name: "Hà Nội" },
+    { areaCode: 42, name: "Hà Tĩnh" },
+    { areaCode: 30, name: "Hải Dương" },
+    { areaCode: 31, name: "Hải Phòng" },
+    { areaCode: 93, name: "Hậu Giang" },
+    { areaCode: 79, name: "Hồ Chí Minh" },
+    { areaCode: 17, name: "Hoà Bình" },
+    { areaCode: 33, name: "Hưng Yên" },
+    { areaCode: 56, name: "Khánh Hòa" },
+    { areaCode: 91, name: "Kiên Giang" },
+    { areaCode: 62, name: "Kon Tum" },
+    { areaCode: 12, name: "Lai Châu" },
+    { areaCode: 68, name: "Lâm Đồng" },
+    { areaCode: 20, name: "Lạng Sơn" },
+    { areaCode: 10, name: "Lào Cai" },
+    { areaCode: 80, name: "Long An" },
+    { areaCode: 36, name: "Nam Định" },
+    { areaCode: 40, name: "Nghệ An" },
+    { areaCode: 37, name: "Ninh Bình" },
+    { areaCode: 58, name: "Ninh Thuận" },
+    { areaCode: 25, name: "Phú Thọ" },
+    { areaCode: 54, name: "Phú Yên" },
+    { areaCode: 44, name: "Quảng Bình" },
+    { areaCode: 49, name: "Quảng Nam" },
+    { areaCode: 51, name: "Quảng Ngãi" },
+    { areaCode: 22, name: "Quảng Ninh" },
+    { areaCode: 45, name: "Quảng Trị" },
+    { areaCode: 94, name: "Sóc Trăng" },
+    { areaCode: 14, name: "Sơn La" },
+    { areaCode: 72, name: "Tây Ninh" },
+    { areaCode: 34, name: "Thái Bình" },
+    { areaCode: 19, name: "Thái Nguyên" },
+    { areaCode: 38, name: "Thanh Hóa" },
+    { areaCode: 46, name: "Thừa Thiên Huế" },
+    { areaCode: 82, name: "Tiền Giang" },
+    { areaCode: 84, name: "Trà Vinh" },
+    { areaCode: 8, name: "Tuyên Quang" },
+    { areaCode: 86, name: "Vĩnh Long" },
+    { areaCode: 26, name: "Vĩnh Phúc" },
+    { areaCode: 15, name: "Yên Bái" }
+];
