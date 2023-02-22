@@ -253,12 +253,17 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container address__div-input">
                             <div class="discount__status-field fs-150">
-                                <p>{{forRentFormGroup.get("defaultLocation")?.value}}</p>
+                                <p>{{
+                                    forRentFormGroup.get("defaultLocation")?.value !==""
+                                    ?forRentFormGroup.get("defaultLocation")?.value:"Địa chỉ mặc định để giao nhận xe."
+                                    }}</p>
                             </div>
                             <div class="discount__status-field ml-auto" (click)="toggleAddressModal()">
                                 <img src="https://n1-cstg.mioto.vn/v4/p/m/icons/features/map.png" alt="404" width="20">
                             </div>
                         </div>
+                        <p class="cl-danger register__car-subtitle" *ngIf="!addressFormGroup.hasError('required')">Vui
+                            lòng chọn địa chỉ giao nhận xe</p>
 
                         <div id="myModal" class="modal__address" *ngIf="showAddressModal===true">
                             <div class="modal__address-content">
@@ -327,9 +332,52 @@
 
                         </div>
 
-                        <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
+                        <!-- start form field -->
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h1>Giao xe tận nơi</h1>
+                            </div>
+                            <div class="discount__status-field ml-auto" [formGroup]="toggleDeliveryGroup">
+                                <mat-slide-toggle formControlName="isDeliveryToTenant">
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+
+                        <div *ngIf="toggleDeliveryGroup.get('isDeliveryToTenant')?.value===true"
+                            [formGroup]="toggleDeliveryGroup" class="d-flex-bo flex-wrap-bo discount__field-group">
+                            <div class="discount__field mobile-fw-flex">
+                                <p class="discount__subtitle">Phí giao nhận xe</p>
+                                <mat-slider min="1000" max="20000" step="1000">
+                                    <input matSliderThumb formControlName="deliveryFee">
+                                </mat-slider>
+                                <p class="discount__subtitle">
+                                    {{toggleDeliveryGroup.get('deliveryFee')?.value+"Đ"}}</p>
+                            </div>
+                        </div>
+
+                        <!-- start form field -->
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h1>Điều khoản thuê xe</h1>
+                                <p class="text-secondary register__car-subtitle mb-0">Ghi rõ các yêu cầu để khách có thể
+                                    thuê xe.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex-bo flex-wrap-bo basic__information-container mr-t-10"
+                            [formGroup]="forRentFormGroup">
+                            <mat-form-field class="w-fit" appearance="outline">
+                                <textarea matInput
+                                    placeholder="Không sử dụng xe vào mục đích phi pháp. Lái xe cẩn thận, giữ xe sạch sẽ, trả xe đúng giờ. Phụ thu 500k nếu hút thuốc lá trong xe."
+                                    formControlName="policies"></textarea>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer mt-0">
+                            <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
+                            <button mat-button matStepperNext class="btn__primary">Kế tiếp</button>
                         </div>
                     </form>
                 </mat-step>

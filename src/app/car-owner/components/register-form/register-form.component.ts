@@ -60,10 +60,16 @@ export class RegisterFormComponent {
     untilWeek: new FormControl("2"),
   });
 
+  toggleDeliveryGroup = new FormGroup({
+    isDeliveryToTenant: new FormControl(false),
+    deliveryFee: new FormControl("1000")
+  });
+
   forRentFormGroup = this._formBuilder.group({
     //remove this.recommendPrice to clear form value
     defaultPrice: [this.recommendPrice, [Validators.required, Validators.min(100000), Validators.max(5000000)]],
-    defaultLocation: ['Địa chỉ mặc định để giao nhận xe.', Validators.required],
+    defaultLocation: ['', Validators.required],
+    policies: ['']
   });
 
   addressFormGroup = this._formBuilder.group({
