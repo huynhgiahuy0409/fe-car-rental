@@ -11,7 +11,7 @@ const routes: Routes = [
         path: 'register', component: CarRegisterComponent,
       },
       {
-        path: 'register/self-drive', component: RegisterFormComponent
+        path: 'register/Self-drive', component: RegisterFormComponent
       }
     ]
   },

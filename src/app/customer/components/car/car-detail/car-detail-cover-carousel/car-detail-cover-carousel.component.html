@@ -2,32 +2,35 @@
     <div class="image-carousel__item-list-wrapper grid">
         <ul #imageCarouselList class="image-carousel__item-list row no-gutters
             no-wrap">
-            <li #imageCarouselItem class="image-carousel__item col l-2-4 c-3"
+            <li #imageCarouselItem class="image-carousel__item col l-4 c-3"
                 *ngFor="let item of itemList; index as idx">
-                <div href="" class="destination-carousel-item">
+                <div href="" class="destination-carousel-item" [class.destination-carousel-item--active]="idx === currentIdx || idx === fakeCurrentIdx">
                     <div class="destination-carousel-item__image" >
                         <img
-                            src="https://n1-cstg.mioto.vn/1/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities/HoChiMinh_v2_wd.jpg"
+                            src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_hatchback_2020/p/g/2020/07/13/00/8AJlKFKgHPtGPjM7gNr17w.jpg"
                             alt="">
                             <div class="destination-carousel-item__image--overlay" [style.background]="setDestinationCarouselItemImageBefore()"></div>
                     </div>
+                    <p>{{idx}}</p>
+                    <p>{{currentIdx}}</p>
                 </div>
             </li>
         </ul>
     </div>
     <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint
-        carousel-arrow--prev"[class.carousel-arrow--hidden]="currentIdx === 0"
+        carousel-arrow--prev"
         (click)="processCarousel('-')">
         <i class="fa-solid fa-chevron-left"></i>
     </div>
     <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint
-        carousel-arrow--next" [class.carousel-arrow--hidden]="isLastIdx"
+        carousel-arrow--next"
         (click)="processCarousel('+')">
         <i class="fa-solid fa-chevron-right"></i>
     </div>
     <ul class="carousel-dots" [class.carousel-dots--show]="carouselDotsActive">
         <li class="carousel-dot" *ngFor="let item of carouselParts, index as
             idx" [class.carousel-dot--active]="idx ===
-            carouselService.currentIdx" (click)="sltDotCarousel(idx)"></li>
+            carouselService.currentIdx" (click)="sltDotCarousel(idx)">
+        </li>
     </ul>
 </div>

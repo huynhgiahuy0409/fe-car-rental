@@ -1,0 +1,19 @@
+<div class="car-detail">
+    <div class="cover">
+  <app-carousel [specItems]="arr" [itemsTemplateRef]="carouselItemsTemplateRef" [isPerItemInStep]="false"></app-carousel>
+    </div>
+    <div class="detail-info">
+
+    </div>
+</div>
+<ng-template #carouselItemsTemplateRef let-item="item" let-idx="idx" let-curIdx="curIdx">
+    <li #imageCarouselItem class="image-carousel__item col l-4 c-3" >
+        <div href="" class="destination-carousel-item" [class.destination-carousel-item--active]="idx === curIdx">
+            <div class="destination-carousel-item__image">
+                <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_hatchback_2020/p/g/2020/07/13/00/8AJlKFKgHPtGPjM7gNr17w.jpg"
+                    alt="">
+                <div class="destination-carousel-item__image--overlay"></div>
+            </div>
+        </div>
+    </li>
+</ng-template>
