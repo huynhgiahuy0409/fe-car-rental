@@ -33,3 +33,11 @@
 .carousel-arrow.carousel-arrow--next{
     right: 15px
 }
+@keyframes mymove {
+    from{
+        transition-duration: 400ms;
+    }
+    to{
+        transition-duration:  0;
+    }
+}

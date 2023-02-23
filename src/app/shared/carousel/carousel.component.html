@@ -1,0 +1,22 @@
+<div #imageCarousel class="image-carousel">
+    <div class="image-carousel__item-list-wrapper grid">
+        <ul #imageCarouselList class="image-carousel__item-list row no-gutters
+            no-wrap">
+            <ng-container *ngFor="let item of carouselItemView; index as idx">
+                <ng-container [ngTemplateOutlet]="itemsTemplateRef"
+                    [ngTemplateOutletContext]="{item: item, idx: idx, curIdx: currentIdx}">
+                </ng-container>
+            </ng-container>
+        </ul>
+    </div>
+    <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint
+        carousel-arrow--prev"
+        (click)="preCarousel()">
+        <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint
+        carousel-arrow--next"
+        (click)="nextCarousel()">
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+</div>

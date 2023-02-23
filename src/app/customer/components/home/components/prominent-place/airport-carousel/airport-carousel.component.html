@@ -29,6 +29,6 @@
     <ul class="carousel-dots" [class.carousel-dots--show]="carouselDotsActive">
         <li #carouselDotEleRef class="carousel-dot" *ngFor="let item of carouselParts, index as
             idx" [style]="idx ===
-            carouselService.currentPartIdx ? carouselDotActive : carouselDotUnActive" (click)="sltDotCarousel(idx)" ></li>
+            carouselService.currentIdx ? carouselDotActive : carouselDotUnActive" (click)="sltDotCarousel(idx)" ></li>
     </ul>
 </div>

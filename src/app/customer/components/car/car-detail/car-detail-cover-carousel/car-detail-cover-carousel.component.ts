@@ -2,12 +2,11 @@ import { Component, ElementRef, EventEmitter, Input, Output, QueryList, SimpleCh
 import { CarouselService } from 'src/app/customer/services/carousel.service';
 
 @Component({
-  selector: 'app-destination-carousel',
-  templateUrl: './destination-carousel.component.html',
-  styleUrls: ['./destination-carousel.component.scss'],
-  providers: [CarouselService]
+  selector: 'app-car-detail-cover-carousel',
+  templateUrl: './car-detail-cover-carousel.component.html',
+  styleUrls: ['./car-detail-cover-carousel.component.scss']
 })
-export class DestinationCarouselComponent {
+export class CarDetailCoverCarouselComponent {
   @Input()@Input()
   itemList: any[] = [];
   @ViewChild('imageCarousel', { static: true })
@@ -19,10 +18,13 @@ export class DestinationCarouselComponent {
   @ViewChildren('imageCarouselItem')
   imageCarouselItem!: QueryList<any>;
   currentIdx: number = 0;
-  lastPartIdx!: number
+  lastIdx!: number
   isLastIdx: boolean = false
   partNumberCarousel!: number
   carouselParts!: number[]
+  fakeCurrentIdx!: number
+  @Input()
+  isOneStep!: boolean
   @Input()
   values!: number[]
   @Output()
@@ -36,24 +38,33 @@ export class DestinationCarouselComponent {
   constructor(public carouselService: CarouselService) {
   }
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.currentIdx);
     
   }
-
+  
   ngOnInit(): void {
-    
+    let itemsOfPart = 3
+    this.itemList.unshift(2,3,4)
+    this.itemList.push(0,1,2)
   }
   ngAfterViewInit() {
     this.carouselService.initCarousel(
       this.imageCarouselList,
-      this.imageCarouselItem
+      this.imageCarouselItem,
+      false  
     );
+    this.currentIdx = this.carouselService.currentIdx
+    this.lastIdx = this.carouselService.lastIdx
+    this.imageCarouselItem = this.carouselService.carouselItems
     this.carouselParts = new Array(this.partNumberCarousel)
   }
   processCarousel(action: '+' | '-') {
     this.currentIdx = this.carouselService.currentIdx
     action === '+'? this.currentIdx++ : this.currentIdx--
-    this.isLastIdx = this.currentIdx === this.lastPartIdx ? true : false
+    this.fakeCurrentIdx = this.currentIdx
+    this.isLastIdx = this.currentIdx === this.lastIdx ? true : false
     this.carouselService.processCarousel(this.currentIdx)
+    this.currentIdx = this.carouselService.currentIdx
   }
   sltDotCarousel(idx: number) {
     this.carouselService.processCarousel(idx)

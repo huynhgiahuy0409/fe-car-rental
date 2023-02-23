@@ -61,12 +61,10 @@ export class AirportCarouselComponent {
       this.imageCarouselList,
       this.imageCarouselItem
     );
-    this.lastPartIdx = this.carouselService.lastPartIndx
-    this.partNumberCarousel = this.carouselService.carouselPartNumber
     this.carouselParts = new Array(this.partNumberCarousel)
   }
   processCarousel(action: '+' | '-') {
-    this.sltIdx = this.carouselService.currentPartIdx
+    this.sltIdx = this.carouselService.currentIdx
     action === '+'? this.sltIdx++ : this.sltIdx--
     this.isLastIdx = this.sltIdx === this.lastPartIdx ? true : false
     this.carouselService.processCarousel(this.sltIdx)

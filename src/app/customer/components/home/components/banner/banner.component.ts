@@ -81,7 +81,7 @@ export interface RentalHourOption {
   ],
 })
 export class BannerComponent implements OnInit, AfterViewInit {
-  serviceType: 'SELF_DRIVING' | 'DRIVER' = 'DRIVER';
+  serviceType: 'Self_DRIVING' | 'DRIVER' = 'DRIVER';
   addressControl = new FormControl('');
   options: string[] = [
     'Thành phố Hồ Chí Minh',

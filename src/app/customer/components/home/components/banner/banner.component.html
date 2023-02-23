@@ -30,9 +30,9 @@
                         <div class="row sm-gutters">
                             <div class="col l-4">
                                 <div class="service-box service-box--first"
-                                    [class.active]="serviceType === 'SELF_DRIVING'"
-                                    (click)="serviceType = 'SELF_DRIVING'">
-                                    <i class="service-box__icon service-box__icon--selfdrive"></i>
+                                    [class.active]="serviceType === 'Self_DRIVING'"
+                                    (click)="serviceType = 'Self_DRIVING'">
+                                    <i class="service-box__icon service-box__icon--Selfdrive"></i>
                                     <p>Xe tự lái</p>
                                 </div>
                                 <div class="service-box" [class.active]="serviceType === 'DRIVER'"
@@ -43,8 +43,8 @@
                             </div>
                             <div class="col l-8">
                                 <div class="search-wrapper">
-                                    <ng-container *ngIf="serviceType === 'SELF_DRIVING'; else withDriver">
-                                        <form id="self-driving__search-form" class="search-form">
+                                    <ng-container *ngIf="serviceType === 'Self_DRIVING'; else withDriver">
+                                        <form id="Self-driving__search-form" class="search-form">
                                             <div class="search-form__control">
                                                 <label class="home-label w-fit">Địa điểm</label>
                                                 <mat-form-field style="display: block" appearance="fill">

@@ -452,7 +452,7 @@ li.v-item.bg--hover:hover {
 
 .image-carousel__item-list {
   height: 100%;
-  transition: all 0.3s linear;
+  transition: all linear;
 }
 
 .image-carousel__item {
@@ -628,4 +628,12 @@ svg.bo-svg-icon--sm {
 
 .text-secondary {
   color: var(--secondary-text);
+}
+@keyframes mymove {
+  from{
+      transition-duration: 400ms;
+  }
+  to{
+      transition-duration:  0;
+  }
 }

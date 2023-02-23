@@ -75,7 +75,7 @@
         <li #carouselDotEleRef class="carousel-dot" *ngFor="let item of
             carouselParts, index as
             idx" [class.carousel-dot--active]="idx ===
-            carouselService.currentPartIdx" (click)="sltDotCarousel(idx)"></li>
+            carouselService.currentIdx" (click)="sltDotCarousel(idx)"></li>
     </ul>
 </div>
 <svg style="display:none;">
