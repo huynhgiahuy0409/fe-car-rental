@@ -116,4 +116,9 @@
 .carousel-dot {
     box-sizing: content-box;
 }
-
+::ng-deep .carousel-arrow--next{
+    right: 15px
+}
+::ng-deep .carousel-dots{
+    bottom: -20px
+}

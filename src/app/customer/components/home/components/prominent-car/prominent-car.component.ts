@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ProminentCarComponent {
   categories: number[] = [
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ];
 }

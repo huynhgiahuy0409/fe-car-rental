@@ -6,7 +6,7 @@
                     <h3 class="title-car">
                         <ng-content select=".title-car"></ng-content>
                     </h3>
-                    <app-carousel [specItems]="categories" [itemsTemplateRef]="carouselItemsTemplateRef"
+                    <app-carousel [specItems]="categories" [itemRender]="carouselItemsTemplateRef"
                         [isPerItemInStep]="true"></app-carousel>
                 </div>
             </div>
