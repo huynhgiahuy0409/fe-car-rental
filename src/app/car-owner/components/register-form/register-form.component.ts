@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
@@ -5,6 +6,7 @@ import { CAR_FEATURES, CITIES } from 'src/app/models/constance';
 import { AddressField, CarFeatureElement, DistrictAddressResponse, Location, LocationResponse, WardsAddressResponse, City } from 'src/app/models/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { CarOwnerService } from '../../services/car-owner.service';
+import { UploadFileService } from '../../services/upload-file.service';
 
 @Component({
   selector: 'app-register-form',
@@ -24,8 +26,9 @@ export class RegisterFormComponent {
   fetchedWards!: AddressField[];
   fetchedLocation!: Location[];
   cities: City[] = CITIES;
+  files: File[] = [];
 
-  constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService) {
+  constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService, private uploadService: UploadFileService) {
     this.carSeatRange = [];
     this.carProduceYearRange = [];
     this.carFeatures = [];
@@ -68,7 +71,7 @@ export class RegisterFormComponent {
   forRentFormGroup = this._formBuilder.group({
     //remove this.recommendPrice to clear form value
     defaultPrice: [this.recommendPrice, [Validators.required, Validators.min(100000), Validators.max(5000000)]],
-    defaultLocation: ['', Validators.required],
+    defaultLocation: ['a', Validators.required],
     policies: ['']
   });
 
@@ -160,4 +163,25 @@ export class RegisterFormComponent {
     }
     console.log(this.carFeatures);
   }
+
+  onSelect(event: any) {
+    console.log("upload file event", event);
+    this.files.push(...event.addedFiles);
+
+    const formData = new FormData();
+
+    for (var i = 0; i < this.files.length; i++) {
+      formData.append("files", this.files[i]);
+    }
+
+    this.uploadService.uploadFile(formData).subscribe((res: any) => {
+      console.log("result ", res);
+    });
+  }
+
+  onRemove(event: any) {
+    console.log("delete file event", event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
 }

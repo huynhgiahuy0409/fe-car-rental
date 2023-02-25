@@ -203,10 +203,6 @@
   }
 }
 
-.ml-10 {
-  margin-left: 10px;
-}
-
 .close {
   color: #aaaaaa;
   float: right;
@@ -232,6 +228,18 @@
   margin-top: 10px;
   border-radius: 5px;
   gap: 10px;
+}
+
+.ico__upload {
+  font-size: 300%;
+}
+
+.btn__upload {
+  background-color: var(--gemstone-color);
+  border-radius: 50px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 10px;
 }
 
 //mobile

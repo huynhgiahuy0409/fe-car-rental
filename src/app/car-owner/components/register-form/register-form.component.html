@@ -383,10 +383,38 @@
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>Hình ảnh</ng-template>
-                    <p>You are now done.</p>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
+                    <div
+                        class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                        <div class="discount__status-field">
+                            <h1>Hình ảnh</h1>
+                            <p class="text-secondary register__car-subtitle mb-0">Đăng nhiều hình ở các góc độ khác nhau
+                                để tăng thông tin cho xe của bạn.
+                            </p>
+                        </div>
+                    </div>
+
+                    <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'" [maxFileSize]="1000000"
+                        [expandable]="true">
+                        <ngx-dropzone-label>
+                            <i class="fa-solid fa-arrow-up-from-bracket ico__upload"></i>
+                            <p>
+                                Kéo thả hình ảnh vào đây hoặc <button mat-raised-button class="btn__upload">chọn hình
+                                    ảnh</button>
+                            </p>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                            [removable]="true" (removed)="onRemove(f)" [file]="f">
+                            <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                            <ngx-dropzone-label></ngx-dropzone-label>
+                        </ngx-dropzone-image-preview>
+                    </ngx-dropzone>
+                    <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer">
+                        <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
+                        <button mat-button matStepperNext class="btn__primary">Hoàn thành</button>
+                        <!-- <div>
+                                <button mat-button matStepperPrevious>Back</button>
+                                <button mat-button (click)="stepper.reset()">Reset</button>
+                            </div> -->
                     </div>
                 </mat-step>
             </mat-stepper>

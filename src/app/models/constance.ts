@@ -1,9 +1,9 @@
 import { CarFeatureElement, City } from "./model";
 
-export const ADDRESS_API = "https://cors-anywhere.herokuapp.com/https://m-common.mioto.vn/address/";
+export const ADDRESS_API = "/";
 export const GET_DISTRICTS_BY_CITY = `${ADDRESS_API}districts-by-city`;
 export const GET_WARDS_BY_DISTRICT = `${ADDRESS_API}wards-by-district`;
-export const SEARCH_ADDRESS = "https://cors-anywhere.herokuapp.com/https://m-common.mioto.vn/lbs/search-address";
+export const SEARCH_ADDRESS = "/search-address";
 
 export const CAR_FEATURES: CarFeatureElement[] = [
     {
