@@ -1,0 +1,72 @@
+<h1 class="text-center pd-t-10">Địa điểm giao nhận xe</h1>
+<div mat-dialog-content>
+    <form class="form-default">
+        <div class="line-form">
+            <div class="map-route">
+                <div id="deli-map" style="width: 100%;
+                height: 300px;
+                background: grey;">
+
+                </div>
+            </div>
+        </div>  
+        <div class="line-form">
+            <mat-radio-group aria-label="Select an option">
+
+            <label for="" class="label">
+                Vị trí xe
+            </label>
+            <p class="subtext">
+                Bạn sẽ nhận và trả xe tại vị trí xe (địa chỉ cụ thể sẽ được hiển thị sau khi đặt cọc)
+            </p>  
+            <div class="location-section">
+                    <mat-radio-button value="1">Quận 10, Thành phố Hồ Chí Minh</mat-radio-button>
+            </div>
+
+
+            <label for="" class="label">Giao xe tận nơi</label>
+            <div class="subtext">
+                Chủ xe sẽ giao và nhận xe đến tận nhà hoặc địa chỉ mà bạn lựa chọn trên ứng dụn Rental Car
+            </div>
+            <div class="location-section">
+                <div class="notice-form note">
+                    <p class="d-flex-bo justify-content-between-bo">
+                        Giao nhận xe tận nơi trong
+                        <span>20km</span>
+                    </p>
+                    <p class="d-flex-bo justify-content-between-bo">
+                        Miễn phí giao nhận trong
+                        <span>1 km</span>
+                    </p>
+                    <p class="d-flex-bo justify-content-between-bo">
+                        Phí giao nhận xe (2 chiều)
+                        <span>20 000đ/km</span>
+                    </p>
+                </div>
+                <p class="primary-text">Tổng phí giao nhận xe (2 chiều) là 102 000 đ cho quãng đường 6,1 km
+                </p>
+            </div>
+
+            <label for="" class="label">
+                Chọn từ bản đồ
+            </label>
+            <div class="location-section" (click)="chooseFromMap()">
+                <mat-radio-button value="1">Quang Trung, Phường 11, Quận Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam</mat-radio-button>
+            </div>
+
+            <label for="" class="label">
+                Giao tại sân bay
+            </label>
+            <div class="location-section">
+                <div class="d-flex-bo justify-content-between-bo align-items-center-bo">
+                    <mat-radio-button value="1">Quận 10, Thành phố Hồ Chí Minh</mat-radio-button>
+                    <span class="color: black">102 000 đ</span>
+                </div>
+            </div>
+        </mat-radio-group>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn btn-l gemstone-raised-button w-fit">Thay đổi</button>
+</div>

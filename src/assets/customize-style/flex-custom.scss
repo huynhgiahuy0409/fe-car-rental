@@ -1,7 +1,13 @@
 .d-flex-bo {
     display: flex;
 }
-
+.d-flex-bo .wrap-fit{
+    flex: 1;
+    padding-right: 10px;
+}
+.d-flex-bo .wrap-fit:last-child{
+    padding-right: unset;
+}
 // direction flex
 .d-flex-bo.flex-row-bo {
     flex-direction: row;
