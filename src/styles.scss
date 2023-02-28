@@ -2,13 +2,14 @@
 @import "./assets/customize-style/flex-custom.scss";
 @import "./assets/customize-style/grid.scss";
 @import "./assets/customize-style/responsive.scss";
+@import "./assets/customize-style/layout.scss";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
   --primary-color: black;
   --primary-text-color: white;
   --gemstone-color: #00a550;
-  --second-gemstone-color: rgba(0,161,80,.8);;
+  --gemstone-color-hover: rgb(0,165,79, .8);
   --first-purple-color: #5d5fef;
   --second-purple-color: #b4b5f8;
   --third-purple-color: #efeffe ;
@@ -53,10 +54,9 @@ p {
 body {
   background-color: white;
   margin: 0;
-  font-family: "Sanomat Sans", "Encode Sans Expanded", -apple-system,
-    BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 400;
+  letter-spacing: -.5px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -88,3 +88,4 @@ i.icon-bo{
   vertical-align: middle;
   text-indent: -9999px;
 }
+// customize material angular

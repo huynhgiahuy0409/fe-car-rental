@@ -1,88 +1,3 @@
-.w-fit {
-  width: 100%;
-}
-
-.h-fit {
-  height: 100%;
-}
-
-.image-fit {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-// margin
-.mr-0 {
-  margin: 0;
-}
-
-.mr-r-5 {
-  margin-right: 5px;
-}
-.mr-l-5 {
-  margin-left: 5px;
-}
-
-.mr-r-10 {
-  margin-right: 10px;
-}
-.mr-l-10 {
-  margin-right: 10px;
-}
-
-.mr-t-10 {
-  margin-top: 10px;
-}
-.mr-b-10 {
-  margin-top: 10px;
-}
-.mr-side-5 {
-  margin: 0 5px;
-}
-.mr-side-10 {
-  margin: 0 10px;
-}
-.mr-upper-10 {
-  margin: 0 10px;
-}
-// padding
-.pd-0 {
-  padding: 0;
-}
-
-.pd-r-5 {
-  padding-right: 5px;
-}
-.pd-l-5 {
-  padding-left: 5px;
-}
-
-.pd-r-10 {
-  padding-right: 10px;
-}
-.pd-l-10 {
-  padding-right: 10px;
-}
-
-.pd-t-10 {
-  padding-top: 10px;
-}
-.pd-b-10 {
-  padding-top: 10px;
-}
-.pd-side-5 {
-  padding: 0 5px;
-}
-.pd-side-10 {
-  padding: 0 10px;
-}
-.pd-upper-5 {
-  padding: 5px 0;
-}
-.pd-upper-10 {
-  padding: 10px 0;
-}
-
 .b-o-box-shadow {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
@@ -100,12 +15,7 @@
   margin: 5px;
   display: inline-block;
 }
-.btn.btn--m {
-  height: 46px;
-  line-height: 46px;
-  padding: 0 20px;
-  font-size: 1.6rem;
-}
+
 .btn.btn-secondary {
   color: #fff;
   background-color: #141414;
@@ -125,38 +35,27 @@
   height: 40px;
   padding: 0 15px;
   min-width: 70px;
-  max-width: 190px;
 }
 
 .btn.btn-sm {
   height: 34px;
   padding: 0 15px;
   min-width: 60px;
-  max-width: 190px;
 }
 
 .btn.btn-l {
   height: 50px;
   padding: 0 20px;
   min-width: 60px;
-  max-width: 190px;
 }
 
-.primary-btn {
-  background-color: var(--primary-color);
-  color: var(--white-color);
+button.gemstone-raised-button {
+  background-color: var(--gemstone-color) !important;
+  color: #fff !important
 }
-
-.primary-text {
-  color: var(--primary-color);
-}
-
-.primary-text--hover:hover {
-  color: var(--primary-color);
-}
-
-.sec-primary-text--hover:hover {
-  color: var(--sec-primary-color--);
+button.gemstone-stroked-button {
+  border-color: var(--gemstone-color) !important;
+  color: var(--gemstone-color) !important;
 }
 
 .separate-line {
@@ -165,6 +64,9 @@
 }
 
 // Text
+.primary-text{
+  color: var(--gemstone-color) !important;
+}
 .title {
   display: block;
   margin-bottom: 15px;
@@ -395,6 +297,7 @@ li.v-item.bg--hover:hover {
   font-weight: 600;
 }
 
+
 .image-carousel:hover .carousel-arrow i {
   font-size: 2.8rem;
 }
@@ -429,6 +332,9 @@ li.v-item.bg--hover:hover {
   height: 25px;
   line-height: 25px;
   background-color: #fff;
+}
+.carousel-arrow--prevent {
+  pointer-events: none;
 }
 
 .carousel-arrow--prev {
@@ -470,15 +376,18 @@ li.v-item.bg--hover:hover {
 .carousel-dots.carousel-dots--show {
   display: flex;
 }
+.carousel-dots.carousel-dots--prevent {
+  pointer-events: none;
+}
 .carousel-dot {
   width: 12px;
   height: 12px;
   border-radius: 100rem;
-  background-color: rgba(255, 255, 255, 0.687);
-  border: 1px solid var(--primary-color--);
+  background-color: rgba(255, 255, 255, .2);
 }
 .carousel-dot.carousel-dot--active {
-  background-color: var(--primary-color--);
+  background-color: rgba(255, 255, 255);
+  border: 2px solid rgba(255, 255, 255, .5);
   animation: fadeIn 0.1s linear;
 }
 .carousel-dot:not(:first-child) {
@@ -672,6 +581,23 @@ svg.bo-svg-icon--sm {
 .mt-0 {
   margin-top: 0 !important;
 }
+// group label
+.group-label{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.group-label span{
+  font-size: 1.2rem;
+  color: #6e6e6e;
+  background: #e8eaef;
+  padding: 0.3rem 0.75rem;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+//color
 
 .ml-10 {
   margin-left: 10px;

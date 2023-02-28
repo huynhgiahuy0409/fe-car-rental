@@ -1,18 +1,602 @@
-<div class="car-detail">
+<div class="car-detail-container">
     <div class="cover">
-    <app-carousel [specItems]="arr" [itemRender]="carouselItemsTemplateRef" [isPerItemInStep]="false" [isActiveControl]="true"></app-carousel>
+        <app-carousel [specItems]="arr" [itemRender]="carouselItemsTemplateRef" [isPerItemInStep]="true"
+            [isActiveControl]="true" [isActiveDots]="true" [initTranslateItemPercent]="-50"></app-carousel>
+        <div class="favorite-car" [class.favorite-car--active]="isFavoriteCar" (click)="isFavoriteCar= !isFavoriteCar">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5204 19.0685L18.3645 10.7935C20.5452 8.44139 20.5452
+                    4.80617 18.3644 2.45408C17.33 1.34216 15.8804 0.709493
+                    14.3617 0.707148C13.0723 0.70864 11.8324 1.16393 10.8535
+                    1.98096C10.6784 2.12704 10.5117 2.28469 10.3546
+                    2.45337L10.0015 2.8265L9.64836 2.45337C9.49028 2.28323
+                    9.32389 2.12542 9.1504 1.97998C7.06772 0.234075 3.96201
+                    0.271724 1.91953 2.16949C1.82148 2.26063 1.72679 2.35528
+                    1.63565 2.45337C-0.545218 4.80571 -0.545218 8.44113 1.63565
+                    10.7935L9.48255 19.0685C9.62307 19.2169 9.81208 19.2917
+                    10.0015 19.2918C10.178 19.2918 10.3548 19.2269 10.493
+                    19.0959C10.5024 19.087 10.5115 19.0779 10.5204
+                    19.0685ZM2.51134 9.97296L10.0014 17.8717L17.4887
+                    9.97303C19.2383 8.08124 19.2371 5.16092 17.485
+                    3.27057C16.6775 2.40312 15.5465 1.90942 14.3614
+                    1.90715C13.1746 1.90897 12.0416 2.40292 11.2326
+                    3.27134L11.2262 3.27822L10.0015 4.57232L8.76922
+                    3.27021C7.16453 1.54313 4.46363 1.44386 2.73652
+                    3.04843M2.51134 9.97296C0.761585 8.08085 0.762889 5.16023
+                    2.51525 3.26965C2.58606 3.19346 2.65998 3.11958 2.73652
+                    3.04843" fill="white"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3999 4.00039C13.3999 3.66902 13.6685 3.40039 13.9999
+                    3.40039C14.2037 3.40039 14.4039 3.41738 14.5992
+                    3.45014C14.926 3.50497 15.1465 3.81434 15.0916
+                    4.14114C15.0368 4.46795 14.7274 4.68843 14.4006
+                    4.6336C14.2707 4.6118 14.1369 4.60039 13.9999
+                    4.60039C13.6685 4.60039 13.3999 4.33176 13.3999
+                    4.00039ZM15.6805 4.44389C15.9133 4.20808 16.2932 4.20565
+                    16.529 4.43845C17.1895 5.09049 17.5999 5.99806 17.5999
+                    7.00039C17.5999 7.42008 17.5278 7.82423 17.3949
+                    8.20034C17.2845 8.51277 16.9417 8.67652 16.6292
+                    8.56609C16.3168 8.45567 16.1531 8.11287 16.2635
+                    7.80044C16.3517 7.55099 16.3999 7.28197 16.3999
+                    7.00039C16.3999 6.33194 16.1274 5.72824 15.686
+                    5.2924C15.4501 5.0596 15.4477 4.67971 15.6805 4.44389Z" fill="white"></path>
+            </svg>
+        </div>
+        <div class="cccd">
+            <svg class="mr-r-5" width="13" height="14" viewBox="0 0 13 14" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_10370_186)">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.88667 12.4053C3.9548 13.119 5.21059 13.5 6.49522
+                        13.5C7.34853 13.5023 8.19383 13.3354 8.98219
+                        13.0088C9.77055 12.6823 10.4863 12.2026 11.088
+                        11.5976C11.6932 10.9949 12.1736 10.2787 12.5017
+                        9.49017C12.8298 8.70159 12.9991 7.85606 13
+                        7.00196C13.0009 6.14786 12.8333 5.30197 12.5068
+                        4.51272C12.1804 3.72347 11.7015 3.00635 11.0976
+                        2.40241C10.4936 1.79847 9.7765 1.31957 8.98725
+                        0.993133C8.19799 0.666693 7.35211 0.499119 6.49801
+                        0.500003C5.64391 0.500888 4.79837 0.670215 4.0098
+                        0.99829C3.22122 1.32637 2.50509 1.80675 1.9024
+                        2.41194C0.994033 3.32031 0.375425 4.47765 0.124806
+                        5.7376C-0.125813 6.99754 0.0028148 8.30352 0.494422
+                        9.49036C0.98603 10.6772 1.81854 11.6916 2.88667
+                        12.4053ZM6.50001 1.75C3.60516 1.75 1.25 4.10515 1.25
+                        7C1.25 9.89485 3.60516 12.25 6.50001 12.25C9.39486 12.25
+                        11.75 9.89485 11.75 7C11.75 4.10515 9.39486 1.75 6.50001
+                        1.75Z" fill="white"></path>
+                    <path d="M5.35714 10.756C5.28787 10.756 5.22142 10.7285
+                        5.17233 10.6796L2.32638 7.83365C2.30216 7.80944 2.28296
+                        7.7807 2.26985 7.74906C2.25675 7.71742 2.25 7.68352 2.25
+                        7.64927C2.25 7.61503 2.25675 7.58112 2.26985
+                        7.54949C2.28296 7.51785 2.30216 7.48911 2.32638
+                        7.46489L3.42874 6.36253C3.47764 6.31364 3.54396 6.28617
+                        3.61311 6.28617C3.68226 6.28617 3.74858 6.31364 3.79748
+                        6.36253L5.35694 7.92196L9.2025 4.07638C9.22671 4.05216
+                        9.25545 4.03296 9.28709 4.01985C9.31873 4.00675 9.35263
+                        4 9.38688 4C9.42112 4 9.45503 4.00675 9.48666
+                        4.01985C9.5183 4.03296 9.54704 4.05216 9.57126
+                        4.07638L10.6736 5.17874C10.6978 5.20295 10.717 5.2317
+                        10.7301 5.26333C10.7433 5.29497 10.75 5.32888 10.75
+                        5.36312C10.75 5.39736 10.7433 5.43127 10.7301
+                        5.46291C10.717 5.49454 10.6978 5.52329 10.6736
+                        5.5475L5.54151 10.6796C5.51733 10.7039 5.48859 10.7231
+                        5.45695 10.7362C5.42531 10.7493 5.39139 10.756 5.35714
+                        10.756Z" fill="white"></path>
+                </g>
+                <defs>
+                    <clipPath id="clip0_10370_186">
+                        <rect width="13" height="13" fill="white" transform="translate(0 0.5)"></rect>
+                    </clipPath>
+                </defs>
+            </svg>
+            CCCD gắn chip
+        </div>
     </div>
-    <div class="detail-info">
-    </div>
-</div>
-<ng-template #carouselItemsTemplateRef let-item="item" let-idx="idx" let-curIdx="curIdx">
-    <li #imageCarouselItem class="image-carousel__item col l-4 c-3" >
-        <div href="" class="destination-carousel-item" [class.destination-carousel-item--active]="idx === curIdx">
-            <div class="destination-carousel-item__image">
-                <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_hatchback_2020/p/g/2020/07/13/00/8AJlKFKgHPtGPjM7gNr17w.jpg"
-                    alt="">
-                <div class="destination-carousel-item__image--overlay"></div>
+    <div class="grid l-wide">
+        <div class="module-detail">
+            <div class="row">
+                <div class="col l-7">
+                    <div class="car-detail">
+                        <div class="car-detail__info">
+                            <div class="car-detail__short-desc">
+                                <div class="group-name">
+                                    <h1 class="car-title">
+                                        TOYOTA RUSH 2019
+                                    </h1>
+                                </div>
+                                <div class="group-line">
+                                    <div class="star">
+                                        <div class="star_rate-num">5.0</div>
+                                        <div class="star-container"><svg viewBox="0 0 51 48" class="widget-svg"
+                                                style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;">
+                                                <path class="star"
+                                                    d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+                                                    style="fill: rgb(0, 165, 80); transition: fill 0.2s ease-in-out 0s;">
+                                                </path>
+                                            </svg></div>
+                                    </div>
+                                    <div class="bar-line">
+                                    </div>
+                                    <div class="trips">
+                                        17 chuyến
+                                    </div>
+                                </div>
+                                <div class="group-label">
+                                    <span>Số tự động</span>
+                                    <span>Giao xe tận nơi</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="car-detail__info">
+                            <div class="car-detail__desc">
+                                <div class="group row" *ngFor="let idx of [1,2,3,4,5,6,7,8]">
+                                    <div class="col l-3">
+                                        <div class="title">
+                                            Đặc điểm
+                                        </div>
+                                    </div>
+                                    <div class="col l-9">
+                                        <ul class="features">
+                                            <li>
+                                                feartur 1
+                                            </li>
+                                            <li>
+                                                feartur 2
+                                            </li>
+                                            <li>
+                                                feartur 3
+                                            </li>
+                                            <li>
+                                                feartur 4
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="group row">
+                                    <div class="col l-3">
+                                        <div class="title">
+                                            Điều khoản
+                                        </div>
+                                    </div>
+                                    <div class="col l-9">
+                                        <ul class="features">
+                                            <li>
+                                                feartur 1
+                                            </li>
+                                            <li>
+                                                feartur 2
+                                            </li>
+                                            <li>
+                                                feartur 3
+                                            </li>
+                                            <li>
+                                                feartur 4
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="group row">
+                                    <div class="col l-3">
+                                        <div class="title">
+                                            Chủ xe
+                                        </div>
+                                    </div>
+                                    <div class="col l-9">
+                                        <div class="profile-mini">
+                                            <div class="about-owner">
+                                                <a class="d-flex-bo">
+                                                    <div class="avatar mr-r-10">
+                                                        <a href="">
+                                                            <div class="avatar-image"
+                                                                style="background-image: url('https://n1-cstg.mioto.vn/m/avatars/t.jpg');">
+                                                            </div>
+                                                            <div class="host-star">
+                                                                <svg width="20" height="20" viewBox="0 0 24 24"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M3.74373 14.1812L0 20.4535L4.36948 20.2293L6.35463 23.999L9.81785 18.1959C7.33642 17.5754 5.20562 16.1312 3.74373 14.1812Z"
+                                                                        fill="#FFA800"></path>
+                                                                    <path
+                                                                        d="M20.2329 14.1812C18.7834 16.1302 16.655 17.575 14.1816 18.2039L17.6518 23.999L19.6348 20.2413L23.9995 20.4648L20.2329 14.1812Z"
+                                                                        fill="#FFA800"></path>
+                                                                    <circle cx="12.0004" cy="8.72698" r="8.72698"
+                                                                        fill="#FFA800"></circle>
+                                                                    <circle cx="12.0028" cy="8.7269" r="7.09067"
+                                                                        fill="#FFE99D"></circle>
+                                                                    <path
+                                                                        d="M11.7334 4.59761C11.85 4.28582 12.291 4.28582 12.4076 4.59761L13.2976 6.9777C13.3482 7.11297 13.4747 7.2049 13.619 7.2112L16.1576 7.32213C16.4901 7.33666 16.6264 7.7561 16.3659 7.96333L14.3773 9.54523C14.2643 9.63513 14.216 9.78388 14.2546 9.92305L14.9336 12.3717C15.0225 12.6925 14.6657 12.9517 14.3881 12.768L12.2691 11.3656C12.1487 11.2859 11.9923 11.2859 11.8719 11.3656L9.7529 12.768C9.47531 12.9517 9.11852 12.6925 9.20746 12.3717L9.88644 9.92305C9.92503 9.78388 9.8767 9.63513 9.76368 9.54523L7.7751 7.96333C7.5146 7.7561 7.65088 7.33666 7.98344 7.32213L10.5221 7.2112C10.6663 7.2049 10.7929 7.11297 10.8434 6.9777L11.7334 4.59761Z"
+                                                                        fill="#FFA800"></path>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="desc d-flex-bo align-items-center-bo mr-l-10">
+                                                        <a href="">
+                                                            <p style="font-size: 1.8rem" class="fw-500">Huy Huynh</p>
+                                                            <div class="star d-flex-bo align-items-center-bo">
+                                                                <div class="star_rate-num">5.0</div>
+                                                                <div class="star-ratings">
+                                                                    <div class="star-container">
+                                                                        <svg viewBox="0 0 51 48" class="widget-svg"
+                                                                            style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;">
+                                                                            <path class="star"
+                                                                                d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+                                                                                style="fill: rgb(0, 165, 80); transition: fill 0.2s ease-in-out 0s;">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="dot-car mr-side-10">•</div>
+                                                                <div class="trips">41 chuyến</div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="note">
+                                                Lưu ý: Số điện thoại của chủ xe sẽ được hiển thị sau khi đặt
+                                                cọc.
+                                            </div>
+                                            <div class="owner-response">
+                                                <div class="owner-response__desc">
+                                                    <p>Tỉ lệ phản hồi</p>
+                                                    <span>100%</span>
+                                                </div>
+                                                <div class="owner-response__desc">
+                                                    <p>Thời gian phản hồi</p>
+                                                    <span>0.0 tiếng</span>
+                                                </div>
+                                                <div class="owner-response__desc">
+                                                    <p>Tỉ lệ đồng ý</p>
+                                                    <span>90%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group row">
+                                    <div class="col l-3">
+                                        <div class="title">
+                                            Vị trí
+                                        </div>
+                                    </div>
+                                    <div class="col l-9">
+                                        <div id="map" style="width: 100%; height: 300px; background-color: grey;"></div>
+                                        <div class="space m">
+                                        </div>
+                                        <p><i class="icon-bo icon-location"></i> Quận 10, Hồ Chí Minh. <span
+                                                class="font-13" style="color: rgb(107, 107, 107);">(Địa chỉ cụ thể sẽ
+                                                được hiển thị sau khi đặt cọc)</span></p>
+                                        <div class="space m"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex-bo justify-content-between-bo">
+                                    <div class="wrap-fit">
+                                        <button class="w-fit btn btn-l gemstone-stroked-button" mat-stroked-button>Báo
+                                            xấu</button>
+                                    </div>
+                                    <div class="wrap-fit">
+                                        <button class="w-fit btn btn-l gemstone-raised-button" mat-raised-button>Thêm
+                                            vào danh sách yêu thích</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="car-detail__desc">
+                                <div class="review">
+                                    <div class="title">
+                                        Đánh giá
+                                    </div>
+                                    <div class="group-view">
+                                        <div class="star">
+                                            <div class="star__rate-num">5.0</div>
+                                            <div class="star__ratings">
+                                                <div class="star-container">
+                                                    <svg viewBox="0 0 51 48" class="widget-svg"
+                                                        style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;">
+                                                        <path class="star"
+                                                            d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+                                                            style="fill: rgb(0, 165, 80); transition: fill 0.2s ease-in-out 0s;">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bar-line"></div>
+                                        <div class="total-comment">41 đánh giá</div>
+                                    </div>
+                                    <hr class="line">
+                                    <ul class="comment-list">
+                                        <li class="comment-item" *ngFor="let i of [1,1,1]">
+                                            <div class="row">
+                                                <div class="col l-2">
+                                                    <div class="fix-avatar">
+                                                        <a href="">
+                                                            <img src="https://n1-cstg.mioto.vn/m/avatars/p.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col l-10">
+                                                    <a href="">
+                                                        <div class="name">
+                                                            Huy Huynh
+                                                        </div>
+                                                    </a>
+                                                    <div class="comment-box">
+                                                        <div class="group">
+                                                            <div class="star-ratings">
+                                                                <ng-container *ngFor="let user of [1,1,1,1,1]">
+                                                                    <div class="star-container">
+                                                                        <svg viewBox="0 0 51 48" class="widget-svg"
+                                                                            style="width: 17px; height: 17px; transition: transform 0.2s ease-in-out 0s;">
+                                                                            <path class="star"
+                                                                                d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
+                                                                                style="fill: rgb(0, 165, 80); transition: fill 0.2s ease-in-out 0s;">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </div>
+                                                                </ng-container>
+                                                            </div>
+                                                            <span style="font-size: 1.2rem">3 ngày trước</span>
+                                                        </div>
+                                                        <div class="desc">Comment</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-5">
+                    <div class="sidebar-container">
+                        <div class="rental-box">
+                            <form [formGroup]="carBookingFG" action="">
+                                <div class="price">
+                                    <h3>
+                                        1250K <span>/ngày</span>
+                                    </h3>
+                                </div>
+                                <div class="line-form has-timer">
+                                    <label for="" class="label">Ngày nhận xe</label>
+                                    <div class="row sm-gutters">
+                                        <div class="col l-6">
+                                            <mat-form-field style="width: 100%" appearance="fill">
+                                                <mat-label>Chọn một ngày</mat-label>
+                                                <input formControlName="pickUpDate" matInput
+                                                    [matDatepicker]="pickUpDatePicker" />
+                                                <mat-datepicker-toggle matIconSuffix [for]="pickUpDatePicker">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #pickUpDatePicker>
+                                                </mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col l-6">
+                                            <mat-form-field appearance="fill" style="width: 100%">
+                                                <mat-label>Chọn giờ bắt đầu thuê</mat-label>
+                                                <mat-select formControlName="pickUpTime">
+                                                    <mat-option *ngFor="let option of startAndReturnHrOptions"
+                                                        [value]="option.value">
+                                                        {{ option.label }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line-form has-timer">
+                                    <label for="" class="label">Ngày trả xe</label>
+                                    <div class="row sm-gutters">
+                                        <div class="col l-6">
+                                            <mat-form-field style="width: 100%" appearance="fill">
+                                                <mat-label>Chọn một ngày</mat-label>
+                                                <input formControlName="returnDate" matInput
+                                                    [matDatepicker]="returnDatePicker" />
+                                                <mat-datepicker-toggle matIconSuffix [for]="returnDatePicker">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #returnDatePicker>
+                                                </mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col l-6">
+                                            <mat-form-field appearance="fill" style="width: 100%">
+                                                <mat-label>Chọn giờ bắt đầu thuê</mat-label>
+                                                <mat-select formControlName="returnTime">
+                                                    <mat-option *ngFor="let option of startAndReturnHrOptions"
+                                                        [value]="option.value">
+                                                        {{ option.label }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="notice-message">
+                                        <p>
+                                            <i class="icon-bo icon-notice"></i>
+                                            Xe bận trong khoảng thời gian trên. Vui lòng đặt xe khác hoặc thay đổi lịch
+                                            trình thích hợp.
+                                        </p>
+                                    </div>
+                                    <div class="line-form notice-form">
+                                        <div class="d-flex-bo justify-content-between-bo">
+                                            <p>Thời gian nhận xe</p>
+                                            <p>06:00-22:00</p>
+                                        </div>
+                                        <div class="d-flex-bo justify-content-between-bo">
+                                            <p>Thời gian trả xe</p>
+                                            <p>06:00-22:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line-form local">
+                                    <div class="d-flex-bo justify-content-between-bo">
+                                        <label for="" class="label">
+                                            Địa điểm giao nhận xe
+                                        </label>
+                                        <span class="link-trip font-13" (click)="editDeliveryLocation()">Thay đổi</span>
+                                    </div>
+                                    <div class="note w-fit">
+                                        <a class="location-picker">
+                                            <svg class="icon-svg mr-r-5" viewBox="0 0 24 24">
+                                                <path
+                                                    d="m12 22.5c5.799 0 10.5-4.701 10.5-10.5 0-5.799-4.701-10.5-10.5-10.5-5.799 0-10.5 4.701-10.5 10.5 0 5.799 4.701 10.5 10.5 10.5zm0 1.5c6.6274 0 12-5.3726 12-12 0-6.6274-5.3726-12-12-12-6.6274 0-12 5.3726-12 12 0 6.6274 5.3726 12 12 12z"
+                                                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                                                <path
+                                                    d="m7.5 10.494c0-2.4778 2.0187-4.4937 4.5-4.4937 2.4813 0 4.5 2.0159 4.5 4.4937 0 1.2789-0.7204 2.918-2.1412 4.8719-1.0399 1.4301-2.0635 2.484-2.1066 2.5281-0.0662 0.068-0.1572 0.1063-0.2522 0.1063s-0.186-0.0383-0.2522-0.1063c-0.0431-0.0442-1.0667-1.098-2.1066-2.5281-1.4208-1.9539-2.1412-3.593-2.1412-4.8719zm4.5095 1.5064c0.9955 0 1.8025-0.8059 1.8025-1.8 0-0.99411-0.807-1.8-1.8025-1.8s-1.8025 0.80589-1.8025 1.8c0 0.9941 0.807 1.8 1.8025 1.8z"
+                                                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Quang Trung, Phường 11, Quận Gò Vấp, Thành phố Hồ Chí Minh, Việt
+                                                Nam</span>
+                                        </a>
+                                    </div>
+                                    <div class="line-form notice-form">
+                                        <div class="d-flex-bo justify-content-between-bo">
+                                            <p>Giao nhận xe tận nơi trong</p>
+                                            <p>20 km</p>
+                                        </div>
+                                        <div class="d-flex-bo justify-content-between-bo">
+                                            <p>Miễn phí giao nhận trong</p>
+                                            <p>1 km</p>
+                                        </div>
+                                        <div class="d-flex-bo justify-content-between-bo">
+                                            <p>Phí giao nhận xe (2 chiều)</p>
+                                            <p>20 000đ/km</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line-form local">
+                                    <label for="" class="label">
+                                        Phụ phí
+                                    </label>
+                                    <div class="box-extra-fee" *ngFor="let i of [1,1,1]">
+                                        <div class="d-flex-bo justify-content-between-bo">
+                                            <p>Giới hạn quãng đường</p>
+                                            <p>350 km/ngày</p>
+                                        </div>
+                                        <div class="note-fee">
+                                            Phí:
+                                            <strong>
+                                                5 000đ/km
+                                            </strong>
+                                            vượt giới hạn
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car-bill">
+                                    <h4>Chi tiết giá</h4>
+                                    <div class="bill-wrapper">
+                                        <div class="group">
+                                            <p>Đơn giá thuê</p>
+                                            <p>1 090 000 / ngày</p>
+                                        </div>
+                                        <div class="group">
+                                            <p>Phí dịch vụ</p>
+                                            <p>1 090 000 / ngày</p>
+                                        </div>
+                                        <div class="group">
+                                            <p>Phí bảo hiểm</p>
+                                            <p>1 090 000 / ngày</p>
+                                        </div>
+                                        <div class="group has-line">
+                                            <p>Tổng phí thuê xe</p>
+                                            <p>1 253 500 x <strong> 2 ngày</strong></p>
+                                        </div>
+                                        <div class="group">
+                                            <p>Phí giao nhận xe</p>
+                                            <p>110 000 (6,5 km)</p>
+                                        </div>
+                                        <div class="group has-line">
+                                            <strong>Tổng cộng</strong>
+                                            <strong>1 385 300đ</strong>
+                                        </div>
+                                        <div class="space m"></div>
+                                        <div class="promotion-code d-flex-bo flex-row-reverse-bo">
+                                            <a href="">
+                                                <p>Mã khuyến mãi</p>
+                                            </a>
+                                        </div>
+                                        <div class="space m"></div>
+                                    </div>
+                                </div>
+                                <button mat-raised-button class="btn btn-l gemstone-raised-button w-fit">Đặt xe</button>
+                                <div class="space m"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </li>
-</ng-template>
+        <div class="module-deal">
+            <div class="title">XE LIÊN QUAN</div>
+            <app-carousel
+            [specItems]="arr" [itemRender]="relativeCarTemplateRef" [isPerItemInStep]="true"
+            [isActiveControl]="true" 
+            ></app-carousel>
+        </div>
+    </div>
+
+    <ng-template #carouselItemsTemplateRef let-item="item" let-idx="idx" fl let-curIdx="curIdx">
+        <li #imageCarouselItem class="image-carousel__item col l-4 c-3">
+            <div href="" class="destination-carousel-item" [class.destination-carousel-item--active]="idx === curIdx">
+                <div class="destination-carousel-item__image">
+                    <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_hatchback_2020/p/g/2020/07/13/00/8AJlKFKgHPtGPjM7gNr17w.jpg"
+                        alt="">
+                    <div class="destination-carousel-item__image--overlay"></div>
+                </div>
+            </div>
+        </li>
+    </ng-template>
+
+    <ng-template #relativeCarTemplateRef let-item="item" let-idx="idx" let-curIdx="curIdx">
+        <li #imageCarouselItem class="image-carousel__item col l-3 c-3">
+            <div class="relative-car-item-wrapper">
+                <div class="relative-car-item b-o-box-shadow">
+                    <div class="relative-car-item__image">
+                        <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_2020/p/g/2021/03/20/13/M7M_5xiTotPK8fEQPUhmEA.jpg"
+                            alt="" />
+                        <div class="price-car">950K</div>
+                    </div>
+                    <div class="desc-car">
+                        <div class="desc-car__name d-flex-bo">
+                            <h2>MITSUBISHI OUTLANDER 2020</h2>
+                            <i class="icon-bo icon-insurance"></i>
+                        </div>
+                        <div class="group-line">
+                            <span class="star">
+                                <div class="star_rate-num">5.0</div>
+                                <div class="star-container">
+                                    <svg viewBox="0 0 51 48" class="widget-svg" style="
+                        width: 17px;
+                        height: 17px;
+                        transition: transform 0.2s ease-in-out 0s;
+                      ">
+                                        <path class="star" d="m25,1
+                                        6,17h18l-14,11 5,17-15-10-15,10
+                                        5-17-14-11h18z" style="
+                          fill: var(--gemstone-color);
+                          transition: fill 0.2s ease-in-out 0s;
+                        "></path>
+                                    </svg>
+                                </div>
+                                <div class="dot-car mr-side-5">•</div>
+                                <div class="trips mr-r-5">93 chuyến</div>
+                                <svg width="24" height="24" viewBox="0 0 24
+                            24" fill="none">
+                                    <use href="#svg-cetificate" />
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="group-label">
+                            <span>Số tự động</span>
+                            <span>Giao xe tận nơi</span>
+                        </div>
+                        <div class="location">
+                            <p class="d-flex-bo align-items-center-bo">
+                                <i class="icon-bo location-icon"></i>
+                                Quận Phú Nhuận, Hồ Chí Minh
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ng-template>
