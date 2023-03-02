@@ -11,25 +11,26 @@
     </div>
     <ng-container *ngIf="isActiveControl">
         <div #carouselArrowPrev class="carousel-arrow carousel-arrow--hint
-            carousel-arrow--prev" (click)="preCarousel()">
+            carousel-arrow--prev" (click)="preCarousel($event)">
             <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div #carouselArrowNext class="carousel-arrow carousel-arrow--hint
-            carousel-arrow--next" (click)="nextCarousel()">
+            carousel-arrow--next" (click)="nextCarousel($event)">
             <i class="fa-solid fa-chevron-right"></i>
         </div>
     </ng-container>
     <ng-container *ngIf="!dotRender">
         <ul class="carousel-dots" [class.carousel-dots--show]="isActiveDots">
-            <ng-container *ngFor="let dot of specItems; index as idx">
-                <li class="carousel-dot" [class.carousel-dot--active]="idx === currentIdx"></li>
+            <ng-container *ngFor="let dot of dotsView; index as idx">
+                <li class="carousel-dot" [class.carousel-dot--active]="dot === currentIdx"></li>
             </ng-container>
         </ul>
     </ng-container>
     <ng-container *ngIf="dotRender">
         <ul class="carousel-dots" [class.carousel-dots--show]="isActiveDots">
             <ng-container *ngFor="let dot of dotsView; index as idx">
-                <ng-container [ngTemplateOutlet]="dotRender" [ngTemplateOutletContext]="{dotIdx: dot, currentIdx: currentIdx}">
+                <ng-container [ngTemplateOutlet]="dotRender"
+                    [ngTemplateOutletContext]="{dotIdx: dot, currentIdx: currentIdx}">
                 </ng-container>
             </ng-container>
         </ul>

@@ -1,0 +1,42 @@
+<h1 class="text-center pd-t-10">Địa điểm của tôi</h1>
+<div mat-dialog-content>
+    <form class="form-default">
+        <div class="line-form">
+            <form id="Self-driving__search-form" class="search-form">
+                <div class="search-form__control">
+                    <mat-form-field style="display: block" appearance="fill">
+                        <mat-label>Nhập thành phố, quận, địa chỉ,...</mat-label>
+                        <input type="text" matInput [matAutocomplete]="pickUpPlaceOfSelfDrivingAuto"
+                            [formControl]="addressControl" />
+                        <mat-autocomplete #pickUpPlaceOfSelfDrivingAuto="matAutocomplete">
+                            <mat-option *ngFor="
+    let option of filteredAddressOptions | async
+  " [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="line-form">
+            <div class="map-route">
+                <div id="deli-map" style="min-width: 530px;
+                height: 300px;
+                background: grey;">
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <div class="d-flex-bo justify-content-between-bo w-fit">
+        <div class="wrap-fit">
+            <button mat-button mat-dialog-close class="btn btn-l w-fit" [style]="'backgroundColor: black; color: white'">Huỷ bỏ</button>
+        </div>
+        <div class="wrap-fit">
+            <button mat-button mat-dialog-close class="btn btn-l gemstone-raised-button w-fit">Áp dụng</button>
+        </div>
+    </div>
+</div>
