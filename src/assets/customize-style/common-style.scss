@@ -630,11 +630,11 @@ svg.bo-svg-icon--sm {
   color: var(--secondary-text);
 }
 @keyframes mymove {
-  from{
-      transition-duration: 400ms;
+  from {
+    transition-duration: 400ms;
   }
-  to{
-      transition-duration:  0;
+  to {
+    transition-duration: 0;
   }
 }
 .ml-auto {
@@ -675,4 +675,20 @@ svg.bo-svg-icon--sm {
 
 .ml-10 {
   margin-left: 10px;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.cl-star {
+  color: #f7f700;
+}
+
+.cl-gem {
+  color: var(--gemstone-color);
+}
+
+.mt-2-h {
+  margin-top: 2.5em;
 }
