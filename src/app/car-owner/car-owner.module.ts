@@ -8,6 +8,7 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { CustomerLayoutModule } from '../shared/layout/customer-layout/customer-layout.module';
 import { CarOwnerRoutingModule } from './car-owner-routing.module';
 import { CarOwnerComponent } from './car-owner.component';
+import { CarListingComponent } from './components/car-listing/car-listing.component';
 import { CarRegisterComponent } from './components/car-register/car-register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
@@ -19,7 +20,8 @@ import { UploadFileService } from './services/upload-file.service';
     CarOwnerComponent,
     NavbarComponent,
     CarRegisterComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    CarListingComponent
   ],
   imports: [
     CommonModule,
