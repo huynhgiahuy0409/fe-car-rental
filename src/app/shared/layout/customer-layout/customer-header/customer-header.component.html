@@ -31,26 +31,143 @@
             <div class="col l-6">
                 <div class="h-list d-flex-bo flex-row-reverse-bo">
                     <div class="header__menu">
-                        <div class="h-list">
-                            <div class="h-item h-item--gemstone-hover">
-                                <a class="h-item__link">
-                                    <button class="sign-up-btn" mat-button (click)="openLoginFormDialog('400ms', '200ms')">Đăng nhập</button>
-                                </a>
+                        <ng-container *ngIf="user; else isSignIn">
+                            <div class="h-list">
+                                <div class="h-item h-item--gemstone-hover">
+                                    <a class="h-item__link">
+                                        <button class="sign-up-btn" mat-button
+                                            (click)="openLoginFormDialog('400ms',
+                                            '200ms')">Đăng nhập</button>
+                                    </a>
+                                </div>
+                                <div class="h-item h-item--genstome-hover">
+                                    <a href="" class="h-item__link">
+                                        <button class="sign-up-btn"
+                                            mat-stroked-button>Đăng ký</button>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="h-item h-item--genstome-hover">
-                                <a href="" class="h-item__link">
-                                    <button class="sign-up-btn" mat-stroked-button>Đăng ký</button>
-                                </a>
+                        </ng-container>
+                        <ng-template #isSignIn>
+                            <div class="h-list">
+                                <div class="h-item h-item--separation">
+                                    <a class="h-item__link d-flex-bo
+                                        align-items-center-bo">
+                                        <div class="dropdown">
+                                            <div #dropdownMenuButton
+                                                id="dropdownMenuButton"
+                                                class="d-flex-bo
+                                                align-items-center-bo">
+                                                <div class="avatar avatar--s">
+                                                    <img
+                                                        src="https://n1-astg.mioto.vn/g/2023/01/18/05/RFDgIbEPT2wzTs5OQo2C3A.jpg"
+                                                        class="avatar-image">
+                                                </div>
+                                                <p class="username mr-side-10">
+                                                    Huynh Gia Huy
+                                                </p>
+                                                <i class="fa-solid
+                                                    fa-caret-down"></i>
+                                            </div>
+                                            <div class="dropdown-menu"
+                                                *ngIf="activeUserMenu">
+                                                <ul>
+                                                    <li *ngFor="let i of
+                                                        userMenus"><a>{{i.label}}</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="h-item h-item--separation">
+                                    <a class="h-item__link">
+                                        <div class="notify">
+                                            <i class="icon-bo notify-icon"></i>
+                                            <div class="dropdown-menu" *ngIf="activeUserMenu">
+                                                <div class="notify__header">
+                                                    Mới
+                                                </div>
+                                                <ul>
+                                                    <li>
+                                                        <a>
+                                                            <div class="cover-avatar-wrap">
+                                                                <div class="cover-avatar">
+                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg" alt="">
+                                                                    <div class="sub-avatar">
+                                                                        <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/sub/promo.jpg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="desc">
+                                                                <div class="title">CẦM LÁI CHEVROLET - DI CHUYỂN THẬT DỄ DÀNG</div>
+                                                                <div class="content">Nhập mã MI03 - tiết kiệm 15% khi thuê xe có tài tại Mioto</div>
+                                                                <div class="timer">1 ngày trước</div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li *ngFor="let i of
+                                                        [1,1,1,1]">
+                                                        <a class="read">
+                                                            <div class="cover-avatar-wrap">
+                                                                <div class="cover-avatar">
+                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg" alt="">
+                                                                    <div class="sub-avatar">
+                                                                        <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/sub/promo.jpg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="desc">
+                                                                <div class="title">CẦM LÁI CHEVROLET - DI CHUYỂN THẬT DỄ DÀNG</div>
+                                                                <div class="content">Nhập mã MI03 - tiết kiệm 15% khi thuê xe có tài tại Mioto</div>
+                                                                <div class="timer">1 ngày trước</div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        </ng-template>
                     </div>
                     <div class="header__become-owner">
                         <div class="h-list">
                             <div class="h-item h-item--gemstone-hover">
-                                <a routerLink="/car-owner/register" class="h-item__link d-flex-bo align-items-center-bo">
-                                    <svg class="bo-svg-icon mr-r-5" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M12.75 20.4674C17.0931 20.0877 20.5 16.4417 20.5 12C20.5 10.9 20.291 9.84874 19.9106 8.88384L14.9342 11.3721C14.9773 11.5746 15 11.7846 15 12C15 13.3979 14.0439 14.5725 12.75 14.9055V20.4674ZM11.25 20.4674C6.90686 20.0877 3.5 16.4417 3.5 12C3.5 10.9001 3.7089 9.84906 4.08919 8.88428L9.06572 11.3725C9.02266 11.5749 9 11.7848 9 12C9 13.3979 9.95608 14.5725 11.25 14.9055V20.4674ZM14.2631 10.0306L19.2389 7.54264C17.742 5.11678 15.0598 3.5 12 3.5C8.94001 3.5 6.25767 5.11695 4.76082 7.54305L9.73659 10.0309C10.2866 9.39926 11.0967 9 12 9C12.9032 9 13.7131 9.3991 14.2631 10.0306ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 13.5C12.8284 13.5 13.5 12.8284 13.5 12C13.5 11.1716 12.8284 10.5 12 10.5C11.1716 10.5 10.5 11.1716 10.5 12C10.5 12.8284 11.1716 13.5 12 13.5Z"
+                                <a routerLink="/car-owner/register"
+                                    class="h-item__link d-flex-bo
+                                    align-items-center-bo">
+                                    <svg class="bo-svg-icon mr-r-5" width="24"
+                                        height="24" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M12.75 20.4674C17.0931 20.0877
+                                            20.5 16.4417 20.5 12C20.5 10.9
+                                            20.291 9.84874 19.9106
+                                            8.88384L14.9342 11.3721C14.9773
+                                            11.5746 15 11.7846 15 12C15 13.3979
+                                            14.0439 14.5725 12.75
+                                            14.9055V20.4674ZM11.25
+                                            20.4674C6.90686 20.0877 3.5 16.4417
+                                            3.5 12C3.5 10.9001 3.7089 9.84906
+                                            4.08919 8.88428L9.06572
+                                            11.3725C9.02266 11.5749 9 11.7848 9
+                                            12C9 13.3979 9.95608 14.5725 11.25
+                                            14.9055V20.4674ZM14.2631
+                                            10.0306L19.2389 7.54264C17.742
+                                            5.11678 15.0598 3.5 12 3.5C8.94001
+                                            3.5 6.25767 5.11695 4.76082
+                                            7.54305L9.73659 10.0309C10.2866
+                                            9.39926 11.0967 9 12 9C12.9032 9
+                                            13.7131 9.3991 14.2631 10.0306ZM12
+                                            22C17.5228 22 22 17.5228 22 12C22
+                                            6.47715 17.5228 2 12 2C6.47715 2 2
+                                            6.47715 2 12C2 17.5228 6.47715 22 12
+                                            22ZM12 13.5C12.8284 13.5 13.5
+                                            12.8284 13.5 12C13.5 11.1716 12.8284
+                                            10.5 12 10.5C11.1716 10.5 10.5
+                                            11.1716 10.5 12C10.5 12.8284 11.1716
+                                            13.5 12 13.5Z"
                                             fill="var(--primary-text-color)"></path>
                                     </svg>
                                     <span>Trở thành chủ xe</span>

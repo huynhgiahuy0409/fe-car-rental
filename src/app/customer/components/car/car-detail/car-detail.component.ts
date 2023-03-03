@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TimerUtilService } from 'src/app/services/timer-util.service';
 import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/delivery-location-edit.component';
@@ -10,7 +10,7 @@ import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/d
   styleUrls: ['./car-detail.component.scss'],
   providers: [TimerUtilService]
 })
-export class CarDetailComponent {
+export class CarDetailComponent implements OnInit{
   arr = [1,2,3,4,5,6,7, 8]
   isFavoriteCar: boolean = false
   startAndReturnHrOptions: any
@@ -20,22 +20,18 @@ export class CarDetailComponent {
     this.startAndReturnHrOptions = this.timerUtilService.startAndReturnHrOptions
     this.carBookingFG = this.__fb.group(
       {
-        pickUpDate: '',
-        pickUpTime: '',
-        returnDate: '',
-        returnTime: '',
-        rentalDayNumber: '',
-        deliveryLocation: '',
-        priceDetail: this.__fb.group({
-          rentalUnitPrice: '',
-          serviceCharge: '',
-          insuranceFee: '',
-          deliveryFee: '',
-          totalRentalFee: '',
-          total: ''
-        }),
+        pickUpDate: ['', Validators.required],
+        returnDate: ['', Validators.required],
+        pickUpTime: ['', Validators.required],
+        returnTime: ['', Validators.required],
+        deliveryLocation:  ['', Validators.required],
       }
     )
+  }
+  ngOnInit(): void {
+    this.carBookingFG.valueChanges.subscribe(v => {
+      console.log(v);
+    })
   }
   editDeliveryLocation(){ 
     this.matDialog.open(DeliveryLocationEditComponent, {

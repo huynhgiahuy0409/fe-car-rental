@@ -25,8 +25,10 @@ const routes: Routes = [
       {
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
+      { path: 'promo', loadChildren: () => import('./components/promo/promo.module').then(m => m.PromoModule) },
     ],
   },
+  { path: 'account', loadChildren: () => import('./components/account/account.module').then(m => m.AccountModule) },
 ];
 
 @NgModule({

@@ -124,6 +124,11 @@
 .avatar{
     position: relative;
 }
+.avatar--s{
+   width: 44px;
+   height: 44px;
+   line-height: 44px;
+}
 .avatar-image{
     background-repeat: no-repeat;
     background-size: cover;
