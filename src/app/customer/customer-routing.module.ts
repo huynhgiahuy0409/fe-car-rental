@@ -20,15 +20,27 @@ const routes: Routes = [
       },
       {
         path: 'sign-up',
-        component: SignUpComponent
+        component: SignUpComponent,
       },
       {
-        path: '', redirectTo: 'home', pathMatch: 'full'
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
       },
-      { path: 'promo', loadChildren: () => import('./components/promo/promo.module').then(m => m.PromoModule) },
+      {
+        path: 'promo',
+        loadChildren: () =>
+          import('./components/promo/promo.module').then((m) => m.PromoModule),
+      },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('./components/account/account.module').then(
+            (m) => m.AccountModule
+          ),
+      },
     ],
   },
-  { path: 'account', loadChildren: () => import('./components/account/account.module').then(m => m.AccountModule) },
 ];
 
 @NgModule({

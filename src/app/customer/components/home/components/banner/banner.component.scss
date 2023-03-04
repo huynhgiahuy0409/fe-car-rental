@@ -276,3 +276,6 @@ form.search-form .search-form__control {
     --mdc-checkbox-unselected-icon-color: var(--primary-text-color);
     --mdc-checkbox-unselected-pressed-icon-color: var(--primary-text-color);
 }
+::ng-deep .mat-mdc-icon-button.mat-mdc-button-base{
+    color: white
+}
