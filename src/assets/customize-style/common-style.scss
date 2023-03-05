@@ -182,8 +182,9 @@ button.gemstone-stroked-button {
 
 .h-item__link {
   position: relative;
-  padding: 5px 10px;
+  padding: 0 10px;
   cursor: pointer;
+  display: block;
 }
 
 .h-item__link span {
@@ -475,14 +476,14 @@ svg.booking-oto-rating-stars__hollow-star {
   position: relative;
 }
 // default svg
-svg.bo-svg-icon {
+svg.svg-bo {
   display: inline-block;
   fill: currentColor;
   width: 2rem;
   height: 2rem;
   position: relative;
 }
-svg.bo-svg-icon--sm {
+svg.svg-bo--sm {
   width: 1rem;
   height: 1rem;
 }
@@ -657,4 +658,36 @@ svg.bo-svg-icon--sm {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+// form
+.form-default{
+  
+
+}
+.form-default.form--s{
+  max-width: 420px;
+  margin: 0 auto;
+}
+.form-default .line-form {
+  margin-bottom: 20px;
+}
+.form-default .line-form label.label{
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.form-default .line-form p.info{
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 1.3rem;
+  color: #a9aaad;
+}
+.form-default .line-form .wrap-input {
+  background-color: #fff;
+  height: 45px;
+  border: 1px solid #e8eaef;
+  border-radius: 3px;
+}
+.form-default .line-form .wrap-input input{
+  background-color: initial;
+  line-height: 1rem;
 }

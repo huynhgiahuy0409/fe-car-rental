@@ -1,0 +1,44 @@
+<div class="promo">
+    <div class="banner">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-12">
+                    <div class="banner__inner">
+                        <div class="banner__title">
+                            Khuyến mãi của tôi
+                        </div>
+                        <div class="banner__search">
+                            <input type="text" placeholder="Nhập mã khuyến mãi">
+                            <i class="icon-bo search-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="promo-card-list">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-12">
+                    <div class="promo-list">
+                        <div class="row">
+                            <div class="col l-3" *ngFor="let i of [1,1,1,]">
+                                <div class="promo-item" (click)="openPromoDetailDialog()">
+                                    <div class="promo__content">
+                                        <img src="https://n1-cstg.mioto.vn/g/2018/03/17/16/52.jpg" alt="">
+                                        <div class="title">
+                                            MI803
+                                        </div>
+                                        <div class="promo__percent">
+                                            Giảm <span>10%</span> <br> (tối đa <span>100K</span>)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
