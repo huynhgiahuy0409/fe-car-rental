@@ -4,15 +4,16 @@
 @import "./assets/customize-style/responsive.scss";
 @import "./assets/customize-style/layout.scss";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 :root {
   --primary-color: black;
   --primary-text-color: white;
   --gemstone-color: #00a550;
-  --gemstone-color-hover: rgb(0,165,79, .8);
+  --gemstone-color-hover: rgb(0, 165, 79, 0.8);
   --first-purple-color: #5d5fef;
   --second-purple-color: #b4b5f8;
-  --third-purple-color: #efeffe ;
+  --third-purple-color: #efeffe;
   --first-dark-cyan-color: #159093;
   --second-dark-cyan-color: #9acfd0;
   --third-dark-cyan-color: #f3f9f9;
@@ -54,9 +55,9 @@ p {
 body {
   background-color: white;
   margin: 0;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 400;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -78,7 +79,7 @@ body {
 }
 
 // app icon
-i.icon-bo{
+i.icon-bo {
   display: inline-block;
   background-image: url("https://www.mioto.vn/static/media/main_sprites.a58f006e.png");
   background-repeat: no-repeat;
