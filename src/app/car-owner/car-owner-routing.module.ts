@@ -4,6 +4,7 @@ import { CarOwnerComponent } from './car-owner.component';
 import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
 import { CarRegisterComponent } from './components/car-register/car-register.component';
+import { ContractComponent } from './components/contract/contract.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
       },
       {
         path: 'calendars', component: CalendarsComponent
+      },
+      {
+        path: 'contract', component: ContractComponent
       }
     ]
   },

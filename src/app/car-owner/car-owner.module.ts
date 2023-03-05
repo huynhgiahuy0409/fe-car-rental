@@ -19,6 +19,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { CarOwnerService } from './services/car-owner.service';
 import { UploadFileService } from './services/upload-file.service';
 import { CalendarHeaderModule } from './components/calendars/header/calendar-header.module';
+import { ContractComponent } from './components/contract/contract.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CalendarHeaderModule } from './components/calendars/header/calendar-hea
     CarRegisterComponent,
     RegisterFormComponent,
     CarListingComponent,
-    CalendarsComponent
+    CalendarsComponent,
+    ContractComponent
   ],
   imports: [
     CommonModule,
