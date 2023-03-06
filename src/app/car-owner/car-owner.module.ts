@@ -20,6 +20,7 @@ import { CarOwnerService } from './services/car-owner.service';
 import { UploadFileService } from './services/upload-file.service';
 import { CalendarHeaderModule } from './components/calendars/header/calendar-header.module';
 import { ContractComponent } from './components/contract/contract.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ContractComponent } from './components/contract/contract.component';
     RegisterFormComponent,
     CarListingComponent,
     CalendarsComponent,
-    ContractComponent
+    ContractComponent,
+    StatisticsComponent
   ],
   imports: [
     CommonModule,

@@ -655,27 +655,29 @@ svg.svg-bo--sm {
   background-color: #fde28b !important;
 }
 
+.cl-white {
+  color: #fff !important;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 // form
-.form-default{
-  
-
+.form-default {
 }
-.form-default.form--s{
+.form-default.form--s {
   max-width: 420px;
   margin: 0 auto;
 }
 .form-default .line-form {
   margin-bottom: 20px;
 }
-.form-default .line-form label.label{
+.form-default .line-form label.label {
   font-size: 1.4rem;
   font-weight: 500;
 }
-.form-default .line-form p.info{
+.form-default .line-form p.info {
   margin-top: 10px;
   margin-bottom: 0;
   font-size: 1.3rem;
@@ -687,7 +689,7 @@ svg.svg-bo--sm {
   border: 1px solid #e8eaef;
   border-radius: 3px;
 }
-.form-default .line-form .wrap-input input{
+.form-default .line-form .wrap-input input {
   background-color: initial;
   line-height: 1rem;
 }

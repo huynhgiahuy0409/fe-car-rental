@@ -70,8 +70,14 @@
             <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
         </div>
         <p style="margin: 5px" *ngIf="day.events.length===0">Trống</p>
-        <p style="margin: 5px" *ngIf="day.events.length>0 &&!isBusy(day)">Có {{ day.events.length }} chuyến trong
-            ngày</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && orderedSize(day)>0">{{
+            orderedSize(day)}} chuyến đã đặt</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && pendingSize(day)>0">{{
+            pendingSize(day) }} chuyến chờ duyệt</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && depositSize(day)>0">{{depositSize(day)
+            }} chuyến chờ đặt cọc</p>
+        <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&!isBusy(day)">Có {{ day.events.length }} chuyến trong
+            ngày</p> -->
         <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p>
     </ng-template>
 

@@ -66,31 +66,26 @@ export class CalendarsComponent {
       start: new Date(),
       title: 'Mazda 3 - 123 - 51a',
       color: colors['ordered'],
-      draggable: true,
     },
     {
       start: new Date(),
       title: 'Mazda 44 - 123 - 51a',
       color: colors['ordered'],
-      draggable: true,
     },
     {
       start: new Date("2023/03/20"),
       title: 'Mazda 4 - 1234 - 51b',
       color: colors['deposit'],
-      draggable: true
     },
     {
       start: new Date(),
       title: 'Lamborghini - 12345 - 51e',
       color: colors['pending'],
-      draggable: true
     },
     {
       start: new Date("2023/03/19"),
       title: 'Bận',
       color: colors['busy'],
-      draggable: true
     },
   ];
   filteredEvents: CalendarEvent[] = [...this.events];
