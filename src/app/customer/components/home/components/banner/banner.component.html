@@ -117,8 +117,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button mat-raised-button class="w-fit"
-                                                style="color: var(--gemstone-color)">
+                                             <button [style]="'color: var(--gemstone-color)'" mat-raised-button class="w-fit">
                                                 <div class="d-flex-bo align-items-center-bo">
                                                     Tìm xe ngay
                                                 </div>
@@ -155,14 +154,14 @@
                                                         <label class="home-label w-fit">Thời gian</label>
                                                         <div class="row">
                                                             <div class="col l-6">
-                                                                <mat-form-field style="width: 100%" appearance="fill">
+                                                                <mat-form-field color="primary" style="width: 100%" appearance="fill">
                                                                     <mat-label>Chọn một ngày</mat-label>
                                                                     <input formControlName="rentalDate" matInput
                                                                         [matDatepicker]="startRentalDateOfUrbanDriverPicker" />
-                                                                    <mat-datepicker-toggle matIconSuffix
+                                                                    <mat-datepicker-toggle  matIconSuffix
                                                                         [for]="startRentalDateOfUrbanDriverPicker">
                                                                     </mat-datepicker-toggle>
-                                                                    <mat-datepicker #startRentalDateOfUrbanDriverPicker>
+                                                                    <mat-datepicker color="primary" #startRentalDateOfUrbanDriverPicker>
                                                                     </mat-datepicker>
                                                                 </mat-form-field>
                                                             </div>
@@ -221,10 +220,13 @@
                                                             <div class="col l-6">
                                                                 <mat-form-field style="width: 100%" appearance="fill">
                                                                     <mat-label>Chọn một ngày</mat-label>
-                                                                    <input formControlName="rentalDate" matInput [matDatepicker]="endRentalDateOfUrbanDriverPicker" />
-                                                                    <mat-datepicker-toggle matIconSuffix [for]="endRentalDateOfUrbanDriverPicker">
+                                                                    <input formControlName="rentalDate" matInput
+                                                                        [matDatepicker]="endRentalDateOfUrbanDriverPicker" />
+                                                                    <mat-datepicker-toggle matIconSuffix
+                                                                        [for]="endRentalDateOfUrbanDriverPicker">
                                                                     </mat-datepicker-toggle>
-                                                                    <mat-datepicker #endRentalDateOfUrbanDriverPicker></mat-datepicker>
+                                                                    <mat-datepicker #endRentalDateOfUrbanDriverPicker>
+                                                                    </mat-datepicker>
                                                                 </mat-form-field>
                                                             </div>
                                                             <div class="col l-6">
@@ -241,8 +243,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button mat-raised-button class="w-fit" (click)="onSubmitUrbanWithDriverForm()"
-                                                        style="color: var(--gemstone-color)">
+                                                     <button [style]="'color: var(--gemstone-color)'" mat-raised-button class="w-fit"
+                                                        (click)="onSubmitUrbanWithDriverForm()">
                                                         <div class="d-flex-bo align-items-center-bo">
                                                             Tìm xe ngay
                                                         </div>
@@ -355,7 +357,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button mat-raised-button class="w-fit">
+                                                     <button [style]="'color: var(--gemstone-color)'" mat-raised-button class="w-fit">
                                                         <div class="d-flex-bo align-items-center-bo">
                                                             Tìm xe ngay
                                                         </div>

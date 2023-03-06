@@ -49,15 +49,6 @@
   min-width: 60px;
 }
 
-button.gemstone-raised-button {
-  background-color: var(--gemstone-color) !important;
-  color: #fff !important
-}
-button.gemstone-stroked-button {
-  border-color: var(--gemstone-color) !important;
-  color: var(--gemstone-color) !important;
-}
-
 .separate-line {
   height: 1px;
   background-color: var(--grey-color--);
@@ -599,7 +590,6 @@ svg.svg-bo--sm {
   border-radius: 4px;
 }
 //color
-
 .ml-10 {
   margin-left: 10px;
 }

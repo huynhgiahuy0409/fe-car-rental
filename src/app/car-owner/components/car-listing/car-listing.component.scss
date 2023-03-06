@@ -107,12 +107,6 @@
   }
 }
 
-::ng-deep {
-  &.mat-mdc-select-value {
-    color: #000;
-  }
-}
-
 //mobile
 @media screen and (max-width: 739px) {
   .car__listing {

@@ -3,19 +3,21 @@
         <h1>Cập nhật giấy phép lái xe</h1>
     </div>
     <div class="modal-body">
-        <div class="form-default form--s">
+        <div class="form-default">
             <div class="line-form">
                 <label for="" class="label">Số GPLX</label>
                 <p for="" class="info">Dãy 12 chữ số ở mặt trước GPLX</p>
-                <div class="wrap-input">
-                    <input type="text" placeholder="Nhập số GPLX đã cấp">
-                </div>
+                    <mat-form-field class="w-fit" appearance="fill">
+                        <mat-label>Nhập số GPLX đã cấp</mat-label>
+                        <input matInput >
+                    </mat-form-field>
             </div>
             <div class="line-form">
                 <label for="" class="label">Họ tên</label>
-                <div class="wrap-input">
-                    <input type="text" placeholder="Nhập đầy đủ họ tên">
-                </div>
+                <mat-form-field class="w-fit" appearance="fill">
+                    <mat-label>Nhập họ tên</mat-label>
+                    <input matInput >
+                </mat-form-field>
             </div>
             <div class="line-form">
                 <label for="" class="label">Ngày sinh</label>
@@ -38,14 +40,12 @@
                     <div class="col l-6">
                         <a class="slt-license-box">
                             <div class="slt-button">
-                                <label #fileUploaderLabel class="" for="fileUploader">
-                                    <button class="btn btn-m gemstone-raised-button"
-                                        (click)="fileUploaderLabel.click()">
+                                    <button class="btn btn-m" mat-raised-button color="primary"
+                                        (click)="fileUploader.click()">
                                         Chọn ảnh
                                     </button>
-                                </label>
                             </div>
-                            <input id="fileUploader" [style]="'display: none'" type="file">
+                            <input #fileUploader id="fileUploader" [style]="'display: none'" type="file">
                         </a>
                     </div>
                     <div class="col l-6">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <button style="margin: 0" class="w-fit btn btn--m gemstone-raised-button" mat-raised-button>Cập
+            <button style="margin: 0" class="w-fit btn btn--m" mat-raised-button color="primary">Cập
                 nhật</button>
         </div>
     </div>

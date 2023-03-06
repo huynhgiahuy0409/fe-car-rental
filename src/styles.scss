@@ -1,18 +1,171 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define a custom typ  ography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$default-format-typography-level: mat.define-typography-level(
+  $font-weight: 500,
+  $font-size: 1.6rem,
+  $line-height: 1,
+  $letter-spacing: -0.5px,
+);
+$my-btn-level: mat.define-typography-level(
+  $font-weight: 600,
+  $font-size: 1.6rem,
+  $line-height: 1,
+  $letter-spacing: -0.5px,
+);
+$my-typography-config: mat.define-typography-config(
+  $font-family: "Work Sans",
+  $button: $my-btn-level,
+  $body-1: $default-format-typography-level,
+);
+$gemstone-palette: (
+  50: #e0f4ea,
+  100: #b3e4cb,
+  200: #80d2a8,
+  300: #4dc085,
+  400: #26b36a,
+  500: #00a550,
+  600: #009d49,
+  700: #009340,
+  800: #008a37,
+  900: #007927,
+  A100: #a7ffbb,
+  A200: #74ff94,
+  A400: #41ff6d,
+  A700: #27ff5a,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+$accent-palette: (
+  50: #fffae8,
+  100: #fff3c5,
+  200: #ffeb9f,
+  300: #ffe279,
+  400: #ffdc5c,
+  500: #ffd63f,
+  600: #ffd139,
+  700: #ffcc31,
+  800: #ffc629,
+  900: #ffbc1b,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffefcc,
+  A700: #ffe7b3,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+$warm-palette: (
+  50: #fee8e7,
+  100: #fcc7c3,
+  200: #faa19b,
+  300: #f77b72,
+  400: #f65f54,
+  500: #f44336,
+  600: #f33d30,
+  700: #f13429,
+  800: #ef2c22,
+  900: #ec1e16,
+  A100: #ffffff,
+  A200: #ffe9e9,
+  A400: #ffb8b6,
+  A700: #ff9f9c,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+//
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$cdjava-fe-booking-oto-primary: mat.define-palette($gemstone-palette, 500);
+$cdjava-fe-booking-oto-accent: mat.define-palette($accent-palette);
+// The warn palette is optional (defaults to red).
+$cdjava-fe-booking-oto-warn: mat.define-palette($warm-palette, 500);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$cdjava-fe-booking-oto-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $cdjava-fe-booking-oto-primary,
+      accent: $cdjava-fe-booking-oto-primary,
+      warn: $cdjava-fe-booking-oto-warn,
+    ),
+    typography: $my-typography-config,
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($cdjava-fe-booking-oto-theme);
+
 @import "./assets/customize-style/common-style.scss";
 @import "./assets/customize-style/flex-custom.scss";
 @import "./assets/customize-style/grid.scss";
 @import "./assets/customize-style/responsive.scss";
 @import "./assets/customize-style/layout.scss";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
   --primary-color: black;
   --primary-text-color: white;
   --gemstone-color: #00a550;
-  --gemstone-color-hover: rgb(0,165,79, .8);
+  --gemstone-color-hover: rgb(0, 165, 79, 0.8);
   --first-purple-color: #5d5fef;
   --second-purple-color: #b4b5f8;
-  --third-purple-color: #efeffe ;
+  --third-purple-color: #efeffe;
   --first-dark-cyan-color: #159093;
   --second-dark-cyan-color: #9acfd0;
   --third-dark-cyan-color: #f3f9f9;
@@ -51,12 +204,13 @@ li {
 p {
   margin: unset;
 }
+
 body {
   background-color: white;
   margin: 0;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 400;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -83,7 +237,7 @@ body {
 }
 
 // app icon
-i.icon-bo{
+i.icon-bo {
   display: inline-block;
   background-image: url("https://www.mioto.vn/static/media/main_sprites.a58f006e.png");
   background-repeat: no-repeat;
@@ -93,4 +247,18 @@ i.icon-bo{
   vertical-align: middle;
   text-indent: -9999px;
 }
+
 // customize material angular
+::svg-bo .mat-mdc-option {
+  font-family: "Work Sans" !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

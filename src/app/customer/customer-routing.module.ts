@@ -39,6 +39,7 @@ const routes: Routes = [
             (m) => m.AccountModule
           ),
       },
+      { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
     ],
   },
 ];

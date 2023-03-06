@@ -1,0 +1,68 @@
+<div class="modal-container">
+    <div class="modal-header">
+        <h1>Bộ lọc chuyến đi</h1>
+    </div>
+    <div class="modal-body">
+        <div class="form-default form--s">
+            <div class="line-form">
+                <label for="" class="label">Theo chế độ</label>
+            </div>
+            <ng-container [ngTemplateOutlet]="filterOption">
+            </ng-container>
+            <div class="d-flex-bo">
+                <div class="wrap-fit">
+                    <button style="margin: 0" class="w-fit btn btn--m gemstone-raised-button"
+                        mat-raised-button>Áp dụng</button>
+                </div>
+                <div class="wrap-fit">
+                    <button style="margin: 0" class="w-fit btn btn--m gemstone-stroked-button" mat-raised-button>Bỏ
+                        lọc</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #filterOption>
+    <div class="line-form">
+        <label for="" class="label">Theo thời gian</label>
+        <div>
+            <mat-form-field appearance="fill" class="w-fit">
+                <mat-label>Chọn thời gian</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let i of timeOptions">
+                        {{i.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="line-form">
+        <label for="" class="label">Theo loại chuyến</label>
+        <div>
+            <mat-form-field appearance="fill" class="w-fit">
+                <mat-select>
+                    <mat-label>Chọn loại chuyến</mat-label>
+                    <mat-option *ngFor="let i of tripOptions">
+                        {{i.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="line-form">
+        <label for="" class="label">Theo trạng thái</label>
+        <div>
+            <mat-form-field appearance="fill" class="w-fit">
+                <mat-select>
+                    <mat-label>Chọn trạng thái</mat-label>
+                    <mat-option *ngFor="let i of statusOptions">
+                        {{i.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <!-- <div class="line-form">
+        <label for="" class="label">Theo xe</label>
+    </div> -->
+</ng-template>

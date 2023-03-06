@@ -188,15 +188,6 @@ form.search-form .search-form__control {
     border-bottom-color: #fff
 }
 
-:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
-    background-color: white !important;
-}
-
-::ng-deep .mat-form-field-underline {
-    background-color: white !important;
-    ;
-}
-
 ::ng-deep .mdc-text-field--focused .mdc-line-ripple--active {
     border-bottom-color: #fff
 }
@@ -230,15 +221,7 @@ form.search-form .search-form__control {
 }
 
 ::ng-deep .mat-calendar-body-selected {
-    background-color: var(--gemstone-color);
     color: #fff;
-}
-::ng-deep .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
-    background-color: var(--gemstone-color-hover)
-}
-
-::ng-deep .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
-    background-color: var(--gemstone-color-hover)
 }
 ::ng-deep .mdc-text-field .mdc-text-field__input {
     caret-color: var(--gemstone-color);
@@ -253,29 +236,12 @@ form.search-form .search-form__control {
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
     color: var(--primary-text-color)
 }
-// check
 ::ng-deep .mdc-form-field{
     color: var(--primary-text-color) !important
 }
-::ng-deep .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple{
-    background-color: var(--gemstone-color-hover);
+::ng-deep .mat-mdc-icon-button svg{
+    color: white;
 }
-::ng-deep .mat-ripple{
-    display: none;
-}
-::ng-deep .mat-mdc-checkbox.mat-accent {
-    --mdc-checkbox-selected-checkmark-color: var(--primary-text-color);
-    --mdc-checkbox-selected-focus-icon-color: var(--gemstone-color);
-    --mdc-checkbox-selected-hover-icon-color: var(--gemstone-color);
-    --mdc-checkbox-selected-icon-color: var(--gemstone-color);
-    --mdc-checkbox-selected-pressed-icon-color: var(--gemstone-color);
-    --mdc-checkbox-unselected-focus-icon-color: var(--primary-text-color);
-    --mdc-checkbox-unselected-hover-icon-color: var(--primary-text-color);
-    --mdc-checkbox-disabled-selected-icon-color: var(--primary-text-color);
-    --mdc-checkbox-disabled-unselected-icon-color: var(--primary-text-color);
-    --mdc-checkbox-unselected-icon-color: var(--primary-text-color);
-    --mdc-checkbox-unselected-pressed-icon-color: var(--primary-text-color);
-}
-::ng-deep .mat-mdc-icon-button.mat-mdc-button-base{
-    color: white
+::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background{
+    border-color: #fff !important;
 }
