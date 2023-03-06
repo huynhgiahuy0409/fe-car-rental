@@ -3,9 +3,9 @@
         <div class="grid m-wide">
             <div class="row">
                 <div class="col l-12">
-                    <h3 class="title-car">
+                    <div class="title-car">
                         <ng-content select=".title-car"></ng-content>
-                    </h3>
+                    </div>
                     <app-carousel [specItems]="categories"
                         [itemRender]="destinationCarouselItemsTemplateRef"
                         [isPerItemInStep]="true" [isActiveControl]="true"

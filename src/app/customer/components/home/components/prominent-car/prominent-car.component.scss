@@ -130,18 +130,18 @@
     display: flex;
     align-items: center;
 }
-.desc-car__name h2{
+.desc-car__name h4{
     max-width: calc(100% - 35px);
     margin-right: 5px;
-    font-size: 1.6rem;
     line-height: 24px;
     color: #141414;
-    font-weight: 700;
+    font-weight: 900;
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-wrap: normal;
+    margin-bottom: 0;
 }
 .prominent-car-item .group-line{
     flex-wrap: wrap;
@@ -170,13 +170,13 @@
     align-items: center;
 }
 .prominent-car-item .group-label span{
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: #6e6e6e;
     background: #e8eaef;
     padding: 0.3rem 0.75rem;
     margin-right: 8px;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 800;
     border-radius: 4px;
 }
 .location p{

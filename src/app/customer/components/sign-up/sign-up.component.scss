@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
 $primary: var(--gemstone-color);
 $secondary: #26eb85;
 $lighter: #9596a2;
@@ -9,8 +8,7 @@ $border-radius: 12px;
 .sign-up-wrapper {
     background: #ffffff;
     position: relative;
-
-    .sign-up {
+.sign-up {
         width: 450px;
         border-radius: unset;
         overflow: hidden;

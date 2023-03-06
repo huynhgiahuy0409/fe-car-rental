@@ -124,7 +124,7 @@
     margin-bottom: 5px;
     color: #141414;
     font-size: 3.2rem;
-    font-weight: 800;
+    font-weight: 900 !important;
     text-transform: uppercase;
     line-height: 1.25;
 }
@@ -765,7 +765,7 @@
     width: 100%;
 }
 // customize material angular
-// +Customize form field + autocomplate
+// +Customize form field 
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: unset;
     border: .5px solid #ccc;

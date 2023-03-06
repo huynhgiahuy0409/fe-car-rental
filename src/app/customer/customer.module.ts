@@ -5,6 +5,7 @@ import { CustomerLayoutModule } from '../shared/layout/customer-layout/customer-
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerComponent } from './customer.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { MaterialAngularModule } from '../material-angular/material-angular.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     CommonModule,
     CustomerRoutingModule,
     CustomerLayoutModule,
+    MaterialAngularModule
   ]
 })
 export class CustomerModule { }
