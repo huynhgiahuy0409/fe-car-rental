@@ -4,35 +4,35 @@
             <h2 style="text-align: center;">Đăng ký tài khoản</h2>
             <div class="form-field">
                 <i class="fa-solid fa-user"></i>
-                <input id="sign-up-mail" type="text" name="mail" placeholder="Số điện thoại hoặc email"
+                <input type="email" placeholder="Số điện thoại hoặc email"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
             <div class="form-field">
-                <label for="name-of-user"><i class="fa fa-user"></i></label>
-                <input id="name-of-user" type="text"  placeholder="Tên hiển thị"
+                <i class="fa-solid fa-signature"></i>
+                <input  type="text" placeholder="Tên hiển thị"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
             <div class="form-field">
-                <label for="sign-up-password"><i class="fa fa-lock"></i></label>
-                <input id="sign-up-password" type="password" name="password" placeholder="Mật khẩu" pattern=".{6,}" required>
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" placeholder="Mật khẩu" pattern=".{6,}" required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
             <div class="form-field">
-                <label for="sign-up-confirm-password"><i class="fa fa-lock"></i></label>
-                <input id="sign-up-confirm-password" type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" pattern=".{6,}" required>
+                <i class="fa-solid fa-lock"></i>
+                <input  type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" pattern=".{6,}" required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
-            <button (click)="onClickSignUp()"  class="button">
+            <button (click)="onClickSignUp()" class="button">
                 <div class="arrow-wrapper">
                     <span  class="arrow"></span>
                 </div>
