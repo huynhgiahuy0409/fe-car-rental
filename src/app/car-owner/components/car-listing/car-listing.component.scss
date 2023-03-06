@@ -124,9 +124,26 @@
 
 //tablet
 @media screen and (min-width: 740px) and (max-width: 1023px) {
-  .car__listing-column {
+  .car__listing {
+    &-column {
+      flex: 0 0 100% !important;
+    }
+    &-action {
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
   }
 }
 //desktop and larger
 @media screen and (min-width: 1023px) {
+  .car__listing {
+    &-action {
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
 }

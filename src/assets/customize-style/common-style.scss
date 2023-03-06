@@ -49,13 +49,22 @@
   min-width: 60px;
 }
 
+button.gemstone-raised-button {
+  background-color: var(--gemstone-color) !important;
+  color: #fff !important;
+}
+button.gemstone-stroked-button {
+  border-color: var(--gemstone-color) !important;
+  color: var(--gemstone-color) !important;
+}
+
 .separate-line {
   height: 1px;
   background-color: var(--grey-color--);
 }
 
 // Text
-.primary-text{
+.primary-text {
   color: var(--gemstone-color) !important;
 }
 .title {
@@ -289,7 +298,6 @@ li.v-item.bg--hover:hover {
   font-weight: 600;
 }
 
-
 .image-carousel:hover .carousel-arrow i {
   font-size: 2.8rem;
 }
@@ -375,11 +383,11 @@ li.v-item.bg--hover:hover {
   width: 12px;
   height: 12px;
   border-radius: 100rem;
-  background-color: rgba(255, 255, 255, .2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .carousel-dot.carousel-dot--active {
   background-color: rgba(255, 255, 255);
-  border: 2px solid rgba(255, 255, 255, .5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   animation: fadeIn 0.1s linear;
 }
 .carousel-dot:not(:first-child) {
@@ -574,12 +582,12 @@ svg.svg-bo--sm {
   margin-top: 0 !important;
 }
 // group label
-.group-label{
+.group-label {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
-.group-label span{
+.group-label span {
   font-size: 1.2rem;
   color: #6e6e6e;
   background: #e8eaef;
@@ -609,22 +617,66 @@ svg.svg-bo--sm {
 .mt-2-h {
   margin-top: 2.5em;
 }
-// form
-.form-default{
-  
+
+.cl-waiting-1 {
+  color: #fba86d;
 }
-.form-default.form--s{
+
+.bg-deposit {
+  background-color: #fba86d !important;
+}
+
+.cl-empty {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.bg-empty {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.bg-ordered {
+  background-color: red !important;
+}
+
+.cl-busy {
+  color: #a9a9a9;
+}
+
+.bg-busy {
+  background-color: #a9a9a9 !important;
+}
+
+.cl-waiting-2 {
+  color: #fde28b;
+}
+
+.bg-pending {
+  background-color: #fde28b !important;
+}
+
+.cl-white {
+  color: #fff !important;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+// form
+.form-default {
+}
+.form-default.form--s {
   max-width: 420px;
   margin: 0 auto;
 }
 .form-default .line-form {
   margin-bottom: 20px;
 }
-.form-default .line-form label.label{
+.form-default .line-form label.label {
   font-size: 1.4rem;
   font-weight: 500;
 }
-.form-default .line-form p.info{
+.form-default .line-form p.info {
   margin-top: 10px;
   margin-bottom: 0;
   font-size: 1.3rem;
@@ -636,7 +688,7 @@ svg.svg-bo--sm {
   border: 1px solid #e8eaef;
   border-radius: 3px;
 }
-.form-default .line-form .wrap-input input{
+.form-default .line-form .wrap-input input {
   background-color: initial;
   line-height: 1rem;
 }

@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarOwnerComponent } from './car-owner.component';
+import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
 import { CarRegisterComponent } from './components/car-register/car-register.component';
+import { ContractComponent } from './components/contract/contract.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -16,6 +19,14 @@ const routes: Routes = [
       },
       {
         path: 'listing', component: CarListingComponent
+      },
+      {
+        path: 'calendars', component: CalendarsComponent
+      },
+      {
+        path: 'contract', component: ContractComponent
+      }, {
+        path: 'statistics', component: StatisticsComponent
       }
     ]
   },
