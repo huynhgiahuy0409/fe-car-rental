@@ -69,16 +69,16 @@
     padding-bottom: 80px;
 }
 .airport-carousel-item-wrapper{
+    margin-right: 15px;
 }
-.airport-carousel-item-wrapper h3{
+.airport-carousel-item-wrapper h4{
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 500 !important;
     text-align: center;
     padding-top: 1rem;
 }
 
 .airport-carousel-item {
-    margin-right: 15px;
     border-radius: 100%;
     border: 2px solid;
 }
