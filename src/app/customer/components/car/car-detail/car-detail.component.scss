@@ -124,7 +124,7 @@
     margin-bottom: 5px;
     color: #141414;
     font-size: 3.2rem;
-    font-weight: 800;
+    font-weight: 900 !important;
     text-transform: uppercase;
     line-height: 1.25;
 }
@@ -499,21 +499,6 @@
     display: flex;
     align-items: center;
 }
-.relative-car-item .group-label{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.relative-car-item .group-label span{
-    font-size: 1.2em;
-    color: #6e6e6e;
-    background: #e8eaef;
-    padding: 0.3rem 0.75rem;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    font-weight: 600;
-    border-radius: 4px;
-}
 .location p{
     font-size: 1.4rem;
     color: #141414;
@@ -765,7 +750,7 @@
     width: 100%;
 }
 // customize material angular
-// +Customize form field + autocomplate
+// +Customize form field 
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: unset;
     border: .5px solid #ccc;

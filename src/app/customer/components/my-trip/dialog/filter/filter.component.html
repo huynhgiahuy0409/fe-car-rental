@@ -40,8 +40,8 @@
         <label for="" class="label">Theo loại chuyến</label>
         <div>
             <mat-form-field appearance="fill" class="w-fit">
+                <mat-label>Chọn loại chuyến</mat-label>
                 <mat-select>
-                    <mat-label>Chọn loại chuyến</mat-label>
                     <mat-option *ngFor="let i of tripOptions">
                         {{i.label}}
                     </mat-option>
@@ -53,8 +53,8 @@
         <label for="" class="label">Theo trạng thái</label>
         <div>
             <mat-form-field appearance="fill" class="w-fit">
+                <mat-label>Chọn trạng thái</mat-label>
                 <mat-select>
-                    <mat-label>Chọn trạng thái</mat-label>
                     <mat-option *ngFor="let i of statusOptions">
                         {{i.label}}
                     </mat-option>
