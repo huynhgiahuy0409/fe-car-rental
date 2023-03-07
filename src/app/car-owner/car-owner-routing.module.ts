@@ -6,6 +6,8 @@ import { CarListingComponent } from './components/car-listing/car-listing.compon
 import { CarRegisterComponent } from './components/car-register/car-register.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { RentalDetailsComponent } from './components/rental/components/details/details.component';
+import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 
 const routes: Routes = [
@@ -18,15 +20,22 @@ const routes: Routes = [
         path: 'register/Self-drive', component: RegisterFormComponent
       },
       {
-        path: 'listing', component: CarListingComponent
+        path: 'car-listing', component: CarListingComponent
       },
       {
         path: 'calendars', component: CalendarsComponent
       },
       {
         path: 'contract', component: ContractComponent
-      }, {
+      },
+      {
         path: 'statistics', component: StatisticsComponent
+      },
+      {
+        path: "rental-listing", component: RentalListingComponent
+      },
+      {
+        path: "rental-details", loadChildren: () => import('./components/rental/components/details/details.module').then(m => m.RentalDetailsModule)
       }
     ]
   },

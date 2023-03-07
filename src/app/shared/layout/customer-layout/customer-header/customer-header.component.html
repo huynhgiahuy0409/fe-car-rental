@@ -35,15 +35,13 @@
                             <div class="h-list">
                                 <div class="h-item h-item--gemstone-hover">
                                     <a class="h-item__link">
-                                        <button class="sign-up-btn" mat-button
-                                            (click)="openLoginFormDialog('400ms',
+                                        <button class="sign-up-btn" mat-button (click)="openLoginFormDialog('400ms',
                                             '200ms')">Đăng nhập</button>
                                     </a>
                                 </div>
                                 <div class="h-item h-item--genstome-hover">
                                     <a href="" class="h-item__link">
-                                        <button class="sign-up-btn"
-                                            mat-stroked-button>Đăng ký</button>
+                                        <button class="sign-up-btn" mat-stroked-button>Đăng ký</button>
                                     </a>
                                 </div>
                             </div>
@@ -54,13 +52,10 @@
                                     <a class="h-item__link d-flex-bo
                                         align-items-center-bo">
                                         <div class="dropdown">
-                                            <div #dropdownMenuButton
-                                                id="dropdownMenuButton"
-                                                class="d-flex-bo
+                                            <div #dropdownMenuButton id="dropdownMenuButton" class="d-flex-bo
                                                 align-items-center-bo">
                                                 <div class="avatar avatar--s">
-                                                    <img
-                                                        src="https://n1-astg.mioto.vn/g/2023/01/18/05/RFDgIbEPT2wzTs5OQo2C3A.jpg"
+                                                    <img src="https://n1-astg.mioto.vn/g/2023/01/18/05/RFDgIbEPT2wzTs5OQo2C3A.jpg"
                                                         class="avatar-image">
                                                 </div>
                                                 <p class="username mr-side-10">
@@ -69,8 +64,7 @@
                                                 <i class="fa-solid
                                                     fa-caret-down"></i>
                                             </div>
-                                            <div class="dropdown-menu"
-                                                *ngIf="activeUserMenu">
+                                            <div class="dropdown-menu" *ngIf="activeUserMenu">
                                                 <ul>
                                                     <li *ngFor="let i of
                                                         userMenus"><a>{{i.label}}</a></li>
@@ -89,18 +83,40 @@
                                                 </div>
                                                 <ul>
                                                     <li>
+                                                        <a routerLink="/car-owner/rental-details/1">
+                                                            <div class="cover-avatar-wrap">
+                                                                <div class="cover-avatar">
+                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg"
+                                                                        alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="desc">
+                                                                <div class="title">Yêu cầu thuê xe</div>
+                                                                <div class="content">Hieu Nguyen yêu cầu thuê xe
+                                                                    51F-11111,T6 21:00 01/03/2019 - T7 21:00 02/03/2019.
+                                                                    Vui lòng xem chi tiết, bấm đồng ý / từ chối để phản
+                                                                    hồi trong thời gian sớm nhất</div>
+                                                                <div class="timer">1 ngày trước</div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
                                                         <a>
                                                             <div class="cover-avatar-wrap">
                                                                 <div class="cover-avatar">
-                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg" alt="">
+                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg"
+                                                                        alt="">
                                                                     <div class="sub-avatar">
-                                                                        <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/sub/promo.jpg" alt="">
+                                                                        <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/sub/promo.jpg"
+                                                                            alt="">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="desc">
-                                                                <div class="title">CẦM LÁI CHEVROLET - DI CHUYỂN THẬT DỄ DÀNG</div>
-                                                                <div class="content">Nhập mã MI03 - tiết kiệm 15% khi thuê xe có tài tại Mioto</div>
+                                                                <div class="title">CẦM LÁI CHEVROLET - DI CHUYỂN THẬT DỄ
+                                                                    DÀNG</div>
+                                                                <div class="content">Nhập mã MI03 - tiết kiệm 15% khi
+                                                                    thuê xe có tài tại Mioto</div>
                                                                 <div class="timer">1 ngày trước</div>
                                                             </div>
                                                         </a>
@@ -110,15 +126,19 @@
                                                         <a class="read">
                                                             <div class="cover-avatar-wrap">
                                                                 <div class="cover-avatar">
-                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg" alt="">
+                                                                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg"
+                                                                        alt="">
                                                                     <div class="sub-avatar">
-                                                                        <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/sub/promo.jpg" alt="">
+                                                                        <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/sub/promo.jpg"
+                                                                            alt="">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="desc">
-                                                                <div class="title">CẦM LÁI CHEVROLET - DI CHUYỂN THẬT DỄ DÀNG</div>
-                                                                <div class="content">Nhập mã MI03 - tiết kiệm 15% khi thuê xe có tài tại Mioto</div>
+                                                                <div class="title">CẦM LÁI CHEVROLET - DI CHUYỂN THẬT DỄ
+                                                                    DÀNG</div>
+                                                                <div class="content">Nhập mã MI03 - tiết kiệm 15% khi
+                                                                    thuê xe có tài tại Mioto</div>
                                                                 <div class="timer">1 ngày trước</div>
                                                             </div>
                                                         </a>
@@ -134,14 +154,10 @@
                     <div class="header__become-owner">
                         <div class="h-list">
                             <div class="h-item h-item--gemstone-hover">
-                                <a routerLink="/car-owner/register"
-                                    class="h-item__link d-flex-bo
+                                <a routerLink="/car-owner/register" class="h-item__link d-flex-bo
                                     align-items-center-bo">
-                                    <svg class="svg-bo mr-r-5" width="24"
-                                        height="24" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd"
-                                            clip-rule="evenodd"
-                                            d="M12.75 20.4674C17.0931 20.0877
+                                    <svg class="svg-bo mr-r-5" width="24" height="24" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.75 20.4674C17.0931 20.0877
                                             20.5 16.4417 20.5 12C20.5 10.9
                                             20.291 9.84874 19.9106
                                             8.88384L14.9342 11.3721C14.9773
@@ -167,8 +183,7 @@
                                             12.8284 13.5 12C13.5 11.1716 12.8284
                                             10.5 12 10.5C11.1716 10.5 10.5
                                             11.1716 10.5 12C10.5 12.8284 11.1716
-                                            13.5 12 13.5Z"
-                                            fill="var(--primary-text-color)"></path>
+                                            13.5 12 13.5Z" fill="var(--primary-text-color)"></path>
                                     </svg>
                                     <span>Trở thành chủ xe</span>
                                 </a>

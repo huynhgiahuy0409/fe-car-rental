@@ -1,4 +1,4 @@
-.car {
+.rental {
   &__listing {
     &-container {
       width: 90%;
@@ -27,42 +27,7 @@
     }
     &-item {
       flex: 0 0 47%;
-
-      .car__status {
-        position: relative;
-        padding: 1px 0px;
-        top: 10%;
-        left: 5px;
-        z-index: 10;
-        background: rgba(0, 0, 0, 0.4);
-        border-radius: 20px;
-        width: 230px;
-        color: #fff;
-        .status-text {
-          font-size: 120%;
-          margin-top: 5px;
-          &::before {
-            content: "";
-            padding: 0px 10px;
-            margin-left: 10px;
-            margin-right: 10px;
-            border-radius: 50%;
-          }
-          //status div
-          &.suspended::before {
-            border: 2px solid #a7aaae;
-            background-color: var(--secondary-text);
-          }
-          //status div
-          &.active::before {
-            background-color: var(--gemstone-color);
-          }
-        }
-      }
-
-      h1 {
-        padding-bottom: 5px;
-      }
+      margin-top: 1em;
       img {
         width: 100%;
         object-fit: cover;
@@ -74,6 +39,8 @@
         color: var(--gemstone-color);
         padding-top: 15px;
         padding-bottom: 30%;
+      }
+      .text-daterange {
         border-bottom: 2px solid var(--secondary-color);
       }
     }
@@ -81,8 +48,7 @@
       padding: 10px 0;
       button {
         padding: 15px;
-        margin-right: 20px;
-        width: 45%;
+        width: 100%;
         border-radius: 3px;
         border-color: transparent;
         font-weight: 600;
@@ -106,6 +72,10 @@
     gap: 25px;
     padding-top: 10px;
   }
+}
+
+.date__end {
+  margin-left: auto;
 }
 
 //mobile
