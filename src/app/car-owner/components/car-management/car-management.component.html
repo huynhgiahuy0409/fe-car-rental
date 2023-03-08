@@ -1,0 +1,230 @@
+<div class="car__calendars-container bg-white">
+    <h2 class="text-center text-header">Lịch xe {{car_id}}</h2>
+
+    <div class="options__control">
+        <mat-radio-group [formControl]="optionControl">
+            <mat-radio-button value="0">Tùy chỉnh giá <i class="fa-solid fa-clock-rotate-left"
+                    (click)="toggleShowModalPriceIterate()"></i></mat-radio-button>
+            <mat-radio-button value="1">Thiết lập lịch bận <i class="fa-solid fa-clock-rotate-left"
+                    (click)="toggleShowModalTimeIterate()"></i></mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" *ngIf="showModalPriceIterate">
+        <!-- Modal content -->
+        <div class="modal-content iterate">
+            <span class="close" (click)="toggleShowModalPriceIterate()">&times;</span>
+            <h2 class="text-center">Tùy chỉnh giá lặp lại</h2>
+
+            <p class="text-secondary sub__title-1">Nhập giá vào ngày trong tuần tương ứng. Nhập 0 nếu muốn dùng giá mặc
+                định.</p>
+            <p class="text-secondary sub__title-2">Giá đề xuất: 1300K</p>
+
+            <div [formGroup]="priceIterateFormGroup">
+                <div class="price__iterate-group">
+                    <div>
+                        <span class="day__title">
+                            Thứ 2
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="monday">
+                        </mat-form-field>
+                        K
+                    </div>
+                    <div>
+                        <span class="day__title">
+                            Thứ 3
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="tuesday">
+                        </mat-form-field>
+                        K
+                    </div>
+                    <div>
+                        <span class="day__title">
+                            Thứ 4
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="wednesday">
+                        </mat-form-field>
+                        K
+                    </div>
+                    <div>
+                        <span class="day__title">
+                            Thứ 5
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="thursday">
+                        </mat-form-field>
+                        K
+                    </div>
+                    <div>
+                        <span class="day__title">
+                            Thứ 6
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="friday">
+                        </mat-form-field>
+                        K
+                    </div>
+                    <div>
+                        <span class="day__title">
+                            Thứ 7
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="saturday">
+                        </mat-form-field>
+                        K
+                    </div>
+                    <div>
+                        <span class="day__title-last">
+                            Chủ nhật
+                        </span>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" formControlName="sunday">
+                        </mat-form-field>
+                        K
+                    </div>
+                </div>
+                <div class="iterate__option-group">
+                    <p class="text-secondary">Không chọn nếu muốn chu kì lặp không giới hạn</p>
+                    <div>
+                        <mat-checkbox formControlName="limitIterateTime">Giới hạn thời gian lặp lại</mat-checkbox>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-fit">
+                        <input matInput type="datetime" formControlName="limitIterateDate">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="btn__actions">
+                <button class="w-fit btn btn-primary" (click)="toggleShowModalPriceIterate()">Xác nhận</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" *ngIf="showModalTimeIterate">
+
+        <!-- Modal content -->
+        <div class="modal-content iterate">
+            <span class="close" (click)="toggleShowModalTimeIterate()">&times;</span>
+            <h2 class="limit__timerange-header">Thiết lập thời gian cho thuê</h2>
+            <div class="d-flex-bo flex-wrap-bo limit__timerange-group" [formGroup]="limitTimeRangeFormGroup">
+                <div class="limit__timerange-col">
+                    <p>
+                        Bắt đầu từ
+                    </p>
+                    <mat-form-field appearance="outline">
+                        <mat-select formControlName="from">
+                            <mat-option value="0">Hiện tại</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="limit__timerange-col">
+                    <p>
+                        Cho đến
+                    </p>
+                    <mat-form-field appearance="outline">
+                        <mat-select formControlName="to">
+                            <mat-option value="3">3 tháng tới ( khuyến nghị )</mat-option>
+                            <mat-option value="4">4 tháng tới</mat-option>
+                            <mat-option value="5">5 tháng tới</mat-option>
+                            <mat-option value="6">6 tháng tới</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button class="btn btn-primary limit__timerange-btn">Lưu thay đổi</button>
+        </div>
+
+    </div>
+    <!-- The Modal -->
+    <div class="modal" *ngIf="showModalPriceByDate">
+        <!-- Modal content -->
+        <div class="modal-content iterate">
+            <span class="close" (click)="toggleShowModalPriceByDate()">&times;</span>
+            <h2 class="limit__timerange-header text-center">Tùy chỉnh giá {{getDateInFormat(clickedDate)}}</h2>
+
+            <p class="text-secondary">Nhập giá tùy chỉnh cho ngày này. Nhập 0 nếu muốn dùng giá mặc định .</p>
+
+            <div [formGroup]="priceByDateFormGroup" class="price__date-group">
+                <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="price">
+                </mat-form-field>K
+            </div>
+            <p class="text-secondary">Giá đề xuất 1300K</p>
+            <button class="btn btn-primary limit__timerange-btn w-fit">Xác nhận</button>
+        </div>
+
+    </div>
+
+    <div class="d-flex-bo flex-wrap-bo car__calendars-content">
+        <div class="car__calendars-col">
+            <ul class="calendars__labels">
+                <li>Giá mặc định</li>
+                <li>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Lặp lại tuần
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-danger"></i>
+                    Ngày đã đặt
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-waiting-1"></i>
+                    Chờ đặt cọc
+                </li>
+                <li class="cl-gem">
+                    Giá tùy chỉnh
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-empty"></i>
+                    Ngày trống
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-busy"></i>
+                    Ngày bận
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-waiting-2"></i>
+                    Chờ duyệt
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- calendar component -->
+
+    <ng-template #customCalendarCell let-day="day" let-locale="locale">
+        <div class="cal-cell-top">
+            <span class="cal-day-badge bg-ordered" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && orderedSize(day)>0">{{
+                orderedSize(day)}}</span>
+            <span class="cal-day-badge bg-deposit"
+                *ngIf="day.badgeTotal> 0 &&!isBusy(day) && depositSize(day)>0">{{depositSize(day) }}</span>
+            <span class="cal-day-badge bg-pending" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && pendingSize(day)>0">{{
+                pendingSize(day) }}</span>
+            <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+        </div>
+        <p style="margin: 5px" *ngIf="day.events.length===0">Trống</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && orderedSize(day)>0">{{
+            orderedSize(day)}} chuyến đã đặt</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && pendingSize(day)>0">{{
+            pendingSize(day) }} chuyến chờ duyệt</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && depositSize(day)>0">{{depositSize(day)
+            }} chuyến chờ đặt cọc</p>
+        <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&!isBusy(day)">Có {{ day.events.length }} chuyến trong
+            ngày</p> -->
+        <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p>
+    </ng-template>
+
+    <mwl-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+    </mwl-calendar-header>
+
+    <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)" [refresh]="refresh" (eventTimesChanged)="eventTimesChanged($event)"
+        [locale]="locale" [cellTemplate]="customCalendarCell" (beforeViewRender)="beforeMonthViewRender($event)"
+        (columnHeaderClicked)="clickDate($event.isoDayNumber)"></mwl-calendar-month-view>
+</div>

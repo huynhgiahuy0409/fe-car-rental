@@ -1,7 +1,7 @@
 <div class="rental__listing-container">
     <div class="d-flex-bo flex-wrap-bo rental__listing-content">
         <div class="rental__listing-column bx__shadow-1" [formGroup]="rentalListSortFormGroup">
-            <h1>Sắp xếp theo</h1>
+            <h2>Sắp xếp theo</h2>
             <mat-form-field class="w-fit" appearance="outline">
                 <mat-select matInput formControlName="orderBy">
                     <mat-option value="0">Gần nhất</mat-option>
@@ -10,16 +10,16 @@
             </mat-form-field>
         </div>
         <div class="rental__listing-column bx__shadow-1">
-            <h1>DANH SÁCH CHUYẾN CHO THUÊ</h1>
-            <div class="d-flex-bo flex-wrap-bo rental__list">
+            <h2>DANH SÁCH CHUYẾN CHO THUÊ</h2>
+            <div class="d-flex-bo flex-wrap-bo rental__list" *ngFor="let item of [1,1]">
                 <!-- start rental item -->
                 <div class="rental__listing-item">
                     <img src="https://i1-vnexpress.vnecdn.net/2021/09/18/3.jpg?w=2400&h=0&q=100&dpr=1&fit=crop&s=lohYC7Ptk92QpWobxbfOEw&t=image"
                         alt="rental image">
                 </div>
                 <div class="rental__listing-item">
-                    <h1 class="text-uppercase">mazda 6 2019 - 51A-111.11</h1>
-                    <h2>Hieu Nguyen</h2>
+                    <h3 class="text-uppercase">mazda 6 2019 - 51A-111.11</h3>
+                    <h4>Hieu Nguyen</h4>
                     <span>
                         <i class="fa-solid fa-star cl-star"></i>
                         <i class="fa-solid fa-star cl-star"></i>
@@ -28,7 +28,7 @@
                         <i class="fa-solid fa-star text-secondary"></i>
                     </span>
                     <div class="text-price">
-                        <h1>1000K</h1>
+                        <h3>1000K</h3>
                     </div>
                     <div class="d-flex-bo flex-wrap-bo text-daterange">
                         <div>
@@ -47,42 +47,6 @@
                     </div>
                 </div>
                 <!-- end rental item -->
-                <!-- start rental item -->
-                <div class="rental__listing-item">
-                    <img src="https://i1-vnexpress.vnecdn.net/2021/09/18/3.jpg?w=2400&h=0&q=100&dpr=1&fit=crop&s=lohYC7Ptk92QpWobxbfOEw&t=image"
-                        alt="rental image">
-                </div>
-                <div class="rental__listing-item">
-                    <h1 class="text-uppercase">mazda 6 2019 - 51A-111.11</h1>
-                    <h2>Hieu Nguyen</h2>
-                    <span>
-                        <i class="fa-solid fa-star cl-star"></i>
-                        <i class="fa-solid fa-star cl-star"></i>
-                        <i class="fa-solid fa-star cl-star"></i>
-                        <i class="fa-solid fa-star cl-star"></i>
-                        <i class="fa-solid fa-star text-secondary"></i>
-                    </span>
-                    <div class="text-price">
-                        <h1>1000K</h1>
-                    </div>
-                    <div class="d-flex-bo flex-wrap-bo text-daterange text">
-                        <div>
-                            <p>
-                                Bắt đầu: {{now}}
-                            </p>
-                        </div>
-                        <div class="date__end">
-                            <p>
-                                Kết thúc: {{now}}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="rental__listing-action">
-                        <button routerLink="/" class="btn__detail">Xem chi tiết</button>
-                    </div>
-                </div>
-                <!-- end rental item -->
-
             </div>
         </div>
     </div>

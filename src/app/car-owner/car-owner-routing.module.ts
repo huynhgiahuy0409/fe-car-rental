@@ -6,7 +6,6 @@ import { CarListingComponent } from './components/car-listing/car-listing.compon
 import { CarRegisterComponent } from './components/car-register/car-register.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { RentalDetailsComponent } from './components/rental/components/details/details.component';
 import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 
@@ -36,6 +35,9 @@ const routes: Routes = [
       },
       {
         path: "rental-details", loadChildren: () => import('./components/rental/components/details/details.module').then(m => m.RentalDetailsModule)
+      },
+      {
+        path: 'management/:id', loadChildren: () => import("./components/car-management/car-management.module").then(m => m.CarManagementModule)
       }
     ]
   },
