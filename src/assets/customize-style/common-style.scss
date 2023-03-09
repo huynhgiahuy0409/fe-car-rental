@@ -667,6 +667,20 @@ svg.svg-bo--sm {
   margin-left: auto;
 }
 
+.cl-black {
+  color: black;
+  svg,
+  span {
+    color: black;
+  }
+  button {
+    span,
+    svg {
+      color: black;
+    }
+  }
+}
+
 // form
 .form-default {
 }

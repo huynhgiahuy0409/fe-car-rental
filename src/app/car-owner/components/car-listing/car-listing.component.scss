@@ -36,8 +36,13 @@
         z-index: 10;
         background: rgba(0, 0, 0, 0.4);
         border-radius: 20px;
-        width: 230px;
         color: #fff;
+        &.suspend {
+          width: 230px;
+        }
+        &.not-suspend {
+          width: 180px;
+        }
         .status-text {
           font-size: 120%;
           margin-top: 5px;

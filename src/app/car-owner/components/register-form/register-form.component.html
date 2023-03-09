@@ -7,11 +7,11 @@
                         <ng-template matStepLabel>Thông tin</ng-template>
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h1>Biển số xe</h1>
+                            <h2>Biển số xe</h2>
                             <p class="cl-danger register__car-subtitle">Lưu ý: Biển số sẽ không thể thay đổi sau khi
                                 đăng kí.</p>
                         </div>
-                        <mat-form-field class="input__car-form" appearance="outline">
+                        <mat-form-field class="input__car-form cl-black" appearance="outline">
                             <mat-label class="cl-black">Biển số xe</mat-label>
                             <input matInput placeholder="Biển số xe" formControlName="carNumberPlate" required>
                             <mat-error
@@ -29,7 +29,7 @@
                             </p>
                         </div>
                         <div class="d-flex-bo flex-wrap-bo basic__information-container">
-                            <mat-form-field class="basic__information-field" appearance="outline">
+                            <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Hãng xe</mat-label>
                                 <mat-select matInput formControlName="carBrand">
                                     <mat-option value="0">Audi</mat-option>
@@ -39,7 +39,7 @@
                                     Vui lòng chọn hãng xe
                                 </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="basic__information-field" appearance="outline">
+                            <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Mẫu xe</mat-label>
                                 <mat-select matInput formControlName="carModel">
                                     <mat-option value="0">Audi A1</mat-option>
@@ -49,7 +49,7 @@
                                     Vui lòng chọn mẫu xe
                                 </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="basic__information-field" appearance="outline">
+                            <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Số ghế</mat-label>
                                 <mat-select matInput formControlName="carSeats">
                                     <mat-option *ngFor="let i of carSeatRange;" [value]="i">{{i}}</mat-option>
@@ -58,7 +58,7 @@
                                     Vui lòng chọn số ghế
                                 </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="basic__information-field" appearance="outline">
+                            <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Năm sản xuất</mat-label>
                                 <mat-select matInput formControlName="carProdYear">
                                     <mat-option *ngFor="let i of carProduceYearRange;" [value]="i">{{i}}</mat-option>
@@ -67,7 +67,7 @@
                                     Vui lòng chọn năm sản xuất
                                 </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="basic__information-field" appearance="outline">
+                            <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Truyền động</mat-label>
                                 <mat-select matInput formControlName="carTransmission">
                                     <mat-option value="0">Số tự động</mat-option>
@@ -77,7 +77,7 @@
                                     Vui lòng chọn truyền động của xe
                                 </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="basic__information-field" appearance="outline">
+                            <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Loại nhiên liệu</mat-label>
                                 <mat-select matInput formControlName="carFuel">
                                     <mat-option value="0">Xăng</mat-option>
@@ -151,7 +151,7 @@
                     <form [formGroup]="forRentFormGroup">
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h1>Đơn giá thuê mặc định</h1>
+                            <h2>Đơn giá thuê mặc định</h2>
                             <p class="text-secondary register__car-subtitle">Đơn giá áp dụng cho tất cả các ngày. Bạn có
                                 thuể tuỳ chỉnh giá khác cho các ngày đặc biệt (cuối tuần, lễ, tết...) trong
                                 mục quản lý xe sau khi đăng kí.
@@ -172,7 +172,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h1>Giảm giá</h1>
+                                <h2>Giảm giá</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleDiscountGroup">
                                 <mat-slide-toggle formControlName="isDiscount">
@@ -205,7 +205,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h1>Đặt xe nhanh</h1>
+                                <h2>Đặt xe nhanh</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleFastRentGroup">
                                 <mat-slide-toggle formControlName="isFastRent">
@@ -218,7 +218,6 @@
                                 chuyến sau
                                 khi khách đặt cọc vì chưa cập nhật
                                 lịch bận sẽ áp dụng phí hủy chuyến (100% tiền đặt cọc)
-
                             </p>
                         </div>
 
@@ -246,13 +245,13 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h1>Địa chỉ xe</h1>
+                                <h2>Địa chỉ xe</h2>
                             </div>
                         </div>
 
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container address__div-input">
-                            <div class="discount__status-field fs-150">
+                            <div class="discount__status-field">
                                 <p>{{
                                     forRentFormGroup.get("defaultLocation")?.value !==""
                                     ?forRentFormGroup.get("defaultLocation")?.value:"Địa chỉ mặc định để giao nhận xe."
@@ -269,12 +268,12 @@
                             <div class="modal__address-content">
                                 <span class="close" (click)="toggleAddressModal()">&times;</span>
                                 <div class="modal__address-title">
-                                    <h1>Chỉnh sửa địa chỉ</h1>
+                                    <h2>Chỉnh sửa địa chỉ</h2>
                                 </div>
                                 <div class="modal__address-fields">
-                                    <h2>Địa chỉ <span class="cl-danger">*</span></h2>
+                                    <h3>Địa chỉ <span class="cl-danger">*</span></h3>
                                     <div class="modal__address-field" [formGroup]="addressFormGroup">
-                                        <p class="fs-150 text-secondary">Tỉnh/ Thành phố</p>
+                                        <p class="text-secondary">Tỉnh/ Thành phố</p>
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <mat-select matInput formControlName="city"
                                                 (selectionChange)="onChangeCity()" placeholder="Chọn Tỉnh/ Thành phố">
@@ -285,7 +284,7 @@
                                                 Vui lòng chọn tỉnh/thành phố
                                             </mat-error>
                                         </mat-form-field>
-                                        <p class="fs-150 text-secondary">Quận/ Huyện</p>
+                                        <p class="text-secondary">Quận/ Huyện</p>
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <mat-select matInput formControlName="district"
                                                 (selectionChange)="onChangeDistrict()" placeholder="Chọn quận/ huyện">
@@ -296,7 +295,7 @@
                                                 Vui lòng chọn quận/ huyện
                                             </mat-error>
                                         </mat-form-field>
-                                        <p class="fs-150 text-secondary">Phường/ Xã</p>
+                                        <p class="text-secondary">Phường/ Xã</p>
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <mat-select matInput formControlName="ward" placeholder="Chọn Phường/ Xã">
                                                 <mat-option [value]="item.id"
@@ -306,7 +305,7 @@
                                                 Vui lòng chọn phường/ xã
                                             </mat-error>
                                         </mat-form-field>
-                                        <p class="fs-150 text-secondary">Đường</p>
+                                        <p class="text-secondary">Đường</p>
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <input matInput placeholder="Nhập tên đường/ tòa nhà"
                                                 formControlName="street" required [matAutocomplete]="auto">
@@ -336,7 +335,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h1>Giao xe tận nơi</h1>
+                                <h2>Giao xe tận nơi</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleDeliveryGroup">
                                 <mat-slide-toggle formControlName="isDeliveryToTenant">
@@ -360,7 +359,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h1>Điều khoản thuê xe</h1>
+                                <h2>Điều khoản thuê xe</h2>
                                 <p class="text-secondary register__car-subtitle mb-0">Ghi rõ các yêu cầu để khách có thể
                                     thuê xe.
                                 </p>
@@ -370,8 +369,8 @@
                             [formGroup]="forRentFormGroup">
                             <mat-form-field class="w-fit" appearance="outline">
                                 <textarea matInput
-                                    placeholder="Không sử dụng xe vào mục đích phi pháp. Lái xe cẩn thận, giữ xe sạch sẽ, trả xe đúng giờ. Phụ thu 500k nếu hút thuốc lá trong xe."
-                                    formControlName="policies"></textarea>
+                                    placeholder="VD: Không sử dụng xe vào mục đích phi pháp. Lái xe cẩn thận, giữ xe sạch sẽ, trả xe đúng giờ. Phụ thu 500k nếu hút thuốc lá trong xe."
+                                    formControlName="policies" rows="5"></textarea>
                             </mat-form-field>
                         </div>
 
@@ -386,7 +385,7 @@
                     <div
                         class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                         <div class="discount__status-field">
-                            <h1>Hình ảnh</h1>
+                            <h2>Hình ảnh</h2>
                             <p class="text-secondary register__car-subtitle mb-0">Đăng nhiều hình ở các góc độ khác nhau
                                 để tăng thông tin cho xe của bạn.
                             </p>
