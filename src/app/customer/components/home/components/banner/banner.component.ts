@@ -36,7 +36,7 @@ import {
   timer,
 } from 'rxjs';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { IsoLongFormat, TimeFormat } from 'src/app/models/model';
+import { TimeFormat } from 'src/app/models/model';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',

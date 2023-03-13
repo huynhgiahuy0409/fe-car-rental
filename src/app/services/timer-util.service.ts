@@ -26,4 +26,10 @@ export class TimerUtilService {
       });
     }
   }
+  formatTime(date: Date): string{
+    return date.getHours() + ":" + date.getMinutes() + ""
+  }
+  formatDate(date: Date): string{
+    return date.getDate() + "/" + date.getMonth() + "/"+ date.getFullYear() +  ""
+  }
 }

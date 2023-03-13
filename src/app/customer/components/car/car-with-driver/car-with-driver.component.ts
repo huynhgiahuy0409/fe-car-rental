@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-car-with-driver',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./car-with-driver.component.scss']
 })
 export class CarWithDriverComponent {
-
+  constructor(private activatedRoute: ActivatedRoute, private router: Router){
+    this.activatedRoute.parent?.url.subscribe(urlPath => {
+      console.log(urlPath);
+    });
+  }
 }
