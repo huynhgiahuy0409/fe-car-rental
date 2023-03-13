@@ -32,7 +32,7 @@ import { CalendarView } from 'angular-calendar';
             Tháng tiếp theo
           </div>
       <div>
-        <h1>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h1>
+        <h2>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h2>
       </div>
     </div>
     <br />

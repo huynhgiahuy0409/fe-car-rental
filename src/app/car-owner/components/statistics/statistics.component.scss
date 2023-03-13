@@ -4,7 +4,7 @@
     padding: 5em 0;
   }
   &__header-title {
-    font-size: 150%;
+    font-size: 240%;
   }
   &__options {
     gap: 20px;
@@ -18,14 +18,13 @@
     padding: 3em 0;
     &-col {
       flex: 0 0 30%;
-      font-size: 150%;
+      font-size: 120%;
     }
   }
 }
 .btn__view {
   padding: 28px 35px !important;
   margin: 0;
-  font-size: 150%;
 }
 
 ::ng-deep .mat-mdc-select-value,

@@ -7,8 +7,8 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./car-listing.component.scss']
 })
 export class CarListingComponent {
-  constructor(private _formBuilder: FormBuilder) { }
-
+  constructor(private _formBuilder: FormBuilder) {
+  }
   myCarsFormGroup = this._formBuilder.group({
     carStatus: ['0'],
   });

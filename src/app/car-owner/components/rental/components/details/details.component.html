@@ -1,0 +1,145 @@
+<div class="rental__details-container">
+
+    <div class="rental__details-stepper bg-white">
+        <mat-stepper linear #stepper selectedIndex="0">
+            <mat-step [editable]="false">
+                <ng-template matStepLabel>Duyệt cho thuê</ng-template>
+            </mat-step>
+            <mat-step [editable]="false">
+                <ng-template matStepLabel>Đã cọc</ng-template>
+            </mat-step>
+            <mat-step [editable]="false">
+                <ng-template matStepLabel>Đã giao xe</ng-template>
+            </mat-step>
+            <mat-step [editable]="false">
+                <ng-template matStepLabel>Khách trả xe</ng-template>
+            </mat-step>
+        </mat-stepper>
+    </div>
+
+    <div class="rental__details-warning">
+        <p>Bạn cần duyệt yêu cầu đặt xe trước thời hạn, nếu không hệ thống sẽ tự động hủy chuyến.</p>
+        <p>Thời gian còn lại: {{timeLeft}}</p>
+    </div>
+
+    <div class="d-flex-bo flex-wrap-bo rental__details-content bg-white">
+        <div class="rental__details-column">
+            <div class="d-flex-bo flex-wrap-bo rental__details-header">
+                <img src="https://i1-vnexpress.vnecdn.net/2021/09/18/3.jpg?w=2400&h=0&q=100&dpr=1&fit=crop&s=lohYC7Ptk92QpWobxbfOEw&t=image"
+                    alt="">
+                <span>
+                    <h2>Vinfast Lux A2.0</h2>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star text-secondary"></i>
+                </span>
+            </div>
+            <div class="rental__details-daterange">
+                <h2>Thời gian thuê xe</h2>
+                <div class="d-flex-bo flex-wrap-bo">
+                    <div>
+                        <p>
+                            Bắt đầu: {{now}}
+                        </p>
+                    </div>
+                    <div class="ml-auto">
+                        <p>
+                            Kết thúc: {{now}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="rental__details-limit">
+                <h2>Giới hạn quãng dường</h2>
+                <p>Không giới hạn quãng đường</p>
+            </div>
+        </div>
+        <div class="rental__details-column">
+            <div class="renter__information text-center">
+                <a routerLink="/">
+                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg" alt="">
+                </a>
+                <p>Khách thuê</p>
+                <h4>Hieu</h4>
+                <span>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star cl-star"></i>
+                    <i class="fa-solid fa-star text-secondary"></i>
+                </span>
+            </div>
+            <h3 class="renter__phone-title">Số điện thoại</h3>
+            <p class="renter__phone">**********</p>
+            <p>Số điện thoại liên hệ sẽ được hiển thị sau khi khách đặt cọc</p>
+            <span>
+                <i class="fa-solid fa-square cl-danger"></i> Trạng thái: Đang chờ chủ xe duyệt
+            </span>
+        </div>
+        <div class="rental__details-column">
+            <h2>Bảng tính giá</h2>
+            <div class="table__price">
+                <div class="d-flex-bo flex-wrap-bo table__row">
+                    <div class="table__title">
+                        <p>Đơn giá thuê</p>
+                    </div>
+                    <div class="table__data">
+                        1 000 000 / ngày
+                    </div>
+                </div>
+                <div class="d-flex-bo flex-wrap-bo table__row">
+                    <div class="table__title">
+                        <p>Tổng phí thuê xe</p>
+                    </div>
+                    <div class="table__data">
+                        1 000 000 x <strong>1 ngày</strong>
+                    </div>
+                </div>
+                <div class="d-flex-bo flex-wrap-bo table__row">
+                    <div class="table__title">
+                        <strong>Tổng cộng</strong>
+                    </div>
+                    <div class="table__data">
+                        <strong>1 000 000 đ</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cancel__policy-container">
+                <h2>Chính sách hủy chuyến</h2>
+
+                <div class="cancel__policies">
+                    <div class="cancel__policy">
+                        - Thời điểm hủy chuyến <strong>
+                            <=7 </strong> ngày trước khởi hành, phí hủy chuyến <strong>100%</strong> tiền cọc.
+                    </div>
+                    <div class="cancel__policy">
+                        - Thời điểm hủy chuyến <strong>
+                            >7
+                        </strong> ngày trước khởi hành, phí hủy chuyến
+                        <strong>0%</strong> tiền cọc.
+                    </div>
+                    <p class="small-note">* Tất cả các trường hợp hủy chuyến trong vòng <strong>1 giờ</strong> kể từ
+                        thời điểm đặt cọc
+                        thành công sẽ không áp dụng việc tính Phí hủy chuyến</p>
+                </div>
+            </div>
+        </div>
+        <div class="rental__details-column pt-0">
+            <div class="renter__money-col">
+                <p>TIỀN CỌC</p>
+                <p class="primary-text">300 000đ</p>
+            </div>
+            <div class="renter__money-col">
+                <p>TIỀN TRẢ SAU</p>
+                <p>700 000đ</p>
+            </div>
+        </div>
+    </div>
+    <div class="btn__actions">
+        <button class="btn__decline">Từ chối yêu cầu</button>
+        <button class="btn__accept">Đồng ý yêu cầu</button>
+    </div>
+</div>
