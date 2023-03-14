@@ -1,5 +1,5 @@
-import { MatDialog } from '@angular/material/dialog';
-import { Component } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, Input } from '@angular/core';
 import { MyLocationComponent } from '../my-location/my-location.component';
 
 @Component({
@@ -8,8 +8,9 @@ import { MyLocationComponent } from '../my-location/my-location.component';
   styleUrls: ['./delivery-location-edit.component.scss']
 })
 export class DeliveryLocationEditComponent {
-  constructor(private matDialog: MatDialog){
-
+  @Input()
+  title!: string 
+  constructor(private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any){
   }
   chooseFromMap(){
     this.matDialog.open(MyLocationComponent, {

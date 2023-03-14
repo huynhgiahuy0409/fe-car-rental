@@ -561,9 +561,9 @@
                     <div class="sidebar-container">
                         <div class="rental-box">
                             <ng-container *ngIf="rentalModePath === 'sd'; else
-                                withDriverTemplateRef">
+                                withDriverForm">
                                 <ng-container
-                                    [ngTemplateOutlet]="selfDrivingTemplateRef"></ng-container>
+                                    [ngTemplateOutlet]="selfDrivingForm"></ng-container>
                             </ng-container>
                         </div>
                     </div>
@@ -653,7 +653,7 @@
                 </div>
             </li>
         </ng-template>
-        <ng-template #withDriverTemplateRef>
+        <ng-template #withDriverForm>
             <form [formGroup]="carBookingFG" action="">
                 <div class="price">
                     <h1>
@@ -697,7 +697,7 @@
                                 <mat-label>Số giờ thuê </mat-label>
                                 <mat-select formControlName="pickUpTime">
                                     <mat-option *ngFor="let option of
-                                        startAndReturnHrOptions"
+                                        rentalHrOptions"
                                         [value]="option.value">
                                         {{ option.label }}
                                     </mat-option>
@@ -721,25 +721,65 @@
                     <mat-tab-group>
                         <mat-tab label="Nội thành">
                             <div class="delivery-map">
-
                             </div>
                             <div class="d-flex-bo justify-content-between-bo">
                                 <label for="" class="label cl-gem">Điểm đón</label>
-                                <a class="cl-gem" (click)="editDeliveryLocation()">
+                                <a class="cl-gem"
+                                    (click)="editDeliveryLocation('Địa điểm đưa
+                                    đón')">
                                     Thay đổi
                                 </a>
                             </div>
-                            <a class="d-flex-bo" [style]="'border-bottom: 1px solid #ccc'" (click)="editDeliveryLocation()">
-                                <i class="cl-gem mr-r-10 mr-t-5 fa-solid fa-solid fa-map-location" [style]="'font-size: 2rem'"></i>
-                                <p [style]="'text-align: justify'">Đại học Nông Lâm, Bến xe buýt ĐH Nông Lâm Quốc lộ 1, Phường Đông Hòa, Quận Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</p>
+                            <a class="urban-start-location"
+                                (click)="editDeliveryLocation('Địa điểm đưa
+                                đón')">
+                                <div class="wrap-icon">
+                                    <i class="icon-bo start-location-icon"></i>
+                                </div>
+                                <div class="wrap-address">
+                                    <p>
+                                        Đại học Nông
+                                        Lâm, Bến xe buýt ĐH Nông Lâm Quốc lộ 1,
+                                        Phường Đông Hòa, Quận Thủ Đức, Thành phố
+                                        Hồ
+                                        Chí Minh, Việt Nam
+                                    </p>
+                                </div>
                             </a>
                         </mat-tab>
                         <mat-tab label="Liên tỉnh">
                             <div class="delivery-map">
-                                
+
+                            </div>
+                            <div class="route-info">
+                                <label for="" class="label">Lộ trình</label>
+                                <a class="d-flex-bo align-items-center-bo"
+                                    [style]="'border-bottom:
+                                    1px
+                                    solid #ccc'"
+                                    (click)="editDeliveryLocation('Địa điểm đưa
+                                    đón')">
+                                    <strong class="cl-gem mr-r-5"><i
+                                            class="icon-bo
+                                            start-location-icon"></i>Điểm đón:</strong>
+                                    Gadern
+                                    Coffee - Hội Quán CHS Kiên Giang, 2
+                                </a>
+                                <a class="d-flex-bo align-items-center-bo"
+                                    [style]="'border-bottom:
+                                    1px
+                                    solid #ccc'"
+                                    (click)="editDeliveryLocation('Địa điểm đưa
+                                    đón')">
+                                    <strong class="cl-gem mr-r-5"><i
+                                            class="icon-bo
+                                            end-location-icon"></i>Điểm đón:</strong>
+                                    Gadern
+                                    Coffee - Hội Quán CHS Kiên Giang, 2
+                                </a>
                             </div>
                         </mat-tab>
-                      </mat-tab-group>
+                    </mat-tab-group>
                 </div>
                 <div class="line-form">
                     <label for="" class="label">
@@ -750,7 +790,8 @@
                             Số km tối đa được đi:<strong> 50 km</strong>
                         </li>
                         <li>
-                            Phí phụ thu vượt <strong>50 km</strong>:<strong> 6k/km</strong>
+                            Phí phụ thu vượt <strong>50 km</strong>:<strong>
+                                6k/km</strong>
                         </li>
                         <li>
                             Phí phụ thu vượt <strong>2 giờ</strong>: <strong>60k/giờ</strong>
@@ -803,7 +844,7 @@
                         <div class="space m"></div>
                         <div class="promotion-code d-flex-bo
                             flex-row-reverse-bo">
-                            <a href="">
+                            <a (click)="editPromo()">
                                 <p>Mã khuyến mãi</p>
                             </a>
                         </div>
@@ -815,7 +856,7 @@
                 <div class="space m"></div>
             </form>
         </ng-template>
-        <ng-template #selfDrivingTemplateRef>
+        <ng-template #selfDrivingForm>
             <form [formGroup]="carBookingFG" action="">
                 <div class="price">
                     <h1>
@@ -908,7 +949,8 @@
                             Địa điểm giao nhận xe
                         </label>
                         <span class="link-trip font-13"
-                            (click)="editDeliveryLocation()">Thay đổi</span>
+                            (click)="editDeliveryLocation('Địa điểm giao nhận
+                            xe')">Thay đổi</span>
                     </div>
                     <div class="note w-fit">
                         <a class="location-picker">
@@ -1002,7 +1044,7 @@
                         <div class="space m"></div>
                         <div class="promotion-code d-flex-bo
                             flex-row-reverse-bo">
-                            <a href="">
+                            <a (click)="editPromo()">
                                 <p>Mã khuyến mãi</p>
                             </a>
                         </div>

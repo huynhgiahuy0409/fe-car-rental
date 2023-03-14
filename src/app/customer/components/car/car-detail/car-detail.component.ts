@@ -3,8 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TimerUtilService } from 'src/app/services/timer-util.service';
+import { RentalHourOption, TimerUtilService } from 'src/app/services/timer-util.service';
 import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/delivery-location-edit.component';
+import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 
 @Component({
   selector: 'app-car-detail',
@@ -17,6 +18,7 @@ export class CarDetailComponent implements OnInit{
   rentalModePath!: string
   isFavoriteCar: boolean = false
   startAndReturnHrOptions: any
+  rentalHrOptions!: RentalHourOption[]
   /*  */
   carBookingFG!: FormGroup
   constructor(private timerUtilService: TimerUtilService, private matDialog: MatDialog, private __fb: FormBuilder, private activatedRoute: ActivatedRoute, private router: Router){
@@ -29,15 +31,25 @@ export class CarDetailComponent implements OnInit{
         returnTime: ['', Validators.required],
         deliveryLocation:  ['', Validators.required],
       }
-    )
-    this.activatedRoute.data.subscribe(data => {
-      this.rentalModePath = data['rentalModePath']
-    })
+      )
+      this.activatedRoute.data.subscribe(data => {
+        this.rentalModePath = data['rentalModePath']
+      })
+      this.rentalHrOptions = this.timerUtilService.rentalHrOptions
   }
   ngOnInit(): void {
   }
-  editDeliveryLocation(){ 
+  editDeliveryLocation(title: string){ 
     this.matDialog.open(DeliveryLocationEditComponent, {
+      'enterAnimationDuration': '500ms',
+      'exitAnimationDuration': '500ms',
+      data: {
+        title: title
+      }
+    })
+  }
+  editPromo(){
+    this.matDialog.open(PromoEditComponent, {
       'enterAnimationDuration': '500ms',
       'exitAnimationDuration': '500ms',
     })
