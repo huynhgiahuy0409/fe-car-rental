@@ -493,10 +493,6 @@ svg.booking-oto-rating-stars__hollow-star {
   color: red;
 }
 
-.cl-black {
-  color: black;
-}
-
 .text-secondary {
   color: var(--secondary-text);
 }
@@ -626,6 +622,24 @@ svg.booking-oto-rating-stars__hollow-star {
 
 .ml-auto {
   margin-left: auto;
+}
+
+.cl-black {
+  color: black;
+  svg,
+  span {
+    color: black;
+  }
+  button {
+    span,
+    svg {
+      color: black;
+    }
+  }
+}
+
+.text-end {
+  text-align: end !important;
 }
 
 // form

@@ -45,3 +45,10 @@
 mwl-calendar-month-view {
   font-size: 110%;
 }
+
+::ng-deep {
+  &.mat-mdc-select-value,
+  &.mat-mdc-select-arrow {
+    color: black;
+  }
+}

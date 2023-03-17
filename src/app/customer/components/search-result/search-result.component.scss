@@ -1,0 +1,210 @@
+.search__result-container {
+  height: 100%;
+  overscroll-behavior: none;
+  padding: 0 10em;
+  background-color: #e8eaef;
+  overflow: hidden !important;
+}
+
+#left {
+  background: white;
+  margin-right: 10px;
+  width: 30%;
+  padding: 30px;
+  overflow-x: hidden !important;
+}
+
+#right {
+  width: 69%;
+  padding-top: 10px;
+}
+
+#left,
+#right {
+  max-height: 80vh;
+  margin-top: 2px;
+  float: left;
+  overflow: scroll;
+  height: 100%;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary-text);
+    border-radius: 10px;
+  }
+}
+
+.search {
+  &__bar {
+    gap: 10px;
+    padding: 1em 2em 0;
+    &-item {
+      flex: 0 0 30%;
+      margin-right: 1.5em;
+      label {
+        color: var(--gemstone-color);
+        font-weight: 600;
+      }
+    }
+    &-control {
+      width: 80%;
+      outline: none;
+    }
+  }
+  &__start {
+    &-date {
+      width: 40%;
+    }
+    &-hours {
+      width: 25%;
+      transform: translate(10px, 3px);
+    }
+  }
+  &__result {
+    gap: 10px;
+    &-box {
+      flex: 0 0 47%;
+      margin-left: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      .box__location {
+        i {
+          padding: 0 5px 10px;
+        }
+      }
+    }
+    &-tag {
+      padding: 5px;
+      margin: 5px;
+      width: 30%;
+      font-size: 85%;
+      background-color: var(--secondary-color);
+      border-radius: 3px;
+      text-align: center;
+    }
+    &-information {
+      .tags {
+        flex: 0 0 80%;
+      }
+      .price {
+        flex: 0 0 20%;
+        text-align: center;
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+.car {
+  &__type {
+    &-item {
+      flex: 0 0 25%;
+      text-align: center;
+      .icon__div {
+        background-color: #f8f9fb;
+        padding: 1.7em 1em;
+        border-radius: 50%;
+        &.active {
+          border: 1px solid black;
+        }
+      }
+      img {
+        width: 100%;
+      }
+      p {
+        &.active {
+          color: black;
+          font-weight: bolder;
+        }
+      }
+    }
+    &-list {
+      gap: 30px;
+    }
+    &-title {
+      margin-top: 20px;
+    }
+  }
+}
+
+.advanced {
+  &__options {
+    &-toggle {
+      text-align: end;
+      transition: all 0.2 ease;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+ul.search__feature-list {
+  list-style-type: none;
+  li {
+    float: left;
+    width: 45%;
+    padding: 20px 5px;
+    margin: 5px 7px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 90%;
+    cursor: pointer;
+    &.active {
+      border-color: var(--gemstone-color);
+    }
+  }
+}
+
+.cl-black {
+  &::ng-deep .mdc-form-field {
+    color: black !important;
+  }
+}
+
+.btn-unfilter {
+  width: 100%;
+  color: var(--gemstone-color);
+  background-color: #fff;
+  border: 1px solid var(--gemstone-color);
+  padding: 15px 0;
+  margin: 30px 0;
+  border-radius: 2px;
+  font-size: 120%;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  &:hover {
+    background-color: rgba($color: #0f61cc, $alpha: 0.1);
+  }
+}
+
+.img {
+  &__title {
+    position: absolute;
+    bottom: 7px;
+    padding-left: 10px;
+    padding-bottom: 15px;
+    color: #fff;
+    width: 100%;
+    background-image: linear-gradient(
+      180deg,
+      rgba(20, 20, 20, 0),
+      rgba(20, 20, 20, 0.469167) 27.4%,
+      rgba(20, 20, 20, 0.8) 80%
+    );
+    &-container {
+      position: relative;
+      img {
+        width: 100%;
+      }
+      h4,
+      p {
+        padding: 0;
+        margin: 5px 0;
+      }
+    }
+  }
+}
