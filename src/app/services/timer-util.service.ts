@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-
+export interface RentalHourOption {
+  label: string;
+  subLabel?: string;
+  value: number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -8,8 +12,10 @@ export class TimerUtilService {
   hrs: string[] = []; // default
   // 48 hours include h:00 & h:30
   startAndReturnHrOptions: { label: string; value: number }[] = []; // rental and return car
+  rentalHrOptions: RentalHourOption[] = [];
   constructor() {
     this._setStartAndReturnHrOpts()
+    this._setRentalHrsOpts()
   }
   private _setStartAndReturnHrOpts() {
     for (let i = 0; i <= 23; i++) {
@@ -23,6 +29,24 @@ export class TimerUtilService {
           label: `${i}:${m}`,
           value: tempValue,
         });
+      });
+    }
+  }
+  formatTime(date: Date): string{
+    return date.getHours() + ":" + date.getMinutes() + ""
+  }
+  formatDate(date: Date): string{
+    return date.getDate() + "/" + date.getMonth() + "/"+ date.getFullYear() +  ""
+  }
+  private _setRentalHrsOpts() {
+    this.rentalHrOptions.push({
+      label: `Tuỳ chọn`,
+      value: -1,
+    });
+    for (let index = 2; index <= 60; index++) {
+      this.rentalHrOptions.push({
+        label: `${index} tiếng`,
+        value: index * 3600000,
       });
     }
   }

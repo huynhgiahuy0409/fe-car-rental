@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car-Self-driving',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./car-Self-driving.component.scss']
 })
 export class CarSelfDrivingComponent {
-
+  constructor(private router: ActivatedRoute,){
+    console.log(this.router);
+    
+  }
 }

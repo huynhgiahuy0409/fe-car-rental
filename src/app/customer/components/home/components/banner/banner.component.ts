@@ -22,6 +22,8 @@ import {
   startWith,
   switchMap, timer
 } from 'rxjs';
+import { TimeFormat } from 'src/app/models/model';
+import { RentalHourOption } from 'src/app/services/timer-util.service';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -46,11 +48,7 @@ export interface DriverService {
   };
   truthRentalHrs: number
 }
-export interface RentalHourOption {
-  label: string;
-  subLabel?: string;
-  value: number;
-}
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',

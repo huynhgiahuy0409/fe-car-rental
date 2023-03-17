@@ -6,6 +6,7 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/delivery-location-edit.component';
 import { MyLocationComponent } from './dialog/my-location/my-location.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CarDetailComponent,
     DeliveryLocationEditComponent,
     MyLocationComponent,
+    PromoEditComponent,
   ],
   imports: [
     CommonModule,

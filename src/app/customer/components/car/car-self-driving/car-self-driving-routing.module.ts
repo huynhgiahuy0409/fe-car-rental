@@ -7,7 +7,9 @@ const routes: Routes = [
   {
     path: '', component: CarSelfDrivingComponent, children: [
       {
-        path: ':product-name/:id', component: CarDetailComponent
+        path: ':product-name/:id', component: CarDetailComponent, data: {
+          rentalModePath: 'sd'
+        }
       }
     ]
   }

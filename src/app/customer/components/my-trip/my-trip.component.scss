@@ -11,7 +11,8 @@
     box-shadow: unset;
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 1px solid var(--gemstone-color);
+    background-color: white;
 }
 .my-trip .my-trip__body{
     background-color: rgb(231,234,239);

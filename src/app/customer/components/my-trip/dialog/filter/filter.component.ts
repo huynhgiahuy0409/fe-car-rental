@@ -1,52 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-interface FilterOption{
-  label: string,
-  value: string
+interface FilterOption {
+  label: string;
+  value: string;
 }
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  @Input()
+  type!: string;
   timeOptions: FilterOption[] = [
     {
       label: 'Thời gian đặt',
-      value: ''
+      value: '',
     },
     {
       label: 'Thời gian khởi hành',
-      value: ''
+      value: '',
     },
-  ]
+  ];
   tripOptions: FilterOption[] = [
     {
       label: 'Chuyến thuê',
-      value: ''
+      value: '',
     },
     {
       label: 'Chuyến cho thuê',
-      value: ''
+      value: '',
     },
-  ]
+  ];
   statusOptions: FilterOption[] = [
     {
       label: 'Chờ duyệt',
-      value: ''
+      value: '',
     },
     {
       label: 'Đã duyệt',
-      value: ''
+      value: '',
     },
     {
       label: 'Đã đặt cọc',
-      value: ''
+      value: '',
     },
     {
       label: 'Đã kết s',
-      value: ''
+      value: '',
     },
-  ]
-  
+  ];
 }

@@ -1,5 +1,8 @@
 import { CarFeatureElement, City } from "./model";
-
+export const COMPLETE_STATUS = "Hoàn thành"
+export const COMPLETE_MESSAGE = "Chuyến xe đã kết thúc"
+export const SD_MODE = "SELF_DRIVING"
+export const WD_MODE = "WITH_DRIVER"
 export const ADDRESS_API = "/";
 export const GET_DISTRICTS_BY_CITY = `${ADDRESS_API}districts-by-city`;
 export const GET_WARDS_BY_DISTRICT = `${ADDRESS_API}wards-by-district`;

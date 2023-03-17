@@ -10,6 +10,7 @@ import { ProminentPlaceModule } from './components/prominent-place/prominent-pla
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { OwnerComponent } from './components/owner/owner.component';
 import { ProminentCarModule } from './components/prominent-car/prominent-car.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProminentCarModule } from './components/prominent-car/prominent-car.mod
     HomeRoutingModule,
     ProminentPlaceModule,
     ProminentCarModule,
-    MaterialAngularModule
+    MaterialAngularModule,
+    HttpClientModule
   ]
 })
 export class HomeModule { }
