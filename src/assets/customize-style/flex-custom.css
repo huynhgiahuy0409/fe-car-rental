@@ -1,0 +1,116 @@
+.d-flex-bo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.d-flex-bo .wrap-fit {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding-right: 10px;
+}
+
+.d-flex-bo .wrap-fit:last-child {
+  padding-right: unset;
+}
+
+.d-flex-bo.flex-row-bo {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.d-flex-bo.flex-row-reverse-bo {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.d-flex-bo.flex-col-bo {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.d-flex-bo.flex-col-reverse-bo {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.d-flex-bo.justify-content-start-bo {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.d-flex-bo.justify-content-end-bo {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.d-flex-bo.justify-content-center-bo {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.d-flex-bo.justify-content-between-bo {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.d-flex-bo.justify-content-around-bo {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.d-flex-bo.align-items-start-bo {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+
+.d-flex-bo.align-items-end-bo {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+}
+
+.d-flex-bo.align-items-center-bo {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.d-flex-bo.flex-nowrap-bo {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.d-flex-bo.flex-wrap-bo {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.mr-r-auto-bo {
+  margin-right: auto !important;
+}
+
+.mr-l-auto-bo {
+  margin-right: auto !important;
+}
+
+.flex-1-bo {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+/*# sourceMappingURL=flex-custom.css.map */

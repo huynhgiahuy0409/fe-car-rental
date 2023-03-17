@@ -815,23 +815,25 @@
     -webkit-transform: scale(.5);
     transform: scale(.5);
 }
-.urban-start-location{
+.form-location{
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
     display: flex;
     width: 100%;
+    margin-bottom: 5px
 }
-.urban-start-location .wrap-icon{
+.form-location .wrap-icon{
 }
-.urban-start-location .wrap-address{
+.form-location .wrap-address{
     overflow-x: scroll;
     width: 400px;
-    scrollbar-width: none
+    scrollbar-width: none;
+    margin: auto
 }
-.urban-start-location .wrap-address::-webkit-scrollbar{
+.form-location .wrap-address::-webkit-scrollbar{
     display: none;
 }
-.urban-start-location .wrap-address p{
+.form-location .wrap-address p{
     white-space: nowrap;
 }
 

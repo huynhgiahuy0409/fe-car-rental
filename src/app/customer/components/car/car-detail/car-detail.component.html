@@ -661,7 +661,7 @@
                     </h1>
                 </div>
                 <div class="line-form has-timer">
-                    <label for="" class="label">Ngày nhận xe</label>
+                    <h4 for="" class="label">Thời gian</h4>
                     <div class="row sm-gutters">
                         <div class="col l-6">
                             <mat-form-field style="width: 100%"
@@ -716,8 +716,8 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="line-form local">
+                    <h4 for="" class="label">Vị trí</h4>
                     <mat-tab-group>
                         <mat-tab label="Nội thành">
                             <div class="delivery-map">
@@ -730,7 +730,7 @@
                                     Thay đổi
                                 </a>
                             </div>
-                            <a class="urban-start-location"
+                            <a class="form-location"
                                 (click)="editDeliveryLocation('Địa điểm đưa
                                 đón')">
                                 <div class="wrap-icon">
@@ -752,37 +752,49 @@
 
                             </div>
                             <div class="route-info">
-                                <label for="" class="label">Lộ trình</label>
-                                <a class="d-flex-bo align-items-center-bo"
-                                    [style]="'border-bottom:
-                                    1px
-                                    solid #ccc'"
+                                <label for="" class="label cl-gem">Lộ trình</label>
+                                <a class="form-location"
                                     (click)="editDeliveryLocation('Địa điểm đưa
                                     đón')">
-                                    <strong class="cl-gem mr-r-5"><i
-                                            class="icon-bo
-                                            start-location-icon"></i>Điểm đón:</strong>
-                                    Gadern
-                                    Coffee - Hội Quán CHS Kiên Giang, 2
+                                    <div class="wrap-icon">
+                                        <i class="icon-bo start-location-icon"></i>
+                                    </div>
+                                    <div class="wrap-address">
+                                        <p>
+                                            Đại học Nông
+                                            Lâm, Bến xe buýt ĐH Nông Lâm Quốc lộ
+                                            1,
+                                            Phường Đông Hòa, Quận Thủ Đức, Thành
+                                            phố
+                                            Hồ
+                                            Chí Minh, Việt Nam
+                                        </p>
+                                    </div>
                                 </a>
-                                <a class="d-flex-bo align-items-center-bo"
-                                    [style]="'border-bottom:
-                                    1px
-                                    solid #ccc'"
+                                <a class="form-location"
                                     (click)="editDeliveryLocation('Địa điểm đưa
                                     đón')">
-                                    <strong class="cl-gem mr-r-5"><i
-                                            class="icon-bo
-                                            end-location-icon"></i>Điểm đón:</strong>
-                                    Gadern
-                                    Coffee - Hội Quán CHS Kiên Giang, 2
+                                    <div class="wrap-icon">
+                                        <i class="icon-bo end-location-icon"></i>
+                                    </div>
+                                    <div class="wrap-address">
+                                        <p>
+                                            Đại học Nông
+                                            Lâm, Bến xe buýt ĐH Nông Lâm Quốc lộ
+                                            1,
+                                            Phường Đông Hòa, Quận Thủ Đức, Thành
+                                            phố
+                                            Hồ
+                                            Chí Minh, Việt Nam
+                                        </p>
+                                    </div>
                                 </a>
                             </div>
                         </mat-tab>
                     </mat-tab-group>
                 </div>
                 <div class="line-form">
-                    <label for="" class="label">
+                    <label for="" class="label cl-gem">
                         Thông tin lộ trình
                     </label>
                     <ul>
@@ -799,7 +811,7 @@
                     </ul>
                 </div>
                 <div class="line-form">
-                    <label for="" class="label">
+                    <label for="" class="label cl-gem">
                         Thông tin đưa đón
                     </label>
                     <ul>
@@ -815,7 +827,7 @@
                     </ul>
                 </div>
                 <div class="line-form car-bill">
-                    <label class="label">Chi tiết giá</label>
+                    <h4 class="label">Chi tiết giá</h4>
                     <div class="bill-wrapper">
                         <div class="group">
                             <p>Đơn giá thuê</p>
@@ -838,7 +850,7 @@
                             <p>110 000 (6,5 km)</p>
                         </div>
                         <div class="group has-line">
-                            <strong>Tổng cộng</strong>
+                            <strong class="cl-gem">Tổng cộng</strong>
                             <strong>1 385 300đ</strong>
                         </div>
                         <div class="space m"></div>
@@ -851,7 +863,7 @@
                         <div class="space m"></div>
                     </div>
                 </div>
-                <button mat-raised-button class="btn btn-l w-fit"
+                <button mat-raised-button class="btn btn-l w-fit" (click)="confirmBooking()"
                     color="primary">Đặt xe</button>
                 <div class="space m"></div>
             </form>
@@ -1051,7 +1063,7 @@
                         <div class="space m"></div>
                     </div>
                 </div>
-                <button mat-raised-button class="btn btn-l w-fit"
+                <button mat-raised-button class="btn btn-l w-fit" (click)="confirmBooking()"
                     color="primary">Đặt xe</button>
                 <div class="space m"></div>
             </form>
