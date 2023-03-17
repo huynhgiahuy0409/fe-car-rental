@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RentalHourOption, TimerUtilService } from 'src/app/services/timer-util.service';
 import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/delivery-location-edit.component';
 import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
+import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
 
 @Component({
   selector: 'app-car-detail',
@@ -52,6 +53,14 @@ export class CarDetailComponent implements OnInit{
     this.matDialog.open(PromoEditComponent, {
       'enterAnimationDuration': '500ms',
       'exitAnimationDuration': '500ms',
+    })
+  }
+  confirmBooking(){
+    this.matDialog.open(BookingConfirmComponent, {
+      'enterAnimationDuration': '500ms',
+      'exitAnimationDuration': '500ms',
+      width: '80%',
+      height: '100vh',
     })
   }
 }

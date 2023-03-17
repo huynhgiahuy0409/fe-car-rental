@@ -1,0 +1,192 @@
+.link-trip {
+  color: var(--gemstone-color);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.font-13 {
+  font-size: 1.3rem;
+}
+
+.w-fit {
+  width: 100%;
+}
+
+.h-fit {
+  height: 100%;
+}
+
+.image-fit {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.mr-0 {
+  margin: 0;
+}
+
+.mr-r-5 {
+  margin-right: 5px;
+}
+
+.mr-l-5 {
+  margin-left: 5px;
+}
+
+.mr-r-10 {
+  margin-right: 10px;
+}
+
+.mr-l-10 {
+  margin-left: 10px;
+}
+
+.mr-t-5 {
+  margin-top: 5px;
+}
+
+.mr-t-10 {
+  margin-top: 10px;
+}
+
+.mr-b-10 {
+  margin-top: 10px;
+}
+
+.mr-side-5 {
+  margin: 0 5px;
+}
+
+.mr-side-10 {
+  margin: 0 10px;
+}
+
+.mr-upper-10 {
+  margin: 0 10px;
+}
+
+.pd-0 {
+  padding: 0;
+}
+
+.pd-r-5 {
+  padding-right: 5px;
+}
+
+.pd-l-5 {
+  padding-left: 5px;
+}
+
+.pd-r-10 {
+  padding-right: 10px;
+}
+
+.pd-l-10 {
+  padding-left: 10px;
+}
+
+.pd-t-10 {
+  padding-top: 10px;
+}
+
+.pd-b-10 {
+  padding-bottom: 10px;
+}
+
+.pd-side-5 {
+  padding: 0 5px;
+}
+
+.pd-side-10 {
+  padding: 0 10px;
+}
+
+.pd-upper-5 {
+  padding: 5px 0;
+}
+
+.pd-upper-10 {
+  padding: 10px 0;
+}
+
+.icon-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.space {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.space.m {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.space.l {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.avatar {
+  border-radius: 100%;
+}
+
+.avatar {
+  position: relative;
+}
+
+.avatar--s {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+}
+
+.avatar--xl {
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+}
+
+.avatar-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.star-ratings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.star-ratings .star-container {
+  position: relative;
+  padding-right: 1px;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+/*# sourceMappingURL=layout.css.map */

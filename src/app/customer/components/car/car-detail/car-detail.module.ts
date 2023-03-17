@@ -7,6 +7,7 @@ import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/d
 import { MyLocationComponent } from './dialog/my-location/my-location.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
+import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
     DeliveryLocationEditComponent,
     MyLocationComponent,
     PromoEditComponent,
+    BookingConfirmComponent
   ],
   imports: [
     CommonModule,
