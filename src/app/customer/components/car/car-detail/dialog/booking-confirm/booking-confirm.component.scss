@@ -82,6 +82,13 @@
     margin-right: 5px;
 }
 .cancel-license{}
+
+.cancel-license ul{
+    padding-left: 12px
+}    
+.cancel-license li{
+    list-style: disc;
+}
 .cancel-license .note{
     color: blue
 }
