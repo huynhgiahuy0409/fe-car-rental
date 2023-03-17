@@ -15,7 +15,7 @@
                 </mat-datepicker-toggle>
                 <mat-datepicker #startDatePicker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field appearance="fill" class="search__start-hours">
+            <mat-form-field appearance="fill" class="search__start-hours cl-black">
                 <mat-select formControlName="startHours">
                     <mat-option *ngFor="let item of hrs" [value]="item.value">
                         {{item.name}}
@@ -32,7 +32,7 @@
                 </mat-datepicker-toggle>
                 <mat-datepicker #endDatePicker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field appearance="fill" class="search__start-hours">
+            <mat-form-field appearance="fill" class="search__start-hours cl-black">
                 <mat-select formControlName="endHours">
                     <mat-option *ngFor="let item of hrs" [value]="item.value">
                         {{item.name}}
@@ -61,7 +61,8 @@
             {{searchOptionsFormGroup.get("priceMax")?.value===3000 ?
             "Bất kỳ" :
             searchOptionsFormGroup.get("priceMax")?.value +"K"}}</p>
-        <mat-checkbox formControlName="isFiveStarDriver">Chủ xe 5 <i class="fa-solid fa-star"></i></mat-checkbox>
+        <mat-checkbox formControlName="isFiveStarDriver" class="cl-black" color="primary">Chủ xe 5 <i
+                class="fa-solid fa-star"></i></mat-checkbox>
         <h4 class="car__type-title">Loại xe</h4>
         <div class="d-flex-bo flex-wrap-bo car__type-list">
             <div class="car__type-item" *ngFor="let item of carTypeOptions;index as ind"
@@ -75,7 +76,7 @@
             </div>
         </div>
         <h4 class="car__type-title">Hãng xe</h4>
-        <mat-form-field appearance="outline" class="w-fit">
+        <mat-form-field appearance="outline" class="w-fit cl-black">
             <mat-select matInput formControlName="carBrand">
                 <mat-option value="0">Tất cả</mat-option>
                 <mat-option value="audi">Audi ( 1 xe )</mat-option>
@@ -83,7 +84,7 @@
             </mat-select>
         </mat-form-field>
         <h4 class="car__type-title">Truyền động</h4>
-        <mat-form-field appearance="outline" class="w-fit">
+        <mat-form-field appearance="outline" class="w-fit cl-black">
             <mat-select matInput formControlName="transmission">
                 <mat-option value="0">Tất cả</mat-option>
                 <mat-option value="auto">Số tự động</mat-option>
@@ -91,13 +92,13 @@
             </mat-select>
         </mat-form-field>
         <div>
-            <mat-checkbox formControlName="fastRent">Đặt xe nhanh</mat-checkbox>
+            <mat-checkbox formControlName="fastRent" class="cl-black">Đặt xe nhanh</mat-checkbox>
         </div>
         <div>
-            <mat-checkbox formControlName="delivery">Giao xe tận nơi</mat-checkbox>
+            <mat-checkbox formControlName="delivery" class="cl-black">Giao xe tận nơi</mat-checkbox>
         </div>
         <div>
-            <mat-checkbox formControlName="discount">Xe giảm giá</mat-checkbox>
+            <mat-checkbox formControlName="discount" class="cl-black">Xe giảm giá</mat-checkbox>
         </div>
         <div class="advanced__options-toggle">
             <p *ngIf="isShowAdvancedOptions" (click)="toggleShowAdvancedOptions()">Cơ bản <i
@@ -124,7 +125,7 @@
                 {{getYearRangeTitle()}}
             </p>
             <h4 class="car__type-title">Nhiên liệu</h4>
-            <mat-form-field appearance="outline" class="w-fit">
+            <mat-form-field appearance="outline" class="w-fit cl-black">
                 <mat-select matInput formControlName="fuel">
                     <mat-option value="0">Tất cả</mat-option>
                     <mat-option value="petrol">Xăng</mat-option>

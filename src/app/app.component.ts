@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +8,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cdjava-fe-booking-oto';
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-    this.checkSearchRoute();
-  }
-
-  checkSearchRoute() {
-    let path = window.location.pathname;
-    if (path.includes('/find/filter')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }
-
 }

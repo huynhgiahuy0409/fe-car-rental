@@ -6,7 +6,7 @@ import { CAR_FEATURES } from 'src/app/models/constance';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
-  styleUrls: ['./search-result.component.scss']
+  styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent {
   startDate!: Date;
@@ -97,6 +97,7 @@ export class SearchResultComponent {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    document.body.style.overflow = 'hidden';
     this.router.queryParams.subscribe(params => {
       this.startDate = new Date(Number(params['startDate']));
       this.endDate = new Date(Number(params['endDate']));
@@ -110,6 +111,11 @@ export class SearchResultComponent {
     this.setSearchBarValue();
     this.setHrsData();
   }
+
+  ngOnDestroy(): void {
+    document.body.style.overflow = 'auto';
+  }
+  
   searchBarFormGroup = this.formBuilder.group({
     address: [''],
     startDate: [new Date()],

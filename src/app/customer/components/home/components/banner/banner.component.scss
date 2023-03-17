@@ -264,12 +264,15 @@ form.search-form .search-form__control {
 ::ng-deep .mat-mdc-icon-button svg {
   color: white;
 }
-::ng-deep
-  .mat-mdc-checkbox
-  .mdc-checkbox
-  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
-    [data-indeterminate="true"]
-  )
-  ~ .mdc-checkbox__background {
-  border-color: #fff !important;
+
+.checkbox-white {
+  &::ng-deep
+    .mat-mdc-checkbox
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
+    border-color: #fff !important;
+  }
 }

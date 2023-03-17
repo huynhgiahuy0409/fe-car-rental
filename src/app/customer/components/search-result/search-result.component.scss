@@ -1,14 +1,9 @@
-.search__result-container,
-html,
-body {
+.search__result-container {
   height: 100%;
   overscroll-behavior: none;
   padding: 0 10em;
   background-color: #e8eaef;
-}
-
-body {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 #left {
@@ -16,17 +11,17 @@ body {
   margin-right: 10px;
   width: 30%;
   padding: 30px;
-  max-height: 85vh;
+  overflow-x: hidden !important;
 }
 
 #right {
   width: 69%;
   padding-top: 10px;
-  padding-bottom: 12em;
 }
 
 #left,
 #right {
+  max-height: 80vh;
   margin-top: 2px;
   float: left;
   overflow: scroll;
@@ -163,6 +158,12 @@ ul.search__feature-list {
   }
 }
 
+.cl-black {
+  &::ng-deep .mdc-form-field {
+    color: black !important;
+  }
+}
+
 .btn-unfilter {
   width: 100%;
   color: var(--gemstone-color);
@@ -174,6 +175,7 @@ ul.search__feature-list {
   font-size: 120%;
   text-transform: uppercase;
   transition: all 0.2s ease-in-out;
+  font-weight: 600;
   &:hover {
     background-color: rgba($color: #0f61cc, $alpha: 0.1);
   }
