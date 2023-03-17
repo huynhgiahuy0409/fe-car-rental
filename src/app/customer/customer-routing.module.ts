@@ -40,6 +40,7 @@ const routes: Routes = [
           ),
       },
       { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
+      { path: "find/filter", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule) }
     ],
   },
 ];
@@ -48,4 +49,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CustomerRoutingModule {}
+export class CustomerRoutingModule { }
