@@ -2,15 +2,15 @@
     <div class="form">
         <h2>Đăng nhập</h2>
         <div class="form-field">
-            <label for="login-mail"><i class="fa fa-user"></i></label>
-            <input id="login-mail" type="text" name="mail" placeholder="E-Mail"
+            <label for="login-mail" class="mr-r-5"><i class="fa fa-user"></i></label>
+            <input id="login-mail" type="text" name="mail" placeholder="Email"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
             <svg>
                 <use href="#svg-check" />
             </svg>
         </div>
         <div class="form-field">
-            <label for="login-password"><i class="fa fa-lock"></i></label>
+            <label for="login-password" class="mr-r-5"><i class="fa fa-lock"></i></label>
             <input id="login-password" type="password" name="password" placeholder="Mật khẩu" pattern=".{6,}" required>
             <svg>
                 <use href="#svg-check" />
@@ -27,7 +27,7 @@
         </button>
         <div class="form-field forget-password d-flex-bo" style="margin-bottom: 10px">
             <span style="color: '#9596a2'" class="mr-r-5">Bạn chưa là thành viên?</span>
-            <span>Hãy đăng ký ngay!</span>
+            <span routerLink="/sign-up" mat-dialog-close="true">Hãy đăng ký ngay!</span>
         </div>
         <div class="d-flex-bo justify-content-center-bo" style="font-size: 1.3rem">
             <span style="color: '#9596a2'; margin-bottom: 15px">Hoặc đăng nhập bằng tài khoản</span>

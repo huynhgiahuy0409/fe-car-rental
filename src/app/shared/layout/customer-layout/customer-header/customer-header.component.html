@@ -3,9 +3,9 @@
         <div class="row d-flex-bo align-items-center-bo h-fit">
             <div class="col l-6">
                 <div class="h-list d-flex-bo">
-                    <div class="header__logo">
-                        LOGO
-                    </div>
+                    <a class="header__logo" routerLink="/home">
+                        <img src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/34/8213141034_2055db8e-bdec-44dc-a1a7-61331b64d79f.png?cb=1679202023" alt="">
+                    </a>
                     <div class="header__contact">
                         <div class="h-list">
                             <div class="h-item">
@@ -31,7 +31,7 @@
             <div class="col l-6">
                 <div class="h-list d-flex-bo flex-row-reverse-bo">
                     <div class="header__menu">
-                        <ng-container *ngIf="user; else isSignIn">
+                        <ng-container *ngIf="!user; else signedInTemplateRef">
                             <div class="h-list">
                                 <div class="h-item h-item--gemstone-hover">
                                     <a class="h-item__link">
@@ -40,13 +40,13 @@
                                     </a>
                                 </div>
                                 <div class="h-item h-item--genstome-hover">
-                                    <a href="" class="h-item__link">
+                                    <a routerLink="/sign-up" class="h-item__link">
                                         <button class="sign-up-btn" mat-stroked-button>Đăng ký</button>
                                     </a>
                                 </div>
                             </div>
                         </ng-container>
-                        <ng-template #isSignIn>
+                        <ng-template #signedInTemplateRef>
                             <div class="h-list">
                                 <div class="h-item h-item--separation">
                                     <a class="h-item__link d-flex-bo
@@ -64,7 +64,7 @@
                                                 <i class="fa-solid
                                                     fa-caret-down"></i>
                                             </div>
-                                            <div class="dropdown-menu" *ngIf="activeUserMenu">
+                                            <div id="dropdownMenu" class="dropdown-menu" *ngIf="activeUserMenu">
                                                 <ul>
                                                     <li *ngFor="let i of
                                                         userMenus"><a>{{i.label}}</a></li>
@@ -75,9 +75,12 @@
                                 </div>
                                 <div class="h-item h-item--separation">
                                     <a class="h-item__link">
-                                        <div class="notify">
-                                            <i class="icon-bo notify-icon"></i>
-                                            <div class="dropdown-menu" *ngIf="activeUserMenu">
+                                        <div class="notify" #notifyMenuButton>
+                                            <div class="notify-icon-wrapper">
+                                                <i class="icon-bo notify-icon"></i>
+                                                <div class="badge">9+</div>
+                                            </div>
+                                            <div class="dropdown-menu" *ngIf="activeNotification">
                                                 <div class="notify__header">
                                                     Mới
                                                 </div>
@@ -156,35 +159,9 @@
                             <div class="h-item h-item--gemstone-hover">
                                 <a routerLink="/car-owner/register" class="h-item__link d-flex-bo
                                     align-items-center-bo">
-                                    <svg class="svg-bo mr-r-5" width="24" height="24" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.75 20.4674C17.0931 20.0877
-                                            20.5 16.4417 20.5 12C20.5 10.9
-                                            20.291 9.84874 19.9106
-                                            8.88384L14.9342 11.3721C14.9773
-                                            11.5746 15 11.7846 15 12C15 13.3979
-                                            14.0439 14.5725 12.75
-                                            14.9055V20.4674ZM11.25
-                                            20.4674C6.90686 20.0877 3.5 16.4417
-                                            3.5 12C3.5 10.9001 3.7089 9.84906
-                                            4.08919 8.88428L9.06572
-                                            11.3725C9.02266 11.5749 9 11.7848 9
-                                            12C9 13.3979 9.95608 14.5725 11.25
-                                            14.9055V20.4674ZM14.2631
-                                            10.0306L19.2389 7.54264C17.742
-                                            5.11678 15.0598 3.5 12 3.5C8.94001
-                                            3.5 6.25767 5.11695 4.76082
-                                            7.54305L9.73659 10.0309C10.2866
-                                            9.39926 11.0967 9 12 9C12.9032 9
-                                            13.7131 9.3991 14.2631 10.0306ZM12
-                                            22C17.5228 22 22 17.5228 22 12C22
-                                            6.47715 17.5228 2 12 2C6.47715 2 2
-                                            6.47715 2 12C2 17.5228 6.47715 22 12
-                                            22ZM12 13.5C12.8284 13.5 13.5
-                                            12.8284 13.5 12C13.5 11.1716 12.8284
-                                            10.5 12 10.5C11.1716 10.5 10.5
-                                            11.1716 10.5 12C10.5 12.8284 11.1716
-                                            13.5 12 13.5Z" fill="var(--primary-text-color)"></path>
-                                    </svg>
+                                    <div class="wheel-svg-wrapper mr-r-5">
+                                        <app-wheel-svg></app-wheel-svg>
+                                    </div>
                                     <span>Trở thành chủ xe</span>
                                 </a>
                             </div>

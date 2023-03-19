@@ -1,7 +1,7 @@
 import { ViewEncapsulation } from '@angular/compiler';
 import {
   AfterViewInit,
-  Component, OnInit
+  Component, OnInit, ViewEncapsulation
 } from '@angular/core';
 import {
   FormBuilder, FormGroup,
@@ -63,6 +63,7 @@ export interface DriverService {
 
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
+  encapsulation: ViewEncapsulation.None
 })
 export class BannerComponent implements OnInit, AfterViewInit {
   serviceType: 'Self_DRIVING' | 'DRIVER' = 'DRIVER';

@@ -21,34 +21,34 @@ import { first, last } from 'rxjs';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
+  @ViewChild('imageCarouselList')
+  list!: ElementRef<any>;
   @ViewChild('carouselArrowPrev')
   carouselArrowPrev!: ElementRef<any>;
   @ViewChild('carouselArrowNext')
   carouselArrowNext!: ElementRef<any>;
   @Input()
+  isPerItemInStep!: boolean;
+  @Input()
   specItems!: any[];
   @Input()
-  dotRender!: TemplateRef<any>;
-  @Input()
   itemRender!: TemplateRef<any>;
-  @ViewChild('imageCarouselList')
-  list!: ElementRef<any>;
-  isConstructView: boolean = false;
-  currentIdx = 0;
-  carouselIntervalId!: any;
-  totalItem: number = 0;
+  @Input()
+  dotRender!: TemplateRef<any>;
   timer!: number;
-  remainderItemWidth: number = 0;
+  carouselIntervalId!: any;
+  currentIdx: number = 0;
+  totalItem!: number;
   listWidth!: number;
   itemWidth!: number;
-  @Input()
-  isPerItemInStep!: boolean;
+  remainderItemWidth: number = 0;
   itemsOfPart!: number;
   step: number = 1;
   firstIdx!: number;
   lastIdx!: number;
   positionX!: number;
   remainderItems!: number;
+  lastBlockIdx!: number;
   @Input()
   isActiveControl: boolean = true;
   @Input()
@@ -56,19 +56,24 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   dotsView: number[] = [];
   @Input()
   isAutoActive: boolean = false;
-  lastBlockIdx!: number;
   @Input()
   initTranslateItemPercent: 100 | -100 | 50 | -50 | 0 = 0;
   initTranslatePercent!: number
-  constructor(private ref: ChangeDetectorRef, private render: Renderer2) {}
+  constructor(private ref: ChangeDetectorRef, private render: Renderer2) {
+    
+  }
   ngOnInit(): void {}
   ngAfterViewInit() {
-    this.positionX = -this.currentIdx * (100 / this.itemsOfPart);
-    this.list.nativeElement.style.transform = `translateX(${this.positionX}%)`;
     this.listWidth = this.list.nativeElement.offsetWidth;
     this.itemWidth = this.list.nativeElement.firstChild.offsetWidth;
     this.itemsOfPart = this.listWidth / this.itemWidth;
+    let itemWidthPercent = 100 / this.itemsOfPart
+    this.positionX = -this.currentIdx * itemWidthPercent;
+    this.list.nativeElement.style.transform = `translateX(${this.positionX}%)`;
     let specLength = this.specItems.length;
+    /* 
+      Process duplicate items of spectItems
+    */
     let preDuplicateItems = [...this.specItems].splice(
       specLength - this.itemsOfPart,
       specLength
@@ -76,11 +81,10 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     let lastDuplicateItems = [...this.specItems].splice(0, this.itemsOfPart);
     this.specItems.unshift(...preDuplicateItems);
     this.specItems.push(...lastDuplicateItems);
-    this.ref.detectChanges();
     this.firstIdx = this.itemsOfPart;
     this.lastIdx = this.firstIdx + specLength - 1;
     this.step = this.isPerItemInStep === true ? 1 : this.itemsOfPart;
-    this.currentIdx = this.firstIdx;
+      this.currentIdx = this.firstIdx;
     this.lastBlockIdx = this.lastIdx - this.step + 1;
     this.remainderItems = !this.isPerItemInStep
       ? this.specItems.length % this.itemsOfPart
@@ -107,6 +111,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         this.processCarousel(this.currentIdx + this.step);
       }, 5000);
     }
+    this.ref.detectChanges();
   }
   processCarousel(passedIdx: number) {
     this.currentIdx = passedIdx;

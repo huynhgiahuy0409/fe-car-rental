@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RedirectInfo } from 'src/app/models/model';
 import { CustomerLoginDialogComponent } from './components/dialogs/customer-login-dialog/customer-login-dialog.component';
@@ -8,11 +8,15 @@ import { CustomerLoginDialogComponent } from './components/dialogs/customer-logi
   templateUrl: './customer-header.component.html',
   styleUrls: ['./customer-header.component.scss'],
 })
-export class CustomerHeaderComponent {
+export class CustomerHeaderComponent{
   user: boolean = false;
   @ViewChild('dropdownMenuButton')
-  dropdownMenuButton!: ElementRef
-  activeUserMenu: boolean = false
+  dropdownMenuButton!: ElementRef;
+  @ViewChild('notifyMenuButton')
+  notifyMenuButton!: ElementRef;
+
+  activeUserMenu: boolean = false;
+  activeNotification: boolean = false;
   userMenus: RedirectInfo[] = [
     {
       label: 'Tài khoản',
@@ -59,10 +63,25 @@ export class CustomerHeaderComponent {
   }
   @HostListener('document:click', ['$event'])
   clickOut(event: any) {
-    if(this.dropdownMenuButton.nativeElement.contains(event.target) && this.activeUserMenu === false){
-      this.activeUserMenu = true
-    }else{
-      this.activeUserMenu = false
+    if(this.dropdownMenuButton){
+      if (
+        this.dropdownMenuButton.nativeElement.contains(event.target) &&
+        this.activeUserMenu === false
+      ) {
+        this.activeUserMenu = true;
+      } else {
+        this.activeUserMenu = false;
+      }
+    }
+    if(this.notifyMenuButton){
+      if (
+        this.notifyMenuButton.nativeElement.contains(event.target) &&
+        this.activeNotification === false
+      ) {
+        this.activeNotification = true;
+      } else {
+        this.activeNotification = false;
+      }
     }
   }
 }

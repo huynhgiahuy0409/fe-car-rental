@@ -54,8 +54,7 @@
   border-right: 1px solid #6e6e6e;
 }
 
-.partner-logo::after:last-child {
-}
+.partner-logo::after:last-child {}
 
 .partner-logo img {
   object-fit: contain;
@@ -105,6 +104,7 @@
 .search-form {
   animation: fadeIn 0.5s linear;
 }
+
 label.home-label {
   font-weight: 600;
   color: #00a550;
@@ -174,105 +174,93 @@ form.search-form .search-form__control {
 // customize material angular
 
 // +Customize form field + autocomplate
-::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: unset;
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: unset !important;
 }
 
-::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
   color: white;
   font-size: 1.4rem;
 }
 
-::ng-deep
-  .mdc-text-field--filled:not(.mdc-text-field--disabled)
-  .mdc-line-ripple::before {
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
   border-bottom-color: rgba(255, 255, 255, 0.85);
 }
 
-::ng-deep
-  .mdc-text-field--filled:not(.mdc-text-field--disabled):hover
-  .mdc-line-ripple::before {
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple::before {
   border-bottom-color: #fff;
 }
 
-::ng-deep .mdc-text-field--focused .mdc-line-ripple--active {
+.mdc-text-field--focused .mdc-line-ripple--active {
   border-bottom-color: #fff;
 }
 
-::ng-deep .mdc-text-field--filled .mdc-line-ripple::after {
+.mdc-text-field--filled .mdc-line-ripple::after {
   border-bottom-color: var(--gemstone-color);
 }
 
-::ng-deep
-  .mdc-text-field:not(.mdc-text-field--disabled)
-  .mdc-text-field__input {
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
   color: var(--primary-text-color);
 }
 
-::ng-deep
-  .mdc-text-field:not(.mdc-text-field--disabled)
-  .mdc-text-field__input {
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
   color: var(--gemstone-color);
 }
 
-::ng-deep .mat-mdc-select-value {
+.mat-mdc-select-value {
   color: var(--primary-text-color);
 }
 
-::ng-deep .mat-mdc-select-arrow {
+.mat-mdc-select-arrow {
   color: var(--primary-text-color);
 }
 
-::ng-deep .mat-mdc-form-field.mat-focused.mat-primary .mat-mdc-select-arrow {
+.mat-mdc-form-field.mat-focused.mat-primary .mat-mdc-select-arrow {
   color: var(--gemstone-color);
 }
 
-::ng-deep
-  .mat-primary
-  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
-  .mdc-list-item__primary-text {
+
+.mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
   color: var(--gemstone-color);
 }
 
-::ng-deep .mat-calendar-body-selected {
+.mat-calendar-body-selected {
   color: #fff;
 }
-::ng-deep .mdc-text-field .mdc-text-field__input {
+
+.mdc-text-field .mdc-text-field__input {
   caret-color: var(--gemstone-color);
 }
+
 // +Customize tabs
-::ng-deep
-  .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active
-  .mdc-tab__text-label,
-.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
-  .mdc-tab__text-label {
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
   color: var(--gemstone-color);
 }
-::ng-deep
-  .mat-mdc-tab:not(.mat-mdc-tab-disabled)
-  .mdc-tab-indicator__content--underline,
-.mat-mdc-tab-link:not(.mat-mdc-tab-disabled)
-  .mdc-tab-indicator__content--underline {
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
   border-color: var(--gemstone-color);
 }
-::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+
+.mat-mdc-tab .mdc-tab__text-label {
   color: var(--primary-text-color);
 }
-::ng-deep .mdc-form-field {
+
+.mdc-form-field {
   color: var(--primary-text-color) !important;
 }
-::ng-deep .mat-mdc-icon-button svg {
+
+.mat-mdc-icon-button svg {
   color: white;
 }
 
 .checkbox-white {
-  &::ng-deep
-    .mat-mdc-checkbox
-    .mdc-checkbox
-    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
-      [data-indeterminate="true"]
-    )
-    ~ .mdc-checkbox__background {
+  &::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
     border-color: #fff !important;
   }
 }

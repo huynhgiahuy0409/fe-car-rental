@@ -3,7 +3,7 @@
         <div class="form">
             <h2 style="text-align: center;">Đăng ký tài khoản</h2>
             <div class="form-field">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user mr-r-5"></i>
                 <input type="email" placeholder="Số điện thoại hoặc email"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 <svg>
@@ -11,45 +11,48 @@
                 </svg>
             </div>
             <div class="form-field">
-                <i class="fa-solid fa-signature"></i>
-                <input  type="text" placeholder="Tên hiển thị"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                <i class="fa-solid fa-signature mr-r-5"></i>
+                <input type="text" placeholder="Tên hiển thị" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
             <div class="form-field">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-lock mr-r-5"></i>
                 <input type="password" name="password" placeholder="Mật khẩu" pattern=".{6,}" required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
             <div class="form-field">
-                <i class="fa-solid fa-lock"></i>
-                <input  type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" pattern=".{6,}" required>
+                <i class="fa-solid fa-lock mr-r-5"></i>
+                <input type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" pattern=".{6,}" required>
                 <svg>
                     <use href="#svg-check" />
                 </svg>
             </div>
             <button (click)="onClickSignUp()" class="button">
                 <div class="arrow-wrapper">
-                    <span  class="arrow"></span>
+                    <span class="arrow"></span>
                 </div>
                 <p class="button-text">Đăng ký</p>
             </button>
             <div class="d-flex-bo justify-content-center-bo" style="font-size: 1.3rem">
-                <span style="color: '#9596a2'; margin-bottom: 15px">Hoặc đăng nhập bằng tài khoản</span>
+                <span style="color: '#9596a2'; margin-bottom:
+                                    15px">Hoặc đăng nhập bằng tài khoản</span>
             </div>
-            <div class="d-flex-bo align-items-center-bo justify-content-center-bo" style="margin: 0 40px 30px;">
+            <div class="d-flex-bo align-items-center-bo
+                                justify-content-center-bo" style="margin: 0 40px
+                                30px;">
                 <button class="button social-btn facebook-btn">
-                        <i class="fa-brands fa-facebook-f"></i>
-                       facebook
+                    <i class="fa-brands fa-facebook-f"></i>
+                    facebook
                 </button>
                 <button class="button social-btn google-btn">
                     <i class="fa-brands fa-google-plus-g"></i>
                     google
-            </button>
+                </button>
             </div>
         </div>
         <div class="finished">
@@ -58,12 +61,13 @@
             </svg>
         </div>
     </div>
-    
-    
+
+
     <!-- //--- ## SVG SYMBOLS ############# -->
     <svg style="display:none;">
         <symbol id="svg-check" viewBox="0 0 130.2 130.2">
-            <polyline points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+            <polyline points="100.2,40.2 51.5,88.8 29.8,67.5
+                                    " />
         </symbol>
     </svg>
 </div>
