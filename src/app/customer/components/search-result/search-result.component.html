@@ -1,21 +1,63 @@
 <div class="search__result-container bx__shadow-1">
     <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow" [formGroup]="searchBarFormGroup">
+        <div class="search__option-modal" *ngIf="showRoadTabModel">
+            <div class="search__option-box bx__shadow-1">
+                <div class="text-end" (click)="toggleShowRoadTabModel()">
+                    <i class="fa-solid fa-xmark cursor-pointer"></i>
+                </div>
+                <mat-tab-group animationDuration="500ms" [selectedIndex]="currentTab">
+                    <mat-tab label="Nội thành">
+                        <p class="primary-text fw-bold option-title">Điểm đón</p>
+                        <mat-form-field appearance="fill" class="w-fit">
+                            <i class="fa-solid fa-map-pin primary-text prefix-label" matPrefix></i>
+                            <input matInput formControlName="addressUrban" placeholder="Nhập địa điểm cụ thể">
+                        </mat-form-field>
+                        <p class="text-secondary">Di chuyển trong thành phố</p>
+                        <div class="distance-range">
+                            <p class="text-end primary-text">Số km được đi:
+                                <span>50Km</span>
+                            </p>
+                        </div>
+                        <button class="w-fit btn-search__modal">tìm kiếm</button>
+                    </mat-tab>
+                    <mat-tab label="Liên tỉnh">
+                        <p class="primary-text fw-bold option-title">Lộ trình</p>
+                        <mat-form-field appearance="fill" class="w-fit">
+                            <i class="fa-solid fa-map-pin primary-text prefix-label" matPrefix></i>
+                            <input matInput formControlName="pickUpPlace" placeholder="Nhập địa điểm cụ thể">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="w-fit">
+                            <i class="fa-solid fa-circle primary-text prefix-label" matPrefix></i>
+                            <input matInput formControlName="destinationPlace" placeholder="Nhập địa điểm cụ thể">
+                        </mat-form-field>
+                        <mat-checkbox formControlName="isOneWay">Tôi muốn đi một chiều</mat-checkbox>
+                        <p *ngIf="!searchBarFormGroup.value.isOneWay"><i
+                                class="fa-solid fa-flag primary-text flag-return"></i>Trả khách tại điểm đón</p>
+                        <p class="text-secondary text-note">Di chuyển ngoài thành phố, hành trình hai chiều</p>
+                        <button class="w-fit btn-search__modal">tìm kiếm</button>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
         <div class="search__bar-item">
             <label>Địa điểm</label>
-            <mat-form-field appearance="fill" class="mh-65">
+            <mat-form-field appearance="fill" *ngIf="!ableToShowRoadTabModel">
+                <input matInput formControlName="address" placeholder="Nhập địa chỉ muốn tìm kiếm">
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="ableToShowRoadTabModel" (click)="toggleShowRoadTabModel()">
                 <input matInput formControlName="address" placeholder="Nhập địa chỉ muốn tìm kiếm">
             </mat-form-field>
         </div>
         <div class="search__bar-item">
             <label>Bắt đầu</label>
-            <mat-form-field appearance="fill" class="mh-65 search__start-date">
+            <mat-form-field appearance="fill" class="search__start-date">
                 <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" [min]="todayDate">
                 <mat-datepicker-toggle matIconSuffix [for]="startDatePicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
                 <mat-datepicker #startDatePicker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field appearance="fill" class="search__start-hours cl-black">
+            <mat-form-field appearance="fill" class="search__start-hours ">
                 <mat-select formControlName="startHours">
                     <mat-option *ngFor="let item of hrs" [value]="item.value">
                         {{item.name}}
@@ -25,14 +67,14 @@
         </div>
         <div class="search__bar-item">
             <label>Kết thúc</label>
-            <mat-form-field appearance="fill" class="mh-65 search__start-date">
+            <mat-form-field appearance="fill" class="search__start-date">
                 <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" [min]="todayDate">
                 <mat-datepicker-toggle matIconSuffix [for]="endDatePicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
                 <mat-datepicker #endDatePicker></mat-datepicker>
             </mat-form-field>
-            <mat-form-field appearance="fill" class="search__start-hours cl-black">
+            <mat-form-field appearance="fill" class="search__start-hours ">
                 <mat-select formControlName="endHours">
                     <mat-option *ngFor="let item of hrs" [value]="item.value">
                         {{item.name}}
@@ -43,7 +85,7 @@
     </div>
     <div id="left" class="bx__shadow-1" [formGroup]="searchOptionsFormGroup">
         <h4>Sắp xếp</h4>
-        <mat-form-field appearance="outline" class="w-fit cl-black">
+        <mat-form-field appearance="outline" class="w-fit ">
             <mat-select matInput formControlName="sortedBy">
                 <mat-option value="0">Tối ưu</mat-option>
                 <mat-option value="1">Khoảng cách gần nhất</mat-option>
@@ -61,7 +103,7 @@
             {{searchOptionsFormGroup.get("priceMax")?.value===3000 ?
             "Bất kỳ" :
             searchOptionsFormGroup.get("priceMax")?.value +"K"}}</p>
-        <mat-checkbox formControlName="isFiveStarDriver" class="cl-black" color="primary">Chủ xe 5 <i
+        <mat-checkbox formControlName="isFiveStarDriver" class="" color="primary">Chủ xe 5 <i
                 class="fa-solid fa-star"></i></mat-checkbox>
         <h4 class="car__type-title">Loại xe</h4>
         <div class="d-flex-bo flex-wrap-bo car__type-list">
@@ -76,7 +118,7 @@
             </div>
         </div>
         <h4 class="car__type-title">Hãng xe</h4>
-        <mat-form-field appearance="outline" class="w-fit cl-black">
+        <mat-form-field appearance="outline" class="w-fit ">
             <mat-select matInput formControlName="carBrand">
                 <mat-option value="0">Tất cả</mat-option>
                 <mat-option value="audi">Audi ( 1 xe )</mat-option>
@@ -84,7 +126,7 @@
             </mat-select>
         </mat-form-field>
         <h4 class="car__type-title">Truyền động</h4>
-        <mat-form-field appearance="outline" class="w-fit cl-black">
+        <mat-form-field appearance="outline" class="w-fit ">
             <mat-select matInput formControlName="transmission">
                 <mat-option value="0">Tất cả</mat-option>
                 <mat-option value="auto">Số tự động</mat-option>
@@ -92,13 +134,13 @@
             </mat-select>
         </mat-form-field>
         <div>
-            <mat-checkbox formControlName="fastRent" class="cl-black">Đặt xe nhanh</mat-checkbox>
+            <mat-checkbox formControlName="fastRent" class="">Đặt xe nhanh</mat-checkbox>
         </div>
         <div>
-            <mat-checkbox formControlName="delivery" class="cl-black">Giao xe tận nơi</mat-checkbox>
+            <mat-checkbox formControlName="delivery" class="">Giao xe tận nơi</mat-checkbox>
         </div>
         <div>
-            <mat-checkbox formControlName="discount" class="cl-black">Xe giảm giá</mat-checkbox>
+            <mat-checkbox formControlName="discount" class="">Xe giảm giá</mat-checkbox>
         </div>
         <div class="advanced__options-toggle">
             <p *ngIf="isShowAdvancedOptions" (click)="toggleShowAdvancedOptions()">Cơ bản <i
@@ -125,7 +167,7 @@
                 {{getYearRangeTitle()}}
             </p>
             <h4 class="car__type-title">Nhiên liệu</h4>
-            <mat-form-field appearance="outline" class="w-fit cl-black">
+            <mat-form-field appearance="outline" class="w-fit ">
                 <mat-select matInput formControlName="fuel">
                     <mat-option value="0">Tất cả</mat-option>
                     <mat-option value="petrol">Xăng</mat-option>

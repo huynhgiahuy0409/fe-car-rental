@@ -1,3 +1,4 @@
+import { ViewEncapsulation } from '@angular/compiler';
 import {
   AfterViewInit,
   Component, OnInit
@@ -334,7 +335,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
           endDate: rentalStartHrsMs + rentalHoursMs,
           address: formValue.pickUpPlace,
           withDriver: true,
-          interMunicipal: true
+          urbanArea: true
         }
       };
     }
@@ -346,14 +347,14 @@ export class BannerComponent implements OnInit, AfterViewInit {
   }
 
   onSubmitSelfDriveForm() {
-    let address = this.selfDrivingFormGroup.get('address')?.value;
-    let startDateObj = this.selfDrivingFormGroup.get('startDate')?.value;
-    let startHour = this.selfDrivingFormGroup.get('startHour')?.value;
-    let endDate = this.selfDrivingFormGroup.get('endDate')?.value;
-    let endHour = this.selfDrivingFormGroup.get('endHour')?.value;
-
-    let startDateInMiliseconds = this.getDateInMiliseconds(startDateObj, startHour);
-    let endDateInMiliseconds = this.getDateInMiliseconds(endDate, endHour);
+    // let address = this.selfDrivingFormGroup.get('address')?.value;
+    // let startDateObj = this.selfDrivingFormGroup.get('startDate')?.value;
+    // let startHour = this.selfDrivingFormGroup.get('startHour')?.value;
+    // let endDate = this.selfDrivingFormGroup.get('endDate')?.value;
+    // let endHour = this.selfDrivingFormGroup.get('endHour')?.value;
+    let address = "test";
+    let startDateInMiliseconds = new Date(2023, 3, 19).getTime();
+    let endDateInMiliseconds = new Date(2023, 3, 20).getTime();
 
     let navigationExtra: NavigationExtras = {
       queryParams: {

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { NumberInput } from '@angular/cdk/coercion';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CAR_FEATURES } from 'src/app/models/constance';
 
@@ -7,6 +8,7 @@ import { CAR_FEATURES } from 'src/app/models/constance';
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchResultComponent {
   startDate!: Date;
@@ -16,8 +18,6 @@ export class SearchResultComponent {
   urbanArea!: Boolean;
   interMunicipal!: Boolean;
   todayDate = new Date();
-  pickUpPlace!: String;
-  destinationPlace!: String;
   hrs = [
     {
       value: 0,
@@ -91,9 +91,24 @@ export class SearchResultComponent {
   isShowAdvancedOptions = false;
   featureList = CAR_FEATURES;
   addedFeature = ["map", "bluetooth"];
+  ableToShowRoadTabModel = false;
+  showRoadTabModel = false;
+  currentTab !: NumberInput;
+  // disabledInput!: FormControl;
   constructor(private router: ActivatedRoute, private formBuilder: FormBuilder) {
   }
 
+  searchBarFormGroup = this.formBuilder.group({
+    address: [''],
+    addressUrban: [''],
+    startDate: [new Date()],
+    endDate: [new Date()],
+    startHours: [0],
+    endHours: [0],
+    pickUpPlace: [''],
+    destinationPlace: [''],
+    isOneWay: [false]
+  });
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -105,24 +120,19 @@ export class SearchResultComponent {
       this.withDriver = params['withDriver'] === 'true';
       this.urbanArea = params['urbanArea'] === 'true';
       this.interMunicipal = params['interMunicipal'] === 'true';
-      this.pickUpPlace = params['pickUpPlace'];
-      this.destinationPlace = params['destinationPlace'];
+      this.searchBarFormGroup.get("pickUpPlace")?.setValue(params['pickUpPlace']);
+      this.searchBarFormGroup.get("destinationPlace")?.setValue(params['destinationPlace']);
+      this.searchBarFormGroup.get("isOneWay")?.setValue(params['isOneWay'] === 'true');
+      this.currentTab = params['interMunicipal'] === 'true' ? 1 : 0;
+      this.ableToShowRoadTabModel = params['urbanArea'] === 'true' || params['interMunicipal'] === 'true';
+      this.setSearchBarValue();
+      this.setHrsData();
     });
-    this.setSearchBarValue();
-    this.setHrsData();
   }
 
   ngOnDestroy(): void {
     document.body.style.overflow = 'auto';
   }
-  
-  searchBarFormGroup = this.formBuilder.group({
-    address: [''],
-    startDate: [new Date()],
-    endDate: [new Date()],
-    startHours: [0],
-    endHours: [0],
-  });
 
   searchOptionsFormGroup = this.formBuilder.group({
     sortedBy: ['0'],
@@ -166,16 +176,19 @@ export class SearchResultComponent {
     return hrsInMiliseconds + minsInMiliseconds;
   }
 
-
   setSearchBarValue() {
-    let finalAddress = this.interMunicipal ? this.pickUpPlace + ' - ' + this.destinationPlace : this.address;
-    this.searchBarFormGroup.setValue({
-      address: String(finalAddress),
-      startDate: new Date(this.startDate),
-      endDate: new Date(this.endDate),
-      startHours: Number(this._convertHrsAndMinutesToMiliseconds(this.startDate.getHours(), this.startDate.getMinutes())),
-      endHours: Number(this._convertHrsAndMinutesToMiliseconds(this.endDate.getHours(), this.endDate.getMinutes())),
-    });
+    let finalAddress = this.interMunicipal ? this.searchBarFormGroup.value.pickUpPlace + ' - ' + this.searchBarFormGroup.value.destinationPlace : this.address;
+    if (!this.interMunicipal) {
+      this.searchBarFormGroup.get("addressUrban")?.setValue(String(this.address));
+    }
+    if (this.ableToShowRoadTabModel) {
+      this.searchBarFormGroup.get("address")?.disable();
+    }
+    this.searchBarFormGroup.get("address")?.setValue(String(finalAddress));
+    this.searchBarFormGroup.get("startDate")?.setValue(new Date(this.startDate));
+    this.searchBarFormGroup.get("endDate")?.setValue(new Date(this.endDate));
+    this.searchBarFormGroup.get("startHours")?.setValue(Number(this._convertHrsAndMinutesToMiliseconds(this.startDate.getHours(), this.startDate.getMinutes())));
+    this.searchBarFormGroup.get("endHours")?.setValue(Number(this._convertHrsAndMinutesToMiliseconds(this.endDate.getHours(), this.endDate.getMinutes())));
   }
 
   handleClickOption(id: number) {
@@ -185,6 +198,10 @@ export class SearchResultComponent {
 
   toggleShowAdvancedOptions() {
     this.isShowAdvancedOptions = !this.isShowAdvancedOptions;
+  }
+
+  toggleShowRoadTabModel() {
+    this.showRoadTabModel = !this.showRoadTabModel;
   }
 
   getSeatRangeTitle() {

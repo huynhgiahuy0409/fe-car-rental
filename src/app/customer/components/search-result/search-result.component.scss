@@ -42,6 +42,7 @@
     &-item {
       flex: 0 0 30%;
       margin-right: 1.5em;
+      z-index: 101;
       label {
         color: var(--gemstone-color);
         font-weight: 600;
@@ -207,4 +208,87 @@ ul.search__feature-list {
       }
     }
   }
+}
+
+.search {
+  &__option {
+    &-modal {
+      position: absolute;
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($color: #fff, $alpha: 0.5);
+    }
+    &-box {
+      width: 35%;
+      background-color: #fff;
+      margin-top: 6.5em;
+      padding: 20px;
+      .option-title {
+        margin-top: 20px !important;
+      }
+      .distance-range {
+        padding: 15px 10px;
+        p {
+          font-weight: 600;
+        }
+        span {
+          color: black;
+          font-weight: normal;
+          border-bottom: 1px solid var(--secondary-text);
+          padding: 0 30px;
+          margin-left: 20px;
+        }
+      }
+      .prefix-label {
+        font-size: 130%;
+        margin: 0 10px;
+        &.fa-circle {
+          font-size: 90%;
+        }
+      }
+    }
+  }
+}
+.btn-search__modal {
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 120%;
+  border-radius: 2px;
+  background-color: var(--gemstone-color);
+  color: #fff;
+  border: none;
+  opacity: 0.9;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.flag-return {
+  margin: 10px;
+  font-size: 130%;
+}
+
+.text-note {
+  padding: 5px 10px 25px;
+}
+
+//custom material styles
+.mat-mdc-select-min-line,
+.mat-mdc-tab .mdc-tab__text-label,
+.mat-mdc-select-arrow,
+.mat-mdc-checkbox label {
+  color: black !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: whitesmoke;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom-color: var(--secondary-text);
 }

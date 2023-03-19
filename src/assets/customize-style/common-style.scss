@@ -66,7 +66,6 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-
 .text-center {
   text-align: center;
 }
@@ -367,7 +366,7 @@
   margin-left: 1px;
 }
 
-.booking-oto-rating-stars__star-wrapper>.booking-oto-rating-stars__lit {
+.booking-oto-rating-stars__star-wrapper > .booking-oto-rating-stars__lit {
   overflow: hidden;
   position: absolute;
   height: 100%;
@@ -376,7 +375,6 @@
   z-index: 1;
   width: 100%;
 }
-
 
 // default user avatar
 .booking-oto-avatar {
@@ -497,7 +495,6 @@ svg.booking-oto-rating-stars__hollow-star {
   color: var(--secondary-text);
 }
 
-
 .ml-auto {
   margin-left: auto !important;
 }
@@ -567,7 +564,7 @@ svg.booking-oto-rating-stars__hollow-star {
 .cl-gem {
   color: var(--gemstone-color);
 }
-.cl-gem--hover:hover{
+.cl-gem--hover:hover {
   color: var(--gemstone-color);
 }
 
@@ -638,12 +635,21 @@ svg.booking-oto-rating-stars__hollow-star {
   }
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .text-end {
   text-align: end !important;
 }
 
+.fw-bold {
+  font-weight: bold;
+}
+
 // form
-.form-default {}
+.form-default {
+}
 
 .form-default.form--s {
   max-width: 420px;
@@ -681,20 +687,20 @@ svg.booking-oto-rating-stars__hollow-star {
 }
 
 //modal
-.modal-container{
+.modal-container {
   min-width: 570px;
 }
-.modal-header{
-  padding: 60px 20px 40px
+.modal-header {
+  padding: 60px 20px 40px;
 }
-.modal-header h1{
+.modal-header h1 {
   font-weight: 700;
   font-size: 3rem;
   text-align: center;
 }
-.modal-body{
-  padding: 0 20px 48px
+.modal-body {
+  padding: 0 20px 48px;
 }
-.model-actions{
-  padding: 0 20px 20px
+.model-actions {
+  padding: 0 20px 20px;
 }
