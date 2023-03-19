@@ -19,14 +19,14 @@
             <i class="fa-solid fa-chevron-right"></i>
         </div>
     </ng-container>
-    <ng-container *ngIf="!dotRender">
+    <ng-container *ngIf="!dotRender; else notDotRender">
         <ul class="carousel-dots" [class.carousel-dots--show]="isActiveDots">
             <ng-container *ngFor="let dot of dotsView; index as idx">
                 <li class="carousel-dot" [class.carousel-dot--active]="dot === currentIdx"></li>
             </ng-container>
         </ul>
     </ng-container>
-    <ng-container *ngIf="dotRender">
+    <ng-template #notDotRender>
         <ul class="carousel-dots" [class.carousel-dots--show]="isActiveDots">
             <ng-container *ngFor="let dot of dotsView; index as idx">
                 <ng-container [ngTemplateOutlet]="dotRender"
@@ -34,5 +34,5 @@
                 </ng-container>
             </ng-container>
         </ul>
-    </ng-container>
+    </ng-template>
 </div>

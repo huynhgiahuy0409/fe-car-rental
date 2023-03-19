@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MyFavsComponent } from './components/my-favs/my-favs.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CustomerComponent } from './customer.component';
 
@@ -47,6 +48,9 @@ const routes: Routes = [
       { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
       { path: "find/filter", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule) },
       { path: 'find', loadChildren: () => import('./components/find/find.module').then(m => m.FindModule) },
+      {
+        path: 'my-favs', component: MyFavsComponent
+      }
     ],
   },
 ];

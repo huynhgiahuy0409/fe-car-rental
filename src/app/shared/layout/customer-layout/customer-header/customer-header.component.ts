@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RedirectInfo } from 'src/app/models/model';
 import { CustomerLoginDialogComponent } from './components/dialogs/customer-login-dialog/customer-login-dialog.component';
@@ -8,7 +8,7 @@ import { CustomerLoginDialogComponent } from './components/dialogs/customer-logi
   templateUrl: './customer-header.component.html',
   styleUrls: ['./customer-header.component.scss'],
 })
-export class CustomerHeaderComponent {
+export class CustomerHeaderComponent{
   user: boolean = false;
   @ViewChild('dropdownMenuButton')
   dropdownMenuButton!: ElementRef;
@@ -61,24 +61,26 @@ export class CustomerHeaderComponent {
       exitAnimationDuration,
     });
   }
-  @HostListener('document:click', ['$event'])
-  clickOut(event: any) {
-    if (
-      this.dropdownMenuButton.nativeElement.contains(event.target) &&
-      this.activeUserMenu === false
-    ) {
-      this.activeUserMenu = true;
-    } else {
-      this.activeUserMenu = false;
-    }
+  // @HostListener('document:click', ['$event'])
+  // clickOut(event: any) {
+  //   console.log('a');
+    
+  //   if (
+  //     this.dropdownMenuButton.nativeElement.contains(event.target) &&
+  //     this.activeUserMenu === false
+  //   ) {
+  //     this.activeUserMenu = true;
+  //   } else {
+  //     this.activeUserMenu = false;
+  //   }
 
-    if (
-      this.notifyMenuButton.nativeElement.contains(event.target) &&
-      this.activeNotification === false
-    ) {
-      this.activeNotification = true;
-    } else {
-      this.activeNotification = false;
-    }
-  }
+  //   if (
+  //     this.notifyMenuButton.nativeElement.contains(event.target) &&
+  //     this.activeNotification === false
+  //   ) {
+  //     this.activeNotification = true;
+  //   } else {
+  //     this.activeNotification = false;
+  //   }
+  // }
 }
