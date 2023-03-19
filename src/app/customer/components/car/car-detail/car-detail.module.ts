@@ -8,6 +8,9 @@ import { MyLocationComponent } from './dialog/my-location/my-location.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
+import { ModuleDetailComponent } from './module-detail/module-detail.component';
+import { ModuleDealComponent } from './module-deal/module-deal.component';
+import { CoverComponent } from './cover/cover.component';
 
 
 @NgModule({
@@ -16,14 +19,17 @@ import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confir
     DeliveryLocationEditComponent,
     MyLocationComponent,
     PromoEditComponent,
-    BookingConfirmComponent
+    BookingConfirmComponent,
+    ModuleDetailComponent,
+    ModuleDealComponent,
+    CoverComponent
   ],
   imports: [
     CommonModule,
     CarouselModule,
     MaterialAngularModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     CarDetailComponent

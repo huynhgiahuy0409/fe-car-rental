@@ -1,23 +1,13 @@
-<div class="prominent-place">
-    <div class="destination-slt">
-        <div class="grid m-wide">
-            <div class="row">
-                <div class="col l-12">
-                    <h3 class="title-car">
-                        <ng-content select=".title-car"></ng-content>
-                    </h3>
-                    <app-carousel [specItems]="categories" [itemRender]="carouselItemsTemplateRef"
-                        [isPerItemInStep]="true"></app-carousel>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="module-deal">
+    <h3 class="title">XE LIÊN QUAN</h3>
+    <app-carousel [specItems]="[1,1,1,1,1,1,1]" [itemRender]="relativeCarTemplateRef" [isPerItemInStep]="true"
+        [isActiveControl]="true"></app-carousel>
 </div>
-<ng-template #carouselItemsTemplateRef let-item="item" let-idx="idx" let-curIdx="curIdx">
-    <li (click)="navigateCarDetail()" #imageCarouselItem class="image-carousel__item col l-3 c-3">
-        <div class="prominent-car-item-wrapper">
-            <div class="prominent-car-item">
-                <div class="prominent-car-item__image">
+<ng-template #relativeCarTemplateRef let-item="item" let-idx="idx" let-curIdx="curIdx">
+    <li #imageCarouselItem class="image-carousel__item col l-3 c-3">
+        <div class="relative-car-item-wrapper">
+            <div class="relative-car-item">
+                <div class="relative-car-item__image">
                     <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_2020/p/g/2021/03/20/13/M7M_5xiTotPK8fEQPUhmEA.jpg"
                         alt="" />
                     <div class="price-car">950K</div>
@@ -34,13 +24,15 @@
                                 <svg viewBox="0 0 51 48" class="widget-svg" style="
                                     width: 17px;
                                     height: 17px;
-                                    transition: transform 0.2s ease-in-out 0s;
+                                    transition: transform 0.2s ease-in-out
+                                    0s;
                                     ">
                                     <path class="star" d="m25,1
                                         6,17h18l-14,11 5,17-15-10-15,10
                                         5-17-14-11h18z" style="
                                         fill: var(--gemstone-color);
-                                        transition: fill 0.2s ease-in-out 0s;
+                                        transition: fill 0.2s ease-in-out
+                                        0s;
                                         "></path>
                                 </svg>
                             </div>
