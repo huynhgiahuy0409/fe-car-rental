@@ -3,3 +3,6 @@ label.home-label{
     color: #00a550;
     width: 100%;
 }
+.mat-mdc-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: unset !important;
+  }

@@ -61,26 +61,27 @@ export class CustomerHeaderComponent{
       exitAnimationDuration,
     });
   }
-  // @HostListener('document:click', ['$event'])
-  // clickOut(event: any) {
-  //   console.log('a');
-    
-  //   if (
-  //     this.dropdownMenuButton.nativeElement.contains(event.target) &&
-  //     this.activeUserMenu === false
-  //   ) {
-  //     this.activeUserMenu = true;
-  //   } else {
-  //     this.activeUserMenu = false;
-  //   }
-
-  //   if (
-  //     this.notifyMenuButton.nativeElement.contains(event.target) &&
-  //     this.activeNotification === false
-  //   ) {
-  //     this.activeNotification = true;
-  //   } else {
-  //     this.activeNotification = false;
-  //   }
-  // }
+  @HostListener('document:click', ['$event'])
+  clickOut(event: any) {
+    if(this.dropdownMenuButton){
+      if (
+        this.dropdownMenuButton.nativeElement.contains(event.target) &&
+        this.activeUserMenu === false
+      ) {
+        this.activeUserMenu = true;
+      } else {
+        this.activeUserMenu = false;
+      }
+    }
+    if(this.notifyMenuButton){
+      if (
+        this.notifyMenuButton.nativeElement.contains(event.target) &&
+        this.activeNotification === false
+      ) {
+        this.activeNotification = true;
+      } else {
+        this.activeNotification = false;
+      }
+    }
+  }
 }
