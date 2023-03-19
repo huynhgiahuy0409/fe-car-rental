@@ -6,6 +6,9 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { RouterModule } from '@angular/router';
 import { CustomerLoginDialogComponent } from './customer-header/components/dialogs/customer-login-dialog/customer-login-dialog.component';
 import { ForgetPasswordComponent } from './customer-header/components/dialogs/forget-password/forget-password.component';
+import { SvgAsTemplateModule } from '../../svg-as-template/svg-as-template.module';
+import { WheelSvgComponent } from '../../svg-as-template/wheel-svg/wheel-svg.component';
+import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module';
 
 
 
@@ -14,12 +17,14 @@ import { ForgetPasswordComponent } from './customer-header/components/dialogs/fo
     CustomerHeaderComponent,
     CustomerFooterComponent,
     CustomerLoginDialogComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
   ],
   imports: [
     CommonModule,
     MaterialAngularModule,
-    RouterModule
+    RouterModule,
+    SvgAsTemplateModule,
+    CustomerRoutingModule
   ],
   exports: [
     CustomerHeaderComponent,
