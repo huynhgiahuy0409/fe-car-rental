@@ -40,6 +40,7 @@ const routes: Routes = [
           ),
       },
       { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
+      { path: 'find', loadChildren: () => import('./components/find/find.module').then(m => m.FindModule) },
     ],
   },
 ];
