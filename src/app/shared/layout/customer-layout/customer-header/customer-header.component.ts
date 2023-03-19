@@ -9,7 +9,7 @@ import { CustomerLoginDialogComponent } from './components/dialogs/customer-logi
   styleUrls: ['./customer-header.component.scss'],
 })
 export class CustomerHeaderComponent {
-  user: boolean = true;
+  user: boolean = false;
   @ViewChild('dropdownMenuButton')
   dropdownMenuButton!: ElementRef;
   @ViewChild('notifyMenuButton')
