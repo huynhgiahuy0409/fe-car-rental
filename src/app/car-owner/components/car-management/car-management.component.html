@@ -3,10 +3,13 @@
 
     <div class="options__control">
         <mat-radio-group [formControl]="optionControl">
-            <mat-radio-button value="0">Tùy chỉnh giá <i class="fa-solid fa-clock-rotate-left"
-                    (click)="toggleShowModalPriceIterate()"></i></mat-radio-button>
-            <mat-radio-button value="1">Thiết lập lịch bận <i class="fa-solid fa-clock-rotate-left"
-                    (click)="toggleShowModalTimeIterate()"></i></mat-radio-button>
+            <mat-radio-button value="0">
+                <span class="cl-black">Tùy chỉnh giá<i class="fa-solid fa-clock-rotate-left"
+                        (click)="toggleShowModalPriceIterate()"></i></span>
+            </mat-radio-button>
+            <mat-radio-button value="1"><span class="cl-black">Thiết lập lịch bận <i
+                        class="fa-solid fa-clock-rotate-left"
+                        (click)="toggleShowModalTimeIterate()"></i></span></mat-radio-button>
         </mat-radio-group>
     </div>
 

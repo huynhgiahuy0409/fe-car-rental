@@ -1,4 +1,3 @@
-import { ViewEncapsulation } from '@angular/compiler';
 import {
   AfterViewInit,
   Component, OnInit, ViewEncapsulation

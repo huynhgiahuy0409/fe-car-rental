@@ -20,7 +20,7 @@ import { Location } from '@angular/common';
   providers: [TimerUtilService],
 })
 export class CarDetailComponent implements OnInit {
-  navigateBy!: any 
+  navigateBy!: any
   @Input()
   rentalModePath!: string;
   isFavoriteCar: boolean = false;
@@ -50,7 +50,8 @@ export class CarDetailComponent implements OnInit {
     });
     this.navigateBy = this.location.getState()
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   editDeliveryLocation(title: string) {
     this.matDialog.open(DeliveryLocationEditComponent, {
       enterAnimationDuration: '500ms',
@@ -74,7 +75,7 @@ export class CarDetailComponent implements OnInit {
       height: '100vh',
     });
   }
-  back(){
+  back() {
     this.router.navigate(['/find'])
   }
 }

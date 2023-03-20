@@ -1,6 +1,6 @@
 import { NumberInput } from '@angular/cdk/coercion';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CAR_FEATURES } from 'src/app/models/constance';
 
@@ -94,7 +94,6 @@ export class SearchResultComponent {
   ableToShowRoadTabModel = false;
   showRoadTabModel = false;
   currentTab !: NumberInput;
-  // disabledInput!: FormControl;
   constructor(private router: ActivatedRoute, private formBuilder: FormBuilder) {
   }
 
@@ -275,11 +274,5 @@ export class SearchResultComponent {
     });
     this.addedFeature = [];
     this.carTypeOptions.forEach(item => item.active = false);
-  }
-
-  asd() {
-    console.log(this.startDate);
-    console.log(this.endDate);
-    console.log(this.address);
   }
 }
