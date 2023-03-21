@@ -46,8 +46,15 @@
     color: var(--gemstone-color);
 }
 .body{
-    margin: 40px 0 20px
+    margin: 60px 0
 }
+.body .my-favs__empty{
+    padding: 40px 0;
+    color: black;
+}
+.body .my-favs__empty h4{
+    margin: 20px 0;
+} 
 // car card
 .car-card-wrapper{
     padding: 5px;

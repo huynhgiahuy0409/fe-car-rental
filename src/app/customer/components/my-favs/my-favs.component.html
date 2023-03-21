@@ -17,11 +17,23 @@
     <div class="tab-list">
         <div class="grid m-wide">
             <div class="tab-item" *ngIf="modeType === 'sd'">
-                <ng-container [ngTemplateOutlet]="wdItemsTemplateRef"></ng-container>
+                <ng-container *ngIf="sdItems; else notFavCarTemplateRef">
+                    <ng-container [ngTemplateOutlet]="sdItemsTemplateRef"></ng-container>
+                </ng-container>
             </div>
             <div class="tab-item" *ngIf="modeType === 'wd'">
-                <ng-container [ngTemplateOutlet]="wdItemsTemplateRef"></ng-container>
+                <ng-container *ngIf="wdItems; else notFavCarTemplateRef">
+                    <ng-container [ngTemplateOutlet]="wdItemsTemplateRef"></ng-container>
+                </ng-container>
             </div>
+            <ng-template #notFavCarTemplateRef>
+                <div class="my-favs__empty">
+                    <div class="d-flex-bo justify-content-center-bo align-items-center-bo flex-col-bo">
+                        <img src="https://www.mioto.vn/static/media/trips.d2edc6d9.svg" alt="">
+                        <h4>Bạn chưa có chuyến yêu thích</h4>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

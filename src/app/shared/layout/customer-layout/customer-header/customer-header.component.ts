@@ -9,7 +9,7 @@ import { CustomerLoginDialogComponent } from './components/dialogs/customer-logi
   styleUrls: ['./customer-header.component.scss'],
 })
 export class CustomerHeaderComponent{
-  user: boolean = false;
+  user: boolean = true;
   @ViewChild('dropdownMenuButton')
   dropdownMenuButton!: ElementRef;
   @ViewChild('notifyMenuButton')
@@ -20,15 +20,15 @@ export class CustomerHeaderComponent{
   userMenus: RedirectInfo[] = [
     {
       label: 'Tài khoản',
-      path: '',
+      path: '/account',
     },
     {
       label: 'Xe yêu thích',
-      path: '',
+      path: '/my-favs',
     },
     {
       label: 'Xe của tôi',
-      path: '',
+      path: '/my-trip',
     },
     {
       label: 'Chuyến của tôi',

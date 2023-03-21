@@ -9,7 +9,7 @@ import { Router, NavigationExtras } from '@angular/router';
 export class MyFavsComponent {
   modeType: 'wd' | 'sd' = 'sd'
   wdItems = [1,1,1,1]
-  sdItems = [1,1,1,1,1,1]
+  sdItems!: number[]
   constructor(private router: Router){}
   navigateCarDetail(){
     const navigationExtras: NavigationExtras = {
