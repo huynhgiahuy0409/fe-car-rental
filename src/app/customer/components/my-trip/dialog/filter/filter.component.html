@@ -3,13 +3,14 @@
         <h1>Bộ lọc chuyến đi</h1>
     </div>
     <div class="modal-body">
-        <div class="form-default form--s">
+        <form id="filter-form" class="form-default form--s">
             <div class="line-form">
                 <label for="" class="label">Theo chế độ</label>
                 <div>
-                    <mat-radio-group>
-                        <mat-radio-button value="1">Tự lái</mat-radio-button>
-                        <mat-radio-button value="2">Có tài xế</mat-radio-button>
+                    <mat-radio-group  [(ngModel)]="sltServiceType" [ngModelOptions]="{standalone: true}">
+                        <ng-container *ngFor="let i of serviceTypes">
+                            <mat-radio-button [value]="i.value">{{i.label}}</mat-radio-button>
+                        </ng-container>
                     </mat-radio-group>
                 </div>
             </div>
@@ -26,7 +27,7 @@
                         lọc</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <ng-template #curTripFilterOption>

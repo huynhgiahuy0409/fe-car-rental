@@ -1,5 +1,6 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SD_MODE, WD_MODE } from 'src/app/models/constance';
 
 interface FilterOption {
   label: string;
@@ -9,9 +10,22 @@ interface FilterOption {
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FilterComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  sltServiceType: string = SD_MODE;
+
+  serviceTypes: FilterOption[] = [
+    {
+      label: 'Tự lái',
+      value: SD_MODE,
+    },
+    {
+      label: 'Có tài xế',
+      value: WD_MODE,
+    },
+  ];
   @Input()
   type!: string;
   timeOptions: FilterOption[] = [

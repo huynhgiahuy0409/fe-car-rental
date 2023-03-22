@@ -12,7 +12,7 @@ import { COMPLETE_MESSAGE, COMPLETE_STATUS } from 'src/app/models/constance';
 })
 export class MyTripComponent {
   isEmptyTrip: boolean = false;
-  sltTabIdx: number = 1;
+  sltTabIdx: number = 0;
   curTrips!: PurchaseOrderOverview[]
   tripHistList: PurchaseOrderOverview[] = [
     {
