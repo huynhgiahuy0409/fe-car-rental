@@ -1,9 +1,29 @@
 <div class="cover">
-    <app-carousel [specItems]="[1,1,1,1,1,1,1]" [itemRender]="carouselItemsTemplateRef" [isPerItemInStep]="true"
-        [isActiveControl]="true" [isActiveDots]="true" [initTranslateItemPercent]="-50"></app-carousel>
-    <div class="favorite-car" [class.favorite-car--active]="isFavoriteCar" (click)="isFavoriteCar= !isFavoriteCar">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5204
+  <app-carousel
+    #coverCarousel
+    [specItems]="[1, 1, 1, 1, 1, 1, 1]"
+    [itemRender]="carouselItemsTemplateRef"
+    [isPerItemInStep]="true"
+    [isActiveControl]="true"
+    [isActiveDots]="true"
+    [initTranslateItemPercent]="-50"
+  ></app-carousel>
+  <div
+    class="favorite-car"
+    [class.favorite-car--active]="isFavoriteCar"
+    (click)="isFavoriteCar = !isFavoriteCar"
+  >
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10.5204
                 19.0685L18.3645 10.7935C20.5452 8.44139 20.5452
                 4.80617 18.3644 2.45408C17.33 1.34216 15.8804 0.709493
                 14.3617 0.707148C13.0723 0.70864 11.8324 1.16393 10.8535
@@ -23,8 +43,13 @@
                 3.27021C7.16453 1.54313 4.46363 1.44386 2.73652
                 3.04843M2.51134 9.97296C0.761585 8.08085 0.762889 5.16023
                 2.51525 3.26965C2.58606 3.19346 2.65998 3.11958 2.73652
-                3.04843" fill="white"></path>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3999
+                3.04843"
+        fill="white"
+      ></path>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M13.3999
                 4.00039C13.3999 3.66902 13.6685 3.40039 13.9999
                 3.40039C14.2037 3.40039 14.4039 3.41738 14.5992
                 3.45014C14.926 3.50497 15.1465 3.81434 15.0916
@@ -38,14 +63,25 @@
                 8.56609C16.3168 8.45567 16.1531 8.11287 16.2635
                 7.80044C16.3517 7.55099 16.3999 7.28197 16.3999
                 7.00039C16.3999 6.33194 16.1274 5.72824 15.686
-                5.2924C15.4501 5.0596 15.4477 4.67971 15.6805 4.44389Z" fill="white"></path>
-        </svg>
-    </div>
-    <div class="cccd">
-        <svg class="mr-r-5" width="13" height="14" viewBox="0 0 13 14" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_10370_186)">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.88667
+                5.2924C15.4501 5.0596 15.4477 4.67971 15.6805 4.44389Z"
+        fill="white"
+      ></path>
+    </svg>
+  </div>
+  <div class="cccd">
+    <svg
+      class="mr-r-5"
+      width="13"
+      height="14"
+      viewBox="0 0 13 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_10370_186)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M2.88667
                     12.4053C3.9548 13.119 5.21059 13.5 6.49522
                     13.5C7.34853 13.5023 8.19383 13.3354 8.98219
                     13.0088C9.77055 12.6823 10.4863 12.2026 11.088
@@ -63,8 +99,11 @@
                     12.4053ZM6.50001 1.75C3.60516 1.75 1.25 4.10515 1.25
                     7C1.25 9.89485 3.60516 12.25 6.50001 12.25C9.39486 12.25
                     11.75 9.89485 11.75 7C11.75 4.10515 9.39486 1.75 6.50001
-                    1.75Z" fill="white"></path>
-                <path d="M5.35714 10.756C5.28787 10.756 5.22142 10.7285
+                    1.75Z"
+          fill="white"
+        ></path>
+        <path
+          d="M5.35714 10.756C5.28787 10.756 5.22142 10.7285
                     5.17233 10.6796L2.32638 7.83365C2.30216 7.80944 2.28296
                     7.7807 2.26985 7.74906C2.25675 7.71742 2.25 7.68352 2.25
                     7.64927C2.25 7.61503 2.25675 7.58112 2.26985
@@ -81,25 +120,45 @@
                     5.46291C10.717 5.49454 10.6978 5.52329 10.6736
                     5.5475L5.54151 10.6796C5.51733 10.7039 5.48859 10.7231
                     5.45695 10.7362C5.42531 10.7493 5.39139 10.756 5.35714
-                    10.756Z" fill="white"></path>
-            </g>
-            <defs>
-                <clipPath id="clip0_10370_186">
-                    <rect width="13" height="13" fill="white" transform="translate(0 0.5)"></rect>
-                </clipPath>
-            </defs>
-        </svg>
-        CCCD gắn chip
-    </div>
+                    10.756Z"
+          fill="white"
+        ></path>
+      </g>
+      <defs>
+        <clipPath id="clip0_10370_186">
+          <rect
+            width="13"
+            height="13"
+            fill="white"
+            transform="translate(0 0.5)"
+          ></rect>
+        </clipPath>
+      </defs>
+    </svg>
+    CCCD gắn chip
+  </div>
 </div>
-<ng-template #carouselItemsTemplateRef let-item="item" let-idx="idx" fl let-curIdx="curIdx">
-    <li #imageCarouselItem class="image-carousel__item col l-4 c-3">
-        <div href="" class="destination-carousel-item" [class.destination-carousel-item--active]="idx === curIdx">
-            <div class="destination-carousel-item__image">
-                <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_hatchback_2020/p/g/2020/07/13/00/8AJlKFKgHPtGPjM7gNr17w.jpg"
-                    alt="">
-                <div class="destination-carousel-item__image--overlay"></div>
-            </div>
-        </div>
-    </li>
+<ng-template
+  #carouselItemsTemplateRef
+  let-item="item"
+  let-idx="idx"
+  fl
+  let-curIdx="curIdx"
+>
+  <li #imageCarouselItem class="image-carousel__item col l-4 c-3">
+    <div
+      href=""
+      class="destination-carousel-item"
+      [class.destination-carousel-item--active]="idx === curIdx"
+    >
+      <div class="destination-carousel-item__image">
+        <img
+          src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/mazda_3_hatchback_2020/p/g/2020/07/13/00/8AJlKFKgHPtGPjM7gNr17w.jpg"
+          alt=""
+        />
+        <div class="destination-carousel-item__image--overlay"></div>
+      </div>
+    </div>
+  </li>
 </ng-template>
+
