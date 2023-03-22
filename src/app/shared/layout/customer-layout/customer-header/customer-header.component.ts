@@ -28,11 +28,11 @@ export class CustomerHeaderComponent{
     },
     {
       label: 'Xe của tôi',
-      path: '/my-trip',
+      path: '',
     },
     {
       label: 'Chuyến của tôi',
-      path: '',
+      path: '/my-trip',
     },
     {
       label: 'Địa chỉ của tôi',
@@ -40,7 +40,7 @@ export class CustomerHeaderComponent{
     },
     {
       label: 'Khuyến mãi',
-      path: '',
+      path: '/promo',
     },
     {
       label: 'Đổi mật khẩu',

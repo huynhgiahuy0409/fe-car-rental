@@ -349,3 +349,9 @@ body{
     padding: 30px 45px;
     margin-bottom: 0
 }
+::ng-deep .properties__wrapper .carousel-arrow--prev{
+    
+}
+::ng-deep .properties__wrapper .carousel-arrow--next{
+    right: 15px
+}
