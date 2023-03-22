@@ -256,7 +256,7 @@ export class SearchResultComponent {
     const limitDistance = Number(this.searchOptionsFormGroup.value.limitDistance);
     if (limitDistance === 0) {
       return "Không giới hạn";
-    } else if (limitDistance < 551) {
+    } else if (limitDistance < 550) {
       return `Trên ${limitDistance}km/ngày`;
     } else {
       return "Bất kỳ";
