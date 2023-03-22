@@ -3,19 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { CarOwnerComponent } from './car-owner.component';
 import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
-import { CarRegisterComponent } from './components/car-register/car-register.component';
 import { ContractComponent } from './components/contract/contract.component';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
 
 const routes: Routes = [
   {
     path: '', component: CarOwnerComponent, children: [
       {
-        path: 'register', component: CarRegisterComponent,
+        path: 'register', loadChildren: () => import('./components/car-register/car-register.module').then(m => m.CarRegisterModule)
       },
       {
-        path: 'register/Self-drive', component: RegisterFormComponent
+        path: 'register/Self-drive', loadChildren: () => import('./components/register-form/register-form.module').then(m => m.RegisterFormModule)
       },
       {
         path: 'car-listing', component: CarListingComponent

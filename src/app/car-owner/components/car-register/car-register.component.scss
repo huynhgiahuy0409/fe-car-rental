@@ -8,6 +8,14 @@
   background-color: var(--gemstone-color);
   text-transform: uppercase;
   font-weight: 560;
-  padding: 20px 15px;
-  margin: 20px;
+  padding: 10px 15px;
+  transition: all ease 0.2s;
+  border-radius: 5px;
+  &:hover {
+    background-color: rgba($color: green, $alpha: 0.8);
+  }
+}
+
+.process-register {
+  margin-top: 50px !important;
 }

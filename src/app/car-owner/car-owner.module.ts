@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -14,20 +13,15 @@ import { CarOwnerComponent } from './car-owner.component';
 import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CalendarHeaderModule } from './components/calendars/header/calendar-header.module';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
-import { CarRegisterComponent } from './components/car-register/car-register.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
 import { CarOwnerService } from './services/car-owner.service';
-import { UploadFileService } from './services/upload-file.service';
 
 @NgModule({
   declarations: [
     CarOwnerComponent,
     NavbarComponent,
-    CarRegisterComponent,
-    RegisterFormComponent,
     CarListingComponent,
     CalendarsComponent,
     ContractComponent,
@@ -41,7 +35,6 @@ import { UploadFileService } from './services/upload-file.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxDropzoneModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
@@ -51,7 +44,6 @@ import { UploadFileService } from './services/upload-file.service';
   ],
   providers: [
     CarOwnerService,
-    UploadFileService
   ]
 })
 export class CarOwnerModule { }
