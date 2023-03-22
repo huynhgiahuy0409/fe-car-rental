@@ -19,7 +19,6 @@ import { ContractComponent } from './components/contract/contract.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
-import { StatisticsComponent } from './components/statistics/statistics.component';
 import { CarOwnerService } from './services/car-owner.service';
 import { UploadFileService } from './services/upload-file.service';
 
@@ -32,7 +31,6 @@ import { UploadFileService } from './services/upload-file.service';
     CarListingComponent,
     CalendarsComponent,
     ContractComponent,
-    StatisticsComponent,
     RentalListingComponent,
   ],
   imports: [

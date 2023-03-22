@@ -7,7 +7,6 @@ import { CarRegisterComponent } from './components/car-register/car-register.com
 import { ContractComponent } from './components/contract/contract.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
-import { StatisticsComponent } from './components/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -28,7 +27,7 @@ const routes: Routes = [
         path: 'contract', component: ContractComponent
       },
       {
-        path: 'statistics', component: StatisticsComponent
+        path: 'statistics', loadChildren: () => import('./components/statistics/statistics.module').then(m => m.StatisticsModule)
       },
       {
         path: "rental-listing", component: RentalListingComponent
