@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarOwnerComponent } from './car-owner.component';
-import { CarListingComponent } from './components/car-listing/car-listing.component';
 
 const routes: Routes = [
   {
@@ -13,7 +12,7 @@ const routes: Routes = [
         path: 'register/Self-drive', loadChildren: () => import('./components/register-form/register-form.module').then(m => m.RegisterFormModule)
       },
       {
-        path: 'car-listing', component: CarListingComponent
+        path: 'car-listing', loadChildren: () => import('./components/car-listing/car-listing.module').then(m => m.CarListingModule)
       },
       {
         path: 'calendars', loadChildren: () => import('./components/calendars/calendars.module').then(m => m.CalendarsModule)
@@ -26,9 +25,6 @@ const routes: Routes = [
       },
       {
         path: "rental-listing", loadChildren: () => import('./components/rental/rental.module').then(m => m.RentalModule)
-      },
-      {
-        path: 'car-listing/:id', loadChildren: () => import("./components/car-management/car-management.module").then(m => m.CarManagementModule)
       }
     ]
   },
