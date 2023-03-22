@@ -4,7 +4,6 @@ import { CarOwnerComponent } from './car-owner.component';
 import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
 import { ContractComponent } from './components/contract/contract.component';
-import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
 
 const routes: Routes = [
   {
@@ -28,10 +27,7 @@ const routes: Routes = [
         path: 'statistics', loadChildren: () => import('./components/statistics/statistics.module').then(m => m.StatisticsModule)
       },
       {
-        path: "rental-listing", component: RentalListingComponent
-      },
-      {
-        path: "rental-listing/details", loadChildren: () => import('./components/rental/components/details/details.module').then(m => m.RentalDetailsModule)
+        path: "rental-listing", loadChildren: () => import('./components/rental/rental.module').then(m => m.RentalModule)
       },
       {
         path: 'car-listing/:id', loadChildren: () => import("./components/car-management/car-management.module").then(m => m.CarManagementModule)

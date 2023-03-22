@@ -15,7 +15,6 @@ import { CalendarHeaderModule } from './components/calendars/header/calendar-hea
 import { CarListingComponent } from './components/car-listing/car-listing.component';
 import { ContractComponent } from './components/contract/contract.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RentalListingComponent } from './components/rental/components/listing/rental-listing.component';
 import { CarOwnerService } from './services/car-owner.service';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { CarOwnerService } from './services/car-owner.service';
     CarListingComponent,
     CalendarsComponent,
     ContractComponent,
-    RentalListingComponent,
   ],
   imports: [
     CommonModule,
