@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarOwnerComponent } from './car-owner.component';
-import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
 
 const routes: Routes = [
@@ -17,7 +16,7 @@ const routes: Routes = [
         path: 'car-listing', component: CarListingComponent
       },
       {
-        path: 'calendars', component: CalendarsComponent
+        path: 'calendars', loadChildren: () => import('./components/calendars/calendars.module').then(m => m.CalendarsModule)
       },
       {
         path: 'contract', loadChildren: () => import('./components/contract/contract.module').then(m => m.ContractModule)
