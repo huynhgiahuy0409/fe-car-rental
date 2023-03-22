@@ -47,10 +47,10 @@ const routes: Routes = [
       },
       { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
       { path: "find/filter", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule) },
-      { path: 'find', loadChildren: () => import('./components/find/find.module').then(m => m.FindModule) },
       {
-        path: 'my-favs', component: MyFavsComponent
-      }
+        path: 'my-favs', loadChildren: () => import("./components/my-favs/my-favs.module").then(m => m.MyFavsModule)
+      },
+      { path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule) },
     ],
   },
 ];

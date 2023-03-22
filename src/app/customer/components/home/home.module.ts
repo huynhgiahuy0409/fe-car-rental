@@ -9,8 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProminentPlaceModule } from './components/prominent-place/prominent-place.module';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { OwnerComponent } from './components/owner/owner.component';
-import { ProminentCarModule } from './components/prominent-car/prominent-car.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ProminentCarModule } from './components/prominent-car/prominent-car.module';
 
 @NgModule({
   declarations: [

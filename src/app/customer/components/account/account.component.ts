@@ -1,6 +1,7 @@
 import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { NavigationExtras, Router } from '@angular/router';
 import { EditDrivingLicenseComponent } from './dialog/edit-driving-license/edit-driving-license.component';
 import { EditEmailComponent } from './dialog/edit-email/edit-email.component';
 import { EditPhoneComponent } from './dialog/edit-phone/edit-phone.component';
@@ -15,7 +16,7 @@ export class AccountComponent {
   isSltEditCover: boolean = false
   @ViewChild('editCoverBtn')
   editCoverBtn!: MatButton
-  constructor(private matDialog: MatDialog){
+  constructor(private matDialog: MatDialog, private router: Router){
 
   }
   openEditPhoneDialog(){
@@ -42,6 +43,14 @@ export class AccountComponent {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms'
     })
+  }
+  navigateCarDetail(){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        routeBy: 'bar'
+      }
+    }
+    this.router.navigate(['car/huy/123'], navigationExtras);
   }
   @HostListener('document:click', ['$event'])
   clickOut(event: any) {

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { NavigationExtras, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-prominent-car',
   templateUrl: './prominent-car.component.html',
-  styleUrls: ['./prominent-car.component.scss']
+  styleUrls: ['./prominent-car.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class ProminentCarComponent {
   categories: number[] = [
