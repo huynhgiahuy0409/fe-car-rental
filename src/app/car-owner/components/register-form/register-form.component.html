@@ -222,7 +222,8 @@
                         </div>
 
                         <div *ngIf="toggleFastRentGroup.get('isFastRent')?.value===true"
-                            [formGroup]="toggleFastRentGroup" class="d-flex-bo flex-wrap-bo align-between g-20 cl-black">
+                            [formGroup]="toggleFastRentGroup"
+                            class="d-flex-bo flex-wrap-bo align-between g-20 cl-black">
                             <mat-form-field class="fast__rent-6 mobile-fw-flex" appearance="outline">
                                 <mat-label class="cl-black">Giới hạn từ</mat-label>
                                 <mat-select matInput formControlName="limitFrom">
@@ -352,6 +353,39 @@
                                 </mat-slider>
                                 <p class="discount__subtitle">
                                     {{toggleDeliveryGroup.get('deliveryFee')?.value+"Đ"}}</p>
+                            </div>
+                        </div>
+                        <!-- start form field -->
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h2>Giới hạn số km</h2>
+                            </div>
+                            <div class="discount__status-field ml-auto" [formGroup]="toggleLimitDistanceGroup">
+                                <mat-slide-toggle formControlName="isLimitDistance">
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+
+                        <div *ngIf="toggleLimitDistanceGroup.get('isLimitDistance')?.value===true"
+                            [formGroup]="toggleLimitDistanceGroup" class="d-flex-bo flex-wrap-bo discount__field-group">
+                            <div class="discount__field mobile-fw-flex">
+                                <p class="discount__subtitle">Số km tối đa trong 1 ngày</p>
+                                <mat-slider min="300" max="500" step="5">
+                                    <input matSliderThumb formControlName="limitDistance">
+                                </mat-slider>
+                                <p class="discount__subtitle">
+                                    {{toggleLimitDistanceGroup.get('limitDistance')?.value+"km"}}</p>
+                                <p class="text-secondary">Số km đề xuất: 400km</p>
+                            </div>
+                            <div class="discount__field mobile-fw-flex">
+                                <p class="discount__subtitle">Phí vượt giới hạn (tính mỗi km)</p>
+                                <mat-slider min="1000" max="5000" step="1000">
+                                    <input matSliderThumb formControlName="limitDistanceFee">
+                                </mat-slider>
+                                <p class="discount__subtitle">
+                                    {{toggleLimitDistanceGroup.get('limitDistanceFee')?.value+"Đ"}}</p>
+                                <p class="text-secondary">Phí đề xuất : 3000Đ</p>
                             </div>
                         </div>
 

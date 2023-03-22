@@ -34,10 +34,10 @@ const routes: Routes = [
         path: "rental-listing", component: RentalListingComponent
       },
       {
-        path: "rental-details", loadChildren: () => import('./components/rental/components/details/details.module').then(m => m.RentalDetailsModule)
+        path: "rental-listing/details", loadChildren: () => import('./components/rental/components/details/details.module').then(m => m.RentalDetailsModule)
       },
       {
-        path: 'management/:id', loadChildren: () => import("./components/car-management/car-management.module").then(m => m.CarManagementModule)
+        path: 'car-listing/:id', loadChildren: () => import("./components/car-management/car-management.module").then(m => m.CarManagementModule)
       }
     ]
   },

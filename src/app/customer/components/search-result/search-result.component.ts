@@ -88,7 +88,7 @@ export class SearchResultComponent {
     },
   ]
 
-  isShowAdvancedOptions = false;
+  isShowAdvancedOptions = true;
   featureList = CAR_FEATURES;
   addedFeature = ["map", "bluetooth"];
   ableToShowRoadTabModel = false;
@@ -127,6 +127,14 @@ export class SearchResultComponent {
       this.setSearchBarValue();
       this.setHrsData();
     });
+
+    this.searchOptionsFormGroup.get("limitDistance")?.valueChanges.subscribe(value => {
+      if (Number(value) === 0) {
+        this.searchOptionsFormGroup.get("limitDistanceFee")?.setValue("0");
+      } else {
+        this.searchOptionsFormGroup.get("limitDistanceFee")?.setValue("10000");
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -149,6 +157,8 @@ export class SearchResultComponent {
     maxYears: new Date().getFullYear(),
     fuel: ["0"],
     fuelConsumption: ["0"],
+    limitDistance: ["551"],
+    limitDistanceFee: ["10000"]
   });
 
   private setHrsData() {
@@ -242,6 +252,28 @@ export class SearchResultComponent {
     }
   }
 
+  getLimitDistanceTitle() {
+    const limitDistance = Number(this.searchOptionsFormGroup.value.limitDistance);
+    if (limitDistance === 0) {
+      return "Không giới hạn";
+    } else if (limitDistance < 551) {
+      return `Trên ${limitDistance}km/ngày`;
+    } else {
+      return "Bất kỳ";
+    }
+  }
+
+  getLimitDistanceFeeTitle() {
+    const limitDistanceFee = Number(this.searchOptionsFormGroup.value.limitDistanceFee);
+    if (limitDistanceFee === 0) {
+      return "Miễn phí";
+    } else if (limitDistanceFee < 5001) {
+      return `Từ dưới ${limitDistanceFee}đ/km`;
+    } else {
+      return "Bất kỳ";
+    }
+  }
+
   isActiveFeature(feature: string) {
     return this.addedFeature.includes(feature);
   }
@@ -271,6 +303,8 @@ export class SearchResultComponent {
       maxYears: new Date().getFullYear(),
       fuel: "0",
       fuelConsumption: "0",
+      limitDistance: "551",
+      limitDistanceFee: "10000"
     });
     this.addedFeature = [];
     this.carTypeOptions.forEach(item => item.active = false);

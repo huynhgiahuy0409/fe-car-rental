@@ -150,6 +150,20 @@
             </p>
         </div>
         <div class="advanced__options-container" *ngIf="isShowAdvancedOptions">
+            <h4 class="car__type-title">Giới hạn số km</h4>
+            <mat-slider min="0" [max]="551" style="width: 100%;" step="50">
+                <input value="0" matSliderThumb formControlName="limitDistance">
+            </mat-slider>
+            <p class="text-end">
+                {{getLimitDistanceTitle()}}
+            </p>
+            <h4 class="car__type-title">Phí vượt giới hạn</h4>
+            <mat-slider min="0" [max]="10000" style="width: 100%;" step="5000">
+                <input value="0" matSliderThumb formControlName="limitDistanceFee" />
+            </mat-slider>
+            <p class="text-end">
+                {{getLimitDistanceFeeTitle()}}
+            </p>
             <h4 class="car__type-title">Số chỗ</h4>
             <mat-slider min="2" max="10" style="width: 100%;">
                 <input value="2" matSliderStartThumb formControlName="minSeats">

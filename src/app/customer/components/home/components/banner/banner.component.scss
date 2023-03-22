@@ -54,7 +54,8 @@
   border-right: 1px solid #6e6e6e;
 }
 
-.partner-logo::after:last-child {}
+.partner-logo::after:last-child {
+}
 
 .partner-logo img {
   object-fit: contain;
@@ -183,13 +184,13 @@ form.search-form .search-form__control {
   font-size: 1.4rem;
 }
 
-
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
   border-bottom-color: rgba(255, 255, 255, 0.85);
 }
 
-
-.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple::before {
+.mdc-text-field--filled:not(.mdc-text-field--disabled):hover
+  .mdc-line-ripple::before {
   border-bottom-color: #fff;
 }
 
@@ -204,7 +205,6 @@ form.search-form .search-form__control {
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
   color: var(--primary-text-color);
 }
-
 
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
   color: var(--gemstone-color);
@@ -222,8 +222,9 @@ form.search-form .search-form__control {
   color: var(--gemstone-color);
 }
 
-
-.mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+.mat-primary
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+  .mdc-list-item__primary-text {
   color: var(--gemstone-color);
 }
 
@@ -238,12 +239,14 @@ form.search-form .search-form__control {
 // +Customize tabs
 
 .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
-.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+  .mdc-tab__text-label {
   color: var(--gemstone-color);
 }
 
 .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
-.mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled)
+  .mdc-tab-indicator__content--underline {
   border-color: var(--gemstone-color);
 }
 
@@ -260,7 +263,13 @@ form.search-form .search-form__control {
 }
 
 .checkbox-white {
-  &::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
+  &::ng-deep
+    .mat-mdc-checkbox
+    .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate="true"]
+    )
+    ~ .mdc-checkbox__background {
     border-color: #fff !important;
   }
 }

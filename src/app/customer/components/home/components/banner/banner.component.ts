@@ -24,6 +24,8 @@ import {
 } from 'rxjs';
 import { TimeFormat } from 'src/app/models/model';
 import { RentalHourOption } from 'src/app/services/timer-util.service';
+import { addDays } from 'date-fns';
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -85,7 +87,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
   withDriverTimeUp!: string;
   withMunDriverTimeUp!: string;
   selfDrivingFormGroup!: FormGroup;
-  todayDate = format(new Date(), "yyyy-MM-dd");
+  todayDate = format(addDays(new Date(), 1), "yyyy-MM-dd");
   interMunicipalFormGroup!: FormGroup;
 
   constructor(private _fb: FormBuilder, private router: Router) {
@@ -126,7 +128,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
       endHour: ['0:00', Validators.required],
     });
   }
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+  }
   ngOnInit(): void {
     /* 
       detach change event of pickUpPlace FormControl of driverServiceFormGroup
@@ -347,14 +350,14 @@ export class BannerComponent implements OnInit, AfterViewInit {
   }
 
   onSubmitSelfDriveForm() {
-    // let address = this.selfDrivingFormGroup.get('address')?.value;
-    // let startDateObj = this.selfDrivingFormGroup.get('startDate')?.value;
-    // let startHour = this.selfDrivingFormGroup.get('startHour')?.value;
-    // let endDate = this.selfDrivingFormGroup.get('endDate')?.value;
-    // let endHour = this.selfDrivingFormGroup.get('endHour')?.value;
-    let address = "test";
-    let startDateInMiliseconds = new Date(2023, 3, 19).getTime();
-    let endDateInMiliseconds = new Date(2023, 3, 20).getTime();
+    let address = this.selfDrivingFormGroup.get('address')?.value;
+    let startDateObj = this.selfDrivingFormGroup.get('startDate')?.value;
+    let startHour = this.selfDrivingFormGroup.get('startHour')?.value;
+    let endDate = this.selfDrivingFormGroup.get('endDate')?.value;
+    let endHour = this.selfDrivingFormGroup.get('endHour')?.value;
+
+    let startDateInMiliseconds = this.getDateInMiliseconds(startDateObj, startHour);
+    let endDateInMiliseconds = this.getDateInMiliseconds(endDate, endHour);
 
     let navigationExtra: NavigationExtras = {
       queryParams: {
@@ -450,5 +453,12 @@ export class BannerComponent implements OnInit, AfterViewInit {
 
   isValidMunicipalForm() {
     return this.interMunicipalFormGroup.valid;
+  }
+
+  getNDayHoursInMiliseconds(day: number) {
+    const hours = addDays(new Date(), day).getHours();
+    const minutes = addDays(new Date(), day).getMinutes();
+    const finalMinutes = minutes < 30 ? 0 : 30;
+    return (this.getHoursInMiliseconds(String(hours + ":" + finalMinutes)));
   }
 }

@@ -68,6 +68,12 @@ export class RegisterFormComponent {
     deliveryFee: new FormControl("1000")
   });
 
+  toggleLimitDistanceGroup = new FormGroup({
+    isLimitDistance: new FormControl(false),
+    limitDistance: new FormControl("300"),
+    limitDistanceFee: new FormControl("1000")
+  });
+
   forRentFormGroup = this._formBuilder.group({
     //remove this.recommendPrice to clear form value
     defaultPrice: [this.recommendPrice, [Validators.required, Validators.min(100000), Validators.max(5000000)]],

@@ -256,6 +256,10 @@
                                                                     </mat-datepicker-toggle>
                                                                     <mat-datepicker #endRentalDateOfUrbanDriverPicker>
                                                                     </mat-datepicker>
+                                                                    <mat-error
+                                                                        *ngIf="!driverServiceFormGroup.hasError('required')">
+                                                                        Vui lòng chọn ngày hợp lệ
+                                                                    </mat-error>
                                                                 </mat-form-field>
                                                             </div>
                                                             <div class="col l-6">
@@ -296,6 +300,10 @@
                                                                     {{ option }}
                                                                 </mat-option>
                                                             </mat-autocomplete>
+                                                            <mat-error
+                                                                *ngIf="!interMunicipalFormGroup.hasError('required')">
+                                                                Vui lòng nhập địa chỉ hợp lệ
+                                                            </mat-error>
                                                             <!-- địa điểm trả khách -->
                                                         </mat-form-field>
                                                         <mat-form-field style="display: block" appearance="fill">
@@ -309,6 +317,10 @@
                                                                     {{ option }}
                                                                 </mat-option>
                                                             </mat-autocomplete>
+                                                            <mat-error
+                                                                *ngIf="!interMunicipalFormGroup.hasError('required')">
+                                                                Vui lòng nhập địa chỉ hợp lệ
+                                                            </mat-error>
                                                         </mat-form-field>
                                                         <section class="checkbox-white">
                                                             <mat-checkbox formControlName="isOneWay">Tôi muốn đi một
@@ -330,6 +342,10 @@
                                                                     <mat-datepicker
                                                                         #startRentalDateOfMunicipalDriverPicker>
                                                                     </mat-datepicker>
+                                                                    <mat-error
+                                                                        *ngIf="!interMunicipalFormGroup.hasError('required')">
+                                                                        Vui lòng chọn ngày hợp lệ
+                                                                    </mat-error>
                                                                 </mat-form-field>
                                                             </div>
                                                             <div class="col l-6">
