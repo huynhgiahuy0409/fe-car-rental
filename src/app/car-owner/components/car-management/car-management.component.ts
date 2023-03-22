@@ -3,7 +3,8 @@ import localeVietnam from '@angular/common/locales/vi';
 import {
   ChangeDetectionStrategy,
   Component,
-  LOCALE_ID
+  LOCALE_ID,
+  ViewEncapsulation
 } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { FloatLabelType } from '@angular/material/form-field';
@@ -49,6 +50,7 @@ const colors: Record<string, EventColor> = {
       provide: LOCALE_ID, useValue: 'vi-VN'
     },
   ],
+  encapsulation: ViewEncapsulation.None
 })
 export class CarManagementComponent {
   car_id: any;
@@ -92,9 +94,6 @@ export class CarManagementComponent {
   });
 
   ngOnInit(): void {
-    // this.optionControl.valueChanges.subscribe((value) => {
-    //   console.log(value);
-    // });
     this.priceIterateFormGroup.get("limitIterateTime")?.valueChanges.subscribe((value) => {
       if (value === true) {
         this.priceIterateFormGroup.get("limitIterateDate")?.enable();
@@ -136,13 +135,16 @@ export class CarManagementComponent {
       color: colors['busy'],
     },
   ];
-  activeDayIsOpen!: boolean;
+  // activeDayIsOpen!: boolean;
+  activeDayIsOpen = false;
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    // check same month
     if (isSameMonth(new Date(), this.viewDate)) {
+      //check same day and modal list event is open or busy to not open the modal or close the modal
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0 || this.isBusy({ events: events })
+        events.length === 0 || this.isBusy({ events: events }) || Number(this.optionControl.value) < 2
       ) {
         this.activeDayIsOpen = false;
       } else {
@@ -160,7 +162,7 @@ export class CarManagementComponent {
           this.priceByDateFormGroup.get("date")?.setValue(format(new Date(date), "dd/MM/yyyy", { locale: vi }));
           this.toggleShowModalPriceByDate();
           console.log("price option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
-        } else {
+        } else if (actionType === 1) {
           this.disableDate(this.clickedDate);
           // console.log("disabled date");
           // console.log("date option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
@@ -200,7 +202,7 @@ export class CarManagementComponent {
     const actionType = Number(this.optionControl.value);
     if (actionType === 0) {
       console.log("price option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
-    } else {
+    } else if (actionType === 1) {
       console.log("date option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
     }
   }

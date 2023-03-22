@@ -35,9 +35,9 @@
 
 mat-radio-button {
   i {
+    font-size: 130%;
+    padding: 0 10px;
     &.fa-clock-rotate-left {
-      font-size: 130%;
-      padding: 0 10px;
       transform: scaleX(-1) rotate(230deg);
     }
   }
