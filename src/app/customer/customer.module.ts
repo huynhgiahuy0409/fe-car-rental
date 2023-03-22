@@ -8,18 +8,19 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MaterialAngularModule } from '../material-angular/material-angular.module';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { MyFavsComponent } from './components/my-favs/my-favs.component';
+import { SvgAsTemplateModule } from '../shared/svg-as-template/svg-as-template.module';
 
 @NgModule({
   declarations: [
     CustomerComponent,
     SignUpComponent,
-    MyFavsComponent,
   ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     CustomerLayoutModule,
-    MaterialAngularModule
+    MaterialAngularModule,
+    SvgAsTemplateModule
   ]
 })
 export class CustomerModule { }

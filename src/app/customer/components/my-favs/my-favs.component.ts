@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-my-favs',
   templateUrl: './my-favs.component.html',
-  styleUrls: ['./my-favs.component.scss']
+  styleUrls: ['./my-favs.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyFavsComponent {
   modeType: 'wd' | 'sd' = 'sd'
