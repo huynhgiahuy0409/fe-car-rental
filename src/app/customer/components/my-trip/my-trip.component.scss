@@ -43,24 +43,24 @@
     top: 0
 }
 //input material
-::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+.my-trip .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: unset;
     border: .5px solid #ccc;
     background-color: #fff;
 }
-::ng-deep .mat-mdc-form-field-subscript-wrapper {
+.my-trip .mat-mdc-form-field-subscript-wrapper {
     display: none;
 }
 //tabs material
-::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab{
+.my-trip .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab{
     flex-grow: unset !important;
 }
-::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+.my-trip .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
     color: var(--gemstone-color);
 }
-::ng-deep .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+.my-trip .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
     border-color: var(--gemstone-color);
 }
-::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+.my-trip .mat-mdc-tab .mdc-tab__text-label {
     color: black
 }
