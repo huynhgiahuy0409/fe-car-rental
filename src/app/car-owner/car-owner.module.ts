@@ -13,7 +13,6 @@ import { CarOwnerComponent } from './car-owner.component';
 import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CalendarHeaderModule } from './components/calendars/header/calendar-header.module';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
-import { ContractComponent } from './components/contract/contract.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarOwnerService } from './services/car-owner.service';
 
@@ -23,7 +22,6 @@ import { CarOwnerService } from './services/car-owner.service';
     NavbarComponent,
     CarListingComponent,
     CalendarsComponent,
-    ContractComponent,
   ],
   imports: [
     CommonModule,

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CarOwnerComponent } from './car-owner.component';
 import { CalendarsComponent } from './components/calendars/calendars.component';
 import { CarListingComponent } from './components/car-listing/car-listing.component';
-import { ContractComponent } from './components/contract/contract.component';
 
 const routes: Routes = [
   {
@@ -21,7 +20,7 @@ const routes: Routes = [
         path: 'calendars', component: CalendarsComponent
       },
       {
-        path: 'contract', component: ContractComponent
+        path: 'contract', loadChildren: () => import('./components/contract/contract.module').then(m => m.ContractModule)
       },
       {
         path: 'statistics', loadChildren: () => import('./components/statistics/statistics.module').then(m => m.StatisticsModule)
