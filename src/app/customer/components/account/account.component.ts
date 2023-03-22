@@ -29,13 +29,14 @@ export class AccountComponent {
   openEditEmailDialog(){
     this.matDialog.open(EditEmailComponent, {
       enterAnimationDuration: '500ms',
-      exitAnimationDuration: '500ms'
+      exitAnimationDuration: '500ms',
     })
   }
   openEditLicenseDialog(){
     this.matDialog.open(EditDrivingLicenseComponent, {
       enterAnimationDuration: '500ms',
-      exitAnimationDuration: '500ms'
+      exitAnimationDuration: '500ms',
+      height: '100vh'
     })
   }
   openEditUserInfoDialog(){

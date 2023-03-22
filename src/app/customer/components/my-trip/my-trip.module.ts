@@ -6,6 +6,7 @@ import { MyTripRoutingModule } from './my-trip-routing.module';
 import { MyTripComponent } from './my-trip.component';
 import { TripOrderOverviewComponent } from './components/trip-order-overview/trip-order-overview.component';
 import { FilterComponent } from './dialog/filter/filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { FilterComponent } from './dialog/filter/filter.component';
   imports: [
     CommonModule,
     MyTripRoutingModule,
-    MaterialAngularModule
+    MaterialAngularModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MyTripModule { }

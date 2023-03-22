@@ -1,9 +1,9 @@
-.banner{
+.fav-banner{
     padding: 75px 0;
     background: linear-gradient(91.06deg,#06745c,#00a550);
     position: relative;
 }
-.banner .banner-image{
+.fav-banner .fav-banner-image{
     background-image: url("https://www.mioto.vn/static/media/header-favs.48eb4b50.svg");
     position: absolute;
     width: 500px;
@@ -12,21 +12,21 @@
     background-size: contain;
     bottom: 0;
 }
-.banner .content{
+.fav-banner .content{
     z-index: 1;
     color: white;
     position: relative;
 }
-.banner .content .title{
+.fav-banner .content .title{
     margin: 0;
     font-size: 3.2rem;
 }
-.banner .content .mode-toggle{
+.fav-banner .content .mode-toggle{
     display: inline-block;
     border-radius: 25px;
     background-color: #34ad75;
 }
-.banner .content .mode-toggle .sd-button, .banner .content .mode-toggle .wd-button{
+.fav-banner .content .mode-toggle .sd-button, .fav-banner .content .mode-toggle .wd-button{
     outline: none;
     font-size: 1.6rem;
     text-transform: uppercase;
@@ -39,7 +39,7 @@
     font-weight: 600;
     box-sizing: content-box;
 }
-.banner .content .mode-toggle button.active{
+.fav-banner .content .mode-toggle button.active{
     border-radius: inherit;
     box-shadow: 2px 2px 4px rgba(0,0,0,.2), 0 0 4px rgba(0,0,0,.2), -2px 2px 4px rgba(0,0,0,.2);
     background-color: #fff;
