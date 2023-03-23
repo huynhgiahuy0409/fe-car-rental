@@ -74,6 +74,10 @@ export class RegisterFormComponent {
     limitDistanceFee: new FormControl("1000")
   });
 
+  toggleWithDriverGroup = new FormGroup({
+    isWithDriver: new FormControl(false)
+  });
+
   forRentFormGroup = this._formBuilder.group({
     //remove this.recommendPrice to clear form value
     defaultPrice: [this.recommendPrice, [Validators.required, Validators.min(100000), Validators.max(5000000)]],

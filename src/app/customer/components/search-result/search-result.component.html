@@ -112,7 +112,7 @@
                 <div class="icon__div" [id]="ind" [class.active]="item.active">
                     <img [src]="item.icon" alt="vhc" [id]="ind">
                 </div>
-                <p [id]="ind" [class.active]="item.active">{{item.seats}} chỗ</p>
+                <p [id]="ind" [class.active]="item.active" *ngIf="item.seats>2">{{item.seats}} chỗ</p>
                 <p [id]="ind" [class.active]="item.active">({{item.type}})</p>
                 <p [id]="ind">({{item.quantity}} xe)</p>
             </div>

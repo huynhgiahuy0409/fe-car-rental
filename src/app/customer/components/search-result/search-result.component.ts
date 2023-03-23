@@ -57,7 +57,7 @@ export class SearchResultComponent {
     {
       id: 3,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-5-suv.png",
-      seats: 4,
+      seats: 5,
       type: "Gầm cao",
       quantity: 68,
       active: false
@@ -65,7 +65,7 @@ export class SearchResultComponent {
     {
       id: 4,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-7-suv.png",
-      seats: 4,
+      seats: 7,
       type: "Gầm cao",
       quantity: 68,
       active: false
@@ -73,7 +73,7 @@ export class SearchResultComponent {
     {
       id: 5,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-7-mpv.png",
-      seats: 4,
+      seats: 7,
       type: "Gầm thấp",
       quantity: 68,
       active: false
@@ -81,7 +81,7 @@ export class SearchResultComponent {
     {
       id: 6,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-pickup.png",
-      seats: 4,
+      seats: 2,
       type: "Bán tải",
       quantity: 68,
       active: false

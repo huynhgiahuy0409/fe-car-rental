@@ -6,9 +6,6 @@
                 <ng-template matStepLabel>Duyệt cho thuê</ng-template>
             </mat-step>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Đã cọc</ng-template>
-            </mat-step>
-            <mat-step [editable]="false">
                 <ng-template matStepLabel>Đã giao xe</ng-template>
             </mat-step>
             <mat-step [editable]="false">
@@ -73,7 +70,7 @@
             </div>
             <h3 class="renter__phone-title">Số điện thoại</h3>
             <p class="renter__phone">**********</p>
-            <p>Số điện thoại liên hệ sẽ được hiển thị sau khi khách đặt cọc</p>
+            <p>Số điện thoại liên hệ sẽ được hiển thị sau khi đồng ý yêu cầu cho thuê</p>
             <span>
                 <i class="fa-solid fa-square cl-danger"></i> Trạng thái: Đang chờ chủ xe duyệt
             </span>
@@ -86,7 +83,7 @@
                         <p>Đơn giá thuê</p>
                     </div>
                     <div class="table__data">
-                        1 000 000 / ngày
+                        {{formatMoney(1000000)}} / ngày
                     </div>
                 </div>
                 <div class="d-flex-bo flex-wrap-bo table__row">
@@ -94,7 +91,7 @@
                         <p>Tổng phí thuê xe</p>
                     </div>
                     <div class="table__data">
-                        1 000 000 x <strong>1 ngày</strong>
+                        {{formatMoney(1000000)}} x <strong>1 ngày</strong>
                     </div>
                 </div>
                 <div class="d-flex-bo flex-wrap-bo table__row">
@@ -102,7 +99,7 @@
                         <strong>Tổng cộng</strong>
                     </div>
                     <div class="table__data">
-                        <strong>1 000 000 đ</strong>
+                        <strong>{{formatMoney(1000000)}}</strong>
                     </div>
                 </div>
             </div>
@@ -113,16 +110,16 @@
                 <div class="cancel__policies">
                     <div class="cancel__policy">
                         - Thời điểm hủy chuyến <strong>
-                            <=7 </strong> ngày trước khởi hành, phí hủy chuyến <strong>100%</strong> tiền cọc.
+                            <=7 </strong> ngày trước khởi hành, phí hủy chuyến <strong>50%</strong> tiền đã trả.
                     </div>
                     <div class="cancel__policy">
                         - Thời điểm hủy chuyến <strong>
                             >7
                         </strong> ngày trước khởi hành, phí hủy chuyến
-                        <strong>0%</strong> tiền cọc.
+                        <strong>0%</strong> tiền đã trả.
                     </div>
                     <p class="small-note">* Tất cả các trường hợp hủy chuyến trong vòng <strong>1 giờ</strong> kể từ
-                        thời điểm đặt cọc
+                        thời điểm thuê
                         thành công sẽ không áp dụng việc tính Phí hủy chuyến</p>
                 </div>
             </div>
@@ -130,12 +127,8 @@
         <div class="rental__details-column pt-0">
             <div class="renter__money-col">
                 <p>TIỀN ĐÃ TRẢ</p>
-                <p class="primary-text">700 000đ</p>
+                <p class="primary-text">{{formatMoney(1000000)}}</p>
             </div>
-            <!-- <div class="renter__money-col">
-                <p>TIỀN TRẢ SAU</p>
-                <p>700 000đ</p>
-            </div> -->
         </div>
     </div>
     <div class="btn__actions">

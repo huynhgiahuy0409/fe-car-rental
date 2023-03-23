@@ -214,6 +214,7 @@
                             <p class="cl-danger register__car-subtitle">Bật tính năng cho phép khách hàng đặt xe
                                 ngay lập tức không cần chủ xe phê duyệt. (Phù hợp với chủ xe không thường xuyên
                                 online hoặc kiểm tra điện thoại)
+                                <br />
                                 Lưu ý : Bạn cần đảm bảo việc cần cập nhật lịch bận xe thường xuyên, trường hợp hủy
                                 chuyến sau
                                 khi khách đặt cọc vì chưa cập nhật
@@ -386,6 +387,18 @@
                                 <p class="discount__subtitle">
                                     {{toggleLimitDistanceGroup.get('limitDistanceFee')?.value+"Đ"}}</p>
                                 <p class="text-secondary">Phí đề xuất : 3000Đ</p>
+                            </div>
+                        </div>
+
+                        <!-- start form field -->
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field">
+                                <h2>Có tài xế</h2>
+                            </div>
+                            <div class="discount__status-field ml-auto" [formGroup]="toggleWithDriverGroup">
+                                <mat-slide-toggle formControlName="isWithDriver">
+                                </mat-slide-toggle>
                             </div>
                         </div>
 
