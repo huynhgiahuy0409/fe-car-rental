@@ -1,16 +1,22 @@
 import { NumberInput } from '@angular/cdk/coercion';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  DetachedRouteHandle,
+  NavigationExtras,
+  Router,
+  RouteReuseStrategy,
+} from '@angular/router';
 import { CAR_FEATURES } from 'src/app/models/constance';
-
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
-export class SearchResultComponent {
+export class SearchResultComponent implements OnDestroy {
   startDate!: Date;
   endDate!: Date;
   address!: String;
@@ -21,81 +27,84 @@ export class SearchResultComponent {
   hrs = [
     {
       value: 0,
-      name: '0:00'
+      name: '0:00',
     },
     {
       value: 1800000,
-      name: '0:30'
+      name: '0:30',
     },
-  ]
+  ];
 
   carTypeOptions = [
     {
       id: 0,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-mini.png",
+      icon: 'https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-mini.png',
       seats: 4,
-      type: "Mini",
+      type: 'Mini',
       quantity: 68,
-      active: true
+      active: true,
     },
     {
       id: 1,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-sedan.png",
+      icon: 'https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-sedan.png',
       seats: 4,
-      type: "Sedan",
+      type: 'Sedan',
       quantity: 68,
-      active: true
+      active: true,
     },
     {
       id: 2,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-hatchback.png",
+      icon: 'https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-hatchback.png',
       seats: 4,
-      type: "Hatchback",
+      type: 'Hatchback',
       quantity: 68,
-      active: false
+      active: false,
     },
     {
       id: 3,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-5-suv.png",
-      seats: 5,
+      seats: 4,
       type: "Gầm cao",
       quantity: 68,
-      active: false
+      active: false,
     },
     {
       id: 4,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-7-suv.png",
-      seats: 7,
+      seats: 4,
       type: "Gầm cao",
       quantity: 68,
-      active: false
+      active: false,
     },
     {
       id: 5,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-7-mpv.png",
-      seats: 7,
+      seats: 4,
       type: "Gầm thấp",
       quantity: 68,
-      active: false
+      active: false,
     },
     {
       id: 6,
       icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-pickup.png",
-      seats: 2,
+      seats: 4,
       type: "Bán tải",
       quantity: 68,
-      active: false
+      active: false,
     },
-  ]
+  ];
 
   isShowAdvancedOptions = true;
   featureList = CAR_FEATURES;
-  addedFeature = ["map", "bluetooth"];
+  addedFeature = ['map', 'bluetooth'];
   ableToShowRoadTabModel = false;
   showRoadTabModel = false;
-  currentTab !: NumberInput;
-  constructor(private router: ActivatedRoute, private formBuilder: FormBuilder) {
-  }
+  currentTab!: NumberInput;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   searchBarFormGroup = this.formBuilder.group({
     address: [''],
@@ -106,38 +115,51 @@ export class SearchResultComponent {
     endHours: [0],
     pickUpPlace: [''],
     destinationPlace: [''],
-    isOneWay: [false]
+    isOneWay: [false],
   });
 
   ngOnInit(): void {
+    console.log('SEARCH RESULT INITTTTTTTT');
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
-    this.router.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe((params) => {
       this.startDate = new Date(Number(params['startDate']));
       this.endDate = new Date(Number(params['endDate']));
       this.address = params['address'];
       this.withDriver = params['withDriver'] === 'true';
       this.urbanArea = params['urbanArea'] === 'true';
       this.interMunicipal = params['interMunicipal'] === 'true';
-      this.searchBarFormGroup.get("pickUpPlace")?.setValue(params['pickUpPlace']);
-      this.searchBarFormGroup.get("destinationPlace")?.setValue(params['destinationPlace']);
-      this.searchBarFormGroup.get("isOneWay")?.setValue(params['isOneWay'] === 'true');
+      this.searchBarFormGroup
+        .get('pickUpPlace')
+        ?.setValue(params['pickUpPlace']);
+      this.searchBarFormGroup
+        .get('destinationPlace')
+        ?.setValue(params['destinationPlace']);
+      this.searchBarFormGroup
+        .get('isOneWay')
+        ?.setValue(params['isOneWay'] === 'true');
       this.currentTab = params['interMunicipal'] === 'true' ? 1 : 0;
-      this.ableToShowRoadTabModel = params['urbanArea'] === 'true' || params['interMunicipal'] === 'true';
+      this.ableToShowRoadTabModel =
+        params['urbanArea'] === 'true' || params['interMunicipal'] === 'true';
       this.setSearchBarValue();
       this.setHrsData();
     });
 
-    this.searchOptionsFormGroup.get("limitDistance")?.valueChanges.subscribe(value => {
-      if (Number(value) === 0) {
-        this.searchOptionsFormGroup.get("limitDistanceFee")?.setValue("0");
-      } else {
-        this.searchOptionsFormGroup.get("limitDistanceFee")?.setValue("10000");
-      }
-    });
+    this.searchOptionsFormGroup
+      .get('limitDistance')
+      ?.valueChanges.subscribe((value) => {
+        if (Number(value) === 0) {
+          this.searchOptionsFormGroup.get('limitDistanceFee')?.setValue('0');
+        } else {
+          this.searchOptionsFormGroup
+            .get('limitDistanceFee')
+            ?.setValue('10000');
+        }
+      });
   }
 
   ngOnDestroy(): void {
+    console.log('SEARCH RESULT DESSSSSSSSS');
     document.body.style.overflow = 'auto';
   }
 
@@ -155,10 +177,10 @@ export class SearchResultComponent {
     maxSeats: 10,
     minYears: 2005,
     maxYears: new Date().getFullYear(),
-    fuel: ["0"],
-    fuelConsumption: ["0"],
-    limitDistance: ["551"],
-    limitDistanceFee: ["10000"]
+    fuel: ['0'],
+    fuelConsumption: ['0'],
+    limitDistance: ['551'],
+    limitDistanceFee: ['10000'],
   });
 
   private setHrsData() {
@@ -186,18 +208,44 @@ export class SearchResultComponent {
   }
 
   setSearchBarValue() {
-    let finalAddress = this.interMunicipal ? this.searchBarFormGroup.value.pickUpPlace + ' - ' + this.searchBarFormGroup.value.destinationPlace : this.address;
+    let finalAddress = this.interMunicipal
+      ? this.searchBarFormGroup.value.pickUpPlace +
+        ' - ' +
+        this.searchBarFormGroup.value.destinationPlace
+      : this.address;
     if (!this.interMunicipal) {
-      this.searchBarFormGroup.get("addressUrban")?.setValue(String(this.address));
+      this.searchBarFormGroup
+        .get('addressUrban')
+        ?.setValue(String(this.address));
     }
     if (this.ableToShowRoadTabModel) {
-      this.searchBarFormGroup.get("address")?.disable();
+      this.searchBarFormGroup.get('address')?.disable();
     }
-    this.searchBarFormGroup.get("address")?.setValue(String(finalAddress));
-    this.searchBarFormGroup.get("startDate")?.setValue(new Date(this.startDate));
-    this.searchBarFormGroup.get("endDate")?.setValue(new Date(this.endDate));
-    this.searchBarFormGroup.get("startHours")?.setValue(Number(this._convertHrsAndMinutesToMiliseconds(this.startDate.getHours(), this.startDate.getMinutes())));
-    this.searchBarFormGroup.get("endHours")?.setValue(Number(this._convertHrsAndMinutesToMiliseconds(this.endDate.getHours(), this.endDate.getMinutes())));
+    this.searchBarFormGroup.get('address')?.setValue(String(finalAddress));
+    this.searchBarFormGroup
+      .get('startDate')
+      ?.setValue(new Date(this.startDate));
+    this.searchBarFormGroup.get('endDate')?.setValue(new Date(this.endDate));
+    this.searchBarFormGroup
+      .get('startHours')
+      ?.setValue(
+        Number(
+          this._convertHrsAndMinutesToMiliseconds(
+            this.startDate.getHours(),
+            this.startDate.getMinutes()
+          )
+        )
+      );
+    this.searchBarFormGroup
+      .get('endHours')
+      ?.setValue(
+        Number(
+          this._convertHrsAndMinutesToMiliseconds(
+            this.endDate.getHours(),
+            this.endDate.getMinutes()
+          )
+        )
+      );
   }
 
   handleClickOption(id: number) {
@@ -221,11 +269,11 @@ export class SearchResultComponent {
     } else if (min === 2 && max < 10) {
       return `Dưới ${max}`;
     } else if (min === 2 && max > 9) {
-      return "Bất kỳ";
+      return 'Bất kỳ';
     } else if (min > 2 && max > 9) {
       return `Trên ${min}`;
     }
-    return "";
+    return '';
   }
 
   getYearRangeTitle() {
@@ -236,41 +284,47 @@ export class SearchResultComponent {
     } else if (min === 2005 && max < this.todayDate.getFullYear()) {
       return `Trước ${max}`;
     } else if (min === 2005 && max > this.todayDate.getFullYear() - 1) {
-      return "Bất kỳ";
+      return 'Bất kỳ';
     } else if (min > 2005 && max > this.todayDate.getFullYear() - 1) {
       return `Sau ${min}`;
     }
-    return "";
+    return '';
   }
 
   getFuelConsumptionTitle() {
-    const fuelConsumption = Number(this.searchOptionsFormGroup.value.fuelConsumption);
+    const fuelConsumption = Number(
+      this.searchOptionsFormGroup.value.fuelConsumption
+    );
     if (fuelConsumption === 0) {
-      return "Bất kỳ";
+      return 'Bất kỳ';
     } else {
       return `Từ dưới ${fuelConsumption}L/100km`;
     }
   }
 
   getLimitDistanceTitle() {
-    const limitDistance = Number(this.searchOptionsFormGroup.value.limitDistance);
+    const limitDistance = Number(
+      this.searchOptionsFormGroup.value.limitDistance
+    );
     if (limitDistance === 0) {
       return "Không giới hạn";
-    } else if (limitDistance < 550) {
+    } else if (limitDistance < 551) {
       return `Trên ${limitDistance}km/ngày`;
     } else {
-      return "Bất kỳ";
+      return 'Bất kỳ';
     }
   }
 
   getLimitDistanceFeeTitle() {
-    const limitDistanceFee = Number(this.searchOptionsFormGroup.value.limitDistanceFee);
+    const limitDistanceFee = Number(
+      this.searchOptionsFormGroup.value.limitDistanceFee
+    );
     if (limitDistanceFee === 0) {
-      return "Miễn phí";
+      return 'Miễn phí';
     } else if (limitDistanceFee < 5001) {
       return `Từ dưới ${limitDistanceFee}đ/km`;
     } else {
-      return "Bất kỳ";
+      return 'Bất kỳ';
     }
   }
 
@@ -280,7 +334,7 @@ export class SearchResultComponent {
 
   toggleFeature(feature: string) {
     if (this.isActiveFeature(feature)) {
-      this.addedFeature = this.addedFeature.filter(item => item !== feature);
+      this.addedFeature = this.addedFeature.filter((item) => item !== feature);
     } else {
       this.addedFeature.push(feature);
     }
@@ -301,12 +355,20 @@ export class SearchResultComponent {
       maxSeats: 10,
       minYears: 2005,
       maxYears: new Date().getFullYear(),
-      fuel: "0",
-      fuelConsumption: "0",
-      limitDistance: "551",
-      limitDistanceFee: "10000"
+      fuel: '0',
+      fuelConsumption: '0',
+      limitDistance: '551',
+      limitDistanceFee: '10000',
     });
     this.addedFeature = [];
-    this.carTypeOptions.forEach(item => item.active = false);
+    this.carTypeOptions.forEach((item) => (item.active = false));
+  }
+  navigateCarDetail() {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        routeBy: 'bar',
+      },
+    };
+    this.router.navigate(['car/huy/123'], navigationExtras);
   }
 }

@@ -13,7 +13,6 @@ export class SignUpComponent {
   signUpEleRef!: ElementRef
   isSuccessSignUp = false
   constructor(){
-     
   }
 
   onClickSignUp(){
@@ -26,5 +25,11 @@ export class SignUpComponent {
         }, 2000);
       }),
     ).subscribe()
+  }
+  ngOnInit(): void {
+    console.log("sign up init");
+  }
+  ngOnDestroy(){
+    console.log("sign up des");
   }
 }

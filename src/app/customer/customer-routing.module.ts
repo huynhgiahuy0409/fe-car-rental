@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
+import { DemoComponent } from './components/demo/demo.component';
 import { MyFavsComponent } from './components/my-favs/my-favs.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CustomerComponent } from './customer.component';
@@ -25,13 +26,17 @@ const routes: Routes = [
           import('./components/car/car.module').then((m) => m.CarModule),
       },
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
         path: 'sign-up',
         component: SignUpComponent,
       },
       {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
+        path: 'demo',
+        component: DemoComponent,
       },
       {
         path: 'promo',
@@ -46,7 +51,7 @@ const routes: Routes = [
           ),
       },
       { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
-      { path: "find/filter", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule) },
+      { path: "find", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule) },
       {
         path: 'my-favs', loadChildren: () => import("./components/my-favs/my-favs.module").then(m => m.MyFavsModule)
       },
@@ -58,5 +63,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers: [
+  ],
 })
 export class CustomerRoutingModule { }

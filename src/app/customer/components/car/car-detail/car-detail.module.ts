@@ -11,6 +11,7 @@ import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confir
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
 import { ModuleDealComponent } from './module-deal/module-deal.component';
 import { CoverComponent } from './cover/cover.component';
+import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { CoverComponent } from './cover/cover.component';
     MaterialAngularModule,
     FormsModule,
     ReactiveFormsModule,
+    CustomerRoutingModule
   ],
   exports: [
     CarDetailComponent

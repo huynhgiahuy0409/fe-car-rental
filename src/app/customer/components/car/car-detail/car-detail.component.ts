@@ -2,7 +2,7 @@ import { SD_MODE, WD_MODE } from './../../../../models/constance';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouteReuseStrategy } from '@angular/router';
 import {
   RentalHourOption,
   TimerUtilService,
@@ -17,7 +17,7 @@ import { Location } from '@angular/common';
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.scss'],
-  providers: [TimerUtilService],
+  
 })
 export class CarDetailComponent implements OnInit {
   navigateBy!: any

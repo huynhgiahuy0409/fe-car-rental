@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
+import { CustomRouteReuseStrategy } from './customer/custom-route-reuse-strategy';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
       import('./customer/customer.module').then((m) => m.CustomerModule),
+      providers: [{
+        provide: RouteReuseStrategy,
+        useClass: CustomRouteReuseStrategy,
+      },]
   },
   {
     path: 'admin',
