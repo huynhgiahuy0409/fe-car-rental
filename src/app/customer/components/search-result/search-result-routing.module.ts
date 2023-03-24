@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SearchResultComponent } from './search-result.component';
 
 const routes: Routes = [
-  { path: "filter", component: SearchResultComponent },
+  { path: "filter/:123123", component: SearchResultComponent },
   // { path: "withdriver", component: SearchResultComponent },
 ];
 

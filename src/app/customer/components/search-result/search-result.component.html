@@ -1,16 +1,20 @@
 <div class="search__result-container bx__shadow-1">
-    <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow" [formGroup]="searchBarFormGroup">
+    <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow"
+        [formGroup]="searchBarFormGroup">
         <div class="search__option-modal" *ngIf="showRoadTabModel">
             <div class="search__option-box bx__shadow-1">
                 <div class="text-end" (click)="toggleShowRoadTabModel()">
                     <i class="fa-solid fa-xmark cursor-pointer"></i>
                 </div>
-                <mat-tab-group animationDuration="500ms" [selectedIndex]="currentTab">
+                <mat-tab-group animationDuration="500ms"
+                    [selectedIndex]="currentTab">
                     <mat-tab label="Nội thành">
                         <p class="primary-text fw-bold option-title">Điểm đón</p>
                         <mat-form-field appearance="fill" class="w-fit">
-                            <i class="fa-solid fa-map-pin primary-text prefix-label" matPrefix></i>
-                            <input matInput formControlName="addressUrban" placeholder="Nhập địa điểm cụ thể">
+                            <i class="fa-solid fa-map-pin primary-text
+                                prefix-label" matPrefix></i>
+                            <input matInput formControlName="addressUrban"
+                                placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
                         <p class="text-secondary">Di chuyển trong thành phố</p>
                         <div class="distance-range">
@@ -23,17 +27,24 @@
                     <mat-tab label="Liên tỉnh">
                         <p class="primary-text fw-bold option-title">Lộ trình</p>
                         <mat-form-field appearance="fill" class="w-fit">
-                            <i class="fa-solid fa-map-pin primary-text prefix-label" matPrefix></i>
-                            <input matInput formControlName="pickUpPlace" placeholder="Nhập địa điểm cụ thể">
+                            <i class="fa-solid fa-map-pin primary-text
+                                prefix-label" matPrefix></i>
+                            <input matInput formControlName="pickUpPlace"
+                                placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="w-fit">
-                            <i class="fa-solid fa-circle primary-text prefix-label" matPrefix></i>
-                            <input matInput formControlName="destinationPlace" placeholder="Nhập địa điểm cụ thể">
+                            <i class="fa-solid fa-circle primary-text
+                                prefix-label" matPrefix></i>
+                            <input matInput formControlName="destinationPlace"
+                                placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
-                        <mat-checkbox formControlName="isOneWay">Tôi muốn đi một chiều</mat-checkbox>
+                        <mat-checkbox formControlName="isOneWay">Tôi muốn đi một
+                            chiều</mat-checkbox>
                         <p *ngIf="!searchBarFormGroup.value.isOneWay"><i
-                                class="fa-solid fa-flag primary-text flag-return"></i>Trả khách tại điểm đón</p>
-                        <p class="text-secondary text-note">Di chuyển ngoài thành phố, hành trình hai chiều</p>
+                                class="fa-solid fa-flag primary-text
+                                flag-return"></i>Trả khách tại điểm đón</p>
+                        <p class="text-secondary text-note">Di chuyển ngoài
+                            thành phố, hành trình hai chiều</p>
                         <button class="w-fit btn-search__modal">tìm kiếm</button>
                     </mat-tab>
                 </mat-tab-group>
@@ -42,16 +53,20 @@
         <div class="search__bar-item">
             <label>Địa điểm</label>
             <mat-form-field appearance="fill" *ngIf="!ableToShowRoadTabModel">
-                <input matInput formControlName="address" placeholder="Nhập địa chỉ muốn tìm kiếm">
+                <input matInput formControlName="address" placeholder="Nhập địa
+                    chỉ muốn tìm kiếm">
             </mat-form-field>
-            <mat-form-field appearance="fill" *ngIf="ableToShowRoadTabModel" (click)="toggleShowRoadTabModel()">
-                <input matInput formControlName="address" placeholder="Nhập địa chỉ muốn tìm kiếm">
+            <mat-form-field appearance="fill" *ngIf="ableToShowRoadTabModel"
+                (click)="toggleShowRoadTabModel()">
+                <input matInput formControlName="address" placeholder="Nhập địa
+                    chỉ muốn tìm kiếm">
             </mat-form-field>
         </div>
         <div class="search__bar-item">
             <label>Bắt đầu</label>
             <mat-form-field appearance="fill" class="search__start-date">
-                <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" [min]="todayDate">
+                <input matInput [matDatepicker]="startDatePicker"
+                    formControlName="startDate" [min]="todayDate">
                 <mat-datepicker-toggle matIconSuffix [for]="startDatePicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
@@ -68,7 +83,8 @@
         <div class="search__bar-item">
             <label>Kết thúc</label>
             <mat-form-field appearance="fill" class="search__start-date">
-                <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" [min]="todayDate">
+                <input matInput [matDatepicker]="endDatePicker"
+                    formControlName="endDate" [min]="todayDate">
                 <mat-datepicker-toggle matIconSuffix [for]="endDatePicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
@@ -99,20 +115,23 @@
             <input value="300" matSliderStartThumb formControlName="priceMin">
             <input value="3000" matSliderEndThumb formControlName="priceMax">
         </mat-slider>
-        <p style="text-align: end;">{{searchOptionsFormGroup.get("priceMin")?.value}}K -
+        <p style="text-align: end;">{{searchOptionsFormGroup.get("priceMin")?.value}}K
+            -
             {{searchOptionsFormGroup.get("priceMax")?.value===3000 ?
             "Bất kỳ" :
             searchOptionsFormGroup.get("priceMax")?.value +"K"}}</p>
-        <mat-checkbox formControlName="isFiveStarDriver" class="" color="primary">Chủ xe 5 <i
+        <mat-checkbox formControlName="isFiveStarDriver" class=""
+            color="primary">Chủ xe 5 <i
                 class="fa-solid fa-star"></i></mat-checkbox>
         <h4 class="car__type-title">Loại xe</h4>
         <div class="d-flex-bo flex-wrap-bo car__type-list">
-            <div class="car__type-item" *ngFor="let item of carTypeOptions;index as ind"
+            <div class="car__type-item" *ngFor="let item of carTypeOptions;index
+                as ind"
                 (click)="handleClickOption(ind)">
                 <div class="icon__div" [id]="ind" [class.active]="item.active">
                     <img [src]="item.icon" alt="vhc" [id]="ind">
                 </div>
-                <p [id]="ind" [class.active]="item.active" *ngIf="item.seats>2">{{item.seats}} chỗ</p>
+                <p [id]="ind" [class.active]="item.active">{{item.seats}} chỗ</p>
                 <p [id]="ind" [class.active]="item.active">({{item.type}})</p>
                 <p [id]="ind">({{item.quantity}} xe)</p>
             </div>
@@ -143,15 +162,17 @@
             <mat-checkbox formControlName="discount" class="">Xe giảm giá</mat-checkbox>
         </div>
         <div class="advanced__options-toggle">
-            <p *ngIf="isShowAdvancedOptions" (click)="toggleShowAdvancedOptions()">Cơ bản <i
+            <p *ngIf="isShowAdvancedOptions"
+                (click)="toggleShowAdvancedOptions()">Cơ bản <i
                     class="fa-solid fa-chevron-up" style="color:#57a8ff"></i></p>
-            <p *ngIf="!isShowAdvancedOptions" (click)="toggleShowAdvancedOptions()">Nâng cao <i
+            <p *ngIf="!isShowAdvancedOptions"
+                (click)="toggleShowAdvancedOptions()">Nâng cao <i
                     class="fa-solid fa-chevron-down" style="color:#57a8ff"></i>
             </p>
         </div>
         <div class="advanced__options-container" *ngIf="isShowAdvancedOptions">
             <h4 class="car__type-title">Giới hạn số km</h4>
-            <mat-slider min="0" [max]="550" style="width: 100%;" step="50">
+            <mat-slider min="0" [max]="551" style="width: 100%;" step="50">
                 <input value="0" matSliderThumb formControlName="limitDistance">
             </mat-slider>
             <p class="text-end">
@@ -159,7 +180,8 @@
             </p>
             <h4 class="car__type-title">Phí vượt giới hạn</h4>
             <mat-slider min="0" [max]="10000" style="width: 100%;" step="5000">
-                <input value="0" matSliderThumb formControlName="limitDistanceFee" />
+                <input value="0" matSliderThumb
+                    formControlName="limitDistanceFee" />
             </mat-slider>
             <p class="text-end">
                 {{getLimitDistanceFeeTitle()}}
@@ -173,9 +195,12 @@
                 {{getSeatRangeTitle()}}
             </p>
             <h4 class="car__type-title">Năm sản xuất</h4>
-            <mat-slider min="2005" [max]="todayDate.getFullYear()" style="width: 100%;">
-                <input value="2005" matSliderStartThumb formControlName="minYears">
-                <input [value]="todayDate.getFullYear()" matSliderEndThumb formControlName="maxYears">
+            <mat-slider min="2005" [max]="todayDate.getFullYear()" style="width:
+                100%;">
+                <input value="2005" matSliderStartThumb
+                    formControlName="minYears">
+                <input [value]="todayDate.getFullYear()" matSliderEndThumb
+                    formControlName="maxYears">
             </mat-slider>
             <p class="text-end">
                 {{getYearRangeTitle()}}
@@ -190,32 +215,38 @@
             </mat-form-field>
             <h4 class="car__type-title">Mức tiêu thụ nhiên liệu</h4>
             <mat-slider min="0" [max]="30" style="width: 100%;" step="5">
-                <input value="0" matSliderThumb formControlName="fuelConsumption">
+                <input value="0" matSliderThumb
+                    formControlName="fuelConsumption">
             </mat-slider>
             <p class="text-end">
                 {{getFuelConsumptionTitle()}}
             </p>
             <h4 class="car__type-title">Tính năng</h4>
             <ul class="search__feature-list">
-                <li class="text-center" *ngFor="let item of featureList" [class.active]="isActiveFeature(item.id)"
+                <li class="text-center" *ngFor="let item of featureList"
+                    [class.active]="isActiveFeature(item.id)"
                     (click)="toggleFeature(item.id)">
                     <img [src]="item.iconUrl" alt="" width="20">
                     <p>{{item.title}}</p>
                 </li>
             </ul>
         </div>
-        <button class="btn-unfilter" (click)="resetDefaultOption()"><i class="fa-solid fa-arrows-rotate"></i> Bỏ
+        <button class="btn-unfilter" (click)="resetDefaultOption()"><i
+                class="fa-solid fa-arrows-rotate"></i> Bỏ
             lọc</button>
     </div>
     <div id="right">
         <div class="d-flex-bo flex-wrap-bo search__result">
-            <div class="search__result-box bg-white bx__shadow" *ngFor="let item of [1,2,3,4]" (click)="navigateCarDetail()">
+            <div class="search__result-box bg-white bx__shadow" *ngFor="let item
+                of [1,2,1,1,1,1,1,1,1,1,1,1,1,3,4]" (click)="openCarDetailDialog('sd','huy','123')">
                 <div class="img__title-container">
-                    <img src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_thuathienhue/kia_cerato_2021/p/g/2022/07/25/12/DgBH4Uk1Se1DZCvz0o1Hbw.jpg"
+                    <img
+                        src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_thuathienhue/kia_cerato_2021/p/g/2022/07/25/12/DgBH4Uk1Se1DZCvz0o1Hbw.jpg"
                         alt="">
                     <div class="img__title">
                         <h4>KIA CERATO 2021</h4>
-                        <p>5.0<i class="fa-solid fa-star primary-text"></i> • 5 chuyến ~ 2km
+                        <p>5.0<i class="fa-solid fa-star primary-text"></i> • 5
+                            chuyến ~ 2km
                         </p>
                     </div>
                 </div>
@@ -238,10 +269,17 @@
                     </div>
                 </div>
                 <div class="box__location">
-                    <i class="fa-solid fa-location-dot"></i> Quận Tân Bình, Hồ Chí Minh
+                    <i class="fa-solid fa-location-dot"></i> Quận Tân Bình, Hồ
+                    Chí Minh
                 </div>
             </div>
 
         </div>
+    </div>
+</div>
+<div class="overlay" *ngIf="isShowOverlay">
+    <app-car-detail [rentalModePath]="rentalModePath"></app-car-detail>
+    <div class="close-btn" (click)="closeCarDetailDialog()">
+        <i class="fa-solid fa-circle-xmark" style="color: #fff;"></i>
     </div>
 </div>

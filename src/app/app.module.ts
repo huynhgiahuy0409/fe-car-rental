@@ -18,10 +18,6 @@ import { CustomRouteReuseStrategy } from './customer/custom-route-reuse-strategy
     BrowserAnimationsModule
   ],
   providers: [
-    {
-      provide: RouteReuseStrategy,
-      useClass: CustomRouteReuseStrategy,
-    },
   ],
   bootstrap: [AppComponent],
 })

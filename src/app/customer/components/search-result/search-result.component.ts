@@ -1,6 +1,8 @@
 import { NumberInput } from '@angular/cdk/coercion';
+import { Location } from '@angular/common';
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import {
   ActivatedRoute,
   ActivatedRouteSnapshot,
@@ -9,7 +11,10 @@ import {
   Router,
   RouteReuseStrategy,
 } from '@angular/router';
+import { he } from 'date-fns/locale';
 import { CAR_FEATURES } from 'src/app/models/constance';
+import { RouteCatchService } from '../../route-catch.service';
+import { CarDetailComponent } from '../car/car-detail/car-detail.component';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -100,10 +105,14 @@ export class SearchResultComponent implements OnDestroy {
   ableToShowRoadTabModel = false;
   showRoadTabModel = false;
   currentTab!: NumberInput;
+  currentUrl!: string
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private routeCatchService: RouteCatchService,
+    private matDialog: MatDialog,
+    private location: Location
   ) {}
 
   searchBarFormGroup = this.formBuilder.group({
@@ -156,6 +165,13 @@ export class SearchResultComponent implements OnDestroy {
             ?.setValue('10000');
         }
       });
+
+    console.log(this.router.url
+      );
+    const fragment = this.activatedRoute.snapshot.fragment!;
+    const queryParams = this.activatedRoute.snapshot.queryParams;
+    const currentUrlTree = this.router.createUrlTree([this.router.url], {queryParams, fragment});
+    this.currentUrl = this.router.createUrlTree([this.router.url], {queryParams, fragment}).toString();
   }
 
   ngOnDestroy(): void {
@@ -364,11 +380,17 @@ export class SearchResultComponent implements OnDestroy {
     this.carTypeOptions.forEach((item) => (item.active = false));
   }
   navigateCarDetail() {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        routeBy: 'bar',
-      },
-    };
-    this.router.navigate(['car/huy/123'], navigationExtras);
+    this.router.navigate(['car/huy/123']);
+  }
+  isShowOverlay = false
+  rentalModePath!: 'sd' | 'wd' 
+  openCarDetailDialog(rentalModePath: 'sd' | 'wd', productName: string, productCode: string){
+    this.isShowOverlay = true
+    this.rentalModePath = rentalModePath
+    this.location.replaceState(`/car/${rentalModePath}/${productName}/${productCode}`);
+  }
+  closeCarDetailDialog(){
+    this.isShowOverlay = false
+    this.location.replaceState(this.currentUrl);
   }
 }

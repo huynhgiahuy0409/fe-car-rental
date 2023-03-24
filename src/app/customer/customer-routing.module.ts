@@ -23,7 +23,7 @@ const routes: Routes = [
       {
         path: 'car',
         loadChildren: () =>
-          import('./components/car/car.module').then((m) => m.CarModule),
+          import('./components/car/car.module').then((m) => m.CarModule)
       },
       {
         path: '',
@@ -51,7 +51,7 @@ const routes: Routes = [
           ),
       },
       { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
-      { path: "find", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule) },
+      { path: "find", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule)},
       {
         path: 'my-favs', loadChildren: () => import("./components/my-favs/my-favs.module").then(m => m.MyFavsModule)
       },

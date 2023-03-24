@@ -1,8 +1,8 @@
 import { SD_MODE, WD_MODE } from './../../../../models/constance';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ComponentFactory, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, NavigationEnd, Router, RouteReuseStrategy } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationExtras, Router, RouteReuseStrategy } from '@angular/router';
 import {
   RentalHourOption,
   TimerUtilService,
@@ -12,6 +12,7 @@ import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
 import { filter, map } from 'rxjs';
 import { Location } from '@angular/common';
+import { RouteCatchService } from 'src/app/customer/route-catch.service';
 
 @Component({
   selector: 'app-car-detail',
@@ -20,7 +21,6 @@ import { Location } from '@angular/common';
   
 })
 export class CarDetailComponent implements OnInit {
-  navigateBy!: any
   @Input()
   rentalModePath!: string;
   isFavoriteCar: boolean = false;
@@ -34,7 +34,9 @@ export class CarDetailComponent implements OnInit {
     private __fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private routeCatchService: RouteCatchService,
+    private route: ActivatedRoute
   ) {
     this.startAndReturnHrOptions =
       this.timerUtilService.startAndReturnHrOptions;
@@ -47,10 +49,23 @@ export class CarDetailComponent implements OnInit {
     });
     this.activatedRoute.data.subscribe((data) => {
       this.rentalModePath = data['rentalModePath'];
+      console.log(this.rentalModePath);
+      
     });
-    this.navigateBy = this.location.getState()
+    
   }
+  startDate!: Date;
+  endDate!: Date;
+  address!: string;
+  savedScrollPosition!: any
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.startDate = new Date(+params['startDate']);
+      this.endDate = new Date(+params['endDate']);
+      this.address = params['address'];
+      
+    });
+    this.savedScrollPosition = document.documentElement.scrollTop;
   }
   editDeliveryLocation(title: string) {
     this.matDialog.open(DeliveryLocationEditComponent, {
@@ -75,7 +90,10 @@ export class CarDetailComponent implements OnInit {
       height: '100vh',
     });
   }
-  back() {
-    this.router.navigate(['/find'])
+  onClose(){
+    const navigationExtras: NavigationExtras = {
+      skipLocationChange: true,
+    };
+    this.router.navigate(['/find/filter'], navigationExtras);
   }
 }

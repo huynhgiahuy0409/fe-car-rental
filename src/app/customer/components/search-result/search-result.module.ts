@@ -1,3 +1,4 @@
+import { CarDetailModule } from './../car/car-detail/car-detail.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -16,7 +17,8 @@ import { SearchResultComponent } from './search-result.component';
     SearchResultRoutingModule,
     MaterialAngularModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CarDetailModule
   ]
 })
 export class SearchResultModule { }
