@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarSelfDrivingRoutingModule } from './car-self-driving-routing.module';
 import { CarSelfDrivingComponent } from './car-self-driving.component';
+import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { CarSelfDrivingComponent } from './car-self-driving.component';
   ],
   imports: [
     CommonModule,
-    CarSelfDrivingRoutingModule
+    CarSelfDrivingRoutingModule,
+    MaterialAngularModule
   ]
 })
 export class CarSelfDrivingModule { }

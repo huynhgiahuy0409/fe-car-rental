@@ -1,5 +1,12 @@
+// carousel
+::ng-deep .car-detail-container.car-detail-dialog .module-deal .carousel-arrow--next{
+    right: 20px;
+}
+::ng-deep .car-detail-container.car-detail-dialog .module-deal .carousel-arrow--prev{
+    left: 5px;
+}
 .module-deal {
-    padding: 40px 10px;
+    padding: 40px 20px
 }
 
 .module-deal .title {
@@ -7,6 +14,9 @@
     color: #141414;
     margin-bottom: 5px;
     font-weight: 500;
+}
+::ng-deep .car-detail-container.car-detail-dialog .module-deal .title {
+    color: #fff;
 }
 
 // relative-car
@@ -99,7 +109,7 @@
 }
 
 .desc-car {
-    padding: 5px;
+    padding: 10px;
 }
 
 .desc-car__name {

@@ -1,20 +1,58 @@
 
+//
 .car-detail-container{
     background-color: #fff;
-    height: 100vh;
-    overflow: scroll;
 }
-// car detail
-.module-detail .car-detail {
-    padding-right: 50px;
-    font-size: 1.6rem;
+.car-detail-container.car-detail-dialog{
+    background-color: transparent
+}
+.car-detail-container.car-detail-dialog .module-detail{
+    margin-top: 25px
+}
+.car-detail-container.car-detail-dialog .module-detail .rental-box{
+    top: 0
+}
+.car-detail-container.car-detail-dialog .module-deal .tile{
+    color: #fff
+}
+::ng-deep .car-detail-container.car-detail-dialog .relative-car-item .desc-car{
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,.3)
+}
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc{
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc{
+    display: flex;
+    background-color: unset;
+    color: #fff;
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-name .car-title{
+    margin: 0
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc  .group-line{
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc  .group-line .bar-line{
+    background-color: #fff;
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc  .group-line .star_rate-num{
+    color: #fff;
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-label{
+    display: none;
+}
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.button-group{
+   background-color: transparent;
+   padding: unset
 }
 
 .module-detail .car-detail__content {}
 
-.module-detail .car-detail__short-desc {
-    padding: 40px 0;
-}
 
 .module-detail .car-detail__short-desc .group-name {}
 
@@ -56,7 +94,7 @@
     justify-content: center;
 }
 
-.module-detail .car-detail__short-desc .group-line .bar-line {
+.module-detail .group-line .bar-line {
     width: 70px;
     height: 1px;
     background-color: #141414;
@@ -67,7 +105,8 @@
 
 
 .module-detail .car-detail__desc {
-    padding: 40px 0;
+    padding: 25px;
+    background-color: #fff;
 }
 
 .module-detail .car-detail__desc .group {
@@ -86,7 +125,7 @@
 .module-detail .car-detail__desc ul.features {
     display: flex;
     flex: wrap;
-
+    text-align: center;
 }
 
 .module-detail .car-detail__desc ul.features li {
