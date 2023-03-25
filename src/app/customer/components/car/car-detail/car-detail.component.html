@@ -1,4 +1,4 @@
-<div class="car-detail-container">
+<div class="car-detail-container" [class.car-detail-dialog]="data">
     <app-cover></app-cover>
     <div class="grid l-wide">
         <div class="module-detail">
@@ -6,7 +6,10 @@
                 <div class="col l-7">
                     <div class="car-detail">
                         <div class="car-detail__info">
-                            <div class="car-detail__short-desc">
+
+                        </div>
+                        <div class="car-detail__info">
+                            <div class="car-detail__desc short-desc">
                                 <div class="group-name">
                                     <h1 class="car-title">
                                         TOYOTA RUSH 2019
@@ -15,9 +18,7 @@
                                 <div class="group-line">
                                     <div class="star">
                                         <div class="star_rate-num">5.0</div>
-                                        <div class="star-container"><svg
-                                                viewBox="0 0 51 48"
-                                                class="widget-svg" style="width:
+                                        <div class="star-container"><svg viewBox="0 0 51 48" class="widget-svg" style="width:
                                                 17px; height:
                                                 17px; transition: transform 0.2s
                                                 ease-in-out 0s;">
@@ -92,6 +93,8 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="car-detail__desc">
                                 <div class="group row">
                                     <div class="col l-3">
                                         <div class="title">
@@ -104,21 +107,14 @@
                                                 <a class="d-flex-bo">
                                                     <div class="avatar mr-r-10">
                                                         <a href="">
-                                                            <div
-                                                                class="avatar-image"
-                                                                style="background-image:
+                                                            <div class="avatar-image" style="background-image:
                                                                 url('https://n1-cstg.mioto.vn/m/avatars/t.jpg');">
                                                             </div>
-                                                            <div
-                                                                class="host-star">
-                                                                <svg width="20"
-                                                                    height="20"
-                                                                    viewBox="0 0
-                                                                    24 24"
-                                                                    fill="none"
+                                                            <div class="host-star">
+                                                                <svg width="20" height="20" viewBox="0 0
+                                                                    24 24" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M3.74373
+                                                                    <path d="M3.74373
                                                                         14.1812L0
                                                                         20.4535L4.36948
                                                                         20.2293L6.35463
@@ -128,10 +124,8 @@
                                                                         5.20562
                                                                         16.1312
                                                                         3.74373
-                                                                        14.1812Z"
-                                                                        fill="#FFA800"></path>
-                                                                    <path
-                                                                        d="M20.2329
+                                                                        14.1812Z" fill="#FFA800"></path>
+                                                                    <path d="M20.2329
                                                                         14.1812C18.7834
                                                                         16.1302
                                                                         16.655
@@ -141,20 +135,12 @@
                                                                         23.999L19.6348
                                                                         20.2413L23.9995
                                                                         20.4648L20.2329
-                                                                        14.1812Z"
-                                                                        fill="#FFA800"></path>
-                                                                    <circle
-                                                                        cx="12.0004"
-                                                                        cy="8.72698"
-                                                                        r="8.72698"
+                                                                        14.1812Z" fill="#FFA800"></path>
+                                                                    <circle cx="12.0004" cy="8.72698" r="8.72698"
                                                                         fill="#FFA800"></circle>
-                                                                    <circle
-                                                                        cx="12.0028"
-                                                                        cy="8.7269"
-                                                                        r="7.09067"
+                                                                    <circle cx="12.0028" cy="8.7269" r="7.09067"
                                                                         fill="#FFE99D"></circle>
-                                                                    <path
-                                                                        d="M11.7334
+                                                                    <path d="M11.7334
                                                                         4.59761C11.85
                                                                         4.28582
                                                                         12.291
@@ -215,8 +201,7 @@
                                                                         7.11297
                                                                         10.8434
                                                                         6.9777L11.7334
-                                                                        4.59761Z"
-                                                                        fill="#FFA800"></path>
+                                                                        4.59761Z" fill="#FFA800"></path>
                                                                 </svg>
                                                             </div>
                                                         </a>
@@ -226,24 +211,17 @@
                                                         mr-l-10">
                                                         <a href="">
                                                             <p style="font-size:
-                                                                1.8rem"
-                                                                class="fw-500">Huy
+                                                                1.8rem" class="fw-500">Huy
                                                                 Huynh</p>
                                                             <div class="star
                                                                 d-flex-bo
                                                                 align-items-center-bo">
-                                                                <div
-                                                                    class="star_rate-num">5.0</div>
-                                                                <div
-                                                                    class="star-ratings">
-                                                                    <div
-                                                                        class="star-container">
-                                                                        <svg
-                                                                            viewBox="0
+                                                                <div class="star_rate-num">5.0</div>
+                                                                <div class="star-ratings">
+                                                                    <div class="star-container">
+                                                                        <svg viewBox="0
                                                                             0 51
-                                                                            48"
-                                                                            class="widget-svg"
-                                                                            style="width:
+                                                                            48" class="widget-svg" style="width:
                                                                             17px;
                                                                             height:
                                                                             17px;
@@ -252,13 +230,10 @@
                                                                             0.2s
                                                                             ease-in-out
                                                                             0s;">
-                                                                            <path
-                                                                                class="star"
-                                                                                d="m25,1
+                                                                            <path class="star" d="m25,1
                                                                                 6,17h18l-14,11
                                                                                 5,17-15-10-15,10
-                                                                                5-17-14-11h18z"
-                                                                                style="fill:
+                                                                                5-17-14-11h18z" style="fill:
                                                                                 rgb(0,
                                                                                 165,
                                                                                 80);
@@ -271,11 +246,9 @@
                                                                         </svg>
                                                                     </div>
                                                                 </div>
-                                                                <div
-                                                                    class="dot-car
+                                                                <div class="dot-car
                                                                     mr-side-10">•</div>
-                                                                <div
-                                                                    class="trips">41
+                                                                <div class="trips">41
                                                                     chuyến</div>
                                                             </div>
                                                         </a>
@@ -288,18 +261,15 @@
                                                 cọc.
                                             </div>
                                             <div class="owner-response">
-                                                <div
-                                                    class="owner-response__desc">
+                                                <div class="owner-response__desc">
                                                     <p>Tỉ lệ phản hồi</p>
                                                     <span>100%</span>
                                                 </div>
-                                                <div
-                                                    class="owner-response__desc">
+                                                <div class="owner-response__desc">
                                                     <p>Thời gian phản hồi</p>
                                                     <span>0.0 tiếng</span>
                                                 </div>
-                                                <div
-                                                    class="owner-response__desc">
+                                                <div class="owner-response__desc">
                                                     <p>Tỉ lệ đồng ý</p>
                                                     <span>90%</span>
                                                 </div>
@@ -307,6 +277,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="car-detail__desc">
                                 <div class="group row">
                                     <div class="col l-3">
                                         <div class="title">
@@ -320,25 +292,24 @@
                                         <div class="space m">
                                         </div>
                                         <p><i class="icon-bo icon-location"></i>
-                                            Quận 10, Hồ Chí Minh. <span
-                                                class="font-13" style="color:
+                                            Quận 10, Hồ Chí Minh. <span class="font-13" style="color:
                                                 rgb(107, 107, 107);">(Địa chỉ cụ
                                                 thể sẽ
                                                 được hiển thị sau khi đặt cọc)</span></p>
                                         <div class="space m"></div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="car-detail__desc button-group">
                                 <div class="d-flex-bo
                                     justify-content-between-bo">
                                     <div class="wrap-fit">
-                                        <button class="w-fit btn btn-l"
-                                            mat-stroked-button color="">Báo
+                                        <button class="w-fit btn btn-l" mat-raised-button color="">Báo
                                             xấu</button>
                                     </div>
                                     <div class="wrap-fit">
                                         <button class="w-fit btn btn-l
-                                            gemstone-raised-button"
-                                            mat-raised-button color="primary">Thêm
+                                            gemstone-raised-button" mat-raised-button color="primary">Thêm
                                             vào danh sách yêu thích</button>
                                     </div>
                                 </div>
@@ -353,18 +324,14 @@
                                             <div class="star__rate-num">5.0</div>
                                             <div class="star__ratings">
                                                 <div class="star-container">
-                                                    <svg viewBox="0 0 51 48"
-                                                        class="widget-svg"
-                                                        style="width: 17px;
+                                                    <svg viewBox="0 0 51 48" class="widget-svg" style="width: 17px;
                                                         height: 17px;
                                                         transition: transform
                                                         0.2s ease-in-out 0s;">
-                                                        <path class="star"
-                                                            d="m25,1
+                                                        <path class="star" d="m25,1
                                                             6,17h18l-14,11
                                                             5,17-15-10-15,10
-                                                            5-17-14-11h18z"
-                                                            style="fill: rgb(0,
+                                                            5-17-14-11h18z" style="fill: rgb(0,
                                                             165, 80);
                                                             transition: fill
                                                             0.2s ease-in-out
@@ -385,9 +352,7 @@
                                                 <div class="col l-2">
                                                     <div class="fix-avatar">
                                                         <a href="">
-                                                            <img
-                                                                src="https://n1-cstg.mioto.vn/m/avatars/p.jpg"
-                                                                alt="">
+                                                            <img src="https://n1-cstg.mioto.vn/m/avatars/p.jpg" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -399,20 +364,14 @@
                                                     </a>
                                                     <div class="comment-box">
                                                         <div class="group">
-                                                            <div
-                                                                class="star-ratings">
-                                                                <ng-container
-                                                                    *ngFor="let
+                                                            <div class="star-ratings">
+                                                                <ng-container *ngFor="let
                                                                     user of
                                                                     [1,1,1,1,1]">
-                                                                    <div
-                                                                        class="star-container">
-                                                                        <svg
-                                                                            viewBox="0
+                                                                    <div class="star-container">
+                                                                        <svg viewBox="0
                                                                             0 51
-                                                                            48"
-                                                                            class="widget-svg"
-                                                                            style="width:
+                                                                            48" class="widget-svg" style="width:
                                                                             17px;
                                                                             height:
                                                                             17px;
@@ -421,13 +380,10 @@
                                                                             0.2s
                                                                             ease-in-out
                                                                             0s;">
-                                                                            <path
-                                                                                class="star"
-                                                                                d="m25,1
+                                                                            <path class="star" d="m25,1
                                                                                 6,17h18l-14,11
                                                                                 5,17-15-10-15,10
-                                                                                5-17-14-11h18z"
-                                                                                style="fill:
+                                                                                5-17-14-11h18z" style="fill:
                                                                                 rgb(0,
                                                                                 165,
                                                                                 80);
@@ -441,8 +397,7 @@
                                                                     </div>
                                                                 </ng-container>
                                                             </div>
-                                                            <span
-                                                                style="font-size:
+                                                            <span style="font-size:
                                                                 1.2rem">3 ngày
                                                                 trước</span>
                                                         </div>
@@ -460,10 +415,9 @@
                 <div class="col l-5">
                     <div class="sidebar-container">
                         <div class="rental-box">
-                            <ng-container *ngIf="rentalModePath === 'sd'; else
+                            <ng-container *ngIf="formType === 'sd'; else
                                 withDriverForm">
-                                <ng-container
-                                    [ngTemplateOutlet]="selfDrivingForm"></ng-container>
+                                <ng-container [ngTemplateOutlet]="selfDrivingForm"></ng-container>
                             </ng-container>
                         </div>
                     </div>
@@ -487,10 +441,8 @@
                 <div class="col l-6">
                     <mat-form-field style="width: 100%" appearance="fill">
                         <mat-label>Chọn một ngày</mat-label>
-                        <input formControlName="pickUpDate" matInput
-                            [matDatepicker]="pickUpDatePicker" />
-                        <mat-datepicker-toggle matIconSuffix
-                            [for]="pickUpDatePicker">
+                        <input formControlName="pickUpDate" matInput [matDatepicker]="pickUpDatePicker" />
+                        <mat-datepicker-toggle matIconSuffix [for]="pickUpDatePicker">
                         </mat-datepicker-toggle>
                         <mat-datepicker #pickUpDatePicker>
                         </mat-datepicker>
@@ -571,8 +523,7 @@
                     </div>
                     <div class="route-info">
                         <label for="" class="label cl-gem">Lộ trình</label>
-                        <a class="form-location"
-                            (click)="editDeliveryLocation('Địa điểm đưa
+                        <a class="form-location" (click)="editDeliveryLocation('Địa điểm đưa
                             đón')">
                             <div class="wrap-icon">
                                 <i class="icon-bo start-location-icon"></i>
@@ -589,8 +540,7 @@
                                 </p>
                             </div>
                         </a>
-                        <a class="form-location"
-                            (click)="editDeliveryLocation('Địa điểm đưa
+                        <a class="form-location" (click)="editDeliveryLocation('Địa điểm đưa
                             đón')">
                             <div class="wrap-icon">
                                 <i class="icon-bo end-location-icon"></i>
@@ -681,8 +631,7 @@
                 <div class="space m"></div>
             </div>
         </div>
-        <button mat-raised-button class="btn btn-l w-fit"
-            (click)="confirmBooking()" color="primary">Đặt xe</button>
+        <button mat-raised-button class="btn btn-l w-fit" (click)="confirmBooking()" color="primary">Đặt xe</button>
         <div class="space m"></div>
     </form>
 </ng-template>
@@ -699,10 +648,8 @@
                 <div class="col l-6">
                     <mat-form-field style="width: 100%" appearance="fill">
                         <mat-label>Chọn một ngày</mat-label>
-                        <input formControlName="pickUpDate" matInput
-                            [matDatepicker]="pickUpDatePicker" />
-                        <mat-datepicker-toggle matIconSuffix
-                            [for]="pickUpDatePicker">
+                        <input formControlName="pickUpDate" matInput [matDatepicker]="pickUpDatePicker" />
+                        <mat-datepicker-toggle matIconSuffix [for]="pickUpDatePicker">
                         </mat-datepicker-toggle>
                         <mat-datepicker #pickUpDatePicker>
                         </mat-datepicker>
@@ -728,10 +675,8 @@
                 <div class="col l-6">
                     <mat-form-field style="width: 100%" appearance="fill">
                         <mat-label>Chọn một ngày</mat-label>
-                        <input formControlName="returnDate" matInput
-                            [matDatepicker]="returnDatePicker" />
-                        <mat-datepicker-toggle matIconSuffix
-                            [for]="returnDatePicker">
+                        <input formControlName="returnDate" matInput [matDatepicker]="returnDatePicker" />
+                        <mat-datepicker-toggle matIconSuffix [for]="returnDatePicker">
                         </mat-datepicker-toggle>
                         <mat-datepicker #returnDatePicker>
                         </mat-datepicker>
@@ -774,8 +719,7 @@
                 <label for="" class="label">
                     Địa điểm giao nhận xe
                 </label>
-                <span class="link-trip font-13"
-                    (click)="editDeliveryLocation('Địa điểm giao nhận
+                <span class="link-trip font-13" (click)="editDeliveryLocation('Địa điểm giao nhận
                     xe')">Thay đổi</span>
             </div>
             <div class="note w-fit">
@@ -786,8 +730,7 @@
                             4.701-10.5 10.5 0 5.799 4.701 10.5 10.5
                             10.5zm0 1.5c6.6274 0 12-5.3726 12-12
                             0-6.6274-5.3726-12-12-12-6.6274 0-12
-                            5.3726-12 12 0 6.6274 5.3726 12 12 12z"
-                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                            5.3726-12 12 0 6.6274 5.3726 12 12 12z" clip-rule="evenodd" fill-rule="evenodd"></path>
                         <path d="m7.5 10.494c0-2.4778 2.0187-4.4937
                             4.5-4.4937 2.4813 0 4.5 2.0159 4.5 4.4937 0
                             1.2789-0.7204 2.918-2.1412 4.8719-1.0399
@@ -874,8 +817,7 @@
                 <div class="space m"></div>
             </div>
         </div>
-        <button mat-raised-button class="btn btn-l w-fit"
-            (click)="confirmBooking()" color="primary">Đặt xe</button>
+        <button mat-raised-button class="btn btn-l w-fit" (click)="confirmBooking()" color="primary">Đặt xe</button>
         <div class="space m"></div>
     </form>
 </ng-template>

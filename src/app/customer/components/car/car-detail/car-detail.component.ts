@@ -1,8 +1,8 @@
 import { SD_MODE, WD_MODE } from './../../../../models/constance';
-import { Component, ComponentFactory, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, Input, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, NavigationEnd, NavigationExtras, Router, RouteReuseStrategy } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   RentalHourOption,
   TimerUtilService,
@@ -10,19 +10,17 @@ import {
 import { DeliveryLocationEditComponent } from './dialog/delivery-location-edit/delivery-location-edit.component';
 import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
-import { filter, map } from 'rxjs';
 import { Location } from '@angular/common';
 import { RouteCatchService } from 'src/app/customer/route-catch.service';
-
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.scss'],
-  
 })
-export class CarDetailComponent implements OnInit {
+export class CarDetailComponent implements OnInit, AfterViewInit {
   @Input()
-  rentalModePath!: string;
+  rentalMode!: 'sd' | 'wd';
+  formType!: 'sd' | 'wd';
   isFavoriteCar: boolean = false;
   startAndReturnHrOptions: any;
   rentalHrOptions!: RentalHourOption[];
@@ -36,7 +34,8 @@ export class CarDetailComponent implements OnInit {
     private router: Router,
     private location: Location,
     private routeCatchService: RouteCatchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.startAndReturnHrOptions =
       this.timerUtilService.startAndReturnHrOptions;
@@ -47,23 +46,25 @@ export class CarDetailComponent implements OnInit {
       returnTime: ['', Validators.required],
       deliveryLocation: ['', Validators.required],
     });
-    this.activatedRoute.data.subscribe((data) => {
-      this.rentalModePath = data['rentalModePath'];
-      console.log(this.rentalModePath);
-      
-    });
-    
+  }
+  ngAfterViewInit(): void {
+    if(this.data && this.data.rentalMode){
+      this.formType = this.data.rentalMode
+    }
+    if (this.rentalMode) {
+      this.formType = this.data.rentalMode;
+      console.log("bind");
+    }
   }
   startDate!: Date;
   endDate!: Date;
   address!: string;
-  savedScrollPosition!: any
+  savedScrollPosition!: any;
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.startDate = new Date(+params['startDate']);
       this.endDate = new Date(+params['endDate']);
       this.address = params['address'];
-      
     });
     this.savedScrollPosition = document.documentElement.scrollTop;
   }
@@ -90,7 +91,7 @@ export class CarDetailComponent implements OnInit {
       height: '100vh',
     });
   }
-  onClose(){
+  onClose() {
     const navigationExtras: NavigationExtras = {
       skipLocationChange: true,
     };

@@ -170,7 +170,6 @@ export class SearchResultComponent implements OnDestroy {
       );
     const fragment = this.activatedRoute.snapshot.fragment!;
     const queryParams = this.activatedRoute.snapshot.queryParams;
-    const currentUrlTree = this.router.createUrlTree([this.router.url], {queryParams, fragment});
     this.currentUrl = this.router.createUrlTree([this.router.url], {queryParams, fragment}).toString();
   }
 
@@ -379,18 +378,15 @@ export class SearchResultComponent implements OnDestroy {
     this.addedFeature = [];
     this.carTypeOptions.forEach((item) => (item.active = false));
   }
-  navigateCarDetail() {
-    this.router.navigate(['car/huy/123']);
-  }
-  isShowOverlay = false
-  rentalModePath!: 'sd' | 'wd' 
-  openCarDetailDialog(rentalModePath: 'sd' | 'wd', productName: string, productCode: string){
-    this.isShowOverlay = true
-    this.rentalModePath = rentalModePath
-    this.location.replaceState(`/car/${rentalModePath}/${productName}/${productCode}`);
-  }
-  closeCarDetailDialog(){
-    this.isShowOverlay = false
-    this.location.replaceState(this.currentUrl);
+  
+  openCarDetailDialog(rentalMode: string){
+    this.matDialog.open(CarDetailComponent, {
+      data: {
+        rentalMode: rentalMode,
+      },
+      panelClass: 'mat-dialog-bg',
+      backdropClass: 'my-back-drop',
+      height: '100vh'
+    })
   }
 }

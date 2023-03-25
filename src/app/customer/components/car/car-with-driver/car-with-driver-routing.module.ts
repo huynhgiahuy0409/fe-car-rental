@@ -12,9 +12,6 @@ const routes: Routes = [
       {
         path: ':product-name/:id',
         component: CarDetailComponent,
-        data: {
-          rentalModePath: "wd"
-        }
       },
     ],
   },

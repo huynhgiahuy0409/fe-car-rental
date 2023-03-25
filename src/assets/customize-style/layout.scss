@@ -258,7 +258,7 @@
 }
 
 .desc-car{
-  padding: 5px;
+  padding: 10px
 }
 .desc-car__name{
   display: flex;
@@ -319,6 +319,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 0
 }
 // icon-bo
 .icon-insurance{

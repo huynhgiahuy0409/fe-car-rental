@@ -1,29 +1,4 @@
-.overlay{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  background-color: rgba(0,0,0,.8);    padding: 80px 160px;
-}
-.overlay .car-detail-container{ 
-  border-radius: 5px;
-}
-.overlay .module-detail, .overlay.module-deal{ 
-  padding: 0 40px
-}
-.overlay .close-btn{ 
-  position:absolute;
-  top: 20px;
-  right: 20px;
-}
-.overlay .close-btn i{ 
-  position:absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 3.2rem;
-}
+
 .search__result-container {
   height: 100%;
   overscroll-behavior: none;
@@ -319,4 +294,12 @@ ul.search__feature-list {
     .mdc-line-ripple::before {
     border-bottom-color: var(--secondary-text);
   }
+}
+.mat-dialog-bg{
+}
+.mat-dialog-bg .mat-mdc-dialog-container .mdc-dialog__surface{
+  background-color: transparent;
+}
+.my-back-drop {
+  background-color: rgba(0, 0, 0, 0.8); /* Set the background color to a semi-transparent black */
 }
