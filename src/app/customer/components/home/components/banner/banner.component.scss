@@ -179,18 +179,22 @@ form.search-form .search-form__control {
   background-color: transparent !important;
 }
 
-.search-by-service__box .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+.search-by-service__box
+  .mdc-text-field:not(.mdc-text-field--disabled)
+  .mdc-floating-label {
   color: white;
   font-size: 1.4rem;
 }
 
-.search-by-service__box .mdc-text-field--filled:not(.mdc-text-field--disabled)
+.search-by-service__box
+  .mdc-text-field--filled:not(.mdc-text-field--disabled)
   .mdc-line-ripple::before {
   border-bottom-color: rgba(255, 255, 255, 0.85);
 }
 
-
-.search-by-service__box .mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple::before {
+.search-by-service__box
+  .mdc-text-field--filled:not(.mdc-text-field--disabled):hover
+  .mdc-line-ripple::before {
   border-bottom-color: #fff;
 }
 
@@ -202,12 +206,15 @@ form.search-form .search-form__control {
   border-bottom-color: var(--gemstone-color);
 }
 
-.search-by-service__box .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+.search-by-service__box
+  .mdc-text-field:not(.mdc-text-field--disabled)
+  .mdc-text-field__input {
   color: var(--primary-text-color);
 }
 
-
-.search-by-service__box .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+.search-by-service__box
+  .mdc-text-field:not(.mdc-text-field--disabled)
+  .mdc-text-field__input {
   color: var(--gemstone-color);
 }
 
@@ -219,12 +226,16 @@ form.search-form .search-form__control {
   color: var(--primary-text-color);
 }
 
-.search-by-service__box .mat-mdc-form-field.mat-focused.mat-primary .mat-mdc-select-arrow {
+.search-by-service__box
+  .mat-mdc-form-field.mat-focused.mat-primary
+  .mat-mdc-select-arrow {
   color: var(--gemstone-color);
 }
 
-
-.search-by-service__box .mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+.search-by-service__box
+  .mat-primary
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+  .mdc-list-item__primary-text {
   color: var(--gemstone-color);
 }
 
@@ -238,13 +249,21 @@ form.search-form .search-form__control {
 
 // +Customize tabs
 
-.search-by-service__box .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label,
-.search-by-service__box .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+.search-by-service__box
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active
+  .mdc-tab__text-label,
+.search-by-service__box
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+  .mdc-tab__text-label {
   color: var(--gemstone-color);
 }
 
-.search-by-service__box .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline,
-.search-by-service__box .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+.search-by-service__box
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled)
+  .mdc-tab-indicator__content--underline,
+.search-by-service__box
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled)
+  .mdc-tab-indicator__content--underline {
   border-color: var(--gemstone-color);
 }
 
@@ -265,3 +284,8 @@ form.search-form .search-form__control {
 //     border-color: #fff !important;
 //   }
 // }
+
+.error-title {
+  margin-left: 4px;
+  font-size: 90%;
+}

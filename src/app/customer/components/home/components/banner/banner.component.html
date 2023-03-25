@@ -94,6 +94,10 @@
                                                                     {{ hr }}
                                                                 </mat-option>
                                                             </mat-select>
+                                                            <mat-error
+                                                                *ngIf="!selfDrivingFormGroup.hasError('required')">
+                                                                Vui lòng chọn giờ hợp lệ
+                                                            </mat-error>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -125,6 +129,10 @@
                                                                     {{ hr }}
                                                                 </mat-option>
                                                             </mat-select>
+                                                            <mat-error
+                                                                *ngIf="!selfDrivingFormGroup.hasError('required')">
+                                                                Vui lòng chọn giờ hợp lệ
+                                                            </mat-error>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -256,11 +264,11 @@
                                                                     </mat-datepicker-toggle>
                                                                     <mat-datepicker #endRentalDateOfUrbanDriverPicker>
                                                                     </mat-datepicker>
-                                                                    <mat-error
-                                                                        *ngIf="!driverServiceFormGroup.hasError('required')">
-                                                                        Vui lòng chọn ngày hợp lệ
-                                                                    </mat-error>
                                                                 </mat-form-field>
+                                                                <mat-error *ngIf="isValidUrbanForm===false"
+                                                                    class="error-title">
+                                                                    Vui lòng chọn ngày hợp lệ
+                                                                </mat-error>
                                                             </div>
                                                             <div class="col l-6">
                                                                 <mat-form-field appearance="fill" style="width: 100%">
@@ -273,6 +281,10 @@
                                                                         </mat-option>
                                                                     </mat-select>
                                                                 </mat-form-field>
+                                                                <mat-error *ngIf="isValidUrbanForm===false"
+                                                                    class="error-title">
+                                                                    Vui lòng chọn ngày hợp lệ
+                                                                </mat-error>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -358,6 +370,10 @@
                                                                             {{ option.label }}
                                                                         </mat-option>
                                                                     </mat-select>
+                                                                    <mat-error
+                                                                        *ngIf="!interMunicipalFormGroup.hasError('required')">
+                                                                        Vui lòng chọn giờ hợp lệ
+                                                                    </mat-error>
                                                                 </mat-form-field>
                                                             </div>
                                                         </div>
@@ -414,6 +430,10 @@
                                                                     <mat-datepicker
                                                                         #endMunicipalPicker></mat-datepicker>
                                                                 </mat-form-field>
+                                                                <mat-error *ngIf="isValidMunicipalForm===false"
+                                                                    class="error-title">
+                                                                    Vui lòng chọn ngày hợp lệ
+                                                                </mat-error>
                                                             </div>
                                                             <div class="col l-6">
                                                                 <mat-form-field appearance="fill" style="width: 100%">
@@ -426,6 +446,9 @@
                                                                         </mat-option>
                                                                     </mat-select>
                                                                 </mat-form-field>
+                                                                <mat-error *ngIf="isValidMunicipalForm===false">
+                                                                    Vui lòng chọn giờ hợp lệ
+                                                                </mat-error>
                                                             </div>
                                                         </div>
                                                     </div>

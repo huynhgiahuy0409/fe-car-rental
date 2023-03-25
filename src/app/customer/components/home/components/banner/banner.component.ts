@@ -89,6 +89,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
   selfDrivingFormGroup!: FormGroup;
   todayDate = format(addDays(new Date(), 1), "yyyy-MM-dd");
   interMunicipalFormGroup!: FormGroup;
+  isValidMunicipalForm!: boolean;
+  isValidUrbanForm!: boolean;
 
   constructor(private _fb: FormBuilder, private router: Router) {
     this.setHrsData();
@@ -102,8 +104,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
         rentalHours: [this.rentalHrOptions[0].value, Validators.required],
       }),
       endTime: this._fb.group({
-        rentalDate: ['', Validators.required],
-        endHour: ['', Validators.required],
+        rentalDate: [''],
+        endHour: [''],
       }),
     });
     this.interMunicipalFormGroup = this._fb.group({
@@ -117,15 +119,15 @@ export class BannerComponent implements OnInit, AfterViewInit {
       }),
       endTime: this._fb.group({
         rentalDate: [''],
-        endHour: ['0:00'],
+        endHour: [''],
       }),
     });
     this.selfDrivingFormGroup = this._fb.group({
       address: ['', Validators.required],
       startDate: ['', Validators.required],
-      startHour: ['0:00', Validators.required],
+      startHour: ['', Validators.required],
       endDate: ['', Validators.required],
-      endHour: ['0:00', Validators.required],
+      endHour: ['', Validators.required],
     });
   }
   ngAfterViewInit(): void {
@@ -342,8 +344,31 @@ export class BannerComponent implements OnInit, AfterViewInit {
         }
       };
     }
-    // console.log(formValue);
-    this.router.navigate(['find/filter'], navigationExtra);
+
+    if (this.driverServiceFormGroup.invalid) {
+      this.isValidUrbanForm = false
+    } else {
+      //prefix case
+      if (formValue.startTime.rentalHours > 0) {
+        if (formValue.startTime.rentalDate < 0 || formValue.startTime.startHour < 0) {
+          this.isValidUrbanForm = false;
+        } else {
+          this.isValidUrbanForm = true;
+        }
+        //custom case
+      } else {
+        if (formValue.startTime.rentalDate < 0 || formValue.startTime.startHour < 0 || formValue.endTime.rentalDate < formValue.startTime.rentalDate || formValue.endTime.endHour == '') {
+          this.isValidUrbanForm = false;
+        } else {
+          this.isValidUrbanForm = true;
+        }
+      }
+    }
+    console.log(this.isValidUrbanForm);
+
+
+    if (this.isValidUrbanForm)
+      this.router.navigate(['find/filter/home'], navigationExtra);
     // const truthFormValue: DriverService = formValue;
     // console.log(truthFormValue);
     // alert(JSON.stringify(truthFormValue, null, 4));
@@ -366,7 +391,9 @@ export class BannerComponent implements OnInit, AfterViewInit {
         address: address,
       },
     }
-    this.router.navigate(['find/filter'], navigationExtra);
+
+    if (this.selfDrivingFormGroup.valid)
+      this.router.navigate(['find/filter/home'], navigationExtra);
   }
 
   onSubmitMunicipalWithDriverForm() {
@@ -409,7 +436,34 @@ export class BannerComponent implements OnInit, AfterViewInit {
         }
       };
     }
-    this.router.navigate(['find/filter'], navigationExtra);
+
+    if (this.interMunicipalFormGroup.invalid) {
+      this.isValidMunicipalForm = false
+    } else {
+      //prefix case
+      if (formValue.startTime.rentalHours > 0) {
+        console.log("prefix case");
+
+        if (formValue.startTime.rentalDate < 0 || formValue.startTime.startHour < 0) {
+          this.isValidMunicipalForm = false;
+        } else {
+          this.isValidMunicipalForm = true;
+        }
+        //custom case
+      } else {
+        console.log("custom case");
+        console.log(Number(formValue.endTime.endHour) < 0);
+
+        if (formValue.startTime.rentalDate < 0 || formValue.startTime.startHour < 0 || formValue.endTime.rentalDate < formValue.startTime.rentalDate || formValue.endTime.endHour == '') {
+          this.isValidMunicipalForm = false;
+        } else {
+          this.isValidMunicipalForm = true;
+        }
+      }
+    }
+
+    if (this.isValidMunicipalForm)
+      this.router.navigate(['find/filter/home'], navigationExtra);
   }
 
 
@@ -449,10 +503,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
     let rentalHour = this.interMunicipalFormGroup.get('startTime')?.get('rentalHours')?.value;
     let finalDate = new Date(startRentalDate + startRentalHour + rentalHour);
     return "Kết thúc lúc " + format(finalDate, 'hh:mm a dd/MM/yyyy');
-  }
-
-  isValidMunicipalForm() {
-    return this.interMunicipalFormGroup.valid;
   }
 
   getNDayHoursInMiliseconds(day: number) {
