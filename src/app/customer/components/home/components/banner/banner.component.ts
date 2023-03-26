@@ -368,7 +368,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
 
 
     if (this.isValidUrbanForm)
-      this.router.navigate(['find/filter/home'], navigationExtra);
+      this.router.navigate(['find/filter'], navigationExtra);
     // const truthFormValue: DriverService = formValue;
     // console.log(truthFormValue);
     // alert(JSON.stringify(truthFormValue, null, 4));
@@ -393,7 +393,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     }
 
     if (this.selfDrivingFormGroup.valid)
-      this.router.navigate(['find/filter/home'], navigationExtra);
+      this.router.navigate(['find/filter'], navigationExtra);
   }
 
   onSubmitMunicipalWithDriverForm() {
@@ -463,7 +463,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     }
 
     if (this.isValidMunicipalForm)
-      this.router.navigate(['find/filter/home'], navigationExtra);
+      this.router.navigate(['find/filter'], navigationExtra);
   }
 
 
