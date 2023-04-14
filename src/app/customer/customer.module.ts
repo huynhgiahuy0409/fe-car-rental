@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -11,19 +12,23 @@ import { SvgAsTemplateModule } from '../shared/svg-as-template/svg-as-template.m
 import { RouteReuseStrategy } from '@angular/router';
 import { DemoComponent } from './components/demo/demo.component';
 import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
+import { InputNumberOnlyDirective } from './directive/input-number-only.directive';
 
 @NgModule({
   declarations: [
     CustomerComponent,
     SignUpComponent,
     DemoComponent,
+    InputNumberOnlyDirective,
   ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     CustomerLayoutModule,
     MaterialAngularModule,
-    SvgAsTemplateModule
+    SvgAsTemplateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 })
 export class CustomerModule { }
