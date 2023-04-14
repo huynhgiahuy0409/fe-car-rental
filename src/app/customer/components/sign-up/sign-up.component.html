@@ -1,74 +1,127 @@
-<p routerLink="/demo">demo</p>
-<div #signUpWrapper class="sign-up-wrapper">
-    <div #signUp class="sign-up">
-        <div class="form">
-            <h2 style="text-align: center;">Đăng ký tài khoản</h2>
-            <div class="form-field">
-                <i class="fa-solid fa-user mr-r-5"></i>
-                <input type="email" placeholder="Số điện thoại hoặc email"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                <svg>
-                    <use href="#svg-check" />
-                </svg>
+<div class="sign-up__wrapper">
+    <div class="sign-up__background"></div>
+    <div class="form__wrapper">
+        <form class="sign-up__form" [formGroup]="signUpFG">
+            <div class="header">
+                <h2>Đăng ký</h2>
+                <div class="subtitle">Đăng ký để trở thành thành viên của Rental Car</div>
             </div>
-            <div class="form-field">
-                <i class="fa-solid fa-signature mr-r-5"></i>
-                <input type="text" placeholder="Tên hiển thị" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                    required>
-                <svg>
-                    <use href="#svg-check" />
-                </svg>
+            <div class="line-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput
+                        placeholder="Ex. huynhgiahuy492@gmail.com"
+                        formControlName="username" >
+                    <mat-error *ngIf="usernameControl!.hasError('email') &&
+                        !usernameControl!.hasError('required')">
+                        Vui lòng nhập email hợp lệ
+                    </mat-error>
+                    <mat-error *ngIf="usernameControl!.hasError('required')">
+                        Email <strong>không được để trống</strong>
+                    </mat-error>
+                </mat-form-field>
             </div>
-            <div class="form-field">
-                <i class="fa-solid fa-lock mr-r-5"></i>
-                <input type="password" name="password" placeholder="Mật khẩu" pattern=".{6,}" required>
-                <svg>
-                    <use href="#svg-check" />
-                </svg>
+            <div class="line-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Vui lòng mật khẩu</mat-label>
+                    <input type="password" matInput
+                        placeholder="Nhập mật khẩu" formControlName="password">
+                        <mat-error *ngIf="passwordControl!.hasError('required')">
+                            Mật khẩu <strong>không được để trống</strong>
+                        </mat-error>
+                        <mat-error *ngIf="passwordControl!.hasError('invalidPassword')">
+                            Mật khẩu phải chứa ít nhất <strong>một chữ hoa, số, kí tự đặc biệt</strong>
+                        </mat-error>
+                </mat-form-field>
             </div>
-            <div class="form-field">
-                <i class="fa-solid fa-lock mr-r-5"></i>
-                <input type="password" name="confirm-password" placeholder="Xác nhận mật khẩu" pattern=".{6,}" required>
-                <svg>
-                    <use href="#svg-check" />
-                </svg>
+            <div class="line-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Vui lòng nhập lại mật khẩu</mat-label>
+                    <input type="password" matInput
+                        placeholder="Nhập lại mật khẩu"
+                        formControlName="confirmPassword">
+                        <mat-error *ngIf="confirmPasswordControl!.hasError('invalidPassword')">
+                            Mật khẩu phải chứa ít nhất <strong>một chữ hoa, số, kí tự đặc biệt</strong>
+                        </mat-error>
+                    <mat-error *ngIf="confirmPasswordControl!.hasError('notMatch') && !confirmPasswordControl!.hasError('required') && !confirmPasswordControl!.hasError('invalidPassword')">
+                        Mật khẩu không trùng khớp
+                    </mat-error>
+                    <mat-error *ngIf="confirmPasswordControl!.hasError('required')">
+                        Mật khẩu <strong>không được để trống</strong>
+                    </mat-error>
+                </mat-form-field>
             </div>
-            <button (click)="onClickSignUp()" class="button">
-                <div class="arrow-wrapper">
-                    <span class="arrow"></span>
+            <div class="row m-gutters">
+                <div class="col l-6">
+                    <div class="line-form">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Họ và tên</mat-label>
+                            <input type="text" matInput
+                                placeholder="Ex: Huỳnh Gia Huy" formControlName="fullName">
+                        </mat-form-field>
+                    </div>
                 </div>
-                <p class="button-text">Đăng ký</p>
-            </button>
-            <div class="d-flex-bo justify-content-center-bo" style="font-size: 1.3rem">
-                <span style="color: '#9596a2'; margin-bottom:
-                                    15px">Hoặc đăng nhập bằng tài khoản</span>
-            </div>
-            <div class="d-flex-bo align-items-center-bo
-                                justify-content-center-bo" style="margin: 0 40px
-                                30px;">
-                <button class="button social-btn facebook-btn">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    facebook
-                </button>
-                <button class="button social-btn google-btn">
-                    <i class="fa-brands fa-google-plus-g"></i>
-                    google
-                </button>
+                <div class="col l-6">
+                    <div class="line-form">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Số điện thoại</mat-label>
+                            <span matPrefix>+84 &nbsp;</span>
+                            <input type="tel" matInput placeholder="0776425949"
+                                formControlName="phone">
+                            <mat-icon matSuffix>mode_edit</mat-icon>
+                        </mat-form-field>
+                </div>
             </div>
         </div>
-        <div class="finished">
-            <svg>
-                <use href="#svg-check" />
-            </svg>
-        </div>
+            <div class="d-flex-bo align-items-center-bo justify-content-center-bo">
+                <a class="sign-up-btn" href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Đăng ký
+                </a>
+            </div>
+            <div class="separate__group">
+                <span></span>
+                <p>Tiếp tục với</p>
+                <span></span>
+            </div>
+            <div class="more-connect__group">
+                <div class="grid">
+                    <div>
+                        <button>
+                            <img class="mr-r-10" src="https://cdn6.agoda.net/images/universal-login/google-logo-v2.svg" alt="">
+                            Google
+                        </button>
+                    </div>
+                    <div class="space m"></div>
+                    <div class="row m-gutters">
+                        <div class="col l-6">
+                            <button>
+                                <img class="mr-r-10" src="https://cdn6.agoda.net/images/universal-login/facebook-logo.svg" alt="">
+                                Facebook
+                            </button>
+                        </div>
+                        <div class="col l-6">
+                            <button>
+                                <img class="mr-r-10" src="https://cdn6.agoda.net/images/universal-login/apple-logo.svg" alt="">
+                                Apple
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="separate__group">
+                    <span></span>
+                </div>
+                <div class="grid">
+                    <div>
+                        <button id="signInButton">
+                            Bạn đã có tài khoản? <span class="mr-l-5 cl-gem">Đăng nhập ngay!</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-
-
-    <!-- //--- ## SVG SYMBOLS ############# -->
-    <svg style="display:none;">
-        <symbol id="svg-check" viewBox="0 0 130.2 130.2">
-            <polyline points="100.2,40.2 51.5,88.8 29.8,67.5
-                                    " />
-        </symbol>
-    </svg>
 </div>
