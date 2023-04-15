@@ -13,6 +13,8 @@ import { RouteReuseStrategy } from '@angular/router';
 import { DemoComponent } from './components/demo/demo.component';
 import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
 import { InputNumberOnlyDirective } from './directive/input-number-only.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { OtpValidationComponent } from './components/otp-validation/otp-validation.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { InputNumberOnlyDirective } from './directive/input-number-only.directiv
     SignUpComponent,
     DemoComponent,
     InputNumberOnlyDirective,
+    OtpValidationComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,8 @@ import { InputNumberOnlyDirective } from './directive/input-number-only.directiv
     MaterialAngularModule,
     SvgAsTemplateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
 })
 export class CustomerModule { }

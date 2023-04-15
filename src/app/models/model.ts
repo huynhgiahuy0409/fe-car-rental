@@ -1,4 +1,8 @@
-
+export interface APIResponse<T>{
+    data: T,
+    message: string,
+    statusCode: number
+}
 export interface RedirectInfo {
     label: string,
     path: string

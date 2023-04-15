@@ -2,16 +2,21 @@
     <div class="sign-up__background"></div>
     <div class="form__wrapper">
         <form class="sign-up__form" [formGroup]="signUpFG">
+            <div class="progress__wrapper">
+                <mat-progress-bar mode="indeterminate"
+                    *ngIf="(progressBarService.isActive$ | async)"></mat-progress-bar>
+            </div>
             <div class="header">
                 <h2>Đăng ký</h2>
-                <div class="subtitle">Đăng ký để trở thành thành viên của Rental Car</div>
+                <div class="subtitle">Đăng ký để trở thành thành viên của Rental
+                    Car</div>
             </div>
             <div class="line-form">
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput
                         placeholder="Ex. huynhgiahuy492@gmail.com"
-                        formControlName="username" >
+                        formControlName="username">
                     <mat-error *ngIf="usernameControl!.hasError('email') &&
                         !usernameControl!.hasError('required')">
                         Vui lòng nhập email hợp lệ
@@ -26,12 +31,14 @@
                     <mat-label>Vui lòng mật khẩu</mat-label>
                     <input type="password" matInput
                         placeholder="Nhập mật khẩu" formControlName="password">
-                        <mat-error *ngIf="passwordControl!.hasError('required')">
-                            Mật khẩu <strong>không được để trống</strong>
-                        </mat-error>
-                        <mat-error *ngIf="passwordControl!.hasError('invalidPassword')">
-                            Mật khẩu phải chứa ít nhất <strong>một chữ hoa, số, kí tự đặc biệt</strong>
-                        </mat-error>
+                    <mat-error *ngIf="passwordControl!.hasError('required')">
+                        Mật khẩu <strong>không được để trống</strong>
+                    </mat-error>
+                    <mat-error
+                        *ngIf="passwordControl!.hasError('invalidPassword')">
+                        Mật khẩu phải chứa ít nhất <strong>một chữ hoa, số, kí
+                            tự đặc biệt</strong>
+                    </mat-error>
                 </mat-form-field>
             </div>
             <div class="line-form">
@@ -40,13 +47,19 @@
                     <input type="password" matInput
                         placeholder="Nhập lại mật khẩu"
                         formControlName="confirmPassword">
-                        <mat-error *ngIf="confirmPasswordControl!.hasError('invalidPassword')">
-                            Mật khẩu phải chứa ít nhất <strong>một chữ hoa, số, kí tự đặc biệt</strong>
-                        </mat-error>
-                    <mat-error *ngIf="confirmPasswordControl!.hasError('notMatch') && !confirmPasswordControl!.hasError('required') && !confirmPasswordControl!.hasError('invalidPassword')">
+                    <mat-error
+                        *ngIf="confirmPasswordControl!.hasError('invalidPassword')">
+                        Mật khẩu phải chứa ít nhất <strong>một chữ hoa, số, kí
+                            tự đặc biệt</strong>
+                    </mat-error>
+                    <mat-error
+                        *ngIf="confirmPasswordControl!.hasError('notMatch') &&
+                        !confirmPasswordControl!.hasError('required') &&
+                        !confirmPasswordControl!.hasError('invalidPassword')">
                         Mật khẩu không trùng khớp
                     </mat-error>
-                    <mat-error *ngIf="confirmPasswordControl!.hasError('required')">
+                    <mat-error
+                        *ngIf="confirmPasswordControl!.hasError('required')">
                         Mật khẩu <strong>không được để trống</strong>
                     </mat-error>
                 </mat-form-field>
@@ -57,7 +70,12 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Họ và tên</mat-label>
                             <input type="text" matInput
-                                placeholder="Ex: Huỳnh Gia Huy" formControlName="fullName">
+                                placeholder="Ex: Huỳnh Gia Huy"
+                                formControlName="fullName">
+                            <mat-error
+                                *ngIf="fullNameControl!.hasError('required')">
+                                Họ tên <strong>không được để trống</strong>
+                            </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
@@ -69,18 +87,29 @@
                             <input type="tel" matInput placeholder="0776425949"
                                 formControlName="phone">
                             <mat-icon matSuffix>mode_edit</mat-icon>
+                            <mat-error
+                                *ngIf="phoneControl!.hasError('required')">
+                                Số điện thoại <strong>không được để trống</strong>
+                            </mat-error>
+                            <mat-error
+                                *ngIf="phoneControl!.hasError('pattern')">
+                                Số điện thoại <strong>không hợp lệ</strong>
+                            </mat-error>
                         </mat-form-field>
+                    </div>
                 </div>
             </div>
-        </div>
-            <div class="d-flex-bo align-items-center-bo justify-content-center-bo">
-                <a class="sign-up-btn" href="#">
+            <div class="d-flex-bo align-items-center-bo
+                justify-content-center-bo">
+                <button class="sign-up-btn"
+                    (click)="onClickSignUp(signUpFG.value)"
+                    [disabled]="signUpFG.invalid">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                     Đăng ký
-                </a>
+                </button>
             </div>
             <div class="separate__group">
                 <span></span>
@@ -91,7 +120,9 @@
                 <div class="grid">
                     <div>
                         <button>
-                            <img class="mr-r-10" src="https://cdn6.agoda.net/images/universal-login/google-logo-v2.svg" alt="">
+                            <img class="mr-r-10"
+                                src="https://cdn6.agoda.net/images/universal-login/google-logo-v2.svg"
+                                alt="">
                             Google
                         </button>
                     </div>
@@ -99,13 +130,17 @@
                     <div class="row m-gutters">
                         <div class="col l-6">
                             <button>
-                                <img class="mr-r-10" src="https://cdn6.agoda.net/images/universal-login/facebook-logo.svg" alt="">
+                                <img class="mr-r-10"
+                                    src="https://cdn6.agoda.net/images/universal-login/facebook-logo.svg"
+                                    alt="">
                                 Facebook
                             </button>
                         </div>
                         <div class="col l-6">
                             <button>
-                                <img class="mr-r-10" src="https://cdn6.agoda.net/images/universal-login/apple-logo.svg" alt="">
+                                <img class="mr-r-10"
+                                    src="https://cdn6.agoda.net/images/universal-login/apple-logo.svg"
+                                    alt="">
                                 Apple
                             </button>
                         </div>
@@ -117,7 +152,8 @@
                 <div class="grid">
                     <div>
                         <button id="signInButton">
-                            Bạn đã có tài khoản? <span class="mr-l-5 cl-gem">Đăng nhập ngay!</span>
+                            Bạn đã có tài khoản? <span class="mr-l-5 cl-gem">Đăng
+                                nhập ngay!</span>
                         </button>
                     </div>
                 </div>

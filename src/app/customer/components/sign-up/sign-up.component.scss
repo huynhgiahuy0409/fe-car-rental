@@ -36,7 +36,9 @@
     box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
     background-color: rgba($color: #fff, $alpha: 0.9);
 }
-
+.sign-up__form .progress__wrapper{
+    margin-bottom: 15px;
+}
 .sign-up__form .header {
     margin-bottom: 10px;
 }
@@ -74,14 +76,46 @@
     width: 150px;
     display: flex;
     justify-content: center;
+    border: unset
 }
+.sign-up__form .sign-up-btn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--gemstone-color);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin: 10px;
+    letter-spacing: 4px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    border: unset;
+    background-color: transparent;
+}
+.sign-up__form .sign-up-btn:disabled{
+    background-color: #ccc;
+    color: #666;
+}
+
+.sign-up__form .sign-up-btn:disabled:hover{
+    background-color: #ccc;
+    color: #666;
+    box-shadow:unset
+}
+.sign-up__form .sign-up-btn:disabled span{
+   display: none;
+}
+
 
 .sign-up__form .sign-up-btn:hover {
     background: var(--gemstone-color);
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px var(--gemstone-color),
-      
 }
 
 .sign-up__form .sign-up-btn span {

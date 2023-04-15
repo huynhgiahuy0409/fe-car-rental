@@ -1,4 +1,6 @@
 import { CarFeatureElement, City } from "./model";
+export const TEXT_SPACE_REGEX = "^[a-zA-Z\\s]*$"
+export const NUMBER_REGEX = "^[0-9]*$"
 export const COMPLETE_STATUS = "Hoàn thành"
 export const COMPLETE_MESSAGE = "Chuyến xe đã kết thúc"
 export const SD_MODE = "SELF_DRIVING"
@@ -7,7 +9,7 @@ export const ADDRESS_API = "/";
 export const GET_DISTRICTS_BY_CITY = `${ADDRESS_API}districts-by-city`;
 export const GET_WARDS_BY_DISTRICT = `${ADDRESS_API}wards-by-district`;
 export const SEARCH_ADDRESS = "/search-address";
-
+export const URL_API = "http://localhost:8080"
 export const CAR_FEATURES: CarFeatureElement[] = [
     {
         id: "map",

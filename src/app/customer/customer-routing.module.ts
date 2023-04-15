@@ -4,6 +4,7 @@ import { DemoComponent } from './components/demo/demo.component';
 import { MyFavsComponent } from './components/my-favs/my-favs.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CustomerComponent } from './customer.component';
+import { OtpValidationComponent } from './components/otp-validation/otp-validation.component';
 
 const routes: Routes = [
   {
@@ -35,8 +36,8 @@ const routes: Routes = [
         component: SignUpComponent,
       },
       {
-        path: 'demo',
-        component: DemoComponent,
+        path: 'sign-up/validate-otp',
+        component: OtpValidationComponent,
       },
       {
         path: 'promo',

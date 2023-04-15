@@ -7,15 +7,20 @@ import { MaterialAngularModule } from './material-angular/material-angular.modul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './customer/custom-route-reuse-strategy';
+import { HttpClientModule } from '@angular/common/http';
+import { MessageDialogComponent } from './message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MessageDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialAngularModule,
+    HttpClientModule
   ],
   providers: [
   ],

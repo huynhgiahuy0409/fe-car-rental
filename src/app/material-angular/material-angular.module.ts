@@ -15,7 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -35,6 +35,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatDialogModule,
     MatSlideToggleModule,
     MatSliderModule,
+    MatProgressBarModule
   ],
 })
 
