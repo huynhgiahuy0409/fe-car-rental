@@ -3,5 +3,17 @@
     {{data.message}}
 </div>
 <mat-dialog-actions align="end">
-    <button color="primary" mat-button mat-dialog-close>Đã hiểu</button>
-  </mat-dialog-actions>
+    <ng-container *ngIf="data.navigatePages as navigatePages">
+        <ng-container *ngFor="let navigatePage of navigatePages">
+            <ng-container *ngIf="navigatePage === 'login' ">
+                <button color="primary" mat-raised-button (click)="openLoginDialog()">Đăng nhập ngay!</button>
+            </ng-container>
+            <ng-container *ngIf="navigatePage === 'home' ">
+                <button color="primary" mat-button [routerLink]="['/home']">Trở về trang chủ</button>
+            </ng-container>
+            <ng-container *ngIf="navigatePage === 'close' ">
+                <button color="primary" mat-button mat-dialog-close>Đã hiểu</button>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</mat-dialog-actions>

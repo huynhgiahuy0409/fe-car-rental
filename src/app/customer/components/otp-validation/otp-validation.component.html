@@ -8,8 +8,8 @@
                         <span></span>
                     </div>
                     <h2>Nhập mã OTP</h2>
-                    <p>Chúng tôi đã gửi cho bạn 1 mã xác thực (6 chữ số) đến Email của bạn</p>
-                    <form [formGroup]="otpForm">
+                    <p>Chúng tôi đã gửi cho bạn 1 mã xác thực (6 chữ số) đến email <strong class="cl-gem">{{username}}</strong> của bạn</p>
+                    <form [formGroup]="otpForm" (ngSubmit)="onSubmitMailOTP(username, otpForm)">
                         <div class="input-field">
                             <input type="text" formControlName="digit1" maxlength="1" size="1" pattern="[0-9]" required (paste)="onPaste($event)" />
                             <input type="text" formControlName="digit2" maxlength="1" size="1" pattern="[0-9]" required (paste)="onPaste($event)" />
@@ -18,10 +18,10 @@
                             <input type="text" formControlName="digit5" maxlength="1" size="1" pattern="[0-9]" required (paste)="onPaste($event)" />
                             <input type="text" formControlName="digit6" maxlength="1" size="1" pattern="[0-9]" required (paste)="onPaste($event)" />
                         </div>
+                        <div class="button__wrapper">
+                            <button type="submit" mat-raised-button color="primary">Xác thực</button>
+                        </div>
                     </form>
-                    <div class="button__wrapper">
-                        <button mat-raised-button color="primary">Xác thực</button>
-                    </div>
                     <p>Bạn không nhận được mã? <br> <span>Gửi lại mã</span></p>
                 </div>
             </div>

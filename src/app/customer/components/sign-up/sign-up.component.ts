@@ -21,6 +21,7 @@ import { SignUpFormRequest } from 'src/app/models/request/auth';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
 import { ProgressBarService } from '../../services/progress-bar.service';
 import { Router } from '@angular/router';
+import { OTPType } from 'src/app/models/enum';
 export function matchingPasswordsValidator(
   controlName: string,
   matchingControlName: string
@@ -139,7 +140,8 @@ export class SignUpComponent {
             });
             return of(null);
           } else if (validateSignUpResponse.statusCode === 200) {
-            return this.authService.generateMailOTP(this.usernameControl.value);
+            let otpType: OTPType = OTPType.REGISTER
+            return this.authService.generateMailOTP(this.usernameControl.value, otpType);
           }
           return of(null);
         }),
@@ -157,7 +159,8 @@ export class SignUpComponent {
                 },
               });
             } else if (mailOTPResponse.statusCode === 201) {
-              this._router.navigateByUrl('/sign-up/validate-otp');
+              this.authService.nextRegisterUsername(this.usernameControl.value)
+              this._router.navigate([`/sign-up/validate-otp/register`]);
             }
           }
         })

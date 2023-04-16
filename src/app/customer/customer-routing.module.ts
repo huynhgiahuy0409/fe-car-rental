@@ -36,7 +36,7 @@ const routes: Routes = [
         component: SignUpComponent,
       },
       {
-        path: 'sign-up/validate-otp',
+        path: 'sign-up/validate-otp/:type',
         component: OtpValidationComponent,
       },
       {

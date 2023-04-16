@@ -32,7 +32,7 @@
             <div class="col l-6">
                 <div class="h-list d-flex-bo flex-row-reverse-bo">
                     <div class="header__menu">
-                        <ng-container *ngIf="!user; else signedInTemplateRef">
+                        <ng-container *ngIf="user; else signedInTemplateRef">
                             <div class="h-list">
                                 <div class="h-item h-item--gemstone-hover">
                                     <a class="h-item__link">
