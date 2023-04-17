@@ -1,3 +1,4 @@
+
 <div class="otp-validation__container">
     <div class="otp-validation__wrapper">
                 <div class="otp-validation__form">
@@ -22,7 +23,7 @@
                             <button type="submit" mat-raised-button color="primary">Xác thực</button>
                         </div>
                     </form>
-                    <p>Bạn không nhận được mã? <br> <span>Gửi lại mã</span></p>
+                    <p>Bạn không nhận được mã? <br> <span (click)="resendMailOTP(otpType)">Gửi lại mã</span></p>
                 </div>
             </div>
 </div>

@@ -160,7 +160,7 @@ export class SignUpComponent {
               });
             } else if (mailOTPResponse.statusCode === 201) {
               this.authService.nextRegisterUsername(this.usernameControl.value)
-              this._router.navigate([`/sign-up/validate-otp/register`]);
+              this._router.navigate([`/validate-otp/register`]);
             }
           }
         })

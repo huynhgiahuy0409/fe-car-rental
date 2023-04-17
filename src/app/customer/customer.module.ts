@@ -15,6 +15,7 @@ import { CustomRouteReuseStrategy } from './custom-route-reuse-strategy';
 import { InputNumberOnlyDirective } from './directive/input-number-only.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpValidationComponent } from './components/otp-validation/otp-validation.component';
+import { ErrorModule } from '../shared/layout/error/error.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OtpValidationComponent } from './components/otp-validation/otp-validati
     SvgAsTemplateModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ErrorModule
   ],
 })
 export class CustomerModule { }

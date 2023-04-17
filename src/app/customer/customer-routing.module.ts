@@ -5,6 +5,7 @@ import { MyFavsComponent } from './components/my-favs/my-favs.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { CustomerComponent } from './customer.component';
 import { OtpValidationComponent } from './components/otp-validation/otp-validation.component';
+import { PageNotFoundComponent } from '../shared/layout/error/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
         component: SignUpComponent,
       },
       {
-        path: 'sign-up/validate-otp/:type',
+        path: 'validate-otp/:type',
         component: OtpValidationComponent,
       },
       {
@@ -57,6 +58,10 @@ const routes: Routes = [
         path: 'my-favs', loadChildren: () => import("./components/my-favs/my-favs.module").then(m => m.MyFavsModule)
       },
       { path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule) },
+      { path: 'page-not-found', component: PageNotFoundComponent},
+      {
+        path: '**', component: PageNotFoundComponent
+      }
     ],
   },
 ];

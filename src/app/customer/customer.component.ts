@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProgressSpinnerService } from './services/progress-spinner.service';
 
 @Component({
   selector: 'app-customer',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent {
-
+  constructor(public progressSpinnerService: ProgressSpinnerService){}
 }

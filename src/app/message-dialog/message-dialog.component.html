@@ -2,8 +2,8 @@
 <div mat-dialog-content>
     {{data.message}}
 </div>
-<mat-dialog-actions align="end">
-    <ng-container *ngIf="data.navigatePages as navigatePages">
+<mat-dialog-actions align="end" *ngIf="data.navigatePages as navigatePages">
+    <ng-container>
         <ng-container *ngFor="let navigatePage of navigatePages">
             <ng-container *ngIf="navigatePage === 'login' ">
                 <button color="primary" mat-raised-button (click)="openLoginDialog()">Đăng nhập ngay!</button>
