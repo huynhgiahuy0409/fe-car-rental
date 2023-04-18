@@ -9,6 +9,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './customer/custom-route-reuse-strategy';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageDialogComponent } from './message-dialog/message-dialog.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MessageDialogComponent } from './message-dialog/message-dialog.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
   providers: [
   ],

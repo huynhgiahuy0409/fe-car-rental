@@ -17,11 +17,11 @@ import { timer, tap, timeout, delay, concatMap, of, Observable } from 'rxjs';
 import { CustomerLoginDialogComponent } from 'src/app/shared/layout/customer-layout/customer-header/components/dialogs/customer-login-dialog/customer-login-dialog.component';
 import { AuthService } from '../../services/auth.service';
 import { NUMBER_REGEX, TEXT_SPACE_REGEX } from 'src/app/models/constance';
-import { SignUpFormRequest } from 'src/app/models/request/auth';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
 import { ProgressBarService } from '../../services/progress-bar.service';
 import { Router } from '@angular/router';
 import { OTPType } from 'src/app/models/enum';
+import { SignUpRequest } from 'src/app/models/request/model';
 export function matchingPasswordsValidator(
   controlName: string,
   matchingControlName: string
@@ -118,7 +118,7 @@ export class SignUpComponent {
     return this.signUpFG.get('phone') as FormControl;
   }
 
-  onClickSignUp(signUpFormValue: SignUpFormRequest) {
+  onClickSignUp(signUpFormValue: SignUpRequest) {
     this.progressBarService.next(true);
     this.authService
       .validateSignUp(signUpFormValue)

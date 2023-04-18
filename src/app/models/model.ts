@@ -1,8 +1,4 @@
-export interface APIResponse<T>{
-    data: T,
-    message: string,
-    statusCode: number
-}
+
 export interface RedirectInfo {
     label: string,
     path: string
@@ -54,4 +50,18 @@ export interface LocationResponse {
     data: { locations: Location[] },
     error: number,
     errorMessage: string
+}
+// DTO
+
+export interface UserDTO{
+    id: number,
+    username: string,
+    email: string,
+    dob: Date,
+    gender: string,
+    fullName: string
+}
+export interface JWTDTO{
+    token: string,
+    tokenExpirationDate: Date
 }

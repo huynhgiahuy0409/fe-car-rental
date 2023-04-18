@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@
 import { MatDialog } from '@angular/material/dialog';
 import { RedirectInfo } from 'src/app/models/model';
 import { CustomerLoginDialogComponent } from './components/dialogs/customer-login-dialog/customer-login-dialog.component';
+import { UserService } from 'src/app/customer/services/user.service';
 
 @Component({
   selector: 'app-customer-header',
@@ -9,12 +10,10 @@ import { CustomerLoginDialogComponent } from './components/dialogs/customer-logi
   styleUrls: ['./customer-header.component.scss'],
 })
 export class CustomerHeaderComponent{
-  user: boolean = true;
   @ViewChild('dropdownMenuButton')
   dropdownMenuButton!: ElementRef;
   @ViewChild('notifyMenuButton')
   notifyMenuButton!: ElementRef;
-
   activeUserMenu: boolean = false;
   activeNotification: boolean = false;
   userMenus: RedirectInfo[] = [
@@ -51,7 +50,7 @@ export class CustomerHeaderComponent{
       path: '',
     },
   ];
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public userService: UserService ) {}
   openLoginFormDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string

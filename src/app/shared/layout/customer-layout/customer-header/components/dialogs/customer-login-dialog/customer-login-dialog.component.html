@@ -1,59 +1,95 @@
-<div #login class="login">
-    <div class="form">
+<form class="sign-in__form" [formGroup]="signInFG">
+    <div class="progress__wrapper">
+        <mat-progress-bar mode="indeterminate"
+            *ngIf="(progressBarService.isActive$ | async)"></mat-progress-bar>
+    </div>
+    <div class="header">
         <h2>Đăng nhập</h2>
-        <div class="form-field">
-            <label for="login-mail" class="mr-r-5"><i class="fa fa-user"></i></label>
-            <input id="login-mail" type="text" name="mail" placeholder="Email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-            <svg>
-                <use href="#svg-check" />
-            </svg>
-        </div>
-        <div class="form-field">
-            <label for="login-password" class="mr-r-5"><i class="fa fa-lock"></i></label>
-            <input id="login-password" type="password" name="password" placeholder="Mật khẩu" pattern=".{6,}" required>
-            <svg>
-                <use href="#svg-check" />
-            </svg>
-        </div>
-        <div class="forget-password d-flex-bo flex-row-reverse-bo">
-            <p (click)="onClickForgetPassword('400ms', '200ms')">Bạn quên mật khẩu?</p>
-        </div>
-        <button (click)="onClickLogin()" class="button">
-            <div class="arrow-wrapper">
-                <span class="arrow"></span>
+    </div>
+    <div class="line-form">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput
+                placeholder="Ex. huynhgiahuy492@gmail.com"
+                formControlName="username">
+            <mat-error *ngIf="usernameControl!.hasError('email') &&
+                !usernameControl!.hasError('required')">
+                Vui lòng nhập email hợp lệ
+            </mat-error>
+            <mat-error *ngIf="usernameControl!.hasError('required')">
+                Email <strong>không được để trống</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="line-form" [style.margin-bottom]="'0px'">
+        <mat-form-field>
+            <mat-label>Vui lòng mật khẩu</mat-label>
+            <input type="password" matInput
+                placeholder="Nhập mật khẩu" formControlName="password">
+            <mat-error *ngIf="passwordControl!.hasError('required')">
+                Mật khẩu <strong>không được để trống</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="d-flex-bo align-items-center-bo justify-content-end-bo">
+        <a>Quên mật khẩu?</a>
+    </div>
+    <div class="d-flex-bo align-items-center-bo
+        justify-content-center-bo">
+        <button class="sign-in-btn"
+            (click)="onClickSignIn(signInFG.value)"
+            [disabled]="signInFG.invalid">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Đăng nhập
+        </button>
+    </div>
+    <div class="separate__group">
+        <span></span>
+        <p>Đăng nhập với</p>
+        <span></span>
+    </div>
+    <div class="more-connect__group">
+        <div class="grid">
+            <div>
+                <button>
+                    <img class="mr-r-10"
+                        src="https://cdn6.agoda.net/images/universal-login/google-logo-v2.svg"
+                        alt="">
+                    Google
+                </button>
             </div>
-            <p class="button-text">Đăng nhập</p>
-        </button>
-        <div class="form-field forget-password d-flex-bo" style="margin-bottom: 10px">
-            <span style="color: '#9596a2'" class="mr-r-5">Bạn chưa là thành viên?</span>
-            <span routerLink="/sign-up" mat-dialog-close="true">Hãy đăng ký ngay!</span>
+            <div class="space m"></div>
+            <div class="row m-gutters">
+                <div class="col l-6">
+                    <button>
+                        <img class="mr-r-10"
+                            src="https://cdn6.agoda.net/images/universal-login/facebook-logo.svg"
+                            alt="">
+                        Facebook
+                    </button>
+                </div>
+                <div class="col l-6">
+                    <button>
+                        <img class="mr-r-10"
+                            src="https://cdn6.agoda.net/images/universal-login/apple-logo.svg"
+                            alt="">
+                        Apple
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="d-flex-bo justify-content-center-bo" style="font-size: 1.3rem">
-            <span style="color: '#9596a2'; margin-bottom: 15px">Hoặc đăng nhập bằng tài khoản</span>
+        <div class="separate__group">
+            <span></span>
         </div>
-        <div class="d-flex-bo align-items-center-bo justify-content-center-bo" style="margin: 0 40px 30px;">
-            <button class="button social-btn facebook-btn">
-                    <i class="fa-brands fa-facebook-f"></i>
-                   facebook
-            </button>
-            <button class="button social-btn google-btn">
-                <i class="fa-brands fa-google-plus-g"></i>
-                google
-        </button>
+        <div class="grid">
+            <div>
+                <button id="signUpButton" mat-dialog-close [routerLink]="['/sign-up']">
+                    Bạn chưa là thành viên? <strong class="mr-l-5">Đăng ký ngay!</strong>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="finished">
-        <svg>
-            <use href="#svg-check" />
-        </svg>
-    </div>
-</div>
-
-
-<!-- //--- ## SVG SYMBOLS ############# -->
-<svg style="display:none;">
-    <symbol id="svg-check" viewBox="0 0 130.2 130.2">
-        <polyline points="100.2,40.2 51.5,88.8 29.8,67.5 " />
-    </symbol>
-</svg>
+</form>

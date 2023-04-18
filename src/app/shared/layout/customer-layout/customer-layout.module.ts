@@ -9,6 +9,8 @@ import { ForgetPasswordComponent } from './customer-header/components/dialogs/fo
 import { SvgAsTemplateModule } from '../../svg-as-template/svg-as-template.module';
 import { WheelSvgComponent } from '../../svg-as-template/wheel-svg/wheel-svg.component';
 import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 
@@ -24,12 +26,13 @@ import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module'
     MaterialAngularModule,
     RouterModule,
     SvgAsTemplateModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [
     CustomerHeaderComponent,
     CustomerFooterComponent,
-
   ]
 })
 export class CustomerLayoutModule { }
