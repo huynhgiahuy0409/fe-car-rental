@@ -25,13 +25,15 @@ export class AuthService {
   registerUsername$!: Observable<string | null>;
   private accessTokenBehaviorSubject!: BehaviorSubject<JWTDTO | null>;
   accessToken$!: Observable<JWTDTO | null>;
-  constructor(private httpClient: HttpClient, private cookieService: CookieService) {
+  constructor(
+    private httpClient: HttpClient,
+    private cookieService: CookieService
+  ) {
     this.registerUsernameBSub = new BehaviorSubject<string | null>(null);
     this.registerUsername$ = this.registerUsernameBSub.asObservable();
-    
+
     this.accessTokenBehaviorSubject = new BehaviorSubject<JWTDTO | null>(null);
     this.accessToken$ = this.accessTokenBehaviorSubject.asObservable();
-    
   }
   public nextRegisterUsername(username: string | null) {
     this.registerUsernameBSub.next(username);
@@ -39,13 +41,18 @@ export class AuthService {
   public nexAccessToken(jwt: JWTDTO | null) {
     this.accessTokenBehaviorSubject.next(jwt);
   }
-  public getAccessTokenCurrentValue(){
-    return this.accessTokenBehaviorSubject.value
+  public getAccessTokenCurrentValue() {
+    return this.accessTokenBehaviorSubject.value;
   }
   get registerUsernameCurrentValue() {
     return this.registerUsernameBSub.value;
   }
-
+  public getRefreshToken(){
+    return this.cookieService.get('refresh-token')
+  }
+  public removeRefreshToken(){
+    return this.cookieService.delete('refresh-token')
+  }
   public signIn(
     signInRequest: SignInRequest
   ): Observable<APIResponse<AuthenticationResponse | string>> {
@@ -56,29 +63,37 @@ export class AuthService {
       this.httpOptions
     );
   }
-
+  signOut(refreshToken: string): Observable<APIResponse<string>> {
+    return this.httpClient.post<APIResponse<string>>(
+      `${URL_API}/api/auth/revoke-token`,
+      refreshToken,
+      this.httpOptions
+    );
+  }
   storeRefreshToken(refreshToken: JWTDTO) {
     const { token, tokenExpirationDate } = refreshToken;
     this.cookieService.set(
       'refresh-token',
       token,
       tokenExpirationDate,
-      "/",
+      '/',
       undefined,
       true,
       'Strict'
     );
   }
 
-  refreshAccessToken(refreshToken: string): Observable<APIResponse<AuthenticationResponse>> {
+  refreshAccessToken(
+    refreshToken: string
+  ): Observable<APIResponse<AuthenticationResponse>> {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append("Authorization", 'Bearer ' + refreshToken)
+    headers = headers.append('Authorization', 'Bearer ' + refreshToken);
     headers = headers.append('Content-Type', 'application/json');
-    this.httpOptions.headers = headers
+    this.httpOptions.headers = headers;
     const url = `${URL_API}/api/auth/refresh-access-token`;
     return this.httpClient
       .get<APIResponse<AuthenticationResponse>>(url, this.httpOptions)
-      .pipe()
+      .pipe();
   }
 
   public validateSignUp(

@@ -6,6 +6,7 @@ import { AuthService } from '../customer/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../customer/services/user.service';
 import { JWTInterceptor } from './jwt.interceptor';
+import { ProgressSpinnerService } from '../customer/services/progress-spinner.service';
 
 
 
@@ -20,7 +21,7 @@ import { JWTInterceptor } from './jwt.interceptor';
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       multi: true,
-      deps: [AuthService, CookieService, UserService],
+      deps: [AuthService, CookieService, UserService, ProgressSpinnerService],
     },
   ]
 })

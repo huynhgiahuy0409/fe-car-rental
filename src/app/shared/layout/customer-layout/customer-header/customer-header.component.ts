@@ -1,15 +1,23 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RedirectInfo } from 'src/app/models/model';
 import { CustomerLoginDialogComponent } from './components/dialogs/customer-login-dialog/customer-login-dialog.component';
 import { UserService } from 'src/app/customer/services/user.service';
+import { AuthService } from 'src/app/customer/services/auth.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-customer-header',
   templateUrl: './customer-header.component.html',
   styleUrls: ['./customer-header.component.scss'],
 })
-export class CustomerHeaderComponent{
+export class CustomerHeaderComponent {
   @ViewChild('dropdownMenuButton')
   dropdownMenuButton!: ElementRef;
   @ViewChild('notifyMenuButton')
@@ -45,12 +53,12 @@ export class CustomerHeaderComponent{
       label: 'Đổi mật khẩu',
       path: '',
     },
-    {
-      label: 'Đăng xuất',
-      path: '',
-    },
   ];
-  constructor(public dialog: MatDialog, public userService: UserService ) {}
+  constructor(
+    public dialog: MatDialog,
+    public userService: UserService,
+    private _authService: AuthService
+  ) {}
   openLoginFormDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
@@ -62,7 +70,7 @@ export class CustomerHeaderComponent{
   }
   @HostListener('document:click', ['$event'])
   clickOut(event: any) {
-    if(this.dropdownMenuButton){
+    if (this.dropdownMenuButton) {
       if (
         this.dropdownMenuButton.nativeElement.contains(event.target) &&
         this.activeUserMenu === false
@@ -72,7 +80,7 @@ export class CustomerHeaderComponent{
         this.activeUserMenu = false;
       }
     }
-    if(this.notifyMenuButton){
+    if (this.notifyMenuButton) {
       if (
         this.notifyMenuButton.nativeElement.contains(event.target) &&
         this.activeNotification === false
@@ -81,6 +89,25 @@ export class CustomerHeaderComponent{
       } else {
         this.activeNotification = false;
       }
+    }
+  }
+  onClickSignOut() {
+    let refreshToken = this._authService.getRefreshToken();
+    if (refreshToken) {
+      this._authService
+        .signOut(refreshToken)
+        .pipe(tap((response) => {
+          const {data, statusCode } = response
+          if(statusCode === 200){
+            alert("Đăng xuất thành công")
+            this._authService.nexAccessToken(null)
+            this._authService.removeRefreshToken()
+            this.userService.nextUser(null)
+          }else{
+            alert("Đăng xuất thất bại")
+          }
+        }))
+        .subscribe();
     }
   }
 }

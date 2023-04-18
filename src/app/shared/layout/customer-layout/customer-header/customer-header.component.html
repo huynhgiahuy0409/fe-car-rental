@@ -52,6 +52,9 @@
                                                     <li [routerLink]="i.path" *ngFor="let i of userMenus">
                                                         <a>{{ i.label }}</a>
                                                     </li>
+                                                    <li (click)="onClickSignOut()">
+                                                        <a>Đăng xuất</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
