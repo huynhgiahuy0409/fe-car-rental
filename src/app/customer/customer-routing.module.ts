@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
 import { DemoComponent } from './components/demo/demo.component';
 import { MyFavsComponent } from './components/my-favs/my-favs.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SignUpComponent } from './components/auth/components/sign-up/sign-up.component';
 import { CustomerComponent } from './customer.component';
-import { OtpValidationComponent } from './components/otp-validation/otp-validation.component';
+import { OtpValidationComponent } from './components/auth/components/otp-validation/otp-validation.component';
 import { PageNotFoundComponent } from '../shared/layout/error/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [

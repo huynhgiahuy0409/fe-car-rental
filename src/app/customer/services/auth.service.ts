@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { URL_API } from 'src/app/models/constance';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, delay } from 'rxjs';
 import { OTPType } from 'src/app/models/enum';
 import {
   APIResponse,
   AuthenticationResponse,
 } from 'src/app/models/response/model';
-import { SignInRequest, SignUpRequest } from 'src/app/models/request/model';
+import { SignInRequest, SignUpRequest, ForgetPasswordRequest } from 'src/app/models/request/model';
 import { JWTDTO } from 'src/app/models/model';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -21,22 +21,22 @@ export class AuthService {
     }),
     params: new HttpParams(),
   };
-  private registerUsernameBSub!: BehaviorSubject<string | null>;
-  registerUsername$!: Observable<string | null>;
+  private usernameBSub!: BehaviorSubject<string | null>;
+  username$!: Observable<string | null>;
   private accessTokenBehaviorSubject!: BehaviorSubject<JWTDTO | null>;
   accessToken$!: Observable<JWTDTO | null>;
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService
   ) {
-    this.registerUsernameBSub = new BehaviorSubject<string | null>(null);
-    this.registerUsername$ = this.registerUsernameBSub.asObservable();
+    this.usernameBSub = new BehaviorSubject<string | null>(null);
+    this.username$ = this.usernameBSub.asObservable();
 
     this.accessTokenBehaviorSubject = new BehaviorSubject<JWTDTO | null>(null);
     this.accessToken$ = this.accessTokenBehaviorSubject.asObservable();
   }
-  public nextRegisterUsername(username: string | null) {
-    this.registerUsernameBSub.next(username);
+  public nextUsername(username: string | null) {
+    this.usernameBSub.next(username);
   }
   public nexAccessToken(jwt: JWTDTO | null) {
     this.accessTokenBehaviorSubject.next(jwt);
@@ -45,13 +45,13 @@ export class AuthService {
     return this.accessTokenBehaviorSubject.value;
   }
   get registerUsernameCurrentValue() {
-    return this.registerUsernameBSub.value;
+    return this.usernameBSub.value;
   }
-  public getRefreshToken(){
-    return this.cookieService.get('refresh-token')
+  public getRefreshToken() {
+    return this.cookieService.get('refresh-token');
   }
-  public removeRefreshToken(){
-    return this.cookieService.delete('refresh-token')
+  public removeRefreshToken() {
+    return this.cookieService.delete('refresh-token');
   }
   public signIn(
     signInRequest: SignInRequest
@@ -135,6 +135,22 @@ export class AuthService {
     return this.httpClient.get<APIResponse<string>>(url, {
       headers: headers,
       params: params,
+      responseType: 'json',
+    }).pipe(delay(500));
+  }
+  public checkActivatedUser(username: string): Observable<APIResponse<string>> {
+    let url = URL_API.concat(`/api/auth/check-activated-user`);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post<APIResponse<string>>(url, username, {
+      headers: headers,
+      responseType: 'json',
+    });
+  }
+  public changePassword(forgetPasswordRequest: ForgetPasswordRequest): Observable<APIResponse<string>> {
+    let url = URL_API.concat(`/api/auth/change-password`);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post<APIResponse<string>>(url, forgetPasswordRequest, {
+      headers: headers,
       responseType: 'json',
     });
   }

@@ -14,14 +14,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { timer, tap, timeout, delay, concatMap, of, Observable } from 'rxjs';
-import { CustomerLoginDialogComponent } from 'src/app/shared/layout/customer-layout/customer-header/components/dialogs/customer-login-dialog/customer-login-dialog.component';
-import { AuthService } from '../../services/auth.service';
+import { CustomerLoginDialogComponent } from 'src/app/customer/components/auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
+import { AuthService } from '../../../../services/auth.service';
 import { NUMBER_REGEX, TEXT_SPACE_REGEX } from 'src/app/models/constance';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
-import { ProgressBarService } from '../../services/progress-bar.service';
+import { ProgressBarService } from '../../../../services/progress-bar.service';
 import { Router } from '@angular/router';
 import { OTPType } from 'src/app/models/enum';
 import { SignUpRequest } from 'src/app/models/request/model';
+import { ChangePasswordDialogComponent } from '../dialogs/change-password-dialog/change-password-dialog.component';
 export function matchingPasswordsValidator(
   controlName: string,
   matchingControlName: string
@@ -65,8 +66,8 @@ export class SignUpComponent {
   signUpFG!: FormGroup;
   constructor(
     private _fb: FormBuilder,
-    private authService: AuthService,
-    private matDialog: MatDialog,
+    private _authService: AuthService,
+    private _matDialog: MatDialog,
     public progressBarService: ProgressBarService,
     private _router: Router
   ) {
@@ -120,7 +121,7 @@ export class SignUpComponent {
 
   onClickSignUp(signUpFormValue: SignUpRequest) {
     this.progressBarService.next(true);
-    this.authService
+    this._authService
       .validateSignUp(signUpFormValue)
       .pipe(
         concatMap((validateSignUpResponse) => {
@@ -129,7 +130,7 @@ export class SignUpComponent {
             validateSignUpResponse.statusCode === 400
           ) {
             this.progressBarService.next(false);
-            this.matDialog.open(MessageDialogComponent, {
+            this._matDialog.open(MessageDialogComponent, {
               minWidth: '500px',
               enterAnimationDuration: '500ms',
               exitAnimationDuration: '500ms',
@@ -140,8 +141,11 @@ export class SignUpComponent {
             });
             return of(null);
           } else if (validateSignUpResponse.statusCode === 200) {
-            let otpType: OTPType = OTPType.REGISTER
-            return this.authService.generateMailOTP(this.usernameControl.value, otpType);
+            let otpType: OTPType = OTPType.REGISTER;
+            return this._authService.generateMailOTP(
+              this.usernameControl.value,
+              otpType
+            );
           }
           return of(null);
         }),
@@ -149,7 +153,7 @@ export class SignUpComponent {
           this.progressBarService.next(false);
           if (mailOTPResponse != null) {
             if (mailOTPResponse.statusCode === 500) {
-              this.matDialog.open(MessageDialogComponent, {
+              this._matDialog.open(MessageDialogComponent, {
                 minWidth: '500px',
                 enterAnimationDuration: '500ms',
                 exitAnimationDuration: '500ms',
@@ -159,13 +163,19 @@ export class SignUpComponent {
                 },
               });
             } else if (mailOTPResponse.statusCode === 201) {
-              this.authService.nextRegisterUsername(this.usernameControl.value)
+              this._authService.nextUsername(this.usernameControl.value);
               this._router.navigate([`/validate-otp/register`]);
             }
           }
         })
       )
       .subscribe();
+  }
+  a(){
+    this._matDialog.open(ChangePasswordDialogComponent, {
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '500ms',
+    })
   }
   ngOnInit(): void {
     console.log('sign up init');
@@ -174,3 +184,4 @@ export class SignUpComponent {
     console.log('sign up des');
   }
 }
+
