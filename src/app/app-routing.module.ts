@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
 import { CustomRouteReuseStrategy } from './customer/custom-route-reuse-strategy';
+import { PageNotFoundComponent } from './shared/layout/error/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./car-owner/car-owner.module').then((m) => m.CarOwnerModule),
   },
+  {
+    path: '**', component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
