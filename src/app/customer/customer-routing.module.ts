@@ -59,9 +59,6 @@ const routes: Routes = [
       },
       { path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule) },
       { path: 'page-not-found', component: PageNotFoundComponent},
-      {
-        path: '**', component: PageNotFoundComponent
-      }
     ],
   },
 ];
