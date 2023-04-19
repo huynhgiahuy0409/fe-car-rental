@@ -171,12 +171,6 @@ export class SignUpComponent {
       )
       .subscribe();
   }
-  a(){
-    this._matDialog.open(ChangePasswordDialogComponent, {
-      enterAnimationDuration: '500ms',
-      exitAnimationDuration: '500ms',
-    })
-  }
   ngOnInit(): void {
     console.log('sign up init');
   }
