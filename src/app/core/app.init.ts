@@ -3,12 +3,15 @@ import { AuthService } from '../customer/services/auth.service';
 import { delay, of, tap } from 'rxjs';
 import { UserService } from '../customer/services/user.service';
 import { ProgressSpinnerService } from '../customer/services/progress-spinner.service';
+import { MessageDialogService } from '../customer/services/message-dialog.service';
+import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 export function appInitializer(
     authService: AuthService,
     cookieService: CookieService,
     userService: UserService,
-    progressSpinnerService: ProgressSpinnerService
+    progressSpinnerService: ProgressSpinnerService,
+    messageDialogService: MessageDialogService
 ) {
     return () => {
         const haveToken: boolean = cookieService.check('refresh-token');
@@ -27,11 +30,12 @@ export function appInitializer(
                             authService.nexAccessToken(data.accessToken);
                             authService.storeRefreshToken(data.refreshToken);
                         } else {
-                            alert('Hết phiên');
+                            messageDialogService.openMessageDialog(MessageDialogComponent, {title: "Hết phiên", message: data})
+                            authService.removeRefreshToken()
                         }
                     })
-                )
-                .subscribe();
+                    )
+                    .subscribe();
         } else {
             return of(null);
         }

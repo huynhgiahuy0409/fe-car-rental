@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RedirectInfo } from 'src/app/models/model';
-import { CustomerLoginDialogComponent } from './components/dialogs/customer-login-dialog/customer-login-dialog.component';
+import { CustomerLoginDialogComponent } from '../../../../customer/components/auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
 import { UserService } from 'src/app/customer/services/user.service';
 import { AuthService } from 'src/app/customer/services/auth.service';
 import { tap } from 'rxjs';

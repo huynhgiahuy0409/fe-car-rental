@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CustomerLoginDialogComponent } from '../shared/layout/customer-layout/customer-header/components/dialogs/customer-login-dialog/customer-login-dialog.component';
+import { CustomerLoginDialogComponent } from '../customer/components/auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
 export type PageType = "login" | "home"
 @Component({
   selector: 'app-message-dialog',

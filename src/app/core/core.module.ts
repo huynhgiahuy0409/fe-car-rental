@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../customer/services/user.service';
 import { JWTInterceptor } from './jwt.interceptor';
 import { ProgressSpinnerService } from '../customer/services/progress-spinner.service';
+import { MessageDialogService } from '../customer/services/message-dialog.service';
 
 
 
@@ -21,7 +22,7 @@ import { ProgressSpinnerService } from '../customer/services/progress-spinner.se
       provide: APP_INITIALIZER,
       useFactory: appInitializer,
       multi: true,
-      deps: [AuthService, CookieService, UserService, ProgressSpinnerService],
+      deps: [AuthService, CookieService, UserService, ProgressSpinnerService, MessageDialogService],
     },
   ]
 })
