@@ -58,10 +58,12 @@ export interface UserDTO{
     id: number,
     username: string,
     email: string,
-    dob: Date,
+    dob: string,
     gender: string,
     fullName: string,
-    provider: OAuthProvider
+    phone: string,
+    provider: OAuthProvider,
+    createdDate: string
 }
 export interface JWTDTO{
     token: string,

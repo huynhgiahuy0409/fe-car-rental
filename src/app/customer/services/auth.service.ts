@@ -126,11 +126,12 @@ export class AuthService implements OnInit, OnDestroy {
   ): Observable<APIResponse<AuthenticationResponse>> {
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Authorization', 'Bearer ' + refreshToken);
-    headers = headers.append('Content-Type', 'application/json');
-    this.httpOptions.headers = headers;
+    console.log(headers)
     const url = `${URL_API}/api/auth/refresh-access-token`;
     return this.httpClient
-      .get<APIResponse<AuthenticationResponse>>(url, this.httpOptions)
+      .get<APIResponse<AuthenticationResponse>>(url, {
+        headers: headers
+      })
       .pipe();
   }
 

@@ -2,6 +2,7 @@
 import { log } from 'console';
 import { Component } from '@angular/core';
 import { ActivationEnd, Router } from '@angular/router';
+import { ProgressSpinnerService } from './customer/services/progress-spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,5 @@ import { ActivationEnd, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'cdjava-fe-booking-oto';
+  constructor(public progressSpinnerService: ProgressSpinnerService){}
 }
