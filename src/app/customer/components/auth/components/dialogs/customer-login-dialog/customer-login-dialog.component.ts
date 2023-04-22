@@ -123,4 +123,8 @@ export class CustomerLoginDialogComponent {
       }
     });
   }
+  navigateToSignUp(){
+    this.dialogRef.close()
+    this._router.navigate(['/sign-up'])
+  }
 }

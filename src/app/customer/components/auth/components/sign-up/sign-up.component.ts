@@ -203,5 +203,8 @@ export class SignUpComponent implements AfterViewInit {
   signInWithFacebook(): void {
     this._authService.signInWithFacebook();
   }
+  openSignInDialog(){
+    this._matDialog.open(CustomerLoginDialogComponent)
+  }
   ngOnDestroy() {}
 }
