@@ -6,12 +6,12 @@
         <div class="form-default form--s">
             <div class="line-form">
                 <div class="wrap-input">
-                    <input type="text" placeholder="Số điện thoại">
+                    <input [formControl]="phoneControl" type="text" placeholder="Số điện thoại">
                 </div>
             </div>
             <div class="space m">
             </div>
-            <button style="margin: 0" class="w-fit btn btn--m " mat-raised-button color="primary">Cập nhật</button>
+            <button [disabled]="phoneControl.invalid" style="margin: 0" class="w-fit btn btn--m " mat-raised-button color="primary" (click)="updatePhone(phoneControl.value)">Cập nhật</button>
         </div>
     </div>
 </div>

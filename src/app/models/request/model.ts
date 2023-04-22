@@ -26,5 +26,6 @@ export interface SocialUserRequest{
 export interface UpdatedUserRequest{
     fullName: string,
     gender: string,
-    dob: Date
+    dob: Date,
+    phone: string,
 }

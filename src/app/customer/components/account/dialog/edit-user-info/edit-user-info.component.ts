@@ -42,20 +42,19 @@ export class EditUserInfoComponent {
     this.updatedUserFG = this._fb.group({
       fullName: [this.user.fullName, Validators.required],
       gender: [this.user.gender, Validators.required],
-      dob: [new Date(this.user.dob)
-        , Validators.required],
+      dob: [new Date(this.user.dob), Validators.required],
     });
     this.updatedUserFG.valueChanges.subscribe((v) => console.log(v));
   }
-  onClickUpdateUser(updatedUserRequest: UpdatedUserRequest) {
+  onClickUpdateUser(formValue: UserDTO) {
+    let updatedUserRequest: UserDTO = { ...this.user, ...formValue };
     this._userService
       .updateUser(updatedUserRequest)
       .pipe(
         tap((response) => {
           const { statusCode, data } = response;
           if (statusCode === 200) {
-            const { fullName, gender, dob } = updatedUserRequest;
-            this.user = { ...this.user, fullName, gender, dob };
+            this.user = updatedUserRequest;
             this._userService.nextUser(this.user);
             this._messageDialogService.openMessageDialog(
               MessageDialogComponent,
