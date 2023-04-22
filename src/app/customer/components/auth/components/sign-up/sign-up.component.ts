@@ -1,6 +1,12 @@
+import jwt_decode from 'jwt-decode';
+
 import {
+  AfterViewInit,
   Component,
   ElementRef,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -13,16 +19,33 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { timer, tap, timeout, delay, concatMap, of, Observable } from 'rxjs';
+import {
+  timer,
+  tap,
+  timeout,
+  delay,
+  concatMap,
+  of,
+  Observable,
+  switchMap,
+} from 'rxjs';
 import { CustomerLoginDialogComponent } from 'src/app/customer/components/auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
 import { AuthService } from '../../../../services/auth.service';
 import { NUMBER_REGEX, TEXT_SPACE_REGEX } from 'src/app/models/constance';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
 import { ProgressBarService } from '../../../../services/progress-bar.service';
 import { Router } from '@angular/router';
-import { OTPType } from 'src/app/models/enum';
-import { SignUpRequest } from 'src/app/models/request/model';
+import { OAuthProvider, OTPType } from 'src/app/models/enum';
+import { SignUpRequest, SocialUserRequest } from 'src/app/models/request/model';
 import { ChangePasswordDialogComponent } from '../dialogs/change-password-dialog/change-password-dialog.component';
+import {
+  APIResponse,
+  AuthenticationResponse,
+  SocialUserResponse,
+} from 'src/app/models/response/model';
+import { UserService } from 'src/app/customer/services/user.service';
+import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
+import { ProgressSpinnerService } from 'src/app/customer/services/progress-spinner.service';
 export function matchingPasswordsValidator(
   controlName: string,
   matchingControlName: string
@@ -41,6 +64,7 @@ export function matchingPasswordsValidator(
     }
   };
 }
+
 export function passwordValidator(
   control: AbstractControl
 ): { [key: string]: boolean } | null {
@@ -52,14 +76,13 @@ export function passwordValidator(
   }
   return null;
 }
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
   providers: [ProgressBarService],
 })
-export class SignUpComponent {
+export class SignUpComponent implements AfterViewInit {
   @ViewChild('signUp')
   signUpEleRef!: ElementRef;
   isSuccessSignUp = false;
@@ -69,7 +92,10 @@ export class SignUpComponent {
     private _authService: AuthService,
     private _matDialog: MatDialog,
     public progressBarService: ProgressBarService,
-    private _router: Router
+    private _router: Router,
+    private _progressSpinnerService: ProgressSpinnerService,
+    private _messageDialogService: MessageDialogService,
+    private _userService: UserService
   ) {
     this.signUpFG = this._fb.group(
       {
@@ -98,11 +124,13 @@ export class SignUpComponent {
         validators: matchingPasswordsValidator('password', 'confirmPassword'),
       }
     );
-    this.signUpFG.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
   }
-
+  ngOnInit(): void {
+    this._authService.loadGoogleClientLibs();
+    (window as any).signInWithGoogleCallback =
+      this.signInWithGoogleCallback.bind(this);
+  }
+  ngAfterViewInit(): void {}
   get usernameControl(): FormControl {
     return this.signUpFG.get('username') as FormControl;
   }
@@ -124,26 +152,24 @@ export class SignUpComponent {
     this._authService
       .validateSignUp(signUpFormValue)
       .pipe(
-        concatMap((validateSignUpResponse) => {
+        switchMap((validateSignUpResponse) => {
           if (
             validateSignUpResponse.statusCode === 409 ||
             validateSignUpResponse.statusCode === 400
           ) {
             this.progressBarService.next(false);
-            this._matDialog.open(MessageDialogComponent, {
-              minWidth: '500px',
-              enterAnimationDuration: '500ms',
-              exitAnimationDuration: '500ms',
-              data: {
+            this._messageDialogService.openMessageDialog(
+              MessageDialogComponent,
+              {
                 title: 'Thông tin không hợp lệ',
                 message: validateSignUpResponse.data,
-              },
-            });
+              }
+            );
             return of(null);
           } else if (validateSignUpResponse.statusCode === 200) {
             let otpType: OTPType = OTPType.REGISTER;
             return this._authService.generateMailOTP(
-              this.usernameControl.value,
+            this.usernameControl.value,
               otpType
             );
           }
@@ -171,11 +197,11 @@ export class SignUpComponent {
       )
       .subscribe();
   }
-  ngOnInit(): void {
-    console.log('sign up init');
+  signInWithGoogleCallback(response: any) {
+    this._authService.signInWithGoogleCallback(response);
   }
-  ngOnDestroy() {
-    console.log('sign up des');
+  signInWithFacebook(): void {
+    this._authService.signInWithFacebook();
   }
+  ngOnDestroy() {}
 }
-

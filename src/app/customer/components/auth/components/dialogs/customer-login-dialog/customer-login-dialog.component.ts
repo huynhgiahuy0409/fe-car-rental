@@ -1,3 +1,4 @@
+import { log } from 'console';
 import {
   APIResponse,
   AuthenticationResponse,
@@ -19,6 +20,8 @@ import { SignInRequest } from 'src/app/models/request/model';
 import { UserService } from 'src/app/customer/services/user.service';
 import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
+import { Router } from '@angular/router';
+import { ProgressSpinnerService } from 'src/app/customer/services/progress-spinner.service';
 
 @Component({
   selector: 'app-customer-login-dialog',
@@ -34,8 +37,11 @@ export class CustomerLoginDialogComponent {
     public progressBarService: ProgressBarService,
     private _authService: AuthService,
     private _userService: UserService,
-    private _messageDialogService: MessageDialogService
+    private _messageDialogService: MessageDialogService,
+    private _router: Router,
+    private _progressSpinnerService: ProgressSpinnerService
   ) {
+    this._authService.loadGoogleClientLibs();
     this.signInFG = this._fb.group({
       username: [
         '',
@@ -43,6 +49,8 @@ export class CustomerLoginDialogComponent {
       ],
       password: ['', Validators.compose([Validators.required])],
     });
+    (window as any).signInWithGoogleCallback =
+      this.signInWithGoogleCallback.bind(this);
   }
   get usernameControl(): FormControl {
     return this.signInFG.get('username') as FormControl;
@@ -65,12 +73,12 @@ export class CustomerLoginDialogComponent {
             this._authService.storeRefreshToken(data.refreshToken);
             this.dialogRef.close();
           } else if (statusCode == 400) {
-            const { data, message } = signInResponse as APIResponse<string>;
+            const { data } = signInResponse as APIResponse<string>;
             this._messageDialogService.openMessageDialog(
               MessageDialogComponent,
               {
                 title: 'Không thể đăng nhập',
-                message: message,
+                message: data,
               }
             );
           } else {
@@ -93,6 +101,24 @@ export class CustomerLoginDialogComponent {
     });
     forgetPasswordDialog.afterClosed().subscribe((result) => {
       if (result.data === 201) {
+        this.dialogRef.close();
+      }
+    });
+  }
+  signInWithGoogleCallback(response: any) {
+    console.log(response)
+    this._progressSpinnerService.next(true);
+    this._authService.signInWithGoogleCallback(response);
+    this._userService.user$.subscribe((user) => {
+      if (user) {
+        this.dialogRef.close();
+      }
+    });
+  }
+  signInWithFacebook(): void {
+    this._authService.signInWithFacebook();
+    this._userService.user$.subscribe((user) => {
+      if (user) {
         this.dialogRef.close();
       }
     });

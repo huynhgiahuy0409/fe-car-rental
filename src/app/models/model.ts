@@ -1,3 +1,4 @@
+import { OAuthProvider } from "./enum"
 
 export interface RedirectInfo {
     label: string,
@@ -59,7 +60,8 @@ export interface UserDTO{
     email: string,
     dob: Date,
     gender: string,
-    fullName: string
+    fullName: string,
+    provider: OAuthProvider
 }
 export interface JWTDTO{
     token: string,

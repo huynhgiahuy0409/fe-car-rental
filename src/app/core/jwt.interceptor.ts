@@ -9,7 +9,6 @@ export class JWTInterceptor implements HttpInterceptor{
     }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let jwt = this.authService.getAccessTokenCurrentValue()
-        console.log(jwt);
         if(jwt){
             let accessToken = jwt.token
             const cloned = req.clone({

@@ -16,4 +16,7 @@ export class UserService {
   public nextUser(user: UserDTO | null){
     this.userBehaviorSubject.next(user)
   }
+  get userValue(): UserDTO {
+    return this.userBehaviorSubject.value!
+  }
 }

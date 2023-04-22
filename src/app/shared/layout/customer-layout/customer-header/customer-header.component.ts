@@ -1,3 +1,4 @@
+
 import {
   AfterViewInit,
   Component,
@@ -57,7 +58,7 @@ export class CustomerHeaderComponent {
   constructor(
     public dialog: MatDialog,
     public userService: UserService,
-    private _authService: AuthService
+    private _authService: AuthService,
   ) {}
   openLoginFormDialog(
     enterAnimationDuration: string,
@@ -96,17 +97,19 @@ export class CustomerHeaderComponent {
     if (refreshToken) {
       this._authService
         .signOut(refreshToken)
-        .pipe(tap((response) => {
-          const {data, statusCode } = response
-          if(statusCode === 200){
-            alert("Đăng xuất thành công")
-            this._authService.nexAccessToken(null)
-            this._authService.removeRefreshToken()
-            this.userService.nextUser(null)
-          }else{
-            alert("Đăng xuất thất bại")
-          }
-        }))
+        .pipe(
+          tap((response) => {
+            const { data, statusCode } = response;
+            if (statusCode === 200) {
+              alert('Đăng xuất thành công');
+              this._authService.nexAccessToken(null);
+              this._authService.removeRefreshToken();
+              this.userService.nextUser(null);
+            } else {
+              alert('Đăng xuất thất bại');
+            }
+          })
+        )
         .subscribe();
     }
   }

@@ -10,22 +10,19 @@ import { CustomRouteReuseStrategy } from './customer/custom-route-reuse-strategy
 import { HttpClientModule } from '@angular/common/http';
 import { MessageDialogComponent } from './message-dialog/message-dialog.component';
 import { CoreModule } from './core/core.module';
+import { OAUTH_CLIENT_ID } from './models/constance';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MessageDialogComponent
-  ],
+  declarations: [AppComponent, MessageDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialAngularModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
