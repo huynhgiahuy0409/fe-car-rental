@@ -1,4 +1,4 @@
-import { OAuthProvider } from "./enum"
+import { GENDER, OAuthProvider } from "./enum"
 
 export interface RedirectInfo {
     label: string,
@@ -58,7 +58,7 @@ export interface UserDTO{
     id: number,
     username: string,
     email: string,
-    dob: string,
+    dob: Date,
     gender: string,
     fullName: string,
     phone: string,

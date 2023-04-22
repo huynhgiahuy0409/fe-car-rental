@@ -60,7 +60,8 @@
                                 </div>
                                 <div class="profile-line__item">
                                     <strong>Giới tính</strong>
-                                    <p>{{user.gender}}</p>
+                                    <p *ngIf="user.gender === 'MALE'">Nam</p>
+                                    <p *ngIf="user.gender === 'FEMALE'">Nữ</p>
                                 </div>
                             </div>
                         </div>

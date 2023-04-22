@@ -7,3 +7,7 @@ export enum OAuthProvider {
   FACEBOOK = 'FACEBOOK',
   APPLICATION = 'APPLICATION',
 }
+export enum GENDER {
+  MALE,
+  FEMALE,
+}

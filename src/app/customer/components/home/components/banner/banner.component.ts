@@ -25,18 +25,6 @@ import {
 import { TimeFormat } from 'src/app/models/model';
 import { RentalHourOption } from 'src/app/services/timer-util.service';
 import { addDays } from 'date-fns';
-
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'DD-MM-YYYY',
-    monthYearLabel: 'YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'YYYY',
-  },
-};
 export interface DriverService {
   pickUpPlace: string;
   startTime: {
@@ -55,15 +43,6 @@ export interface DriverService {
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss'],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE],
-    },
-
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ],
   encapsulation: ViewEncapsulation.None
 })
 export class BannerComponent implements OnInit, AfterViewInit {

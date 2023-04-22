@@ -10,6 +10,10 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { EditUserInfoComponent } from './dialog/edit-user-info/edit-user-info.component';
 import { SvgAsTemplateModule } from 'src/app/shared/svg-as-template/svg-as-template.module';
 import { CarouselModule } from 'src/app/shared/carousel/carousel.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DateAdapter } from 'angular-calendar';
 
 
 @NgModule({
@@ -23,9 +27,17 @@ import { CarouselModule } from 'src/app/shared/carousel/carousel.module';
   imports: [
     CommonModule,
     AccountRoutingModule,
-    MaterialAngularModule,
+  MaterialAngularModule,
     SvgAsTemplateModule,
-    CarouselModule
-  ]
+    CarouselModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+  ],
 })
 export class AccountModule { }

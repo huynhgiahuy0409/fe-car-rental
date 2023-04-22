@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { URL_API } from 'src/app/models/constance';
 import { UserDTO } from 'src/app/models/model';
+import { UpdatedUserRequest } from 'src/app/models/request/model';
+import { APIResponse } from 'src/app/models/response/model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +12,7 @@ import { UserDTO } from 'src/app/models/model';
 export class UserService {
   private userBehaviorSubject!: BehaviorSubject<UserDTO | null>
   public user$!: Observable<UserDTO | null>
-  constructor() {
+  constructor(private _httpClient: HttpClient) {
     this.userBehaviorSubject = new BehaviorSubject<UserDTO | null>(null)
     this.user$ = this.userBehaviorSubject.asObservable()
     this.user$.subscribe(v => console.log(v));
@@ -18,5 +22,11 @@ export class UserService {
   }
   get userValue(): UserDTO {
     return this.userBehaviorSubject.value!
+  }
+  public updateUser(updatedUserRequest: UpdatedUserRequest): Observable<APIResponse<string>> {
+    let url = URL_API.concat(`/api/user/update`);
+    return this._httpClient.post<APIResponse<string>>(url, updatedUserRequest, {
+      responseType: 'json',
+    });
   }
 }

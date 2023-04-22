@@ -23,3 +23,8 @@ export interface SocialUserRequest{
     provider: OAuthProvider,
     id: string
 }
+export interface UpdatedUserRequest{
+    fullName: string,
+    gender: string,
+    dob: Date
+}

@@ -9,6 +9,7 @@ import { EditUserInfoComponent } from './dialog/edit-user-info/edit-user-info.co
 import { Observable } from 'rxjs';
 import { UserDTO } from 'src/app/models/model';
 import { UserService } from '../../services/user.service';
+import { GENDER } from 'src/app/models/enum';
 
 @Component({
   selector: 'app-account',
