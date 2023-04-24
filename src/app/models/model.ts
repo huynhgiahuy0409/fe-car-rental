@@ -69,3 +69,14 @@ export interface JWTDTO{
     token: string,
     tokenExpirationDate: Date
 }
+export interface PromoDTO{
+    id: number,
+    title: string,
+    contents: string[],
+    quantity: number,
+    status: string,
+    discountPercent: number,
+    maxPrice: number,
+    startDate: Date,
+    endDate: Date
+}

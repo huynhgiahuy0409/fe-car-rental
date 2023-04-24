@@ -11,3 +11,7 @@ export enum GENDER {
   MALE,
   FEMALE,
 }
+export enum StandardStatus{
+  ACTIVATED,
+  UNACTIVATED,
+}

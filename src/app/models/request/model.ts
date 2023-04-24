@@ -29,3 +29,12 @@ export interface UpdatedUserRequest{
     dob: Date,
     phone: string,
 }
+export interface NewPromoRequest{
+    title: string,
+    content: string,
+    quantity: number,
+    discountPercent: number,
+    maxPrice: number,
+    startDate: Date,
+    endDate: Date
+}

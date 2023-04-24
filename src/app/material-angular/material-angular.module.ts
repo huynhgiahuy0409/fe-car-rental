@@ -22,7 +22,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -44,6 +47,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSliderModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
 })
 export class MaterialAngularModule {}

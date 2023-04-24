@@ -30,11 +30,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./car-owner/car-owner.module').then((m) => m.CarOwnerModule),
       },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-      },
     ],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 
