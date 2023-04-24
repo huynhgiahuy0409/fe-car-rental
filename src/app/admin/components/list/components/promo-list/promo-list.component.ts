@@ -96,11 +96,14 @@ export class PromoListComponent {
       },
     });
     editDialogRef.afterClosed().subscribe((response) => {
-      let currDataSource = this.dataSource.data;
-      let updatedPromo: PromoDTO = response.updatedPromo;
-      let index = currDataSource.findIndex((row) => row.id === updatedPromo.id);
-      currDataSource[index] = updatedPromo;
-      this.dataSource.data = currDataSource;
+      console.log(response.updatedPromo)
+      if(response.updatedPromo){
+        let currDataSource = this.dataSource.data;
+        let updatedPromo: PromoDTO = response.updatedPromo;
+        let index = currDataSource.findIndex((row) => row.id === updatedPromo.id);
+        currDataSource[index] = updatedPromo;
+        this.dataSource.data = currDataSource;
+      }
     });
   }
 }

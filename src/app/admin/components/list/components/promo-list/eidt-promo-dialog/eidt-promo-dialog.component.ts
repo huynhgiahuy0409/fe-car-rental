@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -30,8 +31,9 @@ export class EditPromoDialogComponent {
     this.promo.contents.forEach((content) => {
       contentsArray.push(this._fb.control(content, Validators.required));
     });
-    const { title, quantity, discountPercent, maxPrice, startDate, endDate } =
+    const { title, quantity, discountPercent, maxPrice, startDate, endDate, status } =
       this.promo;
+    console.log(this.promo)
     this.promoFG = this._fb.group({
       title: [title, Validators.required],
       contents: contentsArray,
@@ -40,6 +42,7 @@ export class EditPromoDialogComponent {
       maxPrice: [maxPrice, Validators.required],
       startDate: [new Date(startDate), Validators.required],
       endDate: [new Date(endDate), Validators.required],
+      status: [status, Validators.required]
     });
   }
   get contentsArray(): FormArray {
@@ -55,6 +58,7 @@ export class EditPromoDialogComponent {
   }
   obSubmitUpdatePromo(value: PromoDTO) {
     value.id = this.promo.id;
+    
     this._promoService
       .updatePromo(value)
       .pipe(

@@ -1,4 +1,4 @@
-import { GENDER, OAuthProvider } from "./enum"
+import { GENDER, OAuthProvider, StandardStatus } from "./enum"
 
 export interface RedirectInfo {
     label: string,
@@ -74,7 +74,7 @@ export interface PromoDTO{
     title: string,
     contents: string[],
     quantity: number,
-    status: string,
+    status: StandardStatus,
     discountPercent: number,
     maxPrice: number,
     startDate: Date,
