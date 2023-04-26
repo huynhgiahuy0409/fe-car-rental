@@ -6,6 +6,7 @@ import { SignUpComponent } from './components/auth/components/sign-up/sign-up.co
 import { CustomerComponent } from './customer.component';
 import { OtpValidationComponent } from './components/auth/components/otp-validation/otp-validation.component';
 import { PageNotFoundComponent } from '../shared/layout/error/components/page-not-found/page-not-found.component';
+import { AuthGuard } from '../helper/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,12 +21,12 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'car',
         loadChildren: () =>
-          import('./components/car/car.module').then((m) => m.CarModule)
+          import('./components/car/car.module').then((m) => m.CarModule),
       },
       {
         path: '',
@@ -44,6 +45,7 @@ const routes: Routes = [
         path: 'promo',
         loadChildren: () =>
           import('./components/promo/promo.module').then((m) => m.PromoModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'account',
@@ -51,14 +53,37 @@ const routes: Routes = [
           import('./components/account/account.module').then(
             (m) => m.AccountModule
           ),
+        canActivate: [AuthGuard],
       },
-      { path: 'my-trip', loadChildren: () => import('./components/my-trip/my-trip.module').then(m => m.MyTripModule) },
-      { path: "find", loadChildren: () => import("./components/search-result/search-result.module").then(m => m.SearchResultModule)},
       {
-        path: 'my-favs', loadChildren: () => import("./components/my-favs/my-favs.module").then(m => m.MyFavsModule)
+        path: 'my-trip',
+        loadChildren: () =>
+          import('./components/my-trip/my-trip.module').then(
+            (m) => m.MyTripModule
+          ),
       },
-      { path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule) },
-      { path: 'page-not-found', component: PageNotFoundComponent},
+      {
+        path: 'find',
+        loadChildren: () =>
+          import('./components/search-result/search-result.module').then(
+            (m) => m.SearchResultModule
+          ),
+      },
+      {
+        path: 'my-favs',
+        loadChildren: () =>
+          import('./components/my-favs/my-favs.module').then(
+            (m) => m.MyFavsModule
+          ),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./components/profile/profile.module').then(
+            (m) => m.ProfileModule
+          ),
+      },
+      { path: 'page-not-found', component: PageNotFoundComponent },
     ],
   },
 ];
@@ -66,7 +91,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [
-  ],
+  providers: [],
 })
-export class CustomerRoutingModule { }
+export class CustomerRoutingModule {}

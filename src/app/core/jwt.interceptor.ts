@@ -9,12 +9,13 @@ export class JWTInterceptor implements HttpInterceptor{
     }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let jwt = this.authService.getAccessTokenCurrentValue()
-        console.log(jwt);
         if(jwt){
             let accessToken = jwt.token
             const cloned = req.clone({
                 headers: req.headers.set("Authorization", 'Bearer ' + accessToken)
+                
             })
+            console.log(req.headers);
             return next.handle(cloned);
         }else{
             return next.handle(req)

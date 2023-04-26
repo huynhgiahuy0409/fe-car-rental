@@ -11,15 +11,13 @@ import { CustomerRoutingModule } from '../../customer-routing.module';
 import { OtpValidationComponent } from './components/otp-validation/otp-validation.component';
 import { ChangePasswordDialogComponent } from './components/dialogs/change-password-dialog/change-password-dialog.component';
 
-
-
 @NgModule({
   declarations: [
     ForgetPasswordComponent,
     CustomerLoginDialogComponent,
     SignUpComponent,
     OtpValidationComponent,
-    ChangePasswordDialogComponent
+    ChangePasswordDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +33,7 @@ import { ChangePasswordDialogComponent } from './components/dialogs/change-passw
     CustomerLoginDialogComponent,
     SignUpComponent,
     OtpValidationComponent,
-    ChangePasswordDialogComponent
-  ]
+    ChangePasswordDialogComponent,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

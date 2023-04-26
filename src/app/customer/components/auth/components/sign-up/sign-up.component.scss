@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     min-height: 500px;
+    
 }
 
 .sign-up__background {
@@ -30,7 +31,6 @@
     padding: 20px 20px 40px;
     z-index: 1;
     margin: 30px 0;
-    min-width: 500px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
@@ -232,6 +232,34 @@
     width: 22px;
     height: 22px;
 }
+#fbSignInBtn{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2473f2;
+    color: #fff;
+    padding: 2px;
+    border: unset;
+}
+#fbSignInBtn .icon{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#fbSignInBtn .icon svg{
+    color: #2473f2
+}
+#fbSignInBtn span{
+    flex: 1;
+    text-align: center;
+}
+
 #signInButton:hover{
     background: var(--gemstone-color);
     color: #fff;
@@ -264,4 +292,8 @@
 
 ::ng-deep .sign-up__form mat-icon {
     color: var(--gemstone-color);
+}
+
+::ng-deep asl-google-signin-button iframe{
+    color: red
 }

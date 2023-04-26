@@ -9,6 +9,7 @@ import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.co
 import { ComponentType } from '@angular/cdk/portal';
 import { ProgressSpinnerService } from '../../../../services/progress-spinner.service';
 import { ChangePasswordDialogComponent } from '../dialogs/change-password-dialog/change-password-dialog.component';
+import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
 
 @Component({
   selector: 'otp-validation',
@@ -26,7 +27,8 @@ export class OtpValidationComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _matDialog: MatDialog,
     private _router: Router,
-    private _progressSpinnerService: ProgressSpinnerService
+    private _progressSpinnerService: ProgressSpinnerService,
+    private _messageDialogService: MessageDialogService
   ) {
     this.otpForm = this._fb.group({
       digit1: ['', Validators.required],
@@ -67,8 +69,6 @@ export class OtpValidationComponent implements OnInit, OnDestroy {
     console.log(this.otpForm.value);
   }
   onSubmitMailOTP(username: string, otpForm: FormGroup) {
-    console.log(this.otpType);
-    
     this._progressSpinnerService.next(true);
     const otpArr: number[] = Object.values(otpForm.getRawValue());
     let otpNumberText: string = otpArr.join().replaceAll(',', '');
@@ -85,7 +85,8 @@ export class OtpValidationComponent implements OnInit, OnDestroy {
                 message: data,
                 navigatePages: ['home', 'login'],
               };
-              this.openMessageDialog(MessageDialogComponent, dataDialog)
+              this._messageDialogService
+                .openMessageDialog(MessageDialogComponent, dataDialog)
                 .afterClosed()
                 .subscribe((_) => {
                   this._router.navigate(['/home']);
@@ -98,30 +99,19 @@ export class OtpValidationComponent implements OnInit, OnDestroy {
               });
             }
           } else {
-            if (this.otpType === OTPType.REGISTER) {
-              let dataDialog = {
-                title: 'Đăng ký thất bại',
-                message: data,
-                navigatePages: ['close'],
-              };
-              this.openMessageDialog(MessageDialogComponent, dataDialog);
-            } else {
-            }
+            let dataDialog = {
+              title: 'Sai mã xác thực',
+              message: data,
+              navigatePages: ['close'],
+            };
+            this._messageDialogService.openMessageDialog(
+              MessageDialogComponent,
+              dataDialog
+            );
           }
         })
       )
       .subscribe();
-  }
-  private openMessageDialog(
-    component: ComponentType<any>,
-    data?: any
-  ): MatDialogRef<any> {
-    return this._matDialog.open(component, {
-      minWidth: '500px',
-      enterAnimationDuration: '500ms',
-      exitAnimationDuration: '500ms',
-      data: data,
-    });
   }
   resendMailOTP(otpType: OTPType) {
     this._progressSpinnerService.next(true);
@@ -133,15 +123,21 @@ export class OtpValidationComponent implements OnInit, OnDestroy {
         const { data, statusCode } = mailOTPResponse;
         if (mailOTPResponse != null) {
           if (statusCode === 500) {
-            this.openMessageDialog(MessageDialogComponent, {
-              title: 'Lỗi khởi tạo mã xác thực',
-              message: data,
-            });
+            this._messageDialogService.openMessageDialog(
+              MessageDialogComponent,
+              {
+                title: 'Lỗi khởi tạo mã xác thực',
+                message: data,
+              }
+            );
           } else if (statusCode === 201) {
-            this.openMessageDialog(MessageDialogComponent, {
-              title: 'Yêu cầu gửi lại thành công',
-              message: data,
-            });
+            this._messageDialogService.openMessageDialog(
+              MessageDialogComponent,
+              {
+                title: 'Yêu cầu gửi lại thành công',
+                message: data,
+              }
+            );
           }
         }
       });

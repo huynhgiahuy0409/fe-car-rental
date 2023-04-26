@@ -1,3 +1,4 @@
+
 import {
   AfterViewInit,
   Component,
@@ -11,6 +12,7 @@ import { CustomerLoginDialogComponent } from '../../../../customer/components/au
 import { UserService } from 'src/app/customer/services/user.service';
 import { AuthService } from 'src/app/customer/services/auth.service';
 import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-header',
@@ -57,7 +59,8 @@ export class CustomerHeaderComponent {
   constructor(
     public dialog: MatDialog,
     public userService: UserService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {}
   openLoginFormDialog(
     enterAnimationDuration: string,
@@ -96,17 +99,18 @@ export class CustomerHeaderComponent {
     if (refreshToken) {
       this._authService
         .signOut(refreshToken)
-        .pipe(tap((response) => {
-          const {data, statusCode } = response
-          if(statusCode === 200){
-            alert("Đăng xuất thành công")
-            this._authService.nexAccessToken(null)
-            this._authService.removeRefreshToken()
-            this.userService.nextUser(null)
-          }else{
-            alert("Đăng xuất thất bại")
-          }
-        }))
+        .pipe(
+          tap((response) => {
+            const { data, statusCode } = response;
+            if (statusCode === 200) {
+              alert('Đăng xuất thành công');
+              this._authService.nexAccessToken(null);
+              this._authService.removeRefreshToken();
+              this.userService.nextUser(null);
+              this._router.navigate(['/home'])
+            } 
+          })
+        )
         .subscribe();
     }
   }

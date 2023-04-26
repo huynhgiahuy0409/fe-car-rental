@@ -6,6 +6,10 @@ import { EditDrivingLicenseComponent } from './dialog/edit-driving-license/edit-
 import { EditEmailComponent } from './dialog/edit-email/edit-email.component';
 import { EditPhoneComponent } from './dialog/edit-phone/edit-phone.component';
 import { EditUserInfoComponent } from './dialog/edit-user-info/edit-user-info.component';
+import { Observable } from 'rxjs';
+import { UserDTO } from 'src/app/models/model';
+import { UserService } from '../../services/user.service';
+import { GENDER } from 'src/app/models/enum';
 
 @Component({
   selector: 'app-account',
@@ -16,8 +20,9 @@ export class AccountComponent {
   isSltEditCover: boolean = false
   @ViewChild('editCoverBtn')
   editCoverBtn!: MatButton
-  constructor(private matDialog: MatDialog, private router: Router){
-
+  user$!: Observable<UserDTO | null>
+  constructor(private matDialog: MatDialog, private router: Router, private _userService: UserService){
+    this.user$ = this._userService.user$
   }
   openEditPhoneDialog(){
     this.matDialog.open(EditPhoneComponent, {

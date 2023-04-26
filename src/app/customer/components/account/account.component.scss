@@ -178,13 +178,16 @@ body{
     margin-right: 15px;
     margin-bottom: 15px;
     text-align: center;
-    
+    height: 50px;
 }
 .profile-content .profile-desc .snippet .profile-line .profile-line__item strong{
     color: #6e6e6e;
     font-size: 1.6rem;
     margin-bottom: 4px;
     display: block;
+}
+.profile-content .profile-desc .snippet .profile-line .profile-line__item p{
+    margin: 0
 }
 .profile-content .account-info{
 }
@@ -348,6 +351,12 @@ body{
 .profile__wrapper .properties__wrapper{
     padding: 30px 45px;
     margin-bottom: 0
+}
+#updateUserBtn{
+    color: var(--gemstone-color);
+}
+#updateUserBtn:hover{
+    text-decoration: underline;
 }
 ::ng-deep .properties__wrapper .carousel-arrow--prev{
     

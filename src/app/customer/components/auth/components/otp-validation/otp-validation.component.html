@@ -20,7 +20,7 @@
                             <input type="text" formControlName="digit6" maxlength="1" size="1" pattern="[0-9]" required (paste)="onPaste($event)" />
                         </div>
                         <div class="button__wrapper">
-                            <button type="submit" mat-raised-button color="primary">Xác thực</button>
+                            <button type="submit" mat-raised-button color="primary" [disabled]="otpForm.invalid">Xác thực</button>
                         </div>
                     </form>
                     <p>Bạn không nhận được mã? <br> <span (click)="resendMailOTP(otpType)">Gửi lại mã</span></p>

@@ -1,4 +1,4 @@
-<div class="account">
+<div class="account" *ngIf="user$ | async as user">
     <div class="profile-cover">
         <div class="profile-cover__edit-btn">
             <button #editCoverBtn mat-raised-button class="btn btn-m"><i class="mr-r-5 fa-solid fa-camera"></i>Chỉnh sửa ảnh bìa</button> 
@@ -32,11 +32,11 @@
                             <div class="profile-info">
                                 <div class="item-content">
                                     <div class="item-title">
-                                        <p [style.margin-bottom]="'0'">Huỳnh Gia Huy</p>
+                                        <p [style.margin-bottom]="'0'">{{user.fullName}}</p>
                                         <i class="mr-l-10 icon-bo edit-icon" (click)="openEditUserInfoDialog()"></i>
                                     </div>
                                     <div class="d-flex-bo align-items-center-bo">
-                                        <span>Tham gia: 18/02/2023</span>
+                                        <span>Tham gia: {{user.createdDate | date:'dd/MM/yyyy'}}</span>
                                         <div class="line mr-side-10"></div>
                                         <strong>Chưa có chuyến</strong>
                                     </div>
@@ -56,11 +56,12 @@
                             <div class="profile-line">
                                 <div class="profile-line__item">
                                     <strong>Ngày sinh</strong>
-                                    <p>4/9/2000</p>
+                                    <p *ngIf="user.dob; else updateUserBtn">{{user.dob | date:'dd/MM/yyyy'}}</p>
                                 </div>
                                 <div class="profile-line__item">
                                     <strong>Giới tính</strong>
-                                    <p>Nam</p>
+                                    <p *ngIf="user.gender === 'MALE'">Nam</p>
+                                    <p *ngIf="user.gender === 'FEMALE'">Nữ</p>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +77,7 @@
                                 <a class="function-edit" (click)="openEditPhoneDialog()">
                                     <i class="icon-bo edit-icon"></i>
                                 </a>
-                                <span><i class="icon-bo verify-icon mr-r-5"></i>+84776425942</span>
+                                <span><i class="icon-bo verify-icon mr-r-5"></i>{{user.phone}}</span>
                             </div>
                         </div>
                         <div class="col l-2-4 c-12">
@@ -96,27 +97,26 @@
                         <div class="col l-2-4 c-12">
                             <span class="label">Email</span>
                             <div class="content">
-                                <a class="function-edit" (click)="openEditEmailDialog()">
+                                <!-- <a class="function-edit" (click)="openEditEmailDialog()">
                                     <i class="icon-bo edit-icon"></i>
-                                </a>
-                                <span><i class="icon-bo verify-icon mr-r-5"></i>18130094@st.hcmuaf.edu.vn</span>
+                                </a> -->
+                                <span><i class="icon-bo verify-icon mr-r-5"></i>{{user.email}}</span>
                             </div>
                         </div>
                         <div class="col l-2-4 c-12">
                             <span class="label">Facebook</span>
                             <div class="content">
-                                <a class="function-edit">
+                                <!-- <a class="function-edit">
                                     <i class="icon-bo remove-icon"></i>
-                                </a>
-                                <span><i class="icon-bo verify-icon mr-r-5"></i>Huỳnh Gia Huy</span>
+                                </a> -->
                             </div>
                         </div>
                         <div class="col l-2-4 c-12">
                             <span class="label">Google</span>
                             <div class="content">
-                                <a class="function-edit">
+                                <!-- <a class="function-edit">
                                     <i class="icon-bo link-icon"></i>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -358,7 +358,9 @@
             </div>
         </div>
     </div>
+    <ng-template #updateUserBtn>
+        <a  id="updateUserBtn" (click)="openEditUserInfoDialog()">Cập nhật ngay</a>
+    </ng-template>
 </div>
-
 <input #updateAvatarInput type="file" id="updateAvatarInput" [style]="'display: none'">
 <input type="file" id="updateCoverInput" [style]="'display: none'">

@@ -49,7 +49,7 @@
                                             </div>
                                             <div id="dropdownMenu" class="dropdown-menu" *ngIf="activeUserMenu">
                                                 <ul>
-                                                    <li [routerLink]="i.path" *ngFor="let i of userMenus">
+                                                <li [routerLink]="i.path" *ngFor="let i of userMenus">
                                                         <a>{{ i.label }}</a>
                                                     </li>
                                                     <li (click)="onClickSignOut()">
