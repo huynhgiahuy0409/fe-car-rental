@@ -8,8 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CarWithDriverComponent {
   constructor(private activatedRoute: ActivatedRoute, private router: Router){
-    this.activatedRoute.parent?.url.subscribe(urlPath => {
-      console.log(urlPath);
-    });
+    
   }
 }

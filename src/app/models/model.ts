@@ -80,3 +80,35 @@ export interface PromoDTO{
     startDate: Date,
     endDate: Date
 }
+export interface CarDTO{
+    name: string
+    plate: string,
+    description: string,
+    yearOfManufacture: number,
+    seats: number,
+    color: string,
+    engine: string,
+    fuelConsumption: number,
+    transmission: string,
+    rentalStatus: string,
+    policies: string,
+    isFastRent: string,
+    brand: string,
+    model: string,
+    owner: UserDTO,
+    features: FeatureDTO[],
+    carImages: CarImageDTO[]
+}
+export interface FeatureDTO{
+    name: string,
+    iconFilename: string
+}
+export interface CarModelDTO{
+    name: string,
+    type: string
+}
+export interface CarImageDTO{
+    imageUrl: string,
+    status: string
+    isThumbnail: boolean
+}

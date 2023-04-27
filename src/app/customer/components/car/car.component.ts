@@ -7,10 +7,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class CarComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
-    console.log('CAR DESSSSSS');
   }
   ngOnInit(): void {
-    console.log('CAR INITTTTT');
   }
   
 }

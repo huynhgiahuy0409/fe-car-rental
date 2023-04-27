@@ -11,6 +11,7 @@ export const GET_WARDS_BY_DISTRICT = `${ADDRESS_API}wards-by-district`;
 export const SEARCH_ADDRESS = "/search-address";
 export const URL_API = "http://localhost:8080"
 export const OAUTH_CLIENT_ID  = "157325840295-pmeacr9ak8e0beepamml4lsoqtkgajam.apps.googleusercontent.com"
+export const FEATURE_DIRECT_LINK =  `${URL_API}/uploads/feature-icon/`
 export const CAR_FEATURES: CarFeatureElement[] = [
     {
         id: "map",
