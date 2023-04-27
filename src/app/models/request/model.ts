@@ -38,3 +38,7 @@ export interface NewPromoRequest{
     startDate: Date,
     endDate: Date
 }
+export interface FeatureRequest{
+    name: string,
+    iconFile: File
+}
