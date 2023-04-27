@@ -23,7 +23,8 @@ export class UserService {
   get userValue(): UserDTO {
     return this.userBehaviorSubject.value!
   }
-  public updateUser(updatedUserRequest: UpdatedUserRequest): Observable<APIResponse<string>> {
+  public updateUser(updatedUserRequest: UserDTO): Observable<APIResponse<string>> {
+    // updatedUserRequest.dob = new Date(updatedUserRequest.dob)
     let url = URL_API.concat(`/api/user/update`);
     return this._httpClient.post<APIResponse<string>>(url, updatedUserRequest, {
       responseType: 'json',

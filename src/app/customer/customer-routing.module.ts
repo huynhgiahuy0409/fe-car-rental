@@ -45,6 +45,7 @@ const routes: Routes = [
         path: 'promo',
         loadChildren: () =>
           import('./components/promo/promo.module').then((m) => m.PromoModule),
+        canActivate: [AuthGuard],
       },
       {
         path: 'account',

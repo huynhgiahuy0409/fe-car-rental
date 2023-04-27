@@ -29,15 +29,14 @@ export class AddCarFeatureComponent {
     let formData = new FormData();
     formData.append('file', this.iconFile);
     formData.append('name', this.featureFG.get('name')?.value);
-    this._featureService.addFeature(formData).subscribe((response) => {
-      const {data, statusCode}= response
-      alert(statusCode)
-      if(statusCode === 200){
+    // this._featureService.addFeature(formData).subscribe((response) => {
+    //   const {data, statusCode}= response
+    //   alert(statusCode)
+    //   if(statusCode === 200){
 
-      }else{
+    //   }else{
 
-      }
-    });
+    //   }
+    // });
   }
 }
-``

@@ -26,5 +26,19 @@ export interface SocialUserRequest{
 export interface UpdatedUserRequest{
     fullName: string,
     gender: string,
-    dob: Date
+    dob: Date,
+    phone: string,
+}
+export interface NewPromoRequest{
+    title: string,
+    content: string,
+    quantity: number,
+    discountPercent: number,
+    maxPrice: number,
+    startDate: Date,
+    endDate: Date
+}
+export interface FeatureRequest{
+    name: string,
+    iconFile: File
 }

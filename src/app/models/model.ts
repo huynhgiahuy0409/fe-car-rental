@@ -1,4 +1,4 @@
-import { GENDER, OAuthProvider } from "./enum"
+import { GENDER, OAuthProvider, StandardStatus } from "./enum"
 
 export interface RedirectInfo {
     label: string,
@@ -68,4 +68,15 @@ export interface UserDTO{
 export interface JWTDTO{
     token: string,
     tokenExpirationDate: Date
+}
+export interface PromoDTO{
+    id: number,
+    title: string,
+    contents: string[],
+    quantity: number,
+    status: StandardStatus,
+    discountPercent: number,
+    maxPrice: number,
+    startDate: Date,
+    endDate: Date
 }
