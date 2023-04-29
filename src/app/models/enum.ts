@@ -11,7 +11,20 @@ export enum GENDER {
   MALE,
   FEMALE,
 }
-export enum StandardStatus{
+export enum StandardStatus {
   ACTIVATED,
   UNACTIVATED,
+}
+
+export enum ServiceType {
+  SELF_DRIVING = 1,
+  WITH_DRIVER_DOMESTIC,
+  WITH_DRIVER_INTERSTATE
+}
+
+export enum RentalStatus {
+  PENDING_APPROVAL = 'PENDING_APPROVAL',
+  ACTIVE = 'ACTIVE',
+  BUSY = 'BUSY',
+  RENTED = 'RENTED',
 }

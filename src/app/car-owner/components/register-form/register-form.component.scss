@@ -114,6 +114,9 @@
   .btn__primary {
     background-color: var(--gemstone-color);
     color: var(--white);
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 
   .btn__secondary {

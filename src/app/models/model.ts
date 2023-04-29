@@ -21,6 +21,11 @@ export interface City {
     name: string
 }
 
+export interface Color {
+    value: string;
+    name: string;
+}
+
 export interface AddressField {
     id: number,
     name: string
@@ -54,7 +59,7 @@ export interface LocationResponse {
 }
 // DTO
 
-export interface UserDTO{
+export interface UserDTO {
     id: number,
     username: string,
     email: string,
@@ -65,11 +70,11 @@ export interface UserDTO{
     provider: OAuthProvider,
     createdDate: string
 }
-export interface JWTDTO{
+export interface JWTDTO {
     token: string,
     tokenExpirationDate: Date
 }
-export interface PromoDTO{
+export interface PromoDTO {
     id: number,
     title: string,
     contents: string[],

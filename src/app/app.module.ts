@@ -19,6 +19,7 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, MessageDialogComponent],
@@ -29,10 +30,11 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
     MaterialAngularModule,
     HttpClientModule,
     CoreModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'vi-VN' }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

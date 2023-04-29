@@ -18,6 +18,6 @@ export class UploadFileService {
   }
 
   deleteFile(fileName: string) {
-    return this.httpClient.post("/api/file/deleteFile", fileName, this.httpOptions);
+    return this.httpClient.delete("/api/file/deleteFileByName/" + fileName, this.httpOptions);
   }
 }

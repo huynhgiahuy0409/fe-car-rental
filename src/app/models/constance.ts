@@ -1,16 +1,40 @@
-import { CarFeatureElement, City } from "./model";
+import { CarFeatureElement, City, Color } from "./model";
 export const TEXT_SPACE_REGEX = "^[a-zA-Z\\s]*$"
 export const NUMBER_REGEX = "^[0-9]*$"
+
+//rental status
 export const COMPLETE_STATUS = "Hoàn thành"
 export const COMPLETE_MESSAGE = "Chuyến xe đã kết thúc"
+
+//service type
 export const SD_MODE = "SELF_DRIVING"
 export const WD_MODE = "WITH_DRIVER"
+
+//address api url
 export const ADDRESS_API = "/";
 export const GET_DISTRICTS_BY_CITY = `${ADDRESS_API}districts-by-city`;
 export const GET_WARDS_BY_DISTRICT = `${ADDRESS_API}wards-by-district`;
 export const SEARCH_ADDRESS = "/search-address";
+export const GET_ALL_PROVINCE = "/api/provinces/findAll";
+export const GET_ALL_DISTRICT_BY_PROVINCE = "/api/districts/findByProvinceId";
+export const GET_ALL_WARD_BY_PROVINCE_DISTRICT = "/api/wards/getByProvinceAndDistrict";
+
+
+//api urls
+export const GET_ALL_BRAND = "/api/brands/getModels";
+export const GET_MODEL_BY_BRAND = "/api/brands/getModels";
+export const GET_ALL_FEATURE = "/api/features/findAll";
+export const REGISTER_NEW_CAR = "/api/cars/registerNewCar";
+
+//extra fees name
+export const DELIVERY_TO_TENANT = "Giao xe tận nơi";
+export const DISTANCE_LIMIT = "Giới hạn số KM";
+export const MONEY_UNIT = "VND";
+export const DISTANCE_UNIT = "KM";
+
 export const URL_API = "http://localhost:8080"
-export const OAUTH_CLIENT_ID  = "157325840295-pmeacr9ak8e0beepamml4lsoqtkgajam.apps.googleusercontent.com"
+export const BASE_IMG = `${URL_API}/icon/feature-icon/`;
+export const OAUTH_CLIENT_ID = "157325840295-pmeacr9ak8e0beepamml4lsoqtkgajam.apps.googleusercontent.com"
 export const CAR_FEATURES: CarFeatureElement[] = [
     {
         id: "map",
@@ -169,3 +193,5 @@ export const CITIES: City[] = [
     { areaCode: 26, name: "Vĩnh Phúc" },
     { areaCode: 15, name: "Yên Bái" }
 ];
+
+export const COLORS: Color[] = [{ "value": "WHITE", "name": "Trắng" }, { "value": "BLACK", "name": "Đen" }, { "value": "NAVYBLUE", "name": "Xanh dương" }, { "value": "SILVER", "name": "Bạc" }, { "value": "GRAY", "name": "Xám" }, { "value": "RED", "name": "Đỏ" }, { "value": "GREEN", "name": "Xanh lá" }, { "value": "BROWN", "name": "Nâu" }, { "value": "YELLOW", "name": "Vàng" }, { "value": "TURQUOISE", "name": "Xanh ngọc" }];

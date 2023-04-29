@@ -32,8 +32,8 @@
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Hãng xe</mat-label>
                                 <mat-select matInput formControlName="carBrand">
-                                    <mat-option value="0">Audi</mat-option>
-                                    <mat-option value="1">Vinfast</mat-option>
+                                    <mat-option [value]="item.id"
+                                        *ngFor="let item of fetchedBrands">{{item.name}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
                                     Vui lòng chọn hãng xe
@@ -42,8 +42,8 @@
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Mẫu xe</mat-label>
                                 <mat-select matInput formControlName="carModel">
-                                    <mat-option value="0">Audi A1</mat-option>
-                                    <mat-option value="1">Vinfast Lux A2.0</mat-option>
+                                    <mat-option [value]="item.id"
+                                        *ngFor="let item of fetchedCarModels">{{item.name}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
                                     Vui lòng chọn mẫu xe
@@ -70,8 +70,8 @@
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Truyền động</mat-label>
                                 <mat-select matInput formControlName="carTransmission">
-                                    <mat-option value="0">Số tự động</mat-option>
-                                    <mat-option value="1">Số sàn</mat-option>
+                                    <mat-option value="MANUAL">Số tự động</mat-option>
+                                    <mat-option value="AUTOMATIC">Số sàn</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
                                     Vui lòng chọn truyền động của xe
@@ -80,8 +80,8 @@
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
                                 <mat-label class="cl-black">Loại nhiên liệu</mat-label>
                                 <mat-select matInput formControlName="carFuel">
-                                    <mat-option value="0">Xăng</mat-option>
-                                    <mat-option value="1">Dầu diesel</mat-option>
+                                    <mat-option value="PETROL">Xăng</mat-option>
+                                    <mat-option value="DIESEL">Dầu diesel</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
                                     Vui lòng chọn nhiên liệu của xe
@@ -100,9 +100,26 @@
                             <mat-form-field class="basic__information-field" appearance="outline">
                                 <mat-label class="cl-black">Mức tiêu thụ nhiên liệu</mat-label>
                                 <input matInput placeholder="Mức tiêu thụ nhiên liệu"
-                                    formControlName="carFuelConsumption" required>
+                                    formControlName="carFuelConsumption" type="number" required>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
                                     Vui lòng nhập mức tiêu thụ hợp lệ
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- end form field -->
+                        <!-- start form field -->
+                        <div class="register__car-title">
+                            <h2>Màu sắc</h2>
+                        </div>
+                        <div class="d-flex-bo flex-wrap-bo basic__information-container">
+                            <mat-form-field class="basic__information-field" appearance="outline">
+                                <mat-label class="cl-black">Màu sắc</mat-label>
+                                <mat-select matInput formControlName="carColor">
+                                    <mat-option [value]="item.value"
+                                        *ngFor="let item of colors">{{item.name}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
+                                    Vui lòng chọn nhiên liệu của xe
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -129,11 +146,11 @@
                         </div>
                         <div
                             class="d-flex-bo flex-wrap-bo align-items-center-bo text-center car__information-features mr-t-10">
-                            <div class="car__information-feature" *ngFor="let item of carFeaturesTemplate"
+                            <div class="car__information-feature" *ngFor="let item of fetchedCarFeatures"
                                 (click)="handleClickFeature(item.id)">
                                 <div class="car__features-item" [id]="item?.id">
-                                    <img [src]="item.iconUrl" alt="404" width="30">
-                                    <p>{{item?.title}}</p>
+                                    <img [src]="BASE_IMG+item.iconFilename" alt="404" width="30">
+                                    <p>{{item?.name}}</p>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +178,8 @@
                         </div>
                         <mat-form-field class="input__car-form" appearance="outline">
                             <mat-label class="cl-black">Đơn giá thuê mặc định</mat-label>
-                            <input matInput placeholder="Đơn giá thuê mặc định" formControlName="defaultPrice" required>
+                            <input matInput placeholder="Đơn giá thuê mặc định" formControlName="defaultPrice"
+                                type="number" required>
                             <mat-error
                                 *ngIf="carInformationFormGroup.hasError('pattern') || !carInformationFormGroup.hasError('required')">
                                 Vui lòng nhập đơn giá thuê mặc định hợp lệ
@@ -222,7 +240,7 @@
                             </p>
                         </div>
 
-                        <div *ngIf="toggleFastRentGroup.get('isFastRent')?.value===true"
+                        <!-- <div *ngIf="toggleFastRentGroup.get('isFastRent')?.value===true"
                             [formGroup]="toggleFastRentGroup"
                             class="d-flex-bo flex-wrap-bo align-between g-20 cl-black">
                             <mat-form-field class="fast__rent-6 mobile-fw-flex" appearance="outline">
@@ -242,7 +260,7 @@
                                     <mat-option value="4">4 tiếng tới</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                        </div>
+                        </div> -->
 
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
@@ -279,8 +297,8 @@
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <mat-select matInput formControlName="city"
                                                 (selectionChange)="onChangeCity()" placeholder="Chọn Tỉnh/ Thành phố">
-                                                <mat-option [value]="item.areaCode"
-                                                    *ngFor="let item of cities">{{item.name}}</mat-option>
+                                                <mat-option [value]="item.id"
+                                                    *ngFor="let item of fetchedProvinces">{{item.name}}</mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="!addressFormGroup.hasError('required')">
                                                 Vui lòng chọn tỉnh/thành phố
@@ -390,7 +408,7 @@
                             </div>
                         </div>
 
-                        <!-- start form field -->
+                        <!-- start option  form field -->
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
@@ -401,6 +419,21 @@
                                 </mat-slide-toggle>
                             </div>
                         </div>
+                        <!-- end option form field -->
+                        <!-- start option  form field -->
+                        <div
+                            class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
+                            <div class="discount__status-field"
+                                *ngIf="toggleWithDriverGroup.get('isWithDriver')?.value===true">
+                                <h2>Hỗ trợ đi liên tỉnh</h2>
+                            </div>
+                            <div class="discount__status-field ml-auto" [formGroup]="toggleWithDriverInterstateGroup"
+                                *ngIf="toggleWithDriverGroup.get('isWithDriver')?.value===true">
+                                <mat-slide-toggle formControlName="isChecked">
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                        <!-- end option form field -->
 
                         <!-- start form field -->
                         <div
@@ -448,7 +481,7 @@
                                     ảnh</button>
                             </p>
                         </ngx-dropzone-label>
-                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of cloneFiles"
                             [removable]="true" (removed)="onRemove(f)" [file]="f">
                             <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
                             <ngx-dropzone-label></ngx-dropzone-label>
@@ -456,7 +489,9 @@
                     </ngx-dropzone>
                     <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer">
                         <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
-                        <button mat-button matStepperNext class="btn__primary">Hoàn thành</button>
+                        <button mat-button matStepperNext class="btn__primary" (click)="onSubmitRegisterCar()"
+                            [disabled]="cloneFiles.length<1">Hoàn
+                            thành</button>
                         <!-- <div>
                                 <button mat-button matStepperPrevious>Back</button>
                                 <button mat-button (click)="stepper.reset()">Reset</button>
