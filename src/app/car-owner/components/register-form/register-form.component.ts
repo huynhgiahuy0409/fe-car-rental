@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { debounceTime, distinctUntilChanged, lastValueFrom, timer } from 'rxjs';
-import { BASE_IMG, CITIES, COLORS, DELIVERY_TO_TENANT, DISTANCE_LIMIT, DISTANCE_UNIT, MONEY_UNIT } from 'src/app/models/constance';
+import { COLORS, DELIVERY_TO_TENANT, DISTANCE_LIMIT, DISTANCE_UNIT, FEATURE_DIRECT_LINK, MONEY_UNIT } from 'src/app/models/constance';
 import { RentalStatus, ServiceType } from 'src/app/models/enum';
-import { City, Color, Location, LocationResponse } from 'src/app/models/model';
+import { Color, Location, LocationResponse } from 'src/app/models/model';
 import { CarRegisterRequest, ExtraFeeRequest } from 'src/app/models/request/model';
 import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, WardResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -35,7 +35,7 @@ export class RegisterFormComponent {
   fetchedCarFeatures: FeatureResponse[] = [];
   uploadedImages: string[] = [];
   cloneFiles: File[] = [];
-  readonly BASE_IMG: string = BASE_IMG;
+  readonly FEATURE_DIRECT_LINK: string = FEATURE_DIRECT_LINK;
   fetchedProvinces: ProvinceResponse[] = [];
 
   constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService, private uploadService: UploadFileService, private toastService: ToastrService, private router: Router) {
