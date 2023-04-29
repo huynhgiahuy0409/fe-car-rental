@@ -33,8 +33,8 @@ export const MONEY_UNIT = "VND";
 export const DISTANCE_UNIT = "KM";
 
 export const URL_API = "http://localhost:8080"
-export const BASE_IMG = `${URL_API}/icon/feature-icon/`;
 export const OAUTH_CLIENT_ID = "157325840295-pmeacr9ak8e0beepamml4lsoqtkgajam.apps.googleusercontent.com"
+export const FEATURE_DIRECT_LINK = `${URL_API}/uploads/feature-icon/`
 export const CAR_FEATURES: CarFeatureElement[] = [
     {
         id: "map",

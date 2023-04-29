@@ -12,6 +12,7 @@ import { ListComponent } from './components/list/list.component';
 import { PromoListComponent } from './components/list/components/promo-list/promo-list.component';
 import { PromoItemComponent } from './components/list/components/promo-list/promo-item/promo-item.component';
 import { EditPromoDialogComponent } from './components/list/components/promo-list/eidt-promo-dialog/eidt-promo-dialog.component';
+import { AddCarFeatureComponent } from './components/add-new/components/add-car-feature/add-car-feature.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EditPromoDialogComponent } from './components/list/components/promo-lis
     ListComponent,
     PromoListComponent,
     PromoItemComponent,
-    EditPromoDialogComponent
+    EditPromoDialogComponent,
+    AddCarFeatureComponent
   ],
   imports: [
     CommonModule,

@@ -61,3 +61,6 @@ export interface SocialUserResponse {
     provider: string
     id: string
 }
+export interface CarResponse{
+    
+}

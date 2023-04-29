@@ -70,3 +70,7 @@ export interface CarRegisterRequest {
     policies: string;
     imagesList: string[];
 }
+export interface FeatureRequest {
+    name: string,
+    iconFile: File
+}

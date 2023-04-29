@@ -1,4 +1,4 @@
-<div class="car-detail-container" [class.car-detail-dialog]="data">
+<div class="car-detail-container" [class.car-detail-dialog]="data" >
     <app-cover></app-cover>
     <div class="grid l-wide">
         <div class="module-detail">
@@ -6,13 +6,12 @@
                 <div class="col l-7">
                     <div class="car-detail">
                         <div class="car-detail__info">
-
                         </div>
                         <div class="car-detail__info">
                             <div class="car-detail__desc short-desc">
                                 <div class="group-name">
                                     <h1 class="car-title">
-                                        TOYOTA RUSH 2019
+                                        <!-- {{car.model}} {{car.yearOfManufacture}}  -->
                                     </h1>
                                 </div>
                                 <div class="group-line">
@@ -46,27 +45,40 @@
                         </div>
                         <div class="car-detail__info">
                             <div class="car-detail__desc">
-                                <div class="group row" *ngFor="let idx of
-                                    [1,2,3,4,5,6,7,8]">
+                                <div class="group characteristic row">
                                     <div class="col l-3">
                                         <div class="title">
                                             Đặc điểm
                                         </div>
                                     </div>
                                     <div class="col l-9">
-                                        <ul class="features">
-                                            <li>
-                                                feartur 1
-                                            </li>
-                                            <li>
-                                                feartur 2
-                                            </li>
-                                            <li>
-                                                feartur 3
-                                            </li>
-                                            <li>
-                                                feartur 4
-                                            </li>
+                                        <ul class="w-fit">
+                                            <div class="row">
+                                                <div class="col l-6">
+                                                    <div class="d-flex-bo align-items-center-bo">
+                                                        <i class="icon-bo chair-icon"></i>
+                                                        <span>a</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col l-6">
+                                                    <div class="d-flex-bo align-items-center-bo">
+                                                        <i class="icon-bo trans-icon"></i>
+                                                        <span>a</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col l-6">
+                                                    <div class="d-flex-bo align-items-center-bo">
+                                                        <i class="icon-bo diesel-icon"></i>
+                                                        <span>a</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col l-6">
+                                                    <div class="d-flex-bo align-items-center-bo">
+                                                        <i class="icon-bo fuel-consumption-icon"></i>
+                                                        <span>a</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </ul>
                                     </div>
                                 </div>

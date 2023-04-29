@@ -1,54 +1,65 @@
-
 //
-.car-detail-container{
+.car-detail-container {
     background-color: #fff;
 }
-.car-detail-container.car-detail-dialog{
+
+.car-detail-container.car-detail-dialog {
     background-color: transparent
 }
-.car-detail-container.car-detail-dialog .module-detail{
+
+.car-detail-container.car-detail-dialog .module-detail {
     margin-top: 25px
 }
-.car-detail-container.car-detail-dialog .module-detail .rental-box{
+
+.car-detail-container.car-detail-dialog .module-detail .rental-box {
     top: 0
 }
-.car-detail-container.car-detail-dialog .module-deal .tile{
+
+.car-detail-container.car-detail-dialog .module-deal .tile {
     color: #fff
 }
-::ng-deep .car-detail-container.car-detail-dialog .relative-car-item .desc-car{
+
+::ng-deep .car-detail-container.car-detail-dialog .relative-car-item .desc-car {
     background-color: #fff;
-    box-shadow: 0 1px 6px rgba(0,0,0,.3)
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .3)
 }
 
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc{
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc {
     margin-bottom: 25px;
     border-radius: 5px;
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc{
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc {
     display: flex;
     background-color: unset;
     color: #fff;
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-name .car-title{
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-name .car-title {
     margin: 0
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc  .group-line{
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-line {
     display: flex;
     margin-left: 15px;
     align-items: center;
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc  .group-line .bar-line{
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-line .bar-line {
     background-color: #fff;
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc  .group-line .star_rate-num{
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-line .star_rate-num {
     color: #fff;
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-label{
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.short-desc .group-label {
     display: none;
 }
-.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.button-group{
-   background-color: transparent;
-   padding: unset
+
+.car-detail-container.car-detail-dialog .module-detail .car-detail .car-detail__desc.button-group {
+    background-color: transparent;
+    padding: unset
 }
 
 .module-detail .car-detail__content {}
@@ -434,6 +445,7 @@
 .start-location-icon {
     background-position: -271px -220px;
 }
+
 .route-info .start-location-icon {
     background-position: -271px -220px;
 }
@@ -443,25 +455,29 @@
     -webkit-transform: scale(.5);
     transform: scale(.5);
 }
-.form-location{
+
+.form-location {
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
     display: flex;
     width: 100%;
     margin-bottom: 5px
 }
-.form-location .wrap-icon{
-}
-.form-location .wrap-address{
+
+.form-location .wrap-icon {}
+
+.form-location .wrap-address {
     overflow-x: scroll;
     width: 400px;
     scrollbar-width: none;
     margin: auto
 }
-.form-location .wrap-address::-webkit-scrollbar{
+
+.form-location .wrap-address::-webkit-scrollbar {
     display: none;
 }
-.form-location .wrap-address p{
+
+.form-location .wrap-address p {
     white-space: nowrap;
 }
 
@@ -471,4 +487,34 @@
     background-color: unset;
     border: .5px solid #ccc;
     background-color: #fff;
+}
+
+// icon
+.chair-icon {
+    background-position: -115px -281px;
+    width: 32px;
+    background-size: 450px;
+}
+
+.trans-icon {
+    background-position: -239px -281px;
+    background-size: 450px;
+    width: 32px;
+}
+
+.diesel-icon {
+    background-position: -161px -281px;
+    width: 32px;
+    background-size: 450px;
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
+}
+
+.fuel-consumption-icon {
+    background-size: 450px;
+    width: 32px;
+    margin-right: 5px;
+    background-position: -202px -280px;
+    -webkit-transform: scale(.9);
+    transform: scale(.9);
 }

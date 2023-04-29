@@ -12,12 +12,17 @@ import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
 import { Location } from '@angular/common';
 import { RouteCatchService } from 'src/app/customer/route-catch.service';
+import { CarDTO } from 'src/app/models/model';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.scss'],
 })
 export class CarDetailComponent implements OnInit, AfterViewInit {
+  @Input()
+  car$!: Observable<CarDTO>
+  car!: CarDTO
   @Input()
   rentalMode!: 'sd' | 'wd';
   formType!: 'sd' | 'wd';
@@ -46,14 +51,13 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       returnTime: ['', Validators.required],
       deliveryLocation: ['', Validators.required],
     });
+    if (this.rentalMode) {
+      this.formType = this.data.rentalMode;
+    }
   }
   ngAfterViewInit(): void {
     if(this.data && this.data.rentalMode){
       this.formType = this.data.rentalMode
-    }
-    if (this.rentalMode) {
-      this.formType = this.data.rentalMode;
-      console.log("bind");
     }
   }
   startDate!: Date;

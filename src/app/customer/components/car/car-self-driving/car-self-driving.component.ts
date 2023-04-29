@@ -8,7 +8,5 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CarSelfDrivingComponent {
   constructor(private router: ActivatedRoute,){
-    console.log(this.router);
-    
   }
 }
