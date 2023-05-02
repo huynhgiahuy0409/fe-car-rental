@@ -342,7 +342,7 @@ export class RegisterFormComponent {
     };
 
     console.log(carRequest);
-    this.carServices.registertNewCar(carRequest).subscribe({
+    this.carServices.registerNewCar(carRequest).subscribe({
       complete: () => {
         this.toastService.success("Đăng ký xe mới thành công ! Tự động chuyển hướng sau 2 giây", "Thành công !");
         timer(2000).subscribe(() => {

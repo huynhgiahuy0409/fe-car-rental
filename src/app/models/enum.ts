@@ -28,3 +28,11 @@ export enum RentalStatus {
   BUSY = 'BUSY',
   RENTED = 'RENTED',
 }
+
+export enum CarStatus {
+  BANNED = 'BANNED',
+  PENDING_APPROVAL = 'PENDING_APPROVAL',
+  ACTIVE = 'ACTIVE',
+  BUSY = 'BUSY',
+  RENTED = 'RENTED'
+}

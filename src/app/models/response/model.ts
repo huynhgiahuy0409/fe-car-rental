@@ -1,4 +1,4 @@
-import { OAuthProvider } from '../enum';
+import { CarStatus, OAuthProvider } from '../enum';
 import { JWTDTO, UserDTO } from './../model';
 export interface APIResponse<T> {
     data: T,
@@ -61,6 +61,13 @@ export interface SocialUserResponse {
     provider: string
     id: string
 }
-export interface CarResponse{
-    
+
+export interface RegisteredCarResponse {
+    id: number;
+    name: string;
+    defaultPrice: number;
+    status: CarStatus;
+    totalRental: number;
+    avgRating: number;
+    imageUrl: string;
 }

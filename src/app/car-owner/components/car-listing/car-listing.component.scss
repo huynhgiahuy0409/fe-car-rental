@@ -27,7 +27,6 @@
     }
     &-item {
       flex: 0 0 47%;
-
       .car__status {
         position: relative;
         padding: 1px 0px;
@@ -39,10 +38,19 @@
         color: #fff;
         height: 35px;
         &.suspend {
-          width: 230px;
+          width: 130px;
         }
         &.active {
           width: 180px;
+        }
+        &.pending {
+          width: 180px;
+        }
+        &.busy {
+          width: 80px;
+        }
+        &.rented {
+          width: 150px;
         }
         .status-text {
           font-size: 120%;
@@ -55,13 +63,22 @@
             border-radius: 50%;
           }
           //status div
-          &.suspended::before {
+          &.suspend::before {
             border: 2px solid #a7aaae;
-            background-color: var(--secondary-text);
+            background-color: var(--suspend-color);
           }
           //status div
           &.active::before {
-            background-color: var(--gemstone-color);
+            background-color: var(--active-color);
+          }
+          &.pending::before {
+            background-color: var(--pending-color);
+          }
+          &.busy::before {
+            background-color: var(--busy-color);
+          }
+          &.rented::before {
+            background-color: var(--rented-color);
           }
         }
       }
@@ -108,7 +125,8 @@
       }
     }
   }
-  &__list {
+  &__list,
+  &__list-items {
     gap: 25px;
     padding-top: 10px;
   }
@@ -127,6 +145,10 @@
       }
     }
   }
+}
+
+.car__listing-empty {
+  flex: 0 0 67%;
 }
 
 //tablet

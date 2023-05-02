@@ -1,22 +1,4 @@
 {
-  "/districts-by-city": {
-    "target": "https://m-common.mioto.vn/address/",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true,
-    "headers": {
-      "Connection": "keep-alive"
-    }
-  },
-  "/wards-by-district": {
-    "target": "https://m-common.mioto.vn/address/",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true,
-    "headers": {
-      "Connection": "keep-alive"
-    }
-  },
   "/search-address": {
     "target": "https://m-common.mioto.vn/lbs/",
     "secure": false,

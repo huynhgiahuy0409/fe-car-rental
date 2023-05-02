@@ -22,6 +22,11 @@
   --secondary-color: #e8eaef;
   --white: #fff;
   --secondary-text: #a9aaad;
+  --busy-color: #a9a9a9;
+  --suspend-color: #a9a9a9;
+  --active-color: var(--gemstone-color);
+  --pending-color: #fba86d;
+  --rented-color: red;
 }
 
 // reset

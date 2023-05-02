@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_ALL_BRAND, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_MODEL_BY_BRAND, SEARCH_ADDRESS, GET_ALL_WARD_BY_PROVINCE_DISTRICT, REGISTER_NEW_CAR } from 'src/app/models/constance';
+import { GET_ALL_BRAND, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_MODEL_BY_BRAND, SEARCH_ADDRESS, GET_ALL_WARD_BY_PROVINCE_DISTRICT, REGISTER_NEW_CAR, GET_ALL_REGISTERED_CAR } from 'src/app/models/constance';
 import { LocationResponse, WardsAddressResponse } from 'src/app/models/model';
 import { CarRegisterRequest } from 'src/app/models/request/model';
-import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, WardResponse } from 'src/app/models/response/model';
+import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, WardResponse } from 'src/app/models/response/model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,20 +23,6 @@ export class CarOwnerService {
   getAllProvince(): Observable<ProvinceResponse[]> {
     return this.httpClient.get<ProvinceResponse[]>(`${GET_ALL_PROVINCE}`, this.httpOptions);
   }
-
-  // getDistrictByAreaCode(areaCode: number): Observable<DistrictAddressResponse> {
-  //   this.httpOptions.params = {
-  //     city: areaCode
-  //   };
-  //   return this.httpClient.get<DistrictAddressResponse>(`${GET_DISTRICTS_BY_CITY}`, this.httpOptions);
-  // }
-
-  // getWardsByDistrict(districtCode: number): Observable<WardsAddressResponse> {
-  //   this.httpOptions.params = {
-  //     district: districtCode
-  //   };
-  //   return this.httpClient.get<WardsAddressResponse>(`${GET_WARDS_BY_DISTRICT}`, this.httpOptions);
-  // }
 
   searchAddress(address: string): Observable<LocationResponse> {
     this.httpOptions.params = {
@@ -72,7 +58,14 @@ export class CarOwnerService {
     return this.httpClient.get<WardResponse[]>(`${GET_ALL_WARD_BY_PROVINCE_DISTRICT}`, this.httpOptions);
   }
 
-  registertNewCar(carRequest: CarRegisterRequest) {
+  registerNewCar(carRequest: CarRegisterRequest) {
     return this.httpClient.post(`${REGISTER_NEW_CAR}`, carRequest);
+  }
+
+  getAllRegisteredCar(username: string): Observable<RegisteredCarResponse[]> {
+    this.httpOptions.params = {
+      username: username
+    };
+    return this.httpClient.get<RegisteredCarResponse[]>(`${GET_ALL_REGISTERED_CAR}`, this.httpOptions);
   }
 }

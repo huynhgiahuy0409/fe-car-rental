@@ -25,6 +25,7 @@ export const GET_ALL_BRAND = "/api/brands/getModels";
 export const GET_MODEL_BY_BRAND = "/api/brands/getModels";
 export const GET_ALL_FEATURE = "/api/features/findAll";
 export const REGISTER_NEW_CAR = "/api/cars/registerNewCar";
+export const GET_ALL_REGISTERED_CAR = "/api/cars/findRegisteredCar";
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";
@@ -33,6 +34,7 @@ export const MONEY_UNIT = "VND";
 export const DISTANCE_UNIT = "KM";
 
 export const URL_API = "http://localhost:8080"
+export const CAR_IMG = `${URL_API}/images/car/`;
 export const OAUTH_CLIENT_ID = "157325840295-pmeacr9ak8e0beepamml4lsoqtkgajam.apps.googleusercontent.com"
 export const FEATURE_DIRECT_LINK = `${URL_API}/uploads/feature-icon/`
 export const CAR_FEATURES: CarFeatureElement[] = [
