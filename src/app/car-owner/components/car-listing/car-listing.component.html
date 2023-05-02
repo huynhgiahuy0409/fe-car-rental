@@ -4,22 +4,22 @@
             <h2>TRẠNG THÁI</h2>
             <mat-form-field class="w-fit cl-black" appearance="outline">
                 <mat-select matInput formControlName="carStatus">
-                    <mat-option value="0">Tất cả</mat-option>
-                    <mat-option value="1">Đang hoạt động</mat-option>
-                    <mat-option value="2">Đang chờ duyệt</mat-option>
-                    <mat-option value="3">Đã bị từ chối</mat-option>
-                    <mat-option value="4">Đang tạm ngừng</mat-option>
+                    <mat-option value="ALL">Tất cả</mat-option>
+                    <mat-option value="ACTIVE">Đang hoạt động</mat-option>
+                    <mat-option value="PENDING_APPROVAL">Đang chờ duyệt</mat-option>
+                    <mat-option value="BUSY">Bận</mat-option>
+                    <mat-option value="RENTED">Đã được thuê</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="car__listing-empty" *ngIf="registeredCarList.length < 1">
+        <div class="car__listing-empty" *ngIf="filteredCarList.length < 1">
             <p class="text-center">Không có dữ liệu</p>
         </div>
-        <div class="car__listing-column bx__shadow-1" *ngIf="registeredCarList.length > 0">
+        <div class="car__listing-column bx__shadow-1" *ngIf="filteredCarList.length > 0">
             <h2>DANH SÁCH XE</h2>
             <div class="d-flex-bo flex-wrap-bo car__list">
                 <!-- start car item -->
-                <div class="d-flex-bo flex-wrap-bo car__list-items" *ngFor="let item of registeredCarList">
+                <div class="d-flex-bo flex-wrap-bo car__list-items" *ngFor="let item of filteredCarList">
                     <div class="car__listing-item">
                         <div [class]="'car__status '+ getStatusClassname(item.status)">
                             <p [class]="'status-text ' + getStatusClassname(item.status)">

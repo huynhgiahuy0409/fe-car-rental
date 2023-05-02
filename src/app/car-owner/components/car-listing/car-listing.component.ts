@@ -18,9 +18,10 @@ export class CarListingComponent {
   readonly BASE_IMG: string = CAR_IMG;
 
   registeredCarList: RegisteredCarResponse[] = [];
+  filteredCarList: RegisteredCarResponse[] = [];
 
   myCarsFormGroup = this._formBuilder.group({
-    carStatus: ['0'],
+    carStatus: ['ALL'],
   });
 
   ngOnInit(): void {
@@ -28,10 +29,16 @@ export class CarListingComponent {
       (data) => {
         console.log(data);
         this.registeredCarList = data;
+        this.filteredCarList = data;
         if (this.registeredCarList.length < 1)
           this.myCarsFormGroup.disable();
       });
-
+    this.myCarsFormGroup.get("carStatus")?.valueChanges.subscribe(data => {
+      if (data === "ALL")
+        this.filteredCarList = this.registeredCarList;
+      else
+        this.filteredCarList = this.registeredCarList.filter(i => i.status == data);
+    });
   }
 
   getStatusName(status: CarStatus) {
