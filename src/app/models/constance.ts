@@ -1,4 +1,6 @@
+import { CarStatus } from "./enum";
 import { CarFeatureElement, City, Color } from "./model";
+import { CarAdminResponse, IdNameResponse } from "./response/model";
 export const TEXT_SPACE_REGEX = "^[a-zA-Z\\s]*$"
 export const NUMBER_REGEX = "^[0-9]*$"
 
@@ -26,6 +28,8 @@ export const GET_MODEL_BY_BRAND = "/api/brands/getModels";
 export const GET_ALL_FEATURE = "/api/features/findAll";
 export const REGISTER_NEW_CAR = "/api/cars/registerNewCar";
 export const GET_ALL_REGISTERED_CAR = "/api/cars/findRegisteredCar";
+export const GET_ALL_SERVICE_TYPES = "/api/services/findAll";
+export const GET_ALL_CAR_STATUSES = "/api/statuses/findAll";
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";
@@ -130,70 +134,144 @@ export const CAR_FEATURES: CarFeatureElement[] = [
     },
 ]
 
-export const CITIES: City[] = [
-    { areaCode: 89, name: "An Giang" },
-    { areaCode: 77, name: "Bà Rịa - Vũng Tàu" },
-    { areaCode: 24, name: "Bắc Giang" },
-    { areaCode: 6, name: "Bắc Kạn" },
-    { areaCode: 95, name: "Bạc Liêu" },
-    { areaCode: 27, name: "Bắc Ninh" },
-    { areaCode: 83, name: "Bến Tre" },
-    { areaCode: 52, name: "Bình Định" },
-    { areaCode: 74, name: "Bình Dương" },
-    { areaCode: 70, name: "Bình Phước" },
-    { areaCode: 60, name: "Bình Thuận" },
-    { areaCode: 96, name: "Cà Mau" },
-    { areaCode: 92, name: "Cần Thơ" },
-    { areaCode: 4, name: "Cao Bằng" },
-    { areaCode: 48, name: "Đà Nẵng" },
-    { areaCode: 66, name: "Đắk Lắk" },
-    { areaCode: 67, name: "Đắk Nông" },
-    { areaCode: 11, name: "Điện Biên" },
-    { areaCode: 75, name: "Đồng Nai" },
-    { areaCode: 87, name: "Đồng Tháp" },
-    { areaCode: 64, name: "Gia Lai" },
-    { areaCode: 2, name: "Hà Giang" },
-    { areaCode: 35, name: "Hà Nam" },
-    { areaCode: 1, name: "Hà Nội" },
-    { areaCode: 42, name: "Hà Tĩnh" },
-    { areaCode: 30, name: "Hải Dương" },
-    { areaCode: 31, name: "Hải Phòng" },
-    { areaCode: 93, name: "Hậu Giang" },
-    { areaCode: 79, name: "Hồ Chí Minh" },
-    { areaCode: 17, name: "Hoà Bình" },
-    { areaCode: 33, name: "Hưng Yên" },
-    { areaCode: 56, name: "Khánh Hòa" },
-    { areaCode: 91, name: "Kiên Giang" },
-    { areaCode: 62, name: "Kon Tum" },
-    { areaCode: 12, name: "Lai Châu" },
-    { areaCode: 68, name: "Lâm Đồng" },
-    { areaCode: 20, name: "Lạng Sơn" },
-    { areaCode: 10, name: "Lào Cai" },
-    { areaCode: 80, name: "Long An" },
-    { areaCode: 36, name: "Nam Định" },
-    { areaCode: 40, name: "Nghệ An" },
-    { areaCode: 37, name: "Ninh Bình" },
-    { areaCode: 58, name: "Ninh Thuận" },
-    { areaCode: 25, name: "Phú Thọ" },
-    { areaCode: 54, name: "Phú Yên" },
-    { areaCode: 44, name: "Quảng Bình" },
-    { areaCode: 49, name: "Quảng Nam" },
-    { areaCode: 51, name: "Quảng Ngãi" },
-    { areaCode: 22, name: "Quảng Ninh" },
-    { areaCode: 45, name: "Quảng Trị" },
-    { areaCode: 94, name: "Sóc Trăng" },
-    { areaCode: 14, name: "Sơn La" },
-    { areaCode: 72, name: "Tây Ninh" },
-    { areaCode: 34, name: "Thái Bình" },
-    { areaCode: 19, name: "Thái Nguyên" },
-    { areaCode: 38, name: "Thanh Hóa" },
-    { areaCode: 46, name: "Thừa Thiên Huế" },
-    { areaCode: 82, name: "Tiền Giang" },
-    { areaCode: 84, name: "Trà Vinh" },
-    { areaCode: 8, name: "Tuyên Quang" },
-    { areaCode: 86, name: "Vĩnh Long" },
-    { areaCode: 26, name: "Vĩnh Phúc" },
-    { areaCode: 15, name: "Yên Bái" }
+export const idn1: IdNameResponse[] = [
+    {
+        id: 1,
+        name: "Toyota"
+    },
+    {
+        id: 378,
+        name: "Camry"
+    },
+    {
+        id: 1,
+        name: "SELF_DRIVE"
+    }
 ];
+
+export const CAR_DUMMY: CarAdminResponse[] = [
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+    {
+        id: 1,
+        created_date: "2020-12-12T00:00:00",
+        color: "RED",
+        plate: "29A-123.45",
+        brand: idn1[0],
+        model: idn1[1],
+        service_type: idn1[2],
+        price: 12345,
+        status: CarStatus.ACTIVE
+    },
+]
+
 
 export const COLORS: Color[] = [{ "value": "WHITE", "name": "Trắng" }, { "value": "BLACK", "name": "Đen" }, { "value": "NAVYBLUE", "name": "Xanh dương" }, { "value": "SILVER", "name": "Bạc" }, { "value": "GRAY", "name": "Xám" }, { "value": "RED", "name": "Đỏ" }, { "value": "GREEN", "name": "Xanh lá" }, { "value": "BROWN", "name": "Nâu" }, { "value": "YELLOW", "name": "Vàng" }, { "value": "TURQUOISE", "name": "Xanh ngọc" }];

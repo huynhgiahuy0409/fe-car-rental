@@ -56,7 +56,6 @@ export interface CarRegisterRequest {
     fuel: string;
     fuelConsumption: number;
     transmission: string;
-    rentalStatus: string;
     description: string;
     yearOfManufacture: number;
     featureList: number[];

@@ -36,3 +36,12 @@ export enum CarStatus {
   BUSY = 'BUSY',
   RENTED = 'RENTED'
 }
+
+export enum CarStatusVie {
+  BANNED = 'Tạm khóa',
+  PENDING_APPROVAL = 'Chờ duyệt',
+  ACTIVE = 'Đang hoạt động',
+  BUSY = 'Bận',
+  RENTED = 'Đã được thuê'
+}
+

@@ -71,3 +71,32 @@ export interface RegisteredCarResponse {
     avgRating: number;
     imageUrl: string;
 }
+
+export interface CarAdminResponse {
+    id: number;
+    created_date: string;
+    color: string;
+    plate: string;
+    price: number;
+    brand: IdNameResponse;
+    model: IdNameResponse;
+    service_type: IdNameResponse;
+    status: CarStatus;
+}
+
+export interface IdNameResponse {
+    id: number;
+    name: string;
+}
+
+export interface RegisteredCarDto {
+    id: number;
+    created_date: string;
+    color: string;
+    plate: string;
+    price: number;
+    brand: IdNameResponse;
+    model: IdNameResponse;
+    service_type: IdNameResponse;
+    status: CarStatus;
+}

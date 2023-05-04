@@ -326,7 +326,6 @@ export class RegisterFormComponent {
       fuel: String(carFuel),
       fuelConsumption: Number(carFuelConsumption),
       transmission: String(carTransmission),
-      rentalStatus: RentalStatus.PENDING_APPROVAL,
       description: String(carDescription),
       yearOfManufacture: Number(carProdYear),
       featureList: features,

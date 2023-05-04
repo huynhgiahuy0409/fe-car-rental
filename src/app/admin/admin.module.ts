@@ -13,6 +13,9 @@ import { PromoListComponent } from './components/list/components/promo-list/prom
 import { PromoItemComponent } from './components/list/components/promo-list/promo-item/promo-item.component';
 import { EditPromoDialogComponent } from './components/list/components/promo-list/eidt-promo-dialog/eidt-promo-dialog.component';
 import { AddCarFeatureComponent } from './components/add-new/components/add-car-feature/add-car-feature.component';
+import { RegisteredCarListingComponent } from './components/list/components/registered-car-listing/registered-car-listing.component';
+import { EditRegisteredCarDialogComponent } from './components/list/components/registered-car-listing/edit-registered-car-dialog/edit-registered-car-dialog.component';
+import { RegisteredCarService } from './services/registered-car.service';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { AddCarFeatureComponent } from './components/add-new/components/add-car-
     PromoListComponent,
     PromoItemComponent,
     EditPromoDialogComponent,
-    AddCarFeatureComponent
+    AddCarFeatureComponent,
+    RegisteredCarListingComponent,
+    EditRegisteredCarDialogComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +38,9 @@ import { AddCarFeatureComponent } from './components/add-new/components/add-car-
     ReactiveFormsModule,
     FormsModule,
     MaterialAngularModule,
+  ],
+  providers: [
+    RegisteredCarService
   ]
 })
 export class AdminModule { }
