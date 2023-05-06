@@ -32,6 +32,7 @@ export const GET_ALL_SERVICE_TYPES = "/api/services/findAll";
 export const GET_ALL_CAR_STATUSES = "/api/statuses/findAll";
 export const GET_ALL_CAR = "/api/cars/findAll";
 export const UPDATE_CAR_ADMIN = "/api/cars/updateCar";
+export const GET_ALL_RENTAL_BY_OWNER = "/api/rentals/findByOwner";
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";

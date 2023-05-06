@@ -100,3 +100,16 @@ export interface RegisteredCarDto {
     serviceType: IdNameResponse;
     status: CarStatus;
 }
+
+export interface RentalListingResponse {
+    id: number;
+    bannerUrl: string;
+    model: string;
+    yearOfManufacture: number;
+    plate: string;
+    customerName: string;
+    avgRating: number;
+    price: number;
+    startDate: number;
+    endDate: number;
+}

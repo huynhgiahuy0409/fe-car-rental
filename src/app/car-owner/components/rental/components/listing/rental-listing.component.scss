@@ -78,6 +78,10 @@
   margin-left: auto;
 }
 
+.empty-column {
+  flex: 0 0 70%;
+}
+
 //mobile
 @media screen and (max-width: 739px) {
   .car__listing {
