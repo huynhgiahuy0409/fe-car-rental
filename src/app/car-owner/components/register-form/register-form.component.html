@@ -149,7 +149,7 @@
                             <div class="car__information-feature" *ngFor="let item of fetchedCarFeatures"
                                 (click)="handleClickFeature(item.id)">
                                 <div class="car__features-item" [id]="item?.id">
-                                    <img [src]="FEATURE_DIRECT_LINK+item.iconFilename" alt="404" width="30">
+                                    <img [src]="FEATURE_DIRECT_LINK+item.iconFilename" [alt]="item.name" width="30">
                                     <p>{{item?.name}}</p>
                                 </div>
                             </div>
