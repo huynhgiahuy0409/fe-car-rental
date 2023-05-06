@@ -6,6 +6,11 @@
                 <input type="hidden" formControlName="id">
 
                 <mat-form-field class="w-fit" appearance="fill">
+                    <mat-label>Biển số xe</mat-label>
+                    <input formControlName="plate" matInput>
+                </mat-form-field>
+
+                <mat-form-field class="w-fit" appearance="fill">
                     <mat-label class="cl-black">Màu sắc</mat-label>
                     <mat-select matInput formControlName="color">
                         <mat-option [value]="item.value" *ngFor="let item of colors">{{item.name}}</mat-option>
@@ -15,10 +20,6 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="w-fit" appearance="fill">
-                    <mat-label>Biển số xe</mat-label>
-                    <input formControlName="plate" matInput>
-                </mat-form-field>
 
                 <mat-form-field class="w-fit" appearance="fill">
                     <mat-label>Hãng</mat-label>
@@ -34,6 +35,7 @@
                     <mat-label>Mẫu</mat-label>
                     <mat-select matInput formControlName="model">
                         <mat-option [value]="item.id" *ngFor="let item of models">{{item.name}}</mat-option>
+                        <mat-option [value]="12312312321">asdaw</mat-option>
                     </mat-select>
                     <mat-error *ngIf="!carFormGroup.hasError('required')">
                         Vui lòng chọn hãng xe
@@ -42,7 +44,7 @@
 
                 <mat-form-field class="w-fit" appearance="fill">
                     <mat-label>Loại dịch vụ</mat-label>
-                    <mat-select matInput formControlName="service_type">
+                    <mat-select matInput formControlName="serviceType">
                         <mat-option [value]="item.id" *ngFor="let item of serviceTypes">{{item.name}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="!carFormGroup.hasError('required')">
@@ -69,6 +71,8 @@
 
             </div>
             <div class="d-flex-bo justify-content-end-bo">
+                <button type="button" mat-raised-button color="warn" (click)="closeDialog()"
+                    style="margin-right:20px">Hủy bỏ</button>
                 <button type="submit" mat-raised-button color="primary" [disabled]="carFormGroup.invalid">Cập
                     nhật</button>
             </div>

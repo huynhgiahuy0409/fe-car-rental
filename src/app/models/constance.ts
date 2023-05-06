@@ -30,6 +30,8 @@ export const REGISTER_NEW_CAR = "/api/cars/registerNewCar";
 export const GET_ALL_REGISTERED_CAR = "/api/cars/findRegisteredCar";
 export const GET_ALL_SERVICE_TYPES = "/api/services/findAll";
 export const GET_ALL_CAR_STATUSES = "/api/statuses/findAll";
+export const GET_ALL_CAR = "/api/cars/findAll";
+export const UPDATE_CAR_ADMIN = "/api/cars/updateCar";
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";

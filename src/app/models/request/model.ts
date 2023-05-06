@@ -1,3 +1,4 @@
+import { CarStatus } from "../enum";
 import { OAuthProvider } from "../enum"
 
 export interface SignUpRequest {
@@ -72,4 +73,14 @@ export interface CarRegisterRequest {
 export interface FeatureRequest {
     name: string,
     iconFile: File
+}
+
+export interface CarAdminRequest {
+    id: number;
+    color: string;
+    price: number;
+    brand: number;
+    model: number;
+    serviceType: number;
+    status: CarStatus;
 }

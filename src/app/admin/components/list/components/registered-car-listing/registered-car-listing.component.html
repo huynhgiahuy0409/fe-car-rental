@@ -1,61 +1,58 @@
 <div class="registered__list-container">
     <mat-form-field class="w-fit">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <mat-label>Bộ lọc</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Bộ lọc" #input>
     </mat-form-field>
 
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
 
-            <!-- ID Column -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                 <td mat-cell *matCellDef="let row"> {{row.id}} </td>
             </ng-container>
 
-            <!-- Progress Column -->
-            <ng-container matColumnDef="created_date">
+            <ng-container matColumnDef="createdDate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày khởi tạo </th>
-                <td mat-cell *matCellDef="let row"> {{row.created_date}} </td>
+                <td mat-cell *matCellDef="let row"> {{getDateInFormat(row.createdDate)}} </td>
             </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="color">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Màu </th>
-                <td mat-cell *matCellDef="let row"> {{row.color}} </td>
-            </ng-container>
-
-            <!-- Fruit Column -->
             <ng-container matColumnDef="plate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Biển số </th>
                 <td mat-cell *matCellDef="let row"> {{row.plate}} </td>
             </ng-container>
 
-            <!-- Fruit Column -->
+            <ng-container matColumnDef="color">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Màu </th>
+                <td mat-cell *matCellDef="let row"> {{row.color}} </td>
+            </ng-container>
+
+
             <ng-container matColumnDef="price">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Giá </th>
                 <td mat-cell *matCellDef="let row"> {{row.price}} </td>
             </ng-container>
-            <!-- Fruit Column -->
-            <ng-container matColumnDef="brand_name">
+
+            <ng-container matColumnDef="brand">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Hãng </th>
                 <td mat-cell *matCellDef="let row"> {{row.brand.name}} </td>
             </ng-container>
-            <!-- Fruit Column -->
-            <ng-container matColumnDef="model_name">
+
+            <ng-container matColumnDef="model">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Mẫu </th>
                 <td mat-cell *matCellDef="let row"> {{row.model.name}} </td>
             </ng-container>
-            <!-- Fruit Column -->
-            <ng-container matColumnDef="service_type">
+
+            <ng-container matColumnDef="serviceType">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Loại dịch vụ </th>
-                <td mat-cell *matCellDef="let row"> {{row.service_type.name}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.serviceType.name}} </td>
             </ng-container>
-            <!-- Fruit Column -->
+
             <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Trạng thái </th>
-                <td mat-cell *matCellDef="let row"> {{row.status}}
-                    <i class="fa-solid fa-circle" style="font-size:10px"></i>
+                <td mat-cell *matCellDef="let row"> {{findCarStatusVie(row.status)}}
+                    <i class="fa-solid fa-circle" style="font-size:10px"
+                        [class]="'cl-'+getStatusClassname(row.status)"></i>
                 </td>
             </ng-container>
 

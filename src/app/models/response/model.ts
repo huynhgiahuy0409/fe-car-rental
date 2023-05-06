@@ -91,12 +91,12 @@ export interface IdNameResponse {
 
 export interface RegisteredCarDto {
     id: number;
-    created_date: string;
+    createdDate: string;
     color: string;
     plate: string;
     price: number;
     brand: IdNameResponse;
     model: IdNameResponse;
-    service_type: IdNameResponse;
+    serviceType: IdNameResponse;
     status: CarStatus;
 }

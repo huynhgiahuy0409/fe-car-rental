@@ -3,13 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
 import { ProgressSpinnerService } from 'src/app/customer/services/progress-spinner.service';
-import { EditPromoDialogComponent } from '../../promo-list/eidt-promo-dialog/eidt-promo-dialog.component';
 import { BrandResponse, CarModelResponse, IdNameResponse, RegisteredCarDto } from 'src/app/models/response/model';
+import { EditPromoDialogComponent } from '../../promo-list/eidt-promo-dialog/eidt-promo-dialog.component';
 
-import { COLORS } from 'src/app/models/constance';
-import { Color } from 'src/app/models/model';
 import { RegisteredCarService } from 'src/app/admin/services/registered-car.service';
+import { COLORS } from 'src/app/models/constance';
 import { CarStatusVie } from 'src/app/models/enum';
+import { Color } from 'src/app/models/model';
+import { CarAdminRequest } from 'src/app/models/request/model';
+import { catchError, tap } from 'rxjs';
+import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-edit-registered-car-dialog',
@@ -35,12 +38,12 @@ export class EditRegisteredCarDialogComponent {
     private _messageDialogService: MessageDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private matDialogRef: MatDialogRef<EditPromoDialogComponent>,
-    private carServices: RegisteredCarService
+    private services: RegisteredCarService
   ) {
     this.car = data.car;
     console.log("dialog received car", this.car);
 
-    const { id, color, plate, brand, price, model, service_type, status } = this.car
+    const { id, color, plate, brand, price, model, serviceType, status } = this.car
 
     this.carFormGroup = this._fb.group({
       id: [id, Validators.required],
@@ -48,26 +51,26 @@ export class EditRegisteredCarDialogComponent {
       plate: [plate, Validators.required],
       brand: [brand.id, Validators.required],
       model: [model.id, Validators.required],
-      service_type: [service_type.id, Validators.required],
+      serviceType: [serviceType.id, Validators.required],
       price: [price, Validators.required],
       status: [status, Validators.required]
     });
 
-    this.carServices.getBrands().subscribe(res => {
+    this.services.getBrands().subscribe(res => {
       this.brands = res;
     });
 
-    this.carServices.getModelsByBrandId(brand.id).subscribe(res => {
+    this.services.getModelsByBrandId(brand.id).subscribe(res => {
       this.models = res;
     });
 
-    this.carServices.getServiceTypes().subscribe(res => {
+    this.services.getServiceTypes().subscribe(res => {
       this.serviceTypes = res;
     });
 
     this.carFormGroup.get("brand")?.valueChanges.subscribe(brandId => {
       this.carFormGroup.get("model")?.setValue(null);
-      this.carServices.getModelsByBrandId(brandId).subscribe(res => {
+      this.services.getModelsByBrandId(brandId).subscribe(res => {
         this.models = res;
       });
     });
@@ -75,10 +78,57 @@ export class EditRegisteredCarDialogComponent {
   }
 
 
-
   onSubmitForm() {
-    console.log("submitted form values");
-    console.log(this.carFormGroup.value);
+    const values: CarAdminRequest = this.carFormGroup.value;
+    this.services
+      .updateCar(values)
+      .pipe(
+        tap((response: any) => {
+          this._progressSpinnerService.next(false);
+          console.log(response);
+
+          if (response !== null) {
+            let dataDialog = {
+              title: 'Thành công',
+              message: "Cập nhật thành công !",
+            };
+            let messageDialogRef = this._messageDialogService.openMessageDialog(
+              MessageDialogComponent,
+              dataDialog
+            );
+            messageDialogRef.afterClosed().subscribe((_) => {
+              this.matDialogRef.close({ updatedCar: response });
+            });
+          } else {
+            let dataDialog = {
+              title: 'Thất bại',
+              message: response,
+            };
+            this._messageDialogService.openMessageDialog(
+              MessageDialogComponent,
+              dataDialog
+            );
+          }
+        }),
+        catchError((error) => {
+          this._progressSpinnerService.next(false);
+          let dataDialog = {
+            title: 'Thất bại',
+            message: error.error,
+          };
+          this._messageDialogService.openMessageDialog(
+            MessageDialogComponent,
+            dataDialog
+          );
+          throw error;
+        })
+      )
+      .subscribe();
 
   }
+
+  closeDialog() {
+    this.matDialogRef.close();
+  }
+
 }

@@ -596,6 +596,10 @@ svg.booking-oto-rating-stars__hollow-star {
   color: #a9a9a9;
 }
 
+.cl-active {
+  color: var(--gemstone-color);
+}
+
 .bg-busy {
   background-color: #a9a9a9 !important;
 }
@@ -610,6 +614,23 @@ svg.booking-oto-rating-stars__hollow-star {
 
 .cl-white {
   color: #fff !important;
+}
+
+.cl-suspend {
+  color: var(--suspend-color);
+}
+
+.cl-active {
+  color: var(--active-color);
+}
+.cl-pending {
+  color: var(--pending-color);
+}
+.cl-busy {
+  color: var(--busy-color);
+}
+.cl-rented {
+  color: var(--rented-color);
 }
 
 .mx-auto {
