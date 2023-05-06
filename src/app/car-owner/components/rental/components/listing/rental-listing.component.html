@@ -9,12 +9,12 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="empty-column text-center" *ngIf="rentalList.length < 1">
+        <div class="empty-column text-center" *ngIf="sortedRentalList.length < 1">
             <p>Không có dữ liệu</p>
         </div>
-        <div class="rental__listing-column bx__shadow-1" *ngIf="rentalList.length > 1">
+        <div class="rental__listing-column bx__shadow-1" *ngIf="sortedRentalList.length > 1">
             <h2>DANH SÁCH CHUYẾN CHO THUÊ</h2>
-            <div class="d-flex-bo flex-wrap-bo rental__list" *ngFor="let item of rentalList">
+            <div class="d-flex-bo flex-wrap-bo rental__list" *ngFor="let item of sortedRentalList">
                 <!-- start rental item -->
                 <div class="rental__listing-item">
                     <img [src]="BASE_IMG+item.bannerUrl" [alt]="item.model">
@@ -28,7 +28,7 @@
                             *ngFor="let i of [].constructor(5-item.avgRating)"></i>
                     </span>
                     <div class="text-price">
-                        <h3>{{item.price}}</h3>
+                        <h3>{{getFormattedMoney(item.price)}}</h3>
                     </div>
                     <div class="d-flex-bo flex-wrap-bo text-daterange">
                         <div>
