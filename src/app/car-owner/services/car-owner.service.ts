@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_ALL_BRAND, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_MODEL_BY_BRAND, REGISTER_NEW_CAR, SEARCH_ADDRESS } from 'src/app/models/constance';
+import { GET_ALL_BRAND, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_MODEL_BY_BRAND, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, SEARCH_ADDRESS } from 'src/app/models/constance';
 import { LocationResponse } from 'src/app/models/model';
 import { CarRegisterRequest } from 'src/app/models/request/model';
-import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
+import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalDetailsResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
 
 @Injectable({
   providedIn: 'root'
@@ -74,5 +74,12 @@ export class CarOwnerService {
       username: username
     };
     return this.httpClient.get<RentalListingResponse[]>(`${GET_ALL_RENTAL_BY_OWNER}`, this.httpOptions);
+  }
+
+  getRentalDetailsById(id: number): Observable<RentalDetailsResponse> {
+    this.httpOptions.params = {
+      id: id
+    };
+    return this.httpClient.get<RentalDetailsResponse>(`${GET_RENTAL_DETAILS}`, this.httpOptions);
   }
 }

@@ -1,3 +1,4 @@
+import { RentalStatus } from '../enum';
 import { CarStatus, OAuthProvider } from '../enum';
 import { JWTDTO, UserDTO } from './../model';
 export interface APIResponse<T> {
@@ -112,4 +113,19 @@ export interface RentalListingResponse {
     price: number;
     startDate: number;
     endDate: number;
+}
+
+export interface RentalDetailsResponse {
+    id: number;
+    model: string;
+    startDate: number;
+    endDate: number;
+    avgRating: number;
+    customerName: string;
+    customerPhone: string;
+    status: RentalStatus;
+    distanceLimit: number;
+    price: number;
+    bannerUrl: string;
+    createdDate: number;
 }

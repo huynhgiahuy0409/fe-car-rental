@@ -632,6 +632,18 @@ svg.booking-oto-rating-stars__hollow-star {
 .cl-rented {
   color: var(--rented-color);
 }
+.cl-cancelled {
+  color: red;
+}
+.cl-pending {
+  color: var(--pending-color);
+}
+.cl-rented {
+  color: rgba($color: #00a550, $alpha: 0.5);
+}
+.cl-completed {
+  color: var(--gemstone-color);
+}
 
 .mx-auto {
   margin-left: auto;

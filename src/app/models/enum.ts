@@ -23,10 +23,21 @@ export enum ServiceType {
 }
 
 export enum RentalStatus {
-  PENDING_APPROVAL = 'PENDING_APPROVAL',
-  ACTIVE = 'ACTIVE',
-  BUSY = 'BUSY',
+  CANCELLED = 'CANCELLED',
+  REJECTED = 'REJECTED',
+  PENDING = 'PENDING',
+  ACCEPTED = 'ACCEPTED',
   RENTED = 'RENTED',
+  COMPLETED = 'COMPLETED'
+}
+
+export enum RentalStatusVie {
+  CANCELLED = 'Đã hủy',
+  REJECTED = 'Đã từ chối',
+  PENDING = 'Đang chờ duyệt',
+  ACCEPTED = 'Đã xác nhận',
+  RENTED = 'Đã được thuê',
+  COMPLETED = 'Đã hoàn thành'
 }
 
 export enum CarStatus {

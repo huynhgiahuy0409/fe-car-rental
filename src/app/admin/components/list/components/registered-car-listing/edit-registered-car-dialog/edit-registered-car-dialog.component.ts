@@ -4,15 +4,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
 import { ProgressSpinnerService } from 'src/app/customer/services/progress-spinner.service';
 import { BrandResponse, CarModelResponse, IdNameResponse, RegisteredCarDto } from 'src/app/models/response/model';
-import { EditPromoDialogComponent } from '../../promo-list/eidt-promo-dialog/eidt-promo-dialog.component';
 
+import { catchError, tap } from 'rxjs';
 import { RegisteredCarService } from 'src/app/admin/services/registered-car.service';
+import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
 import { COLORS } from 'src/app/models/constance';
 import { CarStatusVie } from 'src/app/models/enum';
 import { Color } from 'src/app/models/model';
 import { CarAdminRequest } from 'src/app/models/request/model';
-import { catchError, tap } from 'rxjs';
-import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-edit-registered-car-dialog',
@@ -37,11 +36,10 @@ export class EditRegisteredCarDialogComponent {
     private _progressSpinnerService: ProgressSpinnerService,
     private _messageDialogService: MessageDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private matDialogRef: MatDialogRef<EditPromoDialogComponent>,
+    private matDialogRef: MatDialogRef<EditRegisteredCarDialogComponent>,
     private services: RegisteredCarService
   ) {
     this.car = data.car;
-    console.log("dialog received car", this.car);
 
     const { id, color, plate, brand, price, model, serviceType, status } = this.car
 
