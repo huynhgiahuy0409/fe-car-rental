@@ -66,11 +66,10 @@ export class RentalDetailsComponent {
   getRentalDetailsData() {
     this.service.getRentalDetailsById(this.rental_id).subscribe(res => {
       this.rental_details = res;
-      // const TWO_HOURS_IN_MS = 2 * 60 * 60 * 1000;
+      const TWO_HOURS_IN_MS = 2 * 60 * 60 * 1000;
 
       if (this.rental_details.status === RentalStatus.PENDING) {
-        const testms = 48 * 60 * 60 * 1000;
-        this.targetDate = new Date(this.rental_details.createdDate + testms);
+        this.targetDate = new Date(this.rental_details.createdDate + TWO_HOURS_IN_MS);
 
         const timeLeftTimer = interval(1000);
         timeLeftTimer
