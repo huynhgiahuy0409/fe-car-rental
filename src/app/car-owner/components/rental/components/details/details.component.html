@@ -1,15 +1,18 @@
 <div class="rental__details-container">
 
     <div class="rental__details-stepper bg-white">
-        <mat-stepper linear #stepper selectedIndex="0">
+        <mat-stepper linear #stepper>
+            <mat-step [editable]="false">
+                <ng-template matStepLabel>Kiểm tra thông tin</ng-template>
+            </mat-step>
             <mat-step [editable]="false">
                 <ng-template matStepLabel>Duyệt cho thuê</ng-template>
             </mat-step>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Đã giao xe</ng-template>
+                <ng-template matStepLabel>Đang cho thuê</ng-template>
             </mat-step>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Khách trả xe</ng-template>
+                <ng-template matStepLabel>Hoàn thành đơn thuê</ng-template>
             </mat-step>
         </mat-stepper>
     </div>
@@ -70,13 +73,16 @@
                 </span>
             </div>
             <h3 class="renter__phone-title">Số điện thoại</h3>
-            <p class="renter__phone" *ngIf="!isAcceptedRental()">**********</p>
-            <p class="renter__phone" *ngIf="isAcceptedRental()">{{rental_details.customerPhone}}</p>
-            <p *ngIf="!isAcceptedRental()">Số điện thoại liên hệ sẽ được hiển thị sau khi đồng ý yêu cầu cho thuê</p>
+            <p class="renter__phone" *ngIf="!gtAcceptedRental()">**********</p>
+            <p class="renter__phone" *ngIf="gtAcceptedRental()" style="padding-bottom:10px;">
+                {{rental_details.customerPhone}}</p>
+            <p *ngIf="!gtAcceptedRental()">Số điện thoại liên hệ sẽ được hiển thị sau khi đồng ý yêu cầu cho thuê</p>
             <span>
                 <i [class]="'fa-solid fa-square cl-'+getStatusClassname(rental_details.status)"></i> Trạng thái:
                 {{getRentalStatus(rental_details.status)}}
             </span>
+            <p *ngIf="isAccepted()" style="padding-top:10px;">Vui lòng liên hệ với khách thuê qua số điện thoại để thực
+                hiện bàn giao xe</p>
         </div>
         <div class="rental__details-column">
             <h2>Bảng tính giá</h2>
@@ -140,5 +146,18 @@
     <div class="btn__actions" *ngIf="isPending()">
         <button class="btn__decline" (click)="onDeclineRentalRequest()">Từ chối yêu cầu</button>
         <button class="btn__accept" (click)="onAcceptRentalRequest()">Đồng ý yêu cầu</button>
+    </div>
+
+    <div class="section-footer w-fit" *ngIf="isAccepted()">
+        <button mat-raised-button color="primary" (click)="onConfirmDeliveredCarToRenter()" class="w-fit">Xác nhận đã
+            bàn giao
+            xe</button>
+    </div>
+    <div class="section-footer w-fit" *ngIf="isRented()"
+        [matTooltip]="'Không thể thực hiện trước thời hạn kết thúc đơn'">
+        <button (click)="onCompleteRental()" mat-raised-button color="primary" class="w-fit"
+            [disabled]="isSoonerThanEndDate()">Hoàn
+            thành đơn
+            thuê</button>
     </div>
 </div>

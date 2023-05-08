@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +13,7 @@ import { RentalStatus, RentalStatusVie } from 'src/app/models/enum';
 import { RentalDetailsResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-details',
@@ -39,12 +40,27 @@ export class RentalDetailsComponent {
     value: Object.values(RentalStatusVie)
   };
 
+  @ViewChild('stepper') stepper!: MatStepper;
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.rental_id = params['id'];
     });
 
     this.getRentalDetailsData();
+
+  }
+
+  getStepperSelectedIndex() {
+    switch (this.rental_details?.status) {
+      case RentalStatus.ACCEPTED:
+        return 1;
+      case RentalStatus.RENTED:
+        return 2;
+      case RentalStatus.COMPLETED:
+        return 3;
+      default:
+        return 0;
+    }
   }
 
   getRentalDetailsData() {
@@ -82,6 +98,9 @@ export class RentalDetailsComponent {
             }
           });
       }
+      for (let i = 0; i < this.getStepperSelectedIndex(); i++) {
+        this.stepper.next();
+      }
     });
   }
 
@@ -99,7 +118,7 @@ export class RentalDetailsComponent {
     return format(new Date(date), "dd/MM/yyyy hh:mm", { locale: vi });
   }
 
-  isAcceptedRental() {
+  gtAcceptedRental() {
     return this.rentalStatus.key.indexOf(this.rental_details.status) >= this.rentalStatus.key.indexOf(RentalStatus.ACCEPTED)
   }
 
@@ -136,8 +155,36 @@ export class RentalDetailsComponent {
     return this.rental_details?.status === RentalStatus.PENDING;
   }
 
-  onDeclineRentalRequest() {
+  isAccepted() {
+    return this.rental_details?.status === RentalStatus.ACCEPTED;
+  }
 
+  isRented() {
+    return this.rental_details?.status === RentalStatus.RENTED;
+  }
+
+  isSoonerThanEndDate() {
+    return this.rental_details.endDate > new Date().getTime();
+  }
+
+  onDeclineRentalRequest() {
+    let confirmationDialogRef = this._matDialog.open(ConfirmationDialogComponent, {
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        rental: this.rental_details,
+        dialog: {
+          title: "Từ chối cho thuê",
+          content: "Bạn có chắc chắn muốn từ chối cho thuê xe này ?",
+          type: "reject"
+        }
+      },
+    });
+    confirmationDialogRef.afterClosed().subscribe((response) => {
+      if (response) {
+        this.getRentalDetailsData();
+      }
+    });
   }
 
   onAcceptRentalRequest() {
@@ -159,5 +206,46 @@ export class RentalDetailsComponent {
       }
     });
   }
+
+  onConfirmDeliveredCarToRenter() {
+    let confirmationDialogRef = this._matDialog.open(ConfirmationDialogComponent, {
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        rental: this.rental_details,
+        dialog: {
+          title: "Xác nhận đã bàn giao xe cho khách thuê",
+          content: "Bạn có chắc chắn muốn xác nhận đã bàn giao xe cho khách thuê ?",
+          type: "delivered"
+        }
+      },
+    });
+    confirmationDialogRef.afterClosed().subscribe((response) => {
+      if (response) {
+        this.getRentalDetailsData();
+      }
+    });
+  }
+
+  onCompleteRental() {
+    let confirmationDialogRef = this._matDialog.open(ConfirmationDialogComponent, {
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        rental: this.rental_details,
+        dialog: {
+          title: "Xác nhận đã hoàn thành đơn thuê",
+          content: "Bạn có chắc chắn muốn xác nhận đã hoàn thành đơn thuê ?",
+          type: "delivered"
+        }
+      },
+    });
+    confirmationDialogRef.afterClosed().subscribe((response) => {
+      if (response) {
+        this.getRentalDetailsData();
+      }
+    });
+  }
+
 
 }

@@ -41,7 +41,7 @@ export const GET_RENTAL_DETAILS = "/api/rentals/findById";
 
 export const ACCEPT_RENTAL = "/api/rentals/acceptRental";
 export const REJECT_RENTAL = "/api/rentals/rejectRental";
-export const CONFIRM_DELIVERED_CAR_TO_RENTER = "/api/rentals/rejectRental";
+export const CONFIRM_DELIVERED_CAR_TO_RENTER = "/api/rentals/confirmDeliveredCarToRenter";
 export const COMPLETE_RENTAL = "/api/rentals/completeRental";
 
 
