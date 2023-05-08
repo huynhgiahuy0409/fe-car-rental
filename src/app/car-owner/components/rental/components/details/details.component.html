@@ -14,7 +14,7 @@
         </mat-stepper>
     </div>
 
-    <div class="rental__details-warning">
+    <div class="rental__details-warning" *ngIf="isPending()">
         <p>Bạn cần duyệt yêu cầu đặt xe trước thời hạn, nếu không hệ thống sẽ tự động hủy chuyến.</p>
         <p>Thời gian còn lại: {{timeLeft}}</p>
     </div>
@@ -131,12 +131,14 @@
         <div class="rental__details-column pt-0">
             <div class="renter__money-col">
                 <p>TIỀN ĐÃ TRẢ</p>
-                <p class="primary-text">{{formatMoney(rental_details.price)}}</p>
+                <p class="primary-text">
+                    {{formatMoney(calculateTotalPrice(calculateDateDiff(rental_details.startDate,rental_details.endDate),rental_details.price))}}
+                </p>
             </div>
         </div>
     </div>
-    <div class="btn__actions">
-        <button class="btn__decline">Từ chối yêu cầu</button>
-        <button class="btn__accept">Đồng ý yêu cầu</button>
+    <div class="btn__actions" *ngIf="isPending()">
+        <button class="btn__decline" (click)="onDeclineRentalRequest()">Từ chối yêu cầu</button>
+        <button class="btn__accept" (click)="onAcceptRentalRequest()">Đồng ý yêu cầu</button>
     </div>
 </div>

@@ -58,7 +58,7 @@ export class EditPromoDialogComponent {
   }
   obSubmitUpdatePromo(value: PromoDTO) {
     value.id = this.promo.id;
-    
+
     this._promoService
       .updatePromo(value)
       .pipe(

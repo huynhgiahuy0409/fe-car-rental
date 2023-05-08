@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_ALL_BRAND, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_MODEL_BY_BRAND, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, SEARCH_ADDRESS } from 'src/app/models/constance';
+import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, GET_ALL_BRAND, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_MODEL_BY_BRAND, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SEARCH_ADDRESS } from 'src/app/models/constance';
 import { LocationResponse } from 'src/app/models/model';
 import { CarRegisterRequest } from 'src/app/models/request/model';
 import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalDetailsResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
@@ -81,5 +81,21 @@ export class CarOwnerService {
       id: id
     };
     return this.httpClient.get<RentalDetailsResponse>(`${GET_RENTAL_DETAILS}`, this.httpOptions);
+  }
+
+  acceptRental(id: number, modifiedBy: string) {
+    return this.httpClient.post(`${ACCEPT_RENTAL}`, { id, modifiedBy });
+  }
+
+  rejectRental(id: number, modifiedBy: string) {
+    return this.httpClient.post(`${REJECT_RENTAL}`, { id, modifiedBy });
+  }
+
+  confirmDeliveredCarToRenter(id: number, modifiedBy: string) {
+    return this.httpClient.post(`${CONFIRM_DELIVERED_CAR_TO_RENTER}`, { id, modifiedBy });
+  }
+
+  completeRental(id: number, modifiedBy: string) {
+    return this.httpClient.post(`${COMPLETE_RENTAL}`, { id, modifiedBy });
   }
 }

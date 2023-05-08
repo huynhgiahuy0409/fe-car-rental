@@ -78,12 +78,12 @@ export class EditRegisteredCarDialogComponent {
 
   onSubmitForm() {
     const values: CarAdminRequest = this.carFormGroup.value;
+    this._progressSpinnerService.next(true);
     this.services
       .updateCar(values)
       .pipe(
         tap((response: any) => {
           this._progressSpinnerService.next(false);
-          console.log(response);
 
           if (response !== null) {
             let dataDialog = {

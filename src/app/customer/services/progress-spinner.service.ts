@@ -10,7 +10,7 @@ export class ProgressSpinnerService {
   constructor() {
     this.isActive$.subscribe(v => console.log("Spinner " + v))
   }
-  next(value: boolean){
+  next(value: boolean) {
     this.isActiveBSub.next(value)
   }
 }

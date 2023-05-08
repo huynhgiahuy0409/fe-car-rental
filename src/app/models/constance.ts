@@ -26,14 +26,25 @@ export const GET_ALL_WARD_BY_PROVINCE_DISTRICT = "/api/wards/getByProvinceAndDis
 export const GET_ALL_BRAND = "/api/brands/getModels";
 export const GET_MODEL_BY_BRAND = "/api/brands/getModels";
 export const GET_ALL_FEATURE = "/api/features/findAll";
+
 export const REGISTER_NEW_CAR = "/api/cars/registerNewCar";
 export const GET_ALL_REGISTERED_CAR = "/api/cars/findRegisteredCar";
+
 export const GET_ALL_SERVICE_TYPES = "/api/services/findAll";
 export const GET_ALL_CAR_STATUSES = "/api/statuses/findAll";
+
 export const GET_ALL_CAR = "/api/cars/findAll";
 export const UPDATE_CAR_ADMIN = "/api/cars/updateCar";
+
 export const GET_ALL_RENTAL_BY_OWNER = "/api/rentals/findByOwner";
 export const GET_RENTAL_DETAILS = "/api/rentals/findById";
+
+export const ACCEPT_RENTAL = "/api/rentals/acceptRental";
+export const REJECT_RENTAL = "/api/rentals/rejectRental";
+export const CONFIRM_DELIVERED_CAR_TO_RENTER = "/api/rentals/rejectRental";
+export const COMPLETE_RENTAL = "/api/rentals/completeRental";
+
+
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";

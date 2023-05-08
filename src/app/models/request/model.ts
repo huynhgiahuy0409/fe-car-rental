@@ -84,3 +84,8 @@ export interface CarAdminRequest {
     serviceType: number;
     status: CarStatus;
 }
+
+export interface UpdateRentalStatusRequest {
+    id: number;
+    modifiedBy: string
+}

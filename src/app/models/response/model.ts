@@ -129,3 +129,9 @@ export interface RentalDetailsResponse {
     bannerUrl: string;
     createdDate: number;
 }
+
+export interface UpdateRentalStatusResponse {
+    id: number;
+    status: RentalStatus;
+    modifiedBy: string;
+}
