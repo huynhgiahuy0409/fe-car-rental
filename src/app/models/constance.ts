@@ -43,8 +43,7 @@ export const ACCEPT_RENTAL = "/api/rentals/acceptRental";
 export const REJECT_RENTAL = "/api/rentals/rejectRental";
 export const CONFIRM_DELIVERED_CAR_TO_RENTER = "/api/rentals/confirmDeliveredCarToRenter";
 export const COMPLETE_RENTAL = "/api/rentals/completeRental";
-
-
+export const SEARCH_CAR = "/api/cars/searchCar";
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";
@@ -54,6 +53,7 @@ export const DISTANCE_UNIT = "KM";
 
 export const URL_API = "http://localhost:8080"
 export const CAR_IMG = `${URL_API}/uploads/car/`;
+export const FEATURE_ICON = `${URL_API}/uploads/feature-icon/`;
 export const OAUTH_CLIENT_ID = "157325840295-pmeacr9ak8e0beepamml4lsoqtkgajam.apps.googleusercontent.com"
 export const FEATURE_DIRECT_LINK = `${URL_API}/uploads/feature-icon/`
 export const CAR_FEATURES: CarFeatureElement[] = [
@@ -149,144 +149,9 @@ export const CAR_FEATURES: CarFeatureElement[] = [
     },
 ]
 
-export const idn1: IdNameResponse[] = [
-    {
-        id: 1,
-        name: "Toyota"
-    },
-    {
-        id: 378,
-        name: "Camry"
-    },
-    {
-        id: 1,
-        name: "SELF_DRIVE"
-    }
+export const TRANSMISSIONS = [
+    { value: "AUTOMATIC", name: "Tự động" },
+    { value: "MANUAL", name: "Số sàn" }
 ];
-
-export const CAR_DUMMY: CarAdminResponse[] = [
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-    {
-        id: 1,
-        created_date: "2020-12-12T00:00:00",
-        color: "RED",
-        plate: "29A-123.45",
-        brand: idn1[0],
-        model: idn1[1],
-        service_type: idn1[2],
-        price: 12345,
-        status: CarStatus.ACTIVE
-    },
-]
-
 
 export const COLORS: Color[] = [{ "value": "WHITE", "name": "Trắng" }, { "value": "BLACK", "name": "Đen" }, { "value": "NAVYBLUE", "name": "Xanh dương" }, { "value": "SILVER", "name": "Bạc" }, { "value": "GRAY", "name": "Xám" }, { "value": "RED", "name": "Đỏ" }, { "value": "GREEN", "name": "Xanh lá" }, { "value": "BROWN", "name": "Nâu" }, { "value": "YELLOW", "name": "Vàng" }, { "value": "TURQUOISE", "name": "Xanh ngọc" }];

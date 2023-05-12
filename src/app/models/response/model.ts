@@ -135,3 +135,21 @@ export interface UpdateRentalStatusResponse {
     status: RentalStatus;
     modifiedBy: string;
 }
+
+export interface SearchCarResponse {
+    id: number;
+    modelName: string;
+    location: string;
+    price: number;
+    avgRating: number;
+    totalCompletedRental: number;
+    features: [{
+        id: number;
+        name: string;
+        iconFilename: string;
+    }],
+    bannerUrl: string;
+    transmission: string;
+    deliveryToTenantFee: number;
+    type: string;
+}

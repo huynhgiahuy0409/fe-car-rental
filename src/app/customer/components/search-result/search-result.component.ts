@@ -5,15 +5,14 @@ import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {
   ActivatedRoute,
-  ActivatedRouteSnapshot,
-  DetachedRouteHandle,
-  NavigationExtras,
-  Router,
-  RouteReuseStrategy,
+  Router
 } from '@angular/router';
-import { he } from 'date-fns/locale';
-import { CAR_FEATURES } from 'src/app/models/constance';
+import { CarOwnerService } from 'src/app/car-owner/services/car-owner.service';
+import { CAR_IMG, FEATURE_ICON, TRANSMISSIONS } from 'src/app/models/constance';
+import { BrandResponse, FeatureResponse, SearchCarResponse } from 'src/app/models/response/model';
+import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { RouteCatchService } from '../../route-catch.service';
+import { SearchCarService } from '../../services/search-car.service';
 import { CarDetailComponent } from '../car/car-detail/car-detail.component';
 @Component({
   selector: 'app-search-result',
@@ -42,78 +41,53 @@ export class SearchResultComponent implements OnDestroy {
 
   carTypeOptions = [
     {
-      id: 0,
-      icon: 'https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-mini.png',
-      seats: 4,
-      type: 'Mini',
-      quantity: 68,
-      active: true,
-    },
-    {
       id: 1,
-      icon: 'https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-sedan.png',
-      seats: 4,
-      type: 'Sedan',
-      quantity: 68,
-      active: true,
+      icon: '../../../../assets/images/mf-4-sedan.png',
+      type: 'SEDAN',
+      name: 'Sedan',
+      quantity: 0
     },
     {
       id: 2,
-      icon: 'https://n1-cstg.mioto.vn/m/vehicle-types/mf-4-hatchback.png',
-      seats: 4,
-      type: 'Hatchback',
-      quantity: 68,
-      active: false,
+      icon: '../../../../assets/images/mf-4-hatchback.png',
+      type: 'HATCHBACK',
+      name: 'Hatchback',
+      quantity: 0
     },
     {
       id: 3,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-5-suv.png",
-      seats: 4,
-      type: "Gầm cao",
-      quantity: 68,
-      active: false,
-    },
-    {
-      id: 4,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-7-suv.png",
-      seats: 4,
-      type: "Gầm cao",
-      quantity: 68,
-      active: false,
-    },
-    {
-      id: 5,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-7-mpv.png",
-      seats: 4,
-      type: "Gầm thấp",
-      quantity: 68,
-      active: false,
-    },
-    {
-      id: 6,
-      icon: "https://n1-cstg.mioto.vn/m/vehicle-types/mf-pickup.png",
-      seats: 4,
-      type: "Bán tải",
-      quantity: 68,
-      active: false,
+      icon: '../../../../assets/images/register-car.png',
+      type: 'SUV',
+      name: 'SUV',
+      quantity: 0
     },
   ];
 
   isShowAdvancedOptions = true;
-  featureList = CAR_FEATURES;
-  addedFeature = ['map', 'bluetooth'];
   ableToShowRoadTabModel = false;
   showRoadTabModel = false;
   currentTab!: NumberInput;
   currentUrl!: string
+  brands: BrandResponse[] = [];
+  features: FeatureResponse[] = [];
+  readonly BASE_FEATURE = FEATURE_ICON;
+  readonly BASE_CAR = CAR_IMG;
+  readonly TRANSMISSIONS = TRANSMISSIONS;
+
+  pageNo: number = 0;
+  searchResult!: SearchCarResponse[];
+  isLoading = true;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
     private routeCatchService: RouteCatchService,
     private matDialog: MatDialog,
-    private location: Location
-  ) {}
+    private location: Location,
+    private searchService: SearchCarService,
+    private carService: CarOwnerService
+  ) { }
 
   searchBarFormGroup = this.formBuilder.group({
     address: [''],
@@ -124,7 +98,29 @@ export class SearchResultComponent implements OnDestroy {
     endHours: [0],
     pickUpPlace: [''],
     destinationPlace: [''],
-    isOneWay: [false],
+    isOneWay: [false]
+  });
+
+
+  searchOptionsFormGroup = this.formBuilder.group({
+    sortedBy: [0],
+    priceMin: [300000],
+    priceMax: [3000000],
+    carBrand: [0],
+    transmission: ['0'],
+    fastRent: [false],
+    // delivery: [false],
+    discount: [false],
+    minSeats: 2,
+    maxSeats: 10,
+    minYears: 2005,
+    maxYears: new Date().getFullYear(),
+    fuel: ['0'],
+    fuelConsumption: [0],
+    limitDistance: ['551'],
+    limitDistanceFee: ['10000'],
+    addedFeatures: this.formBuilder.control<any>([]),
+    addedTypes: this.formBuilder.control<any>([])
   });
 
   ngOnInit(): void {
@@ -159,7 +155,9 @@ export class SearchResultComponent implements OnDestroy {
       ?.valueChanges.subscribe((value) => {
         if (Number(value) === 0) {
           this.searchOptionsFormGroup.get('limitDistanceFee')?.setValue('0');
+          this.searchOptionsFormGroup.get('limitDistanceFee')?.disable();
         } else {
+          this.searchOptionsFormGroup.get('limitDistanceFee')?.enable();
           this.searchOptionsFormGroup
             .get('limitDistanceFee')
             ?.setValue('10000');
@@ -167,36 +165,28 @@ export class SearchResultComponent implements OnDestroy {
       });
 
     console.log(this.router.url
-      );
+    );
     const fragment = this.activatedRoute.snapshot.fragment!;
     const queryParams = this.activatedRoute.snapshot.queryParams;
-    this.currentUrl = this.router.createUrlTree([this.router.url], {queryParams, fragment}).toString();
+    this.currentUrl = this.router.createUrlTree([this.router.url], { queryParams, fragment }).toString();
+
+    this.initDynamicData();
+    this.getSearchResult();
+  }
+
+  initDynamicData() {
+    this.carService.getBrands().subscribe(res => {
+      this.brands = res;
+    });
+    this.carService.getAllFeature().subscribe(res => {
+      this.features = res;
+    });
   }
 
   ngOnDestroy(): void {
     console.log('SEARCH RESULT DESSSSSSSSS');
     document.body.style.overflow = 'auto';
   }
-
-  searchOptionsFormGroup = this.formBuilder.group({
-    sortedBy: ['0'],
-    priceMin: [300],
-    priceMax: [3000],
-    isFiveStarDriver: [false],
-    carBrand: ['0'],
-    transmission: ['0'],
-    fastRent: [false],
-    delivery: [false],
-    discount: [false],
-    minSeats: 2,
-    maxSeats: 10,
-    minYears: 2005,
-    maxYears: new Date().getFullYear(),
-    fuel: ['0'],
-    fuelConsumption: ['0'],
-    limitDistance: ['551'],
-    limitDistanceFee: ['10000'],
-  });
 
   private setHrsData() {
     for (let i = 1; i <= 23; i++) {
@@ -225,8 +215,8 @@ export class SearchResultComponent implements OnDestroy {
   setSearchBarValue() {
     let finalAddress = this.interMunicipal
       ? this.searchBarFormGroup.value.pickUpPlace +
-        ' - ' +
-        this.searchBarFormGroup.value.destinationPlace
+      ' - ' +
+      this.searchBarFormGroup.value.destinationPlace
       : this.address;
     if (!this.interMunicipal) {
       this.searchBarFormGroup
@@ -263,9 +253,19 @@ export class SearchResultComponent implements OnDestroy {
       );
   }
 
-  handleClickOption(id: number) {
-    const isActive = this.carTypeOptions[id].active;
-    this.carTypeOptions[id].active = !isActive;
+  handleClickOption(type: any) {
+    const addedTypes = this.searchOptionsFormGroup.get("addedTypes")?.value;
+    if (this.isActiveType(type)) {
+      const filtered = addedTypes?.filter((item: any) => item !== type);
+      this.searchOptionsFormGroup?.get("addedTypes")?.setValue(filtered!);
+    } else {
+      const added = [...addedTypes!, type];
+      this.searchOptionsFormGroup?.get("addedTypes")?.setValue(added!);
+    }
+  }
+
+  isActiveType(type: any) {
+    return this.searchOptionsFormGroup?.get("addedTypes")?.value?.includes(type);
   }
 
   toggleShowAdvancedOptions() {
@@ -343,43 +343,45 @@ export class SearchResultComponent implements OnDestroy {
     }
   }
 
-  isActiveFeature(feature: string) {
-    return this.addedFeature.includes(feature);
+  isActiveFeature(feature: any) {
+    return this.searchOptionsFormGroup?.get("addedFeatures")?.value?.includes(feature);
   }
 
-  toggleFeature(feature: string) {
+  toggleFeature(feature: any) {
+    const addedFeatures = this.searchOptionsFormGroup.get("addedFeatures")?.value;
     if (this.isActiveFeature(feature)) {
-      this.addedFeature = this.addedFeature.filter((item) => item !== feature);
+      const filtered = addedFeatures?.filter((item: any) => item !== feature);
+      this.searchOptionsFormGroup?.get("addedFeatures")?.setValue(filtered!);
     } else {
-      this.addedFeature.push(feature);
+      const added = [...addedFeatures!, feature];
+      this.searchOptionsFormGroup?.get("addedFeatures")?.setValue(added!);
     }
   }
 
   resetDefaultOption() {
     this.searchOptionsFormGroup.setValue({
-      sortedBy: '0',
-      priceMin: 300,
-      priceMax: 3000,
-      isFiveStarDriver: false,
-      carBrand: '0',
+      sortedBy: 0,
+      priceMin: 300000,
+      priceMax: 3000000,
+      carBrand: 0,
       transmission: '0',
       fastRent: false,
-      delivery: false,
+      // delivery: false,
       discount: false,
       minSeats: 2,
       maxSeats: 10,
       minYears: 2005,
       maxYears: new Date().getFullYear(),
       fuel: '0',
-      fuelConsumption: '0',
+      fuelConsumption: 0,
       limitDistance: '551',
       limitDistanceFee: '10000',
+      addedFeatures: [],
+      addedTypes: []
     });
-    this.addedFeature = [];
-    this.carTypeOptions.forEach((item) => (item.active = false));
   }
-  
-  openCarDetailDialog(rentalMode: string){
+
+  openCarDetailDialog(rentalMode: string) {
     this.matDialog.open(CarDetailComponent, {
       data: {
         rentalMode: rentalMode,
@@ -388,5 +390,164 @@ export class SearchResultComponent implements OnDestroy {
       backdropClass: 'my-back-drop',
       height: '100vh'
     })
+  }
+
+  isEmpty = false;
+  getSearchResult() {
+    this.isLoading = true;
+    this.searchResult = [];
+    this.isEmpty = false;
+
+    let startDate = this.searchBarFormGroup.value.startDate;
+    let endDate = this.searchBarFormGroup.value.endDate;
+    let address = this.searchBarFormGroup.value.address;
+    let priceMin = this.searchOptionsFormGroup.value.priceMin;
+    let priceMax: any = this.searchOptionsFormGroup.value.priceMax;
+    let sortBy = Number(this.searchOptionsFormGroup.value.sortedBy);
+
+    if (priceMax === 3000000) {
+      priceMax = "MAX";
+    }
+
+    let data: any = {
+      pageNo: this.pageNo,
+      sortBy: sortBy,
+      startDate: startDate?.getTime(),
+      address: address,
+      endDate: endDate?.getTime(),
+      price: `${priceMin}-${priceMax}`
+    }
+
+    let carTypes = this.searchOptionsFormGroup.value.addedTypes;
+    if (carTypes.length > 0) {
+      data.type = carTypes;
+    }
+
+    let carBrand = this.searchOptionsFormGroup.value.carBrand;
+    if (carBrand !== 0) {
+      data.brand = carBrand;
+    }
+
+    let carTranmission = this.searchOptionsFormGroup.value.transmission;
+    if (carTranmission !== '0') {
+      data.transmission = carTranmission;
+    }
+
+    let isFastRent = this.searchOptionsFormGroup.value.fastRent;
+    if (isFastRent) {
+      data.isFastRent = isFastRent;
+    }
+
+    let isDiscount = this.searchOptionsFormGroup.value.discount;
+    if (isDiscount) {
+      data.isDiscount = isDiscount;
+    }
+
+    let distanceLimit = Number(this.searchOptionsFormGroup.value.limitDistance);
+    let finalDistanceLimit = "";
+    if (distanceLimit > 0 && distanceLimit < 551) {
+      finalDistanceLimit = distanceLimit + "/";
+
+      let limitDistanceFee = Number(this.searchOptionsFormGroup.value.limitDistanceFee);
+      if (limitDistanceFee === 0) {
+        finalDistanceLimit += "FREE";
+      } else if (limitDistanceFee < 5001) {
+        finalDistanceLimit += "<" + limitDistanceFee;
+      } else {
+        finalDistanceLimit += "MAX";
+      }
+      data.distanceLimit = finalDistanceLimit;
+    } else {
+      data.distanceLimit = "noDistanceLimit";
+    }
+
+    let minSeats = this.searchOptionsFormGroup.value.minSeats;
+    let maxSeats = this.searchOptionsFormGroup.value.maxSeats;
+    let seatRangeTitle = this.getSeatRangeTitle();
+    if (seatRangeTitle !== "Bất kỳ") {
+      let finalSeats = "";
+
+      if (seatRangeTitle.includes("Dưới")) {
+        finalSeats = "<" + maxSeats;
+      } else if (seatRangeTitle.includes("Trên")) {
+        finalSeats = ">" + minSeats;
+      } else {
+        finalSeats = minSeats + "-" + maxSeats;
+      }
+      data.seats = finalSeats;
+    }
+
+    let minYears = this.searchOptionsFormGroup.value.minYears;
+    let maxYears = this.searchOptionsFormGroup.value.maxYears;
+    let yearRangeTitle = this.getYearRangeTitle();
+    if (yearRangeTitle !== "Bất kỳ") {
+      let finalYears = "";
+
+      if (yearRangeTitle.includes("Trước")) {
+        finalYears = "<" + maxYears;
+      } else if (yearRangeTitle.includes("Sau")) {
+        finalYears = ">" + minYears;
+      } else {
+        finalYears = minYears + "-" + maxYears;
+      }
+      data.yearOfManufacture = finalYears;
+    }
+
+    let fuel = this.searchOptionsFormGroup.value.fuel;
+    if (fuel !== '0') {
+      data.fuel = fuel;
+    }
+
+    let fuelConsumption = Number(this.searchOptionsFormGroup.value.fuelConsumption);
+    if (fuelConsumption > 0) {
+      data.fuelConsumption = fuelConsumption;
+    }
+
+    let features = this.searchOptionsFormGroup.value.addedFeatures;
+    if (features.length > 0) {
+      data.features = features;
+    }
+    console.log("values", this.searchOptionsFormGroup.value);
+
+
+
+    console.log(data);
+    this.searchService.searchCar(data).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.searchResult = res;
+        this.isLoading = false;
+        if (res?.length > 0) {
+          this.isEmpty = false;
+        } else {
+          this.isEmpty = true;
+        }
+        this.setCarTypeQuantity();
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+        this.isEmpty = true;
+        this.setCarTypeQuantity();
+      }
+    });
+  }
+
+  getMoneyFormat(money: any) {
+    return getMoneyFormat(money);
+  }
+
+  setCarTypeQuantity() {
+    this.carTypeOptions[0].quantity = this.searchResult.filter(car => car.type === "SEDAN").length;
+    this.carTypeOptions[1].quantity = this.searchResult.filter(car => car.type === "HATCHBACK").length;
+    this.carTypeOptions[2].quantity = this.searchResult.filter(car => car.type === "SUV").length;
+  }
+
+  getTransmissionName(transmission: string) {
+    return TRANSMISSIONS.find(item => item.value === transmission)?.name;
+  }
+
+  toNumber(str: any) {
+    return Number(str);
   }
 }

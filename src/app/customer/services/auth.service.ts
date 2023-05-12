@@ -61,9 +61,9 @@ export class AuthService implements OnInit, OnDestroy {
     this.accessToken$ = this.accessTokenBehaviorSubject.asObservable();
     this.initFB()
   }
-  ngOnDestroy(): void {}
-  ngOnInit(): void {}
-  private initFB(){
+  ngOnDestroy(): void { }
+  ngOnInit(): void { }
+  private initFB() {
     FB.init({
       appId: '1262109928077227',
       cookie: true,
@@ -281,5 +281,8 @@ export class AuthService implements OnInit, OnDestroy {
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
+  }
+  public getCurUsername() {
+    return this.usernameBSub.value
   }
 }

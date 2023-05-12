@@ -1,20 +1,18 @@
+<button (click)="getSearchResult()">search</button>
 <div class="search__result-container bx__shadow-1">
-    <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow"
-        [formGroup]="searchBarFormGroup">
+    <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow" [formGroup]="searchBarFormGroup">
         <div class="search__option-modal" *ngIf="showRoadTabModel">
             <div class="search__option-box bx__shadow-1">
                 <div class="text-end" (click)="toggleShowRoadTabModel()">
                     <i class="fa-solid fa-xmark cursor-pointer"></i>
                 </div>
-                <mat-tab-group animationDuration="500ms"
-                    [selectedIndex]="currentTab">
+                <mat-tab-group animationDuration="500ms" [selectedIndex]="currentTab">
                     <mat-tab label="Nội thành">
                         <p class="primary-text fw-bold option-title">Điểm đón</p>
                         <mat-form-field appearance="fill" class="w-fit">
                             <i class="fa-solid fa-map-pin primary-text
                                 prefix-label" matPrefix></i>
-                            <input matInput formControlName="addressUrban"
-                                placeholder="Nhập địa điểm cụ thể">
+                            <input matInput formControlName="addressUrban" placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
                         <p class="text-secondary">Di chuyển trong thành phố</p>
                         <div class="distance-range">
@@ -29,19 +27,16 @@
                         <mat-form-field appearance="fill" class="w-fit">
                             <i class="fa-solid fa-map-pin primary-text
                                 prefix-label" matPrefix></i>
-                            <input matInput formControlName="pickUpPlace"
-                                placeholder="Nhập địa điểm cụ thể">
+                            <input matInput formControlName="pickUpPlace" placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="w-fit">
                             <i class="fa-solid fa-circle primary-text
                                 prefix-label" matPrefix></i>
-                            <input matInput formControlName="destinationPlace"
-                                placeholder="Nhập địa điểm cụ thể">
+                            <input matInput formControlName="destinationPlace" placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
                         <mat-checkbox formControlName="isOneWay">Tôi muốn đi một
                             chiều</mat-checkbox>
-                        <p *ngIf="!searchBarFormGroup.value.isOneWay"><i
-                                class="fa-solid fa-flag primary-text
+                        <p *ngIf="!searchBarFormGroup.value.isOneWay"><i class="fa-solid fa-flag primary-text
                                 flag-return"></i>Trả khách tại điểm đón</p>
                         <p class="text-secondary text-note">Di chuyển ngoài
                             thành phố, hành trình hai chiều</p>
@@ -56,8 +51,7 @@
                 <input matInput formControlName="address" placeholder="Nhập địa
                     chỉ muốn tìm kiếm">
             </mat-form-field>
-            <mat-form-field appearance="fill" *ngIf="ableToShowRoadTabModel"
-                (click)="toggleShowRoadTabModel()">
+            <mat-form-field appearance="fill" *ngIf="ableToShowRoadTabModel" (click)="toggleShowRoadTabModel()">
                 <input matInput formControlName="address" placeholder="Nhập địa
                     chỉ muốn tìm kiếm">
             </mat-form-field>
@@ -65,8 +59,7 @@
         <div class="search__bar-item">
             <label>Bắt đầu</label>
             <mat-form-field appearance="fill" class="search__start-date">
-                <input matInput [matDatepicker]="startDatePicker"
-                    formControlName="startDate" [min]="todayDate">
+                <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" [min]="todayDate">
                 <mat-datepicker-toggle matIconSuffix [for]="startDatePicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
@@ -83,8 +76,7 @@
         <div class="search__bar-item">
             <label>Kết thúc</label>
             <mat-form-field appearance="fill" class="search__start-date">
-                <input matInput [matDatepicker]="endDatePicker"
-                    formControlName="endDate" [min]="todayDate">
+                <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" [min]="todayDate">
                 <mat-datepicker-toggle matIconSuffix [for]="endDatePicker">
                     <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                 </mat-datepicker-toggle>
@@ -103,104 +95,95 @@
         <h4>Sắp xếp</h4>
         <mat-form-field appearance="outline" class="w-fit ">
             <mat-select matInput formControlName="sortedBy">
-                <mat-option value="0">Tối ưu</mat-option>
-                <mat-option value="1">Khoảng cách gần nhất</mat-option>
-                <mat-option value="2">Giá thấp nhất</mat-option>
-                <mat-option value="3">Giá cao nhất</mat-option>
-                <mat-option value="4">Đánh giá tốt nhất</mat-option>
+                <mat-option [value]="0">Tối ưu</mat-option>
+                <!-- <mat-option value="1">Khoảng cách gần nhất</mat-option> -->
+                <mat-option [value]="1">Giá thấp nhất</mat-option>
+                <mat-option [value]="2">Giá cao nhất</mat-option>
+                <mat-option [value]="3">Đánh giá tốt nhất</mat-option>
             </mat-select>
         </mat-form-field>
         <h4>Mức giá</h4>
-        <mat-slider min="300" max="3000" class="w-fit" style="width: 100%;">
-            <input value="300" matSliderStartThumb formControlName="priceMin">
-            <input value="3000" matSliderEndThumb formControlName="priceMax">
+        <mat-slider [min]="300000" [max]="3000000" class="w-fit" style="width: 100%;" [step]="50000" thumbLabel>
+            <input matSliderStartThumb formControlName="priceMin">
+            <input matSliderEndThumb formControlName="priceMax">
         </mat-slider>
-        <p style="text-align: end;">{{searchOptionsFormGroup.get("priceMin")?.value}}K
+        <p style="text-align: end;">{{getMoneyFormat(searchOptionsFormGroup.get("priceMin")?.value)}}
             -
-            {{searchOptionsFormGroup.get("priceMax")?.value===3000 ?
+            {{searchOptionsFormGroup.get("priceMax")?.value===3000000 ?
             "Bất kỳ" :
-            searchOptionsFormGroup.get("priceMax")?.value +"K"}}</p>
-        <mat-checkbox formControlName="isFiveStarDriver" class=""
-            color="primary">Chủ xe 5 <i
-                class="fa-solid fa-star"></i></mat-checkbox>
+            getMoneyFormat(searchOptionsFormGroup.get("priceMax")?.value)}}</p>
+        <!-- <mat-checkbox formControlName="isFiveStarDriver" class="" color="primary">Chủ xe 5 <i
+                class="fa-solid fa-star"></i></mat-checkbox> -->
         <h4 class="car__type-title">Loại xe</h4>
         <div class="d-flex-bo flex-wrap-bo car__type-list">
             <div class="car__type-item" *ngFor="let item of carTypeOptions;index
-                as ind"
-                (click)="handleClickOption(ind)">
-                <div class="icon__div" [id]="ind" [class.active]="item.active">
-                    <img [src]="item.icon" alt="vhc" [id]="ind">
+                as ind" (click)="handleClickOption(item.type)">
+                <div class="icon__div" [class.active]="isActiveType(item.type)">
+                    <img [src]="item.icon" alt="vhc">
                 </div>
-                <p [id]="ind" [class.active]="item.active">{{item.seats}} chỗ</p>
-                <p [id]="ind" [class.active]="item.active">({{item.type}})</p>
-                <p [id]="ind">({{item.quantity}} xe)</p>
+                <p [class.active]="isActiveType(item.type)">{{item.type}}</p>
+                <p>{{item.quantity}} xe</p>
             </div>
         </div>
         <h4 class="car__type-title">Hãng xe</h4>
         <mat-form-field appearance="outline" class="w-fit ">
             <mat-select matInput formControlName="carBrand">
-                <mat-option value="0">Tất cả</mat-option>
-                <mat-option value="audi">Audi ( 1 xe )</mat-option>
-                <mat-option value="vin">Vinfast ( 1 xe )</mat-option>
+                <mat-option [value]="0">Tất cả</mat-option>
+                <mat-option [value]="item.id" *ngFor="let item of brands">{{item.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <h4 class="car__type-title">Truyền động</h4>
         <mat-form-field appearance="outline" class="w-fit ">
             <mat-select matInput formControlName="transmission">
                 <mat-option value="0">Tất cả</mat-option>
-                <mat-option value="auto">Số tự động</mat-option>
-                <mat-option value="manual">Số sàn</mat-option>
+                <mat-option value="AUTOMATIC">Số tự động</mat-option>
+                <mat-option value="MANUAL">Số sàn</mat-option>
             </mat-select>
         </mat-form-field>
         <div>
-            <mat-checkbox formControlName="fastRent" class="">Đặt xe nhanh</mat-checkbox>
+            <mat-checkbox formControlName="fastRent">Đặt xe nhanh</mat-checkbox>
         </div>
+        <!-- <div>
+            <mat-checkbox formControlName="delivery">Giao xe tận nơi</mat-checkbox>
+        </div> -->
         <div>
-            <mat-checkbox formControlName="delivery" class="">Giao xe tận nơi</mat-checkbox>
-        </div>
-        <div>
-            <mat-checkbox formControlName="discount" class="">Xe giảm giá</mat-checkbox>
+            <mat-checkbox formControlName="discount">Xe giảm giá</mat-checkbox>
         </div>
         <div class="advanced__options-toggle">
-            <p *ngIf="isShowAdvancedOptions"
-                (click)="toggleShowAdvancedOptions()">Cơ bản <i
+            <p *ngIf="isShowAdvancedOptions" (click)="toggleShowAdvancedOptions()">Cơ bản <i
                     class="fa-solid fa-chevron-up" style="color:#57a8ff"></i></p>
-            <p *ngIf="!isShowAdvancedOptions"
-                (click)="toggleShowAdvancedOptions()">Nâng cao <i
+            <p *ngIf="!isShowAdvancedOptions" (click)="toggleShowAdvancedOptions()">Nâng cao <i
                     class="fa-solid fa-chevron-down" style="color:#57a8ff"></i>
             </p>
         </div>
         <div class="advanced__options-container" *ngIf="isShowAdvancedOptions">
             <h4 class="car__type-title">Giới hạn số km</h4>
-            <mat-slider min="0" [max]="551" style="width: 100%;" step="50">
-                <input value="0" matSliderThumb formControlName="limitDistance">
+            <mat-slider [min]="0" [max]="551" style="width: 100%;" step="50">
+                <input matSliderThumb formControlName="limitDistance">
             </mat-slider>
             <p class="text-end">
                 {{getLimitDistanceTitle()}}
             </p>
             <h4 class="car__type-title">Phí vượt giới hạn</h4>
-            <mat-slider min="0" [max]="10000" style="width: 100%;" step="5000">
-                <input value="0" matSliderThumb
-                    formControlName="limitDistanceFee" />
+            <mat-slider [min]="0" [max]="10000" style="width: 100%;" step="5000">
+                <input matSliderThumb formControlName="limitDistanceFee" />
             </mat-slider>
             <p class="text-end">
                 {{getLimitDistanceFeeTitle()}}
             </p>
             <h4 class="car__type-title">Số chỗ</h4>
-            <mat-slider min="2" max="10" style="width: 100%;">
-                <input value="2" matSliderStartThumb formControlName="minSeats">
-                <input value="10" matSliderEndThumb formControlName="maxSeats">
+            <mat-slider [min]="2" max="10" style="width: 100%;">
+                <input matSliderStartThumb formControlName="minSeats">
+                <input matSliderEndThumb formControlName="maxSeats">
             </mat-slider>
             <p class="text-end">
                 {{getSeatRangeTitle()}}
             </p>
             <h4 class="car__type-title">Năm sản xuất</h4>
-            <mat-slider min="2005" [max]="todayDate.getFullYear()" style="width:
+            <mat-slider [min]="2005" [max]="todayDate.getFullYear()" style="width:
                 100%;">
-                <input value="2005" matSliderStartThumb
-                    formControlName="minYears">
-                <input [value]="todayDate.getFullYear()" matSliderEndThumb
-                    formControlName="maxYears">
+                <input matSliderStartThumb formControlName="minYears">
+                <input [value]="todayDate.getFullYear()" matSliderEndThumb formControlName="maxYears">
             </mat-slider>
             <p class="text-end">
                 {{getYearRangeTitle()}}
@@ -209,44 +192,46 @@
             <mat-form-field appearance="outline" class="w-fit ">
                 <mat-select matInput formControlName="fuel">
                     <mat-option value="0">Tất cả</mat-option>
-                    <mat-option value="petrol">Xăng</mat-option>
-                    <mat-option value="oil">Dầu</mat-option>
+                    <mat-option value="PETROL">Xăng</mat-option>
+                    <mat-option value="DIESEL">Dầu</mat-option>
                 </mat-select>
             </mat-form-field>
             <h4 class="car__type-title">Mức tiêu thụ nhiên liệu</h4>
-            <mat-slider min="0" [max]="30" style="width: 100%;" step="5">
-                <input value="0" matSliderThumb
-                    formControlName="fuelConsumption">
+            <mat-slider [min]="0" [max]="30" style="width: 100%;" [step]="5">
+                <input matSliderThumb formControlName="fuelConsumption">
             </mat-slider>
             <p class="text-end">
                 {{getFuelConsumptionTitle()}}
             </p>
             <h4 class="car__type-title">Tính năng</h4>
             <ul class="search__feature-list">
-                <li class="text-center" *ngFor="let item of featureList"
-                    [class.active]="isActiveFeature(item.id)"
+                <li class="text-center" *ngFor="let item of features" [class.active]="isActiveFeature(item.id)"
                     (click)="toggleFeature(item.id)">
-                    <img [src]="item.iconUrl" alt="" width="20">
-                    <p>{{item.title}}</p>
+                    <img [src]="BASE_FEATURE+item.iconFilename" alt="" width="20">
+                    <p>{{item.name}}</p>
                 </li>
             </ul>
         </div>
-        <button class="btn-unfilter" (click)="resetDefaultOption()"><i
-                class="fa-solid fa-arrows-rotate"></i> Bỏ
+        <button class="btn-unfilter" (click)="resetDefaultOption()"><i class="fa-solid fa-arrows-rotate"></i> Bỏ
             lọc</button>
     </div>
     <div id="right">
-        <div class="d-flex-bo flex-wrap-bo search__result">
+        <div class="d-flex-bo empty-data" *ngIf="isLoading">
+            <app-loading-dots></app-loading-dots>
+        </div>
+        <div class="d-flex-bo empty-data" *ngIf="isEmpty">
+            <p class="text-center">Không tìm thấy xe nào.</p>
+        </div>
+        <div class="d-flex-bo flex-wrap-bo search__result" *ngIf="searchResult.length > 0">
             <div class="search__result-box bg-white bx__shadow" *ngFor="let item
-                of [1,2,1,1,1,1,1,1,1,1,1,1,1,3,4]" (click)="openCarDetailDialog('wd')">
+                of searchResult" (click)="openCarDetailDialog('wd')">
                 <div class="img__title-container">
-                    <img
-                        src="https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_thuathienhue/kia_cerato_2021/p/g/2022/07/25/12/DgBH4Uk1Se1DZCvz0o1Hbw.jpg"
-                        alt="">
+                    <img [src]="BASE_CAR+item.bannerUrl" [alt]="item.id">
                     <div class="img__title">
-                        <h4>KIA CERATO 2021</h4>
-                        <p>5.0<i class="fa-solid fa-star primary-text"></i> • 5
-                            chuyến ~ 2km
+                        <h4>{{item.modelName}}</h4>
+                        <p>{{item.avgRating}}<i class="fa-solid fa-star primary-text"></i> •
+                            {{item.totalCompletedRental}}
+                            chuyến
                         </p>
                     </div>
                 </div>
@@ -254,26 +239,24 @@
                     <div class="tags">
                         <div class="d-flex-bo flex-wrap-bo">
                             <div class="search__result-tag">
-                                Số tự động
+                                {{getTransmissionName(item.transmission)}}
                             </div>
-                            <div class="search__result-tag">
+                            <div class="search__result-tag" *ngIf="item.deliveryToTenantFee > 0">
                                 Giao xe tận nơi
                             </div>
-                            <div class="search__result-tag">
-                                Đặt xe nhanh
+                            <div class="search__result-tag" *ngIf="item.deliveryToTenantFee === 0">
+                                Miễn phí giao xe
                             </div>
                         </div>
                     </div>
                     <div class="price">
-                        <h3 class="primary-text">6190K</h3>
+                        <h3 class="primary-text">{{getMoneyFormat(item.price)}}</h3>
                     </div>
                 </div>
                 <div class="box__location">
-                    <i class="fa-solid fa-location-dot"></i> Quận Tân Bình, Hồ
-                    Chí Minh
+                    <i class="fa-solid fa-location-dot"></i> {{item.location}}
                 </div>
             </div>
-
         </div>
     </div>
 </div>
