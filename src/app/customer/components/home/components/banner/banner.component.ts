@@ -90,7 +90,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     this.interMunicipalFormGroup = this._fb.group({
       pickUpPlace: ['', Validators.required],
       destinationPlace: ['', Validators.required],
-      isOneWay: [false],
+      // isOneWay: [false],
       startTime: this._fb.group({
         rentalDate: ['', Validators.required],
         startHour: ['', Validators.required],
@@ -379,7 +379,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     let formValue = this.interMunicipalFormGroup.value
     formValue.startTime.rentalDate = formValue.startTime.rentalDate.valueOf()
     formValue.endTime.rentalDate = formValue.endTime.rentalDate.valueOf()
-    let isOneWay = formValue.isOneWay
+    // let isOneWay = formValue.isOneWay
 
     let navigationExtra: NavigationExtras = {};
 
@@ -395,7 +395,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
           destinationPlace: formValue.destinationPlace,
           withDriver: true,
           interMunicipal: true,
-          isOneWay: isOneWay
+          // isOneWay: isOneWay
         },
       }
 
@@ -411,7 +411,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
           destinationPlace: formValue.destinationPlace,
           withDriver: true,
           interMunicipal: true,
-          isOneWay: isOneWay
+          // isOneWay: isOneWay
         }
       };
     }

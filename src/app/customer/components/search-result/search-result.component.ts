@@ -14,6 +14,7 @@ import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { RouteCatchService } from '../../route-catch.service';
 import { SearchCarService } from '../../services/search-car.service';
 import { CarDetailComponent } from '../car/car-detail/car-detail.component';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -28,6 +29,8 @@ export class SearchResultComponent implements OnDestroy {
   urbanArea!: Boolean;
   interMunicipal!: Boolean;
   todayDate = new Date();
+  serviceType: number = 1;
+
   hrs = [
     {
       value: 0,
@@ -98,7 +101,7 @@ export class SearchResultComponent implements OnDestroy {
     endHours: [0],
     pickUpPlace: [''],
     destinationPlace: [''],
-    isOneWay: [false]
+    // isOneWay: [false]
   });
 
 
@@ -140,9 +143,9 @@ export class SearchResultComponent implements OnDestroy {
       this.searchBarFormGroup
         .get('destinationPlace')
         ?.setValue(params['destinationPlace']);
-      this.searchBarFormGroup
-        .get('isOneWay')
-        ?.setValue(params['isOneWay'] === 'true');
+      // this.searchBarFormGroup
+      //   .get('isOneWay')
+      //   ?.setValue(params['isOneWay'] === 'true');
       this.currentTab = params['interMunicipal'] === 'true' ? 1 : 0;
       this.ableToShowRoadTabModel =
         params['urbanArea'] === 'true' || params['interMunicipal'] === 'true';
@@ -171,7 +174,15 @@ export class SearchResultComponent implements OnDestroy {
     this.currentUrl = this.router.createUrlTree([this.router.url], { queryParams, fragment }).toString();
 
     this.initDynamicData();
+    this.setServiceType(this.getServiceType);
     this.getSearchResult();
+
+    this.searchBarFormGroup.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(value => {
+      this.getSearchResult();
+    })
+    this.searchOptionsFormGroup.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(value => {
+      this.getSearchResult()
+    });
   }
 
   initDynamicData() {
@@ -210,6 +221,17 @@ export class SearchResultComponent implements OnDestroy {
     let hrsInMiliseconds = hours * 60 * 60 * 1000;
     let minsInMiliseconds = minutes * 60 * 1000;
     return hrsInMiliseconds + minsInMiliseconds;
+  }
+
+  setAddress() {
+    let finalAddress = this.searchBarFormGroup.value.pickUpPlace + ' - ' + this.searchBarFormGroup.value.destinationPlace;
+
+    if (this.serviceType === 2) {
+      this.searchBarFormGroup
+        .get('address')
+        ?.setValue(String(this.searchBarFormGroup.value.addressUrban));
+    } else
+      this.searchBarFormGroup.get('address')?.setValue(String(finalAddress));
   }
 
   setSearchBarValue() {
@@ -400,7 +422,6 @@ export class SearchResultComponent implements OnDestroy {
 
     let startDate = this.searchBarFormGroup.value.startDate;
     let endDate = this.searchBarFormGroup.value.endDate;
-    let address = this.searchBarFormGroup.value.address;
     let priceMin = this.searchOptionsFormGroup.value.priceMin;
     let priceMax: any = this.searchOptionsFormGroup.value.priceMax;
     let sortBy = Number(this.searchOptionsFormGroup.value.sortedBy);
@@ -413,7 +434,6 @@ export class SearchResultComponent implements OnDestroy {
       pageNo: this.pageNo,
       sortBy: sortBy,
       startDate: startDate?.getTime(),
-      address: address,
       endDate: endDate?.getTime(),
       price: `${priceMin}-${priceMax}`
     }
@@ -457,7 +477,7 @@ export class SearchResultComponent implements OnDestroy {
         finalDistanceLimit += "MAX";
       }
       data.distanceLimit = finalDistanceLimit;
-    } else {
+    } else if (distanceLimit === 0) {
       data.distanceLimit = "noDistanceLimit";
     }
 
@@ -507,9 +527,16 @@ export class SearchResultComponent implements OnDestroy {
     if (features.length > 0) {
       data.features = features;
     }
+
+    if (this.serviceType === 3) {
+      data.addressWithDriver = [this.searchBarFormGroup.value.pickUpPlace, this.searchBarFormGroup.value.destinationPlace];
+    } else if (this.serviceType === 2) {
+      data.address = this.searchBarFormGroup.value.addressUrban;
+    } else {
+      data.address = this.searchBarFormGroup.value.address;
+    }
+    data.serviceType = this.serviceType;
     console.log("values", this.searchOptionsFormGroup.value);
-
-
 
     console.log(data);
     this.searchService.searchCar(data).subscribe({
@@ -549,5 +576,33 @@ export class SearchResultComponent implements OnDestroy {
 
   toNumber(str: any) {
     return Number(str);
+  }
+
+  get getServiceType() {
+    if (!this.withDriver) {
+      return 1;
+    } else if (this.withDriver && this.urbanArea) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+
+  setServiceType(type: number) {
+    this.serviceType = type;
+  }
+
+  getDomesticData() {
+    this.setServiceType(2);
+    this.getSearchResult();
+    this.setAddress();
+    this.toggleShowRoadTabModel();
+  }
+
+  getInterMunicipalData() {
+    this.setServiceType(3);
+    this.getSearchResult();
+    this.setAddress();
+    this.toggleShowRoadTabModel();
   }
 }

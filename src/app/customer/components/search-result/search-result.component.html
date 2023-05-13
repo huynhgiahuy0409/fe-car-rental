@@ -1,4 +1,4 @@
-<button (click)="getSearchResult()">search</button>
+<!-- <button (click)="getSearchResult()">search 1</button> -->
 <div class="search__result-container bx__shadow-1">
     <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow" [formGroup]="searchBarFormGroup">
         <div class="search__option-modal" *ngIf="showRoadTabModel">
@@ -20,7 +20,8 @@
                                 <span>50Km</span>
                             </p>
                         </div>
-                        <button class="w-fit btn-search__modal">tìm kiếm</button>
+                        <button class="w-fit btn-search__modal" (click)="getDomesticData();">tìm
+                            kiếm</button>
                     </mat-tab>
                     <mat-tab label="Liên tỉnh">
                         <p class="primary-text fw-bold option-title">Lộ trình</p>
@@ -34,13 +35,12 @@
                                 prefix-label" matPrefix></i>
                             <input matInput formControlName="destinationPlace" placeholder="Nhập địa điểm cụ thể">
                         </mat-form-field>
-                        <mat-checkbox formControlName="isOneWay">Tôi muốn đi một
-                            chiều</mat-checkbox>
-                        <p *ngIf="!searchBarFormGroup.value.isOneWay"><i class="fa-solid fa-flag primary-text
-                                flag-return"></i>Trả khách tại điểm đón</p>
+                        <!-- <mat-checkbox formControlName="isDomestic">Tôi muốn đi nội thành</mat-checkbox> -->
+                        <!-- <p *ngIf="!searchBarFormGroup.value.isOneWay"><i class="fa-solid fa-flag primary-text
+                                flag-return"></i>Trả khách tại điểm đón</p> -->
                         <p class="text-secondary text-note">Di chuyển ngoài
                             thành phố, hành trình hai chiều</p>
-                        <button class="w-fit btn-search__modal">tìm kiếm</button>
+                        <button class="w-fit btn-search__modal" (click)="getInterMunicipalData();">tìm kiếm</button>
                     </mat-tab>
                 </mat-tab-group>
             </div>
