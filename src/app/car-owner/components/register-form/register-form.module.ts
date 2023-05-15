@@ -7,12 +7,13 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
-import { RegisterFormComponent } from './register-form.component';
 import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
+import { RegisterFormComponent } from './register-form.component';
+import { AuthGuard } from 'src/app/helper/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: RegisterFormComponent
+    path: '', component: RegisterFormComponent, canActivate: [AuthGuard]
   }
 ];
 

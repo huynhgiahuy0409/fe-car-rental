@@ -13,6 +13,8 @@ import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
+import { UserService } from 'src/app/customer/services/user.service';
+import { AuthService } from 'src/app/customer/services/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -41,8 +43,8 @@ export class RegisterFormComponent {
   fetchedProvinces: ProvinceResponse[] = [];
 
   constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService,
-    private uploadService: UploadFileService, private toastService: ToastrService, private router: Router,
-    private _matDialog: MatDialog) {
+    private uploadService: UploadFileService, private toastService: ToastrService,
+    private _matDialog: MatDialog, private userService: UserService) {
     this.carSeatRange = [];
     this.carProduceYearRange = [];
     this.carFeatures = [];
@@ -96,7 +98,6 @@ export class RegisterFormComponent {
   });
 
   forRentFormGroup = this._formBuilder.group({
-    //remove this.recommendPrice to clear form value
     defaultPrice: [this.recommendPrice, [Validators.required, Validators.min(100000), Validators.max(5000000)]],
     defaultLocation: ['', Validators.required],
     policies: ['']
@@ -109,10 +110,15 @@ export class RegisterFormComponent {
     city: ['', Validators.required]
   });
 
+  username!: string;
   ngOnInit(): void {
     this.initDynamicData();
     this.onChangeStreet();
     this.onChangeCarBrand();
+
+    this.userService.user$.subscribe(v => {
+      this.username = v?.username!;
+    });
   }
 
   onChangeCity() {
@@ -247,7 +253,7 @@ export class RegisterFormComponent {
   }
 
   onSubmitRegisterCar() {
-    const username = "hieu";//test user only
+    const username = this.username;
     const carNumberPlate = this.carInformationFormGroup.get("carNumberPlate")?.value;
     const carBrand = this.carInformationFormGroup.get("carBrand")?.value;
     const carModel = this.carInformationFormGroup.get("carModel")?.value;
