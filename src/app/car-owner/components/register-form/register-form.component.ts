@@ -361,6 +361,7 @@ export class RegisterFormComponent {
     this.carServices.registerNewCar(carRequest).subscribe({
       complete: () => {
         this.showRedirectDialog();
+        // this.toastService.success("Đăng ký xe thành công", "Thành công");
       },
       error: (res) => {
         this.toastService.error(res.error, "Thất bại");

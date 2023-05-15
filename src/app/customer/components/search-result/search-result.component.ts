@@ -1,6 +1,6 @@
 import { NumberInput } from '@angular/cdk/coercion';
 import { Location } from '@angular/common';
-import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -77,7 +77,8 @@ export class SearchResultComponent implements OnDestroy {
   readonly BASE_CAR = CAR_IMG;
   readonly TRANSMISSIONS = TRANSMISSIONS;
 
-  pageNo: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 0;
   searchResult!: SearchCarResponse[];
   isLoading = true;
 
@@ -177,10 +178,14 @@ export class SearchResultComponent implements OnDestroy {
     this.setServiceType(this.getServiceType);
     this.getSearchResult();
 
-    this.searchBarFormGroup.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(value => {
+    this.searchBarFormGroup.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(() => {
+      this.totalPages = 0;
+      this.currentPage = 0;
       this.getSearchResult();
     })
-    this.searchOptionsFormGroup.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(value => {
+    this.searchOptionsFormGroup.valueChanges.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(() => {
+      this.totalPages = 0;
+      this.currentPage = 0;
       this.getSearchResult()
     });
   }
@@ -415,10 +420,14 @@ export class SearchResultComponent implements OnDestroy {
   }
 
   isEmpty = false;
+  isLoadMore = false;
   getSearchResult() {
     this.isLoading = true;
-    this.searchResult = [];
-    this.isEmpty = false;
+
+    if (!this.isLoadMore) {
+      this.searchResult = [];
+      this.isEmpty = false;
+    }
 
     let startDate = this.searchBarFormGroup.value.startDate;
     let endDate = this.searchBarFormGroup.value.endDate;
@@ -431,7 +440,7 @@ export class SearchResultComponent implements OnDestroy {
     }
 
     let data: any = {
-      pageNo: this.pageNo,
+      pageNo: this.currentPage,
       sortBy: sortBy,
       startDate: startDate?.getTime(),
       endDate: endDate?.getTime(),
@@ -542,8 +551,13 @@ export class SearchResultComponent implements OnDestroy {
     this.searchService.searchCar(data).subscribe({
       next: (res) => {
         console.log(res);
-        this.searchResult = res;
+        if (this.isLoadMore)
+          this.searchResult = [...this.searchResult, ...res];
+        else
+          this.searchResult = res;
         this.isLoading = false;
+        this.totalPages = res[0]?.totalPages;
+        this.isLoadMore = false;
         if (res?.length > 0) {
           this.isEmpty = false;
         } else {
@@ -558,6 +572,22 @@ export class SearchResultComponent implements OnDestroy {
         this.setCarTypeQuantity();
       }
     });
+  }
+
+  loadMore() {
+    this.isLoadMore = true;
+    this.currentPage++;
+    this.getSearchResult();
+  }
+
+  @HostListener("scroll", ["$event"])
+  onScroll(event: any): void {
+    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+      console.log("end of page");
+      if (this.currentPage < this.totalPages - 1) {
+        this.loadMore();
+      }
+    }
   }
 
   getMoneyFormat(money: any) {

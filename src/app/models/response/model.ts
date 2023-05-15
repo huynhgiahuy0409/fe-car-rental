@@ -152,4 +152,5 @@ export interface SearchCarResponse {
     transmission: string;
     deliveryToTenantFee: number;
     type: string;
+    totalPages: number;
 }
