@@ -79,4 +79,8 @@ export class CarListingComponent {
     return getMoneyFormat(money);
   }
 
+  getRoundedRate(rate: number) {
+    return Math.round(rate);
+  }
+
 }

@@ -69,6 +69,9 @@ export interface CarRegisterRequest {
     serviceTypeId: number;//wd;self-drive
     policies: string;
     imagesList: string[];
+    wardId: number;
+    districtId: number;
+    provinceId: number;
 }
 export interface FeatureRequest {
     name: string,

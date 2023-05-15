@@ -8,6 +8,7 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
 import { RegisterFormComponent } from './register-form.component';
+import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RegisterFormComponent
+    RegisterFormComponent,
+    RedirectDialogComponent
   ],
   imports: [
     CommonModule,

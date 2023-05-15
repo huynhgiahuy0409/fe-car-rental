@@ -11,6 +11,8 @@ import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, Pro
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
 
 @Component({
   selector: 'app-register-form',
@@ -38,7 +40,9 @@ export class RegisterFormComponent {
   readonly FEATURE_DIRECT_LINK: string = FEATURE_DIRECT_LINK;
   fetchedProvinces: ProvinceResponse[] = [];
 
-  constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService, private uploadService: UploadFileService, private toastService: ToastrService, private router: Router) {
+  constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService,
+    private uploadService: UploadFileService, private toastService: ToastrService, private router: Router,
+    private _matDialog: MatDialog) {
     this.carSeatRange = [];
     this.carProduceYearRange = [];
     this.carFeatures = [];
@@ -316,6 +320,10 @@ export class RegisterFormComponent {
 
     const imagesList = this.cloneFiles.map(i => i.name);
 
+    const wardId = Number(this.addressFormGroup.value.ward);
+    const districtId = Number(this.addressFormGroup.value.district);
+    const provinceId = Number(this.addressFormGroup.value.city);
+
     const carRequest: CarRegisterRequest = {
       username: username,
       plate: String(carNumberPlate),
@@ -337,23 +345,31 @@ export class RegisterFormComponent {
       extraFees: extraFees,
       serviceTypeId: serviceType,
       policies: String(policies),
-      imagesList: imagesList
+      imagesList: imagesList,
+      wardId: wardId,
+      districtId: districtId,
+      provinceId: provinceId
     };
 
     console.log(carRequest);
     this.carServices.registerNewCar(carRequest).subscribe({
       complete: () => {
-        this.toastService.success("Đăng ký xe mới thành công ! Tự động chuyển hướng sau 2 giây", "Thành công !");
-        timer(2000).subscribe(() => {
-          this.resetForms();
-          this.router.navigate(['/car-owner/car-listing']);
-        })
+        this.showRedirectDialog();
       },
       error: (res) => {
         this.toastService.error(res.error, "Thất bại");
       }
     });
   }
+
+  showRedirectDialog() {
+    this._matDialog.open(RedirectDialogComponent, {
+      enterAnimationDuration: '500ms',
+      exitAnimationDuration: '500ms',
+      disableClose: true
+    });
+  }
+
   resetForms() {
     this.carInformationFormGroup.reset();
     this.toggleDiscountGroup.reset();
