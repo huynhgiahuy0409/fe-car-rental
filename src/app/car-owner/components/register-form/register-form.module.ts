@@ -9,11 +9,10 @@ import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
 import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
 import { RegisterFormComponent } from './register-form.component';
-import { AuthGuard } from 'src/app/helper/auth.guard';
 
 const routes: Routes = [
   {
-    path: '', component: RegisterFormComponent, canActivate: [AuthGuard]
+    path: '', component: RegisterFormComponent
   }
 ];
 
