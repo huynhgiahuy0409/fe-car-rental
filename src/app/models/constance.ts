@@ -45,6 +45,8 @@ export const CONFIRM_DELIVERED_CAR_TO_RENTER = "/api/rentals/confirmDeliveredCar
 export const COMPLETE_RENTAL = "/api/rentals/completeRental";
 export const SEARCH_CAR = "/api/cars/searchCar";
 
+export const GET_ALL_CALENDAR = "/api/rentals/findAllCalendar";
+
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";
 export const DISTANCE_LIMIT = "Giới hạn số KM";

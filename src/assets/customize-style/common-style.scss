@@ -592,6 +592,14 @@ svg.booking-oto-rating-stars__hollow-star {
   background-color: red !important;
 }
 
+.bg-rented {
+  background-color: red !important;
+}
+
+.bg-accepted {
+  background-color: #00a550 !important;
+}
+
 .cl-busy {
   color: #a9a9a9;
 }
@@ -605,11 +613,11 @@ svg.booking-oto-rating-stars__hollow-star {
 }
 
 .cl-waiting-2 {
-  color: #fde28b;
+  color: #fba86d;
 }
 
 .bg-pending {
-  background-color: #fde28b !important;
+  background-color: #fba86d !important;
 }
 
 .cl-white {

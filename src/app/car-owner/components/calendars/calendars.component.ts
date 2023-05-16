@@ -7,34 +7,29 @@ import {
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {
-  CalendarEvent, CalendarEventTimesChangedEvent, CalendarMonthViewDay, CalendarView
+  CalendarEvent, CalendarEventTimesChangedEvent,
+  CalendarView
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
 import { isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
+import { CarOwnerService } from '../../services/car-owner.service';
+import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 
 
 registerLocaleData(localeVietnam);
 const colors: Record<string, EventColor> = {
-  ordered: {
+  rented: {
     primary: 'red',
     secondary: 'red',
   },
-  deposit: {
+  pending: {
     primary: '#fba86d',
     secondary: '#fba86d',
   },
-  empty: {
-    primary: 'rgba(0, 0, 0, 0.9)',
-    secondary: 'rgba(0, 0, 0, 0.9)',
-  },
-  busy: {
-    primary: '#a9a9a9',
-    secondary: '#a9a9a9',
-  },
-  pending: {
-    primary: '#fde28b',
-    secondary: '#fde28b',
+  accepted: {
+    primary: '#00a550',
+    secondary: '#00a550'
   }
 };
 
@@ -51,7 +46,7 @@ const colors: Record<string, EventColor> = {
   ],
 })
 export class CalendarsComponent {
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService) { }
 
   sortedByFormGroup = this._formBuilder.group({
     sortedBy: ['0'],
@@ -61,41 +56,32 @@ export class CalendarsComponent {
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Month;
 
-  events: CalendarEvent[] = [
-    {
-      start: new Date(),
-      title: 'Mazda 3 - 123 - 51a',
-      color: colors['ordered'],
-    },
-    {
-      start: new Date(),
-      title: 'Mazda 44 - 123 - 51a',
-      color: colors['ordered'],
-    },
-    {
-      start: new Date("2023/03/20"),
-      title: 'Mazda 4 - 1234 - 51b',
-      color: colors['deposit'],
-    },
-    {
-      start: new Date(),
-      title: 'Lamborghini - 12345 - 51e',
-      color: colors['pending'],
-    },
-    {
-      start: new Date("2023/03/19"),
-      title: 'Bận',
-      color: colors['busy'],
-    },
-  ];
-  filteredEvents: CalendarEvent[] = [...this.events];
+  events: CalendarEvent[] = [];
+  filteredEvents: CalendarEvent[] = [];
   activeDayIsOpen!: boolean;
+  refresh = new Subject<void>();
+
+  ngOnInit(): void {
+    this.carOwnerService.getAllCalendar("hieu").subscribe(res => {
+      res.forEach(i => {
+        this.events.push({
+          start: new Date(i.startDate),
+          end: new Date(i.endDate),
+          title: i.modelName + " " + i.yearOfManufacture + " - " + getMoneyFormat(i.rentalPrice) + " - " + i.plate,
+          color: colors[i.status.toLowerCase()]
+        })
+      })
+      this.filteredEvents = [...this.events];
+      this.refreshView();
+    })
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0 || this.isBusy({ events: events })
+        events.length === 0
+        // events.length === 0 || this.isBusy({ events: events })
       ) {
         this.activeDayIsOpen = false;
       } else {
@@ -104,8 +90,6 @@ export class CalendarsComponent {
       }
     }
   }
-
-  refresh = new Subject<void>();
 
   eventTimesChanged({
     event,
@@ -120,24 +104,25 @@ export class CalendarsComponent {
     this.refresh.next();
   }
 
-  cssClass: string = "bg-busy";
-  beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
-    body.forEach((day) => {
-      if (this.isBusy(day)) {
-        day.cssClass = this.cssClass;
-      }
-    });
-  }
+  //disable busy date ( set background to gray )
+  // cssClass: string = "bg-busy";
+  // beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
+  //   body.forEach((day) => {
+  //     if (this.isBusy(day)) {
+  //       day.cssClass = this.cssClass;
+  //     }
+  //   });
+  // }
 
-  sortedByOrder = false;
-  toggleSortedByOrder() {
-    this.sortedByOrder = !this.sortedByOrder;
-    this.sortCalendars();
-  }
+  // sortedByOrder = false;
+  // toggleSortedByOrder() {
+  //   this.sortedByOrder = !this.sortedByOrder;
+  //   this.sortCalendars();
+  // }
 
-  sortCalendars() {
+  // sortCalendars() {
 
-  }
+  // }
 
   searchByNameCarPlate() {
     const value = this.sortedByFormGroup.get('nameOrCarPlate')?.value
@@ -149,23 +134,27 @@ export class CalendarsComponent {
     this.refresh.next();
   }
 
-  isBusy(event: any): Boolean {
+  // isBusy(event: any): Boolean {
+  //   const { events } = event;
+  //   return events.some((i: { color: { primary: string; }; }) => i.color.primary === colors['busy'].primary);
+  // }
+
+  rentedSize(event: any): number {
     const { events } = event;
-    return events.some((i: { color: { primary: string; }; }) => i.color.primary === colors['busy'].primary);
+    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['rented'].primary).length;
   }
 
-  orderedSize(event: any): number {
+  acceptedSize(event: any): number {
     const { events } = event;
-    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['ordered'].primary).length;
-  }
-
-  depositSize(event: any): number {
-    const { events } = event;
-    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['deposit'].primary).length;
+    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['accepted'].primary).length;
   }
 
   pendingSize(event: any): number {
     const { events } = event;
     return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['pending'].primary).length;
+  }
+
+  getMoneyFormat(money: number) {
+    return getMoneyFormat(money);
   }
 }

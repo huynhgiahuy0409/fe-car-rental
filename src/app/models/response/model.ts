@@ -154,3 +154,13 @@ export interface SearchCarResponse {
     type: string;
     totalPages: number;
 }
+
+export interface CalendarListingResponse {
+    startDate: number;
+    endDate: number;
+    modelName: string;
+    yearOfManufacture: number;
+    rentalPrice: number;
+    plate: string;
+    status: RentalStatus;
+}
