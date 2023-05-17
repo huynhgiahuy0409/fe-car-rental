@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, GET_ALL_BRAND, GET_ALL_CALENDAR, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_MODEL_BY_BRAND, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SEARCH_ADDRESS } from 'src/app/models/constance';
+import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, GET_ALL_BRAND, GET_ALL_CALENDAR, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_STAT_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_CHART_DATA_OWNER, GET_MODEL_BY_BRAND, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SEARCH_ADDRESS } from 'src/app/models/constance';
 import { LocationResponse } from 'src/app/models/model';
-import { CarRegisterRequest } from 'src/app/models/request/model';
-import { BrandResponse, CalendarListingResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalDetailsResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
+import { CarOwnerChartDataRequest, CarRegisterRequest } from 'src/app/models/request/model';
+import { BrandResponse, CalendarListingResponse, CarModelResponse, CarOwnerChartResponse, CarOwnerStatResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalDetailsResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
 
 @Injectable({
   providedIn: 'root'
@@ -104,5 +104,16 @@ export class CarOwnerService {
       username: username
     };
     return this.httpClient.get<CalendarListingResponse[]>(`${GET_ALL_CALENDAR}`, this.httpOptions);
+  }
+
+  getAllStatByOwner(username: string): Observable<CarOwnerStatResponse> {
+    this.httpOptions.params = {
+      username: username
+    };
+    return this.httpClient.get<CarOwnerStatResponse>(`${GET_ALL_STAT_BY_OWNER}`, this.httpOptions);
+  }
+
+  getChartData(request: CarOwnerChartDataRequest): Observable<CarOwnerChartResponse[]> {
+    return this.httpClient.post<CarOwnerChartResponse[]>(`${GET_CHART_DATA_OWNER}`, request);
   }
 }

@@ -92,3 +92,10 @@ export interface UpdateRentalStatusRequest {
     id: number;
     modifiedBy: string
 }
+
+export interface CarOwnerChartDataRequest {
+    username: string;
+    startDate: number;
+    endDate: number;
+    category: number;
+}

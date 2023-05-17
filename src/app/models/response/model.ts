@@ -164,3 +164,18 @@ export interface CalendarListingResponse {
     plate: string;
     status: RentalStatus;
 }
+
+export interface CarOwnerStatResponse {
+    avgRating: number;
+    totalRevenue: number;
+    totalRental: number;
+    totalCar: number;
+    acceptedRentalRating: number;
+    cancelRentalRating: number;
+}
+
+export interface CarOwnerChartResponse {
+    month: number;
+    year: number;
+    value: number;
+}

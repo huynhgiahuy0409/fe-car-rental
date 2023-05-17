@@ -4,6 +4,7 @@ import { StatisticsComponent } from './statistics.component';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { CarOwnerService } from '../../services/car-owner.service';
 
 const routes: Routes = [
   {
@@ -19,6 +20,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    CarOwnerService
   ]
 })
 export class StatisticsModule { }

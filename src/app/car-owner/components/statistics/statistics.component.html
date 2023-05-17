@@ -3,29 +3,29 @@
         <h1>Thống kê</h1>
     </div>
     <div class="d-flex-bo flex-wrap-bo justify-content-center-bo statistics__information bx__shadow text-center">
-        <div class="statistics__information-col">
+        <div class=" statistics__information-col">
             <p>Mức đánh giá</p>
-            <p>5.0 <i class="fa-solid fa-star cl-star"></i></p>
+            <p>{{stats_information.avgRating}} <i class="fa-solid fa-star cl-star"></i></p>
         </div>
         <div class="statistics__information-col">
             <p>Tỉ lệ chấp nhận</p>
-            <p>100%</p>
+            <p>{{stats_information.acceptedRentalRating}}%</p>
         </div>
         <div class="statistics__information-col">
             <p>Tỉ lệ hủy chuyến</p>
-            <p>100%</p>
+            <p>{{stats_information.cancelRentalRating}}%</p>
         </div>
         <div class="statistics__information-col">
             <p>Tổng doanh thu</p>
-            <p>100</p>
+            <p>{{getMoneyFormat(stats_information.totalRevenue)}}</p>
         </div>
         <div class="statistics__information-col">
             <p>Tổng số chuyến</p>
-            <p>100</p>
+            <p>{{stats_information.totalRental}}</p>
         </div>
         <div class="statistics__information-col">
             <p>Tổng số xe</p>
-            <p>100</p>
+            <p>{{stats_information.totalCar}}</p>
         </div>
     </div>
     <div class="d-flex-bo flex-wrap-bo justify-content-center-bo statistics__options" [formGroup]="dateRangeFormGroup">

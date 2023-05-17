@@ -55,4 +55,3 @@ export enum CarStatusVie {
   BUSY = 'Bận',
   RENTED = 'Đã được thuê'
 }
-

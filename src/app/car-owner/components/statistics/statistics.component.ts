@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import Chart from 'chart.js/auto';
+import { CarOwnerService } from '../../services/car-owner.service';
+import { CarOwnerStatResponse } from 'src/app/models/response/model';
+import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
+import { endOfMonth, startOfMonth } from 'date-fns';
+import { CarOwnerChartDataRequest } from 'src/app/models/request/model';
 
 @Component({
   selector: 'app-statistics',
@@ -13,13 +18,27 @@ export class StatisticsComponent {
   now = new Date();
   tomorrow = new Date();
 
+  stats_information: CarOwnerStatResponse = {
+    avgRating: 0,
+    totalRevenue: 0,
+    totalRental: 0,
+    totalCar: 0,
+    acceptedRentalRating: 0,
+    cancelRentalRating: 0
+  };
 
-  constructor(private _formBuilder: FormBuilder) {
+
+  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService) {
     this.tomorrow.setDate(this.tomorrow.getDate() + 1);
   }
 
   ngOnInit(): void {
     this.createChart();
+
+    this.carOwnerService.getAllStatByOwner("hieu").subscribe(res => {
+      this.stats_information = res;
+    });
+    this.fetchData();
   }
 
   createChart() {
@@ -61,30 +80,36 @@ export class StatisticsComponent {
   }
 
   dateRangeFormGroup = this._formBuilder.group({
-    fromDate: new FormControl(this.now),
-    toDate: new FormControl(this.tomorrow),
+    fromDate: new FormControl(startOfMonth(this.now)),
+    toDate: new FormControl(endOfMonth(this.now)),
     option: ['0']
   });
 
   fetchData() {
-    console.log("fetched data");
     const option = Number(this.dateRangeFormGroup.get('option')?.value);
-    if (option === 0) {
-      this.chart.data.datasets[0] = {
-        label: "Doanh thu",
-        data: ['1234567', '1234569', '1234967', '1239567', '1934567',
-          '1234967', '1239567', '1244567'],
-      };
-      this.chart.update();
-    } else {
-      this.chart.data.datasets[0] = {
-        label: "Tổng số chuyến",
-        data: ['3', '3', '4', '1', '2',
-          '4', '3', '3'],
-      };
-      this.chart.update();
+    const request: CarOwnerChartDataRequest = {
+      username: "hieu",
+      startDate: Number(this.dateRangeFormGroup.value.fromDate?.getTime()),
+      endDate: Number(this.dateRangeFormGroup.value.toDate?.getTime()),
+      category: option
     }
+
+    this.carOwnerService.getChartData(request).subscribe(res => {
+      this.chart.data = {
+        labels: res.map(item => item.month + "/" + item.year),
+        datasets: [
+          {
+            label: option === 0 ? "Doanh thu" : "Tổng số chuyến",
+            data: res.map(item => item.value),
+          }
+        ]
+      };
+      this.chart.update();
+    })
   }
 
+  getMoneyFormat(value: number) {
+    return getMoneyFormat(value);
+  }
 
 }

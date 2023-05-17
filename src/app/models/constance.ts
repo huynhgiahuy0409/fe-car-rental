@@ -47,6 +47,9 @@ export const SEARCH_CAR = "/api/cars/searchCar";
 
 export const GET_ALL_CALENDAR = "/api/rentals/findAllCalendar";
 
+export const GET_ALL_STAT_BY_OWNER = "/api/statistics/getAll";
+export const GET_CHART_DATA_OWNER = "/api/statistics/getChartData";
+
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";
 export const DISTANCE_LIMIT = "Giới hạn số KM";
