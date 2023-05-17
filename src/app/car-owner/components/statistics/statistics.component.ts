@@ -6,6 +6,7 @@ import { CarOwnerStatResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { endOfMonth, startOfMonth } from 'date-fns';
 import { CarOwnerChartDataRequest } from 'src/app/models/request/model';
+import { UserService } from 'src/app/customer/services/user.service';
 
 @Component({
   selector: 'app-statistics',
@@ -16,7 +17,7 @@ export class StatisticsComponent {
   chart: any;
 
   now = new Date();
-  tomorrow = new Date();
+  username!: string;
 
   stats_information: CarOwnerStatResponse = {
     avgRating: 0,
@@ -28,33 +29,36 @@ export class StatisticsComponent {
   };
 
 
-  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService) {
-    this.tomorrow.setDate(this.tomorrow.getDate() + 1);
+  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.createChart();
-
+    //test user only
     this.carOwnerService.getAllStatByOwner("hieu").subscribe(res => {
       this.stats_information = res;
     });
     this.fetchData();
+
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
   }
 
   createChart() {
     this.chart = new Chart("MyChart", {
       type: 'bar',
-      data: {
-        labels: ['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
-          '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',],
-        datasets: [
-          {
-            label: "Doanh thu",
-            data: ['1234567', '1234569', '1234967', '1239567', '1934567',
-              '1234967', '1239567', '1244567'],
-          }
-        ]
-      },
+      // data: {
+      //   labels: ['2022-05-10', '2022-05-11', '2022-05-12', '2022-05-13',
+      //     '2022-05-14', '2022-05-15', '2022-05-16', '2022-05-17',],
+      //   datasets: [
+      //     {
+      //       label: "Doanh thu",
+      //       data: ['1234567', '1234569', '1234967', '1239567', '1934567',
+      //         '1234967', '1239567', '1244567'],
+      //     }
+      //   ]
+      // },
       options: {
         aspectRatio: 2.5,
         responsive: true,
@@ -64,8 +68,7 @@ export class StatisticsComponent {
             ticks: {
               // @ts-ignore
               beginAtZero: true,
-              callback: function (value, index, values) {
-                // @ts-ignore
+              callback: function (value: any) {
                 if (parseInt(value) >= 100000) {
                   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " VND";
                 } else {
@@ -73,7 +76,7 @@ export class StatisticsComponent {
                 }
               }
             },
-          },
+          }
         },
       }
     });
@@ -88,7 +91,8 @@ export class StatisticsComponent {
   fetchData() {
     const option = Number(this.dateRangeFormGroup.get('option')?.value);
     const request: CarOwnerChartDataRequest = {
-      username: "hieu",
+      username: "hieu", // test only
+      // username: this.username,
       startDate: Number(this.dateRangeFormGroup.value.fromDate?.getTime()),
       endDate: Number(this.dateRangeFormGroup.value.toDate?.getTime()),
       category: option

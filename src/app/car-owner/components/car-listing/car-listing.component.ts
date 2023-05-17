@@ -25,6 +25,7 @@ export class CarListingComponent {
   });
 
   ngOnInit(): void {
+    //test user only
     this.carService.getAllRegisteredCar("hieu").subscribe(
       (data) => {
         console.log(data);

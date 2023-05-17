@@ -29,9 +29,9 @@
                 <span>
                     <h2>{{rental_details.model}}</h2>
                     <i class="fa-solid fa-star cl-star"
-                        *ngFor="let item of [].constructor(rental_details.avgRating)"></i>
+                        *ngFor="let item of [].constructor(getRoundedRating(rental_details.avgRating))"></i>
                     <i class="fa-solid fa-star text-secondary"
-                        *ngFor="let item of [].constructor(5-rental_details.avgRating)"></i>
+                        *ngFor="let item of [].constructor(5-getRoundedRating(rental_details.avgRating))"></i>
                 </span>
             </div>
             <div class="rental__details-daterange">

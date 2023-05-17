@@ -66,6 +66,7 @@ export class RentalDetailsComponent {
   getRentalDetailsData() {
     this.service.getRentalDetailsById(this.rental_id).subscribe(res => {
       this.rental_details = res;
+
       const TWO_HOURS_IN_MS = 2 * 60 * 60 * 1000;
 
       if (this.rental_details.status === RentalStatus.PENDING) {
@@ -244,6 +245,10 @@ export class RentalDetailsComponent {
         this.getRentalDetailsData();
       }
     });
+  }
+
+  getRoundedRating(rating: number) {
+    return Math.round(rating);
   }
 
 

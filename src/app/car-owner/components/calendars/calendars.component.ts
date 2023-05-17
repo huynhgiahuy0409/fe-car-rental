@@ -62,6 +62,7 @@ export class CalendarsComponent {
   refresh = new Subject<void>();
 
   ngOnInit(): void {
+    //test user only
     this.carOwnerService.getAllCalendar("hieu").subscribe(res => {
       res.forEach(i => {
         this.events.push({

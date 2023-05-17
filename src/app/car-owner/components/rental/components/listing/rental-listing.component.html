@@ -23,9 +23,10 @@
                     <h3 class="text-uppercase">{{item.model+ ' '+ item.yearOfManufacture + ' - '+ item.plate}}</h3>
                     <h4>{{item.customerName}}</h4>
                     <span>
-                        <i class="fa-solid fa-star cl-star" *ngFor="let i of [].constructor(item.avgRating)"></i>
+                        <i class="fa-solid fa-star cl-star"
+                            *ngFor="let i of [].constructor(getRoundedRating(item.avgRating))"></i>
                         <i class="fa-solid fa-star text-secondary"
-                            *ngFor="let i of [].constructor(5-item.avgRating)"></i>
+                            *ngFor="let i of [].constructor(5-getRoundedRating(item.avgRating))"></i>
                     </span>
                     <div class="text-price">
                         <h3>{{getFormattedMoney(item.price)}}</h3>

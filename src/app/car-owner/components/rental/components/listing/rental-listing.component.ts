@@ -27,6 +27,7 @@ export class RentalListingComponent {
   });
 
   ngOnInit(): void {
+    //test user only
     this.carService.getRentalListByOwner("hieu").subscribe(res => {
       this.rentalList = res;
       this.sortedRentalList = res;
@@ -52,5 +53,9 @@ export class RentalListingComponent {
 
   getFormattedMoney(money: number) {
     return getMoneyFormat(money);
+  }
+
+  getRoundedRating(rating: number) {
+    return Math.round(rating);
   }
 }
