@@ -107,3 +107,9 @@ export interface PriceRepeatedCalendarRequest {
     value: string;
     priority: RepeatedCalendarPriority;
 }
+
+export interface DeleteCustomPriceRequest {
+    carId: number;
+    startDate: number;
+    endDate: number;
+}

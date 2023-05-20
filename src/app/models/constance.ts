@@ -49,6 +49,7 @@ export const GET_ALL_CALENDAR = "/api/rentals/findAllCalendar";
 export const GET_CAR_CALENDAR = "/api/calendar/getCalendar";
 export const GET_PRICE_BY_DATE = "/api/calendar/getPriceByDate";
 export const SAVE_CUSTOM_PRICE = "/api/calendar/saveCustomPrice";
+export const DELETE_CUSTOM_PRICE = "/api/calendar/deleteCustomPrice";
 
 export const GET_ALL_STAT_BY_OWNER = "/api/statistics/getAll";
 export const GET_CHART_DATA_OWNER = "/api/statistics/getChartData";

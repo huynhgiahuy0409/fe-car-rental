@@ -157,7 +157,7 @@
 
             <div [formGroup]="priceByDateFormGroup" class="price__date-group">
                 <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="price">
+                    <input matInput type="number" formControlName="price" [min]="0">
                 </mat-form-field>K
             </div>
             <p class="text-secondary">Giá đề xuất 1300K</p>

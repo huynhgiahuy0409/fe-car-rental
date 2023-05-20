@@ -19,7 +19,7 @@ import vi from 'date-fns/locale/vi';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { CarCalendarResponse } from 'src/app/models/response/model';
 import { ToastrService } from 'ngx-toastr';
-import { PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
+import { DeleteCustomPriceRequest, PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
 import { RepeatedCalendarPriority } from 'src/app/models/enum';
 
 registerLocaleData(localeVietnam);
@@ -187,7 +187,7 @@ export class CarManagementComponent {
         this.priceByDateFormGroup.get("date")?.setValue(res.startDate);
       },
       error: (err) => {
-        console.log("err", err);
+        console.log("no data", err);
         this.priceByDateFormGroup.get("price")?.setValue(0);
         this.priceByDateFormGroup.get("date")?.setValue(date);
       }
@@ -248,25 +248,44 @@ export class CarManagementComponent {
     const startDate = startOfDay(Number(this.priceByDateFormGroup.value.date)).getTime();
     const endDate = endOfDay(Number(this.priceByDateFormGroup.value.date)).getTime();
     const price = String(this.priceByDateFormGroup.value.price);
-    const request: PriceRepeatedCalendarRequest = {
-      carId: this.car_id,
-      startDate: startDate,
-      endDate: endDate,
-      value: price,
-      priority: RepeatedCalendarPriority.ONEDAY
-    };
 
-    this.carOwnerService.savePriceCalendar(request).subscribe({
-      next: (res) => {
-        console.log("saved", res);
-        this.toastrService.success("Lưu thành công");
-        this.getCarCalendar();
-      },
-      error: (err) => {
-        console.log("err", err);
-        this.toastrService.error("Lưu thất bại");
+    if (Number(price) > 0) {
+      const request: PriceRepeatedCalendarRequest = {
+        carId: this.car_id,
+        startDate: startDate,
+        endDate: endDate,
+        value: price,
+        priority: RepeatedCalendarPriority.ONEDAY
+      };
+      this.carOwnerService.savePriceCalendar(request).subscribe({
+        next: (res) => {
+          console.log("saved", res);
+          this.toastrService.success("Lưu thành công");
+          this.getCarCalendar();
+        },
+        error: (err) => {
+          console.log("err", err);
+          this.toastrService.error("Lưu thất bại");
+        }
+      });
+    } else {
+      const request: DeleteCustomPriceRequest = {
+        carId: this.car_id,
+        startDate: startDate,
+        endDate: endDate
       }
-    });
+      this.carOwnerService.deleteCustomPrice(request).subscribe({
+        next: (res) => {
+          console.log("deleted", res);
+          this.toastrService.success("Xóa điều chỉnh giá thành công");
+          this.getCarCalendar();
+        },
+        error: (err) => {
+          console.log("err", err);
+          this.toastrService.error(err.error);
+        }
+      })
+    }
     this.toggleShowModalPriceByDate();
   }
 
