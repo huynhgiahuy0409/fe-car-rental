@@ -13,36 +13,29 @@ import {
   CalendarEvent, CalendarEventTimesChangedEvent, CalendarMonthViewDay, CalendarView
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
-import { addDays, differenceInDays, differenceInYears, endOfDay, format, isSameDay, isSameMonth, startOfDay } from 'date-fns';
-import { Subject } from 'rxjs';
+import { differenceInDays, endOfDay, format, isSameDay, isSameMonth, startOfDay } from 'date-fns';
 import vi from 'date-fns/locale/vi';
-import { CarOwnerService } from '../../services/car-owner.service';
-import { CarCalendarResponse } from 'src/app/models/response/model';
 import { ToastrService } from 'ngx-toastr';
-import { DeleteCustomPriceRequest, PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
+import { Subject } from 'rxjs';
 import { RepeatedCalendarPriority } from 'src/app/models/enum';
+import { DeleteCustomPriceRequest, PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
+import { CarCalendarResponse } from 'src/app/models/response/model';
+import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
+import { CarOwnerService } from '../../services/car-owner.service';
 
 registerLocaleData(localeVietnam);
 const colors: Record<string, EventColor> = {
-  ordered: {
+  rented: {
     primary: 'red',
     secondary: 'red',
   },
-  deposit: {
+  pending: {
     primary: '#fba86d',
     secondary: '#fba86d',
   },
-  empty: {
-    primary: 'rgba(0, 0, 0, 0.9)',
-    secondary: 'rgba(0, 0, 0, 0.9)',
-  },
-  busy: {
-    primary: '#a9a9a9',
-    secondary: '#a9a9a9',
-  },
-  pending: {
-    primary: '#fde28b',
-    secondary: '#fde28b',
+  accepted: {
+    primary: '#00a550',
+    secondary: '#00a550'
   },
   price: {
     primary: '#FFA500',
@@ -110,6 +103,7 @@ export class CarManagementComponent {
   view: CalendarView = CalendarView.Month;
 
   events: CalendarEvent[] = [];
+  rental_events: CalendarEvent[] = [];
   // activeDayIsOpen!: boolean;
   activeDayIsOpen = false;
 
@@ -124,6 +118,7 @@ export class CarManagementComponent {
         this.priceIterateFormGroup.get("limitIterateDate")?.disable();
       }
     });
+    this.getCarRentalCalendar();
     this.getCarCalendar();
   }
 
@@ -141,7 +136,27 @@ export class CarManagementComponent {
           color: colors['price']
         });
       });
+      this.events = [...this.events, ...this.rental_events];
       this.refreshView();
+    });
+  }
+
+  getCarRentalCalendar() {
+    //test user only
+    this.carOwnerService.getRentalCalendarByCarOwner(this.car_id, "hieu").subscribe({
+      next: (res) => {
+        res.forEach(i => {
+          this.rental_events.push({
+            start: new Date(i.startDate),
+            end: new Date(i.endDate),
+            title: i.modelName + " " + i.yearOfManufacture + " - " + getMoneyFormat(i.rentalPrice) + " - " + i.plate,
+            color: colors[i.status.toLowerCase()]
+          })
+        })
+      },
+      error: (err) => {
+        console.log("error get car rental calendar", err);
+      }
     });
   }
 
@@ -151,7 +166,8 @@ export class CarManagementComponent {
       //check same day and modal list event is open or busy to not open the modal or close the modal
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0 || this.isBusy({ events: events }) || Number(this.optionControl.value) < 2
+        // events.length === 0 || this.isBusy({ events: events }) || Number(this.optionControl.value) < 2
+        events.length === 0 || Number(this.optionControl.value) < 2
       ) {
         this.activeDayIsOpen = false;
       } else {
@@ -159,23 +175,23 @@ export class CarManagementComponent {
         this.viewDate = date;
       }
     }
-    if (!this.isBusy({ events: events })) {
-      this.clickedDate = new Date(date);
-      const actionType = Number(this.optionControl.value);
-      const isAfter = this.isSameOrBefore(new Date(), this.clickedDate);
+    // if (!this.isBusy({ events: events })) {
+    this.clickedDate = new Date(date);
+    const actionType = Number(this.optionControl.value);
+    const isAfter = this.isSameOrBefore(new Date(), this.clickedDate);
 
-      if (isAfter)
-        if (actionType === 0) {
-          // this.priceByDateFormGroup.get("date")?.setValue(format(new Date(date), "dd/MM/yyyy", { locale: vi }));
-          this.toggleShowModalPriceByDate();
-          this.getPriceByDate(startOfDay(date).getTime());
-          console.log("price option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
-        } else if (actionType === 1) {
-          this.disableDate(this.clickedDate);
-          // console.log("disabled date");
-          // console.log("date option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
-        }
-    }
+    if (isAfter)
+      if (actionType === 0) {
+        // this.priceByDateFormGroup.get("date")?.setValue(format(new Date(date), "dd/MM/yyyy", { locale: vi }));
+        this.toggleShowModalPriceByDate();
+        this.getPriceByDate(startOfDay(date).getTime());
+        console.log("price option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
+      } else if (actionType === 1) {
+        this.disableDate(this.clickedDate);
+        // console.log("disabled date");
+        // console.log("date option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
+      }
+    // }
   }
 
   getPriceByDate(date: number) {
@@ -211,17 +227,23 @@ export class CarManagementComponent {
 
   cssClass: string = "bg-busy";
   beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
-    body.forEach((day) => {
-      if (this.isBusy(day)) {
-        day.cssClass = this.cssClass;
-      }
-    });
+    // body.forEach((day) => {
+    //   if (this.isBusy(day)) {
+    //     day.cssClass = this.cssClass;
+    //   }
+    // });
   }
 
   getPriceTitle(day: any) {
     const date = day.date;
     const foundItem = this.events.find((i) => isSameDay(i.start, date) && i.color === colors['price']);
     return foundItem?.title;
+  }
+
+  hasCustomPrice(day: any) {
+    const date = day.date;
+    const foundItem = this.events.find((i) => isSameDay(i.start, date) && i.color === colors['price']);
+    return foundItem !== undefined;
   }
 
   clickDate(event: any) {
@@ -313,19 +335,19 @@ export class CarManagementComponent {
     this.refreshView();
   }
 
-  isBusy(event: any): Boolean {
+  // isBusy(event: any): Boolean {
+  //   const { events } = event;
+  //   return events.some((i: { color: { primary: string; }; }) => i.color.primary === colors['busy'].primary);
+  // }
+
+  rentedSize(event: any): number {
     const { events } = event;
-    return events.some((i: { color: { primary: string; }; }) => i.color.primary === colors['busy'].primary);
+    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['rented'].primary).length;
   }
 
-  orderedSize(event: any): number {
+  acceptedSize(event: any): number {
     const { events } = event;
-    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['ordered'].primary).length;
-  }
-
-  depositSize(event: any): number {
-    const { events } = event;
-    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['deposit'].primary).length;
+    return events.filter((i: { color: { primary: string; }; }) => i.color.primary === colors['accepted'].primary).length;
   }
 
   pendingSize(event: any): number {
@@ -340,4 +362,5 @@ export class CarManagementComponent {
   isSameOrBefore(date1: Date, date2: Date) {
     return differenceInDays(date1, date2) <= 0;
   }
+
 }

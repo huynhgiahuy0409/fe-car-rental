@@ -113,3 +113,8 @@ export interface DeleteCustomPriceRequest {
     startDate: number;
     endDate: number;
 }
+
+export interface RentalCalendarRequest {
+    carId: number;
+    username: string;
+}

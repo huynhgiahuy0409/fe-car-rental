@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, DELETE_CUSTOM_PRICE, GET_ALL_BRAND, GET_ALL_CALENDAR, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_OWNER, GET_ALL_STAT_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_CAR_CALENDAR, GET_CHART_DATA_OWNER, GET_MODEL_BY_BRAND, GET_PRICE_BY_DATE, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SAVE_CUSTOM_PRICE, SEARCH_ADDRESS } from 'src/app/models/constance';
+import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, DELETE_CUSTOM_PRICE, GET_ALL_BRAND, GET_ALL_CALENDAR, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_CAR_OWNER, GET_ALL_RENTAL_BY_OWNER, GET_ALL_STAT_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_CAR_CALENDAR, GET_CHART_DATA_OWNER, GET_MODEL_BY_BRAND, GET_PRICE_BY_DATE, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SAVE_CUSTOM_PRICE, SEARCH_ADDRESS } from 'src/app/models/constance';
 import { LocationResponse } from 'src/app/models/model';
+import { RentalCalendarRequest } from 'src/app/models/request/model';
 import { CarOwnerChartDataRequest, CarRegisterRequest, DeleteCustomPriceRequest, PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
 import { BrandResponse, CalendarListingResponse, CarCalendarResponse, CarModelResponse, CarOwnerChartResponse, CarOwnerStatResponse, DayPriceCalendarResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalDetailsResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
 
@@ -135,5 +136,13 @@ export class CarOwnerService {
 
   deleteCustomPrice(request: DeleteCustomPriceRequest) {
     return this.httpClient.post(`${DELETE_CUSTOM_PRICE}`, request);
+  }
+
+  getRentalCalendarByCarOwner(carId: number, username: string): Observable<CalendarListingResponse[]> {
+    this.httpOptions.params = {
+      carId: carId,
+      username: username
+    };
+    return this.httpClient.get<CalendarListingResponse[]>(`${GET_ALL_RENTAL_BY_CAR_OWNER}`, this.httpOptions);
   }
 }

@@ -38,6 +38,7 @@ export const UPDATE_CAR_ADMIN = "/api/cars/updateCar";
 
 export const GET_ALL_RENTAL_BY_OWNER = "/api/rentals/findByOwner";
 export const GET_RENTAL_DETAILS = "/api/rentals/findById";
+export const GET_ALL_RENTAL_BY_CAR_OWNER = "/api/rentals/findAllCalendarByCarOwner";
 
 export const ACCEPT_RENTAL = "/api/rentals/acceptRental";
 export const REJECT_RENTAL = "/api/rentals/rejectRental";

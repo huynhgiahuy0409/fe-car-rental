@@ -157,7 +157,7 @@
 
             <div [formGroup]="priceByDateFormGroup" class="price__date-group">
                 <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="price" [min]="0">
+                    <input matInput type="number" formControlName="price" [min]="0" [max]="8000">
                 </mat-form-field>K
             </div>
             <p class="text-secondary">Giá đề xuất 1300K</p>
@@ -221,25 +221,26 @@
 
     <ng-template #customCalendarCell let-day="day" let-locale="locale">
         <div class="cal-cell-top">
-            <span class="cal-day-badge bg-ordered" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && orderedSize(day)>0">{{
-                orderedSize(day)}}</span>
-            <span class="cal-day-badge bg-deposit"
-                *ngIf="day.badgeTotal> 0 &&!isBusy(day) && depositSize(day)>0">{{depositSize(day) }}</span>
-            <span class="cal-day-badge bg-pending" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && pendingSize(day)>0">{{
+            <span class="cal-day-badge bg-rented" *ngIf="day.badgeTotal> 0  && rentedSize(day)>0">{{
+                rentedSize(day)}}</span>
+            <span class="cal-day-badge bg-accepted" *ngIf="day.badgeTotal> 0 && acceptedSize(day)>0">{{acceptedSize(day)
+                }}</span>
+            <span class="cal-day-badge bg-pending" *ngIf="day.badgeTotal> 0  && pendingSize(day)>0">{{
                 pendingSize(day) }}</span>
             <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
         </div>
         <p style="margin: 5px" *ngIf="day.events.length===0">Trống</p>
-        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && orderedSize(day)>0">{{
-            orderedSize(day)}} chuyến đã đặt</p>
-        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && pendingSize(day)>0">{{
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0  && rentedSize(day)>0">{{
+            rentedSize(day)}} chuyến đang hoạt động</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 && pendingSize(day)>0">{{
             pendingSize(day) }} chuyến chờ duyệt</p>
-        <p style="margin: 5px" *ngIf="day.badgeTotal> 0 &&!isBusy(day) && depositSize(day)>0">{{depositSize(day)
-            }} chuyến chờ đặt cọc</p>
+        <p style="margin: 5px" *ngIf="day.badgeTotal> 0  && acceptedSize(day)>0">{{acceptedSize(day)
+            }} chuyến chờ bàn giao xe</p>
         <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&!isBusy(day)">Có {{ day.events.length }} chuyến trong
             ngày</p> -->
-        <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p>
-        <p style="margin: 5px" *ngIf="day.events.length>0" class="cl-gem">Điều chỉnh giá : {{getPriceTitle(day)}}</p>
+        <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p> -->
+        <p style="margin: 5px" *ngIf="day.events.length>0&&hasCustomPrice(day)" class="cl-gem">Điều chỉnh giá :
+            {{getPriceTitle(day)}}</p>
     </ng-template>
 
     <mwl-calendar-header [(view)]="view" [(viewDate)]="viewDate">
