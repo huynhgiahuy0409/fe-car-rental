@@ -1,4 +1,4 @@
-import { RentalStatus } from '../enum';
+import { RentalStatus, RepeatedCalendarType } from '../enum';
 import { CarStatus, OAuthProvider } from '../enum';
 import { JWTDTO, UserDTO } from './../model';
 export interface APIResponse<T> {
@@ -178,4 +178,21 @@ export interface CarOwnerChartResponse {
     month: number;
     year: number;
     value: number;
+}
+
+export interface CarCalendarResponse {
+    id: number;
+    carId: number;
+    startDate: number;
+    endDate: number;
+    value: string;
+}
+
+export interface DayPriceCalendarResponse {
+    id: number;
+    carId: number;
+    startDate: number;
+    endDate: number;
+    value: string;
+    type: RepeatedCalendarType;
 }

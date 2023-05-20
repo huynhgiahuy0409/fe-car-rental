@@ -55,3 +55,13 @@ export enum CarStatusVie {
   BUSY = 'Bận',
   RENTED = 'Đã được thuê'
 }
+
+export enum RepeatedCalendarType {
+  PRICE,
+  BUSY_DATE
+}
+
+export enum RepeatedCalendarPriority {
+  EVERYDAY,
+  ONEDAY
+}

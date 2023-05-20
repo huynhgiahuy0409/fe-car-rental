@@ -157,11 +157,11 @@
 
             <div [formGroup]="priceByDateFormGroup" class="price__date-group">
                 <mat-form-field appearance="outline">
-                    <input matInput type="text" formControlName="price">
+                    <input matInput type="number" formControlName="price">
                 </mat-form-field>K
             </div>
             <p class="text-secondary">Giá đề xuất 1300K</p>
-            <button class="btn btn-primary limit__timerange-btn w-fit">Xác nhận</button>
+            <button class="btn btn-primary limit__timerange-btn w-fit" (click)="saveCustomPrice()">Xác nhận</button>
         </div>
 
     </div>
@@ -169,8 +169,24 @@
     <div class="d-flex-bo flex-wrap-bo car__calendars-content">
         <div class="car__calendars-col">
             <ul class="calendars__labels">
-                <li>Giá mặc định</li>
+                <!-- <li>Giá mặc định</li> -->
                 <li>
+                    <i class="fa-solid fa-square cl-danger"></i>
+                    Ngày đã đặt
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-waiting-1"></i>
+                    Chờ duyệt
+                </li>
+                <li>
+                    <i class="fa-solid fa-square cl-gem"></i>
+                    Chờ bàn giao xe
+                </li>
+                <li class="cl-gem">
+                    <i class="fa-solid fa-square cl-price"></i>
+                    Giá tùy chỉnh
+                </li>
+                <!-- <li>
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     Lặp lại tuần
                 </li>
@@ -196,7 +212,7 @@
                 <li>
                     <i class="fa-solid fa-square cl-waiting-2"></i>
                     Chờ duyệt
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
@@ -223,6 +239,7 @@
         <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&!isBusy(day)">Có {{ day.events.length }} chuyến trong
             ngày</p> -->
         <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p>
+        <p style="margin: 5px" *ngIf="day.events.length>0" class="cl-gem">Điều chỉnh giá : {{getPriceTitle(day)}}</p>
     </ng-template>
 
     <mwl-calendar-header [(view)]="view" [(viewDate)]="viewDate">

@@ -1,4 +1,4 @@
-import { CarStatus } from "../enum";
+import { CarStatus, RepeatedCalendarPriority } from "../enum";
 import { OAuthProvider } from "../enum"
 
 export interface SignUpRequest {
@@ -98,4 +98,12 @@ export interface CarOwnerChartDataRequest {
     startDate: number;
     endDate: number;
     category: number;
+}
+
+export interface PriceRepeatedCalendarRequest {
+    carId: number;
+    startDate: number;
+    endDate: number;
+    value: string;
+    priority: RepeatedCalendarPriority;
 }

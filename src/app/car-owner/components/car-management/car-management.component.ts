@@ -13,9 +13,14 @@ import {
   CalendarEvent, CalendarEventTimesChangedEvent, CalendarMonthViewDay, CalendarView
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
-import { addDays, differenceInDays, differenceInYears, format, isSameDay, isSameMonth } from 'date-fns';
+import { addDays, differenceInDays, differenceInYears, endOfDay, format, isSameDay, isSameMonth, startOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
 import vi from 'date-fns/locale/vi';
+import { CarOwnerService } from '../../services/car-owner.service';
+import { CarCalendarResponse } from 'src/app/models/response/model';
+import { ToastrService } from 'ngx-toastr';
+import { PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
+import { RepeatedCalendarPriority } from 'src/app/models/enum';
 
 registerLocaleData(localeVietnam);
 const colors: Record<string, EventColor> = {
@@ -38,6 +43,10 @@ const colors: Record<string, EventColor> = {
   pending: {
     primary: '#fde28b',
     secondary: '#fde28b',
+  },
+  price: {
+    primary: '#FFA500',
+    secondary: '#FFA500'
   }
 };
 @Component({
@@ -53,9 +62,12 @@ const colors: Record<string, EventColor> = {
   encapsulation: ViewEncapsulation.None
 })
 export class CarManagementComponent {
-  car_id: any;
-  constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute) {
-    this.car_id = this.route.snapshot.paramMap.get('id');
+  car_id: number;
+
+  calendar_list: CarCalendarResponse[] = [];
+
+  constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute, private carOwnerService: CarOwnerService, private toastrService: ToastrService) {
+    this.car_id = Number(this.route.snapshot.paramMap.get('id'));
   }
 
   optionControl = new FormControl('0' as FloatLabelType);
@@ -89,9 +101,20 @@ export class CarManagementComponent {
 
 
   priceByDateFormGroup = this._formBuilder.group({
-    price: ['1300'],
-    date: ['']
+    price: [1300],
+    date: [0]
   });
+
+  locale: string = 'vi';
+  viewDate: Date = new Date();
+  view: CalendarView = CalendarView.Month;
+
+  events: CalendarEvent[] = [];
+  // activeDayIsOpen!: boolean;
+  activeDayIsOpen = false;
+
+  clickedDate!: Date;
+  clickedColumn!: number;
 
   ngOnInit(): void {
     this.priceIterateFormGroup.get("limitIterateTime")?.valueChanges.subscribe((value) => {
@@ -101,42 +124,26 @@ export class CarManagementComponent {
         this.priceIterateFormGroup.get("limitIterateDate")?.disable();
       }
     });
+    this.getCarCalendar();
   }
 
-
-  locale: string = 'vi';
-  viewDate: Date = new Date();
-  view: CalendarView = CalendarView.Month;
-
-  events: CalendarEvent[] = [
-    {
-      start: new Date(),
-      title: 'Mazda 3 - 123 - 51a',
-      color: colors['ordered'],
-    },
-    {
-      start: new Date(),
-      title: 'Mazda 44 - 123 - 51a',
-      color: colors['ordered'],
-    },
-    {
-      start: new Date("2023/03/20"),
-      title: 'Mazda 4 - 1234 - 51b',
-      color: colors['deposit'],
-    },
-    {
-      start: new Date(),
-      title: 'Lamborghini - 12345 - 51e',
-      color: colors['pending'],
-    },
-    {
-      start: new Date("2023/03/19"),
-      title: 'Bận',
-      color: colors['busy'],
-    },
-  ];
-  // activeDayIsOpen!: boolean;
-  activeDayIsOpen = false;
+  getCarCalendar() {
+    //test user only
+    this.events = [];
+    this.carOwnerService.getCarCalendar("hieu", this.car_id).subscribe(res => {
+      console.log(res);
+      // this.calendar_list = res;
+      res.forEach((i) => {
+        this.events.push({
+          start: new Date(i.startDate),
+          end: new Date(i.endDate),
+          title: i.value,
+          color: colors['price']
+        });
+      });
+      this.refreshView();
+    });
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     // check same month
@@ -159,8 +166,9 @@ export class CarManagementComponent {
 
       if (isAfter)
         if (actionType === 0) {
-          this.priceByDateFormGroup.get("date")?.setValue(format(new Date(date), "dd/MM/yyyy", { locale: vi }));
+          // this.priceByDateFormGroup.get("date")?.setValue(format(new Date(date), "dd/MM/yyyy", { locale: vi }));
           this.toggleShowModalPriceByDate();
+          this.getPriceByDate(startOfDay(date).getTime());
           console.log("price option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
         } else if (actionType === 1) {
           this.disableDate(this.clickedDate);
@@ -168,6 +176,22 @@ export class CarManagementComponent {
           // console.log("date option", format(new Date(this.clickedDate), "dd/MM/yyyy hh:mm", { locale: vi }));
         }
     }
+  }
+
+  getPriceByDate(date: number) {
+    console.log("car date", this.car_id, date);
+    this.carOwnerService.getPriceByDate(this.car_id, date).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.priceByDateFormGroup.get("price")?.setValue(Number(res.value));
+        this.priceByDateFormGroup.get("date")?.setValue(res.startDate);
+      },
+      error: (err) => {
+        console.log("err", err);
+        this.priceByDateFormGroup.get("price")?.setValue(0);
+        this.priceByDateFormGroup.get("date")?.setValue(date);
+      }
+    })
   }
 
   refresh = new Subject<void>();
@@ -194,8 +218,11 @@ export class CarManagementComponent {
     });
   }
 
-  clickedDate!: Date;
-  clickedColumn!: number;
+  getPriceTitle(day: any) {
+    const date = day.date;
+    const foundItem = this.events.find((i) => isSameDay(i.start, date) && i.color === colors['price']);
+    return foundItem?.title;
+  }
 
   clickDate(event: any) {
     this.clickedDate = new Date(event);
@@ -215,6 +242,32 @@ export class CarManagementComponent {
 
   refreshView(): void {
     this.refresh.next();
+  }
+
+  saveCustomPrice() {
+    const startDate = startOfDay(Number(this.priceByDateFormGroup.value.date)).getTime();
+    const endDate = endOfDay(Number(this.priceByDateFormGroup.value.date)).getTime();
+    const price = String(this.priceByDateFormGroup.value.price);
+    const request: PriceRepeatedCalendarRequest = {
+      carId: this.car_id,
+      startDate: startDate,
+      endDate: endDate,
+      value: price,
+      priority: RepeatedCalendarPriority.ONEDAY
+    };
+
+    this.carOwnerService.savePriceCalendar(request).subscribe({
+      next: (res) => {
+        console.log("saved", res);
+        this.toastrService.success("Lưu thành công");
+        this.getCarCalendar();
+      },
+      error: (err) => {
+        console.log("err", err);
+        this.toastrService.error("Lưu thất bại");
+      }
+    });
+    this.toggleShowModalPriceByDate();
   }
 
   disableDate(date: Date) {
