@@ -16,6 +16,7 @@ import { AddCarFeatureComponent } from './components/add-new/components/add-car-
 import { RegisteredCarListingComponent } from './components/list/components/registered-car-listing/registered-car-listing.component';
 import { EditRegisteredCarDialogComponent } from './components/list/components/registered-car-listing/edit-registered-car-dialog/edit-registered-car-dialog.component';
 import { RegisteredCarService } from './services/registered-car.service';
+import { StatisticComponent } from './components/statistic/statistic.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RegisteredCarService } from './services/registered-car.service';
     EditPromoDialogComponent,
     AddCarFeatureComponent,
     RegisteredCarListingComponent,
-    EditRegisteredCarDialogComponent
+    EditRegisteredCarDialogComponent,
+    StatisticComponent
   ],
   imports: [
     CommonModule,

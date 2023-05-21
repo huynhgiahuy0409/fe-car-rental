@@ -54,7 +54,7 @@ export const DELETE_CUSTOM_PRICE = "/api/calendar/deleteCustomPrice";
 
 export const GET_ALL_STAT_BY_OWNER = "/api/statistics/getAll";
 export const GET_CHART_DATA_OWNER = "/api/statistics/getChartData";
-
+export const GET_ALL_STAT = "/api/statistics/getAllChartData";
 
 //extra fees name
 export const DELIVERY_TO_TENANT = "Giao xe tận nơi";

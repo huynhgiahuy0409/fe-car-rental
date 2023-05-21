@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { AddNewComponent } from './components/add-new/add-new.component';
 import { ListComponent } from './components/list/list.component';
+import { StatisticComponent } from './components/statistic/statistic.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
         path: 'list',
         component: ListComponent,
       },
+      {
+        path: 'statistic',
+        component: StatisticComponent
+      }
     ],
   },
 ];
@@ -25,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

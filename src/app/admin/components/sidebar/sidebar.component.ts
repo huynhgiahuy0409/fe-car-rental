@@ -14,6 +14,10 @@ export class SidebarComponent {
     {
       label: "Danh sách",
       path: "list"
+    },
+    {
+      label: "Thống kê",
+      path: "statistic"
     }
   ]
 }

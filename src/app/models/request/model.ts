@@ -99,6 +99,11 @@ export interface CarOwnerChartDataRequest {
     endDate: number;
     category: number;
 }
+export interface CarChartDataRequest {
+    startDate: number;
+    endDate: number;
+    category: number;
+}
 
 export interface PriceRepeatedCalendarRequest {
     carId: number;
