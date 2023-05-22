@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, DELETE_CUSTOM_PRICE, GET_ALL_BRAND, GET_ALL_CALENDAR, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_CAR_OWNER, GET_ALL_RENTAL_BY_OWNER, GET_ALL_STAT_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_CAR_CALENDAR, GET_CHART_DATA_OWNER, GET_MODEL_BY_BRAND, GET_PRICE_BY_DATE, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SAVE_CUSTOM_PRICE, SEARCH_ADDRESS } from 'src/app/models/constance';
+import { ACCEPT_RENTAL, COMPLETE_RENTAL, CONFIRM_DELIVERED_CAR_TO_RENTER, DELETE_CUSTOM_BUSY, DELETE_CUSTOM_PRICE, GET_ALL_BRAND, GET_ALL_BUSY_CALENDAR, GET_ALL_CALENDAR, GET_ALL_DISTRICT_BY_PROVINCE, GET_ALL_FEATURE, GET_ALL_PROVINCE, GET_ALL_REGISTERED_CAR, GET_ALL_RENTAL_BY_CAR_OWNER, GET_ALL_RENTAL_BY_OWNER, GET_ALL_STAT_BY_OWNER, GET_ALL_WARD_BY_PROVINCE_DISTRICT, GET_CAR_CALENDAR, GET_CHART_DATA_OWNER, GET_MODEL_BY_BRAND, GET_PRICE_BY_DATE, GET_RENTAL_DETAILS, REGISTER_NEW_CAR, REJECT_RENTAL, SAVE_CUSTOM_BUSY, SAVE_CUSTOM_PRICE, SEARCH_ADDRESS } from 'src/app/models/constance';
 import { LocationResponse } from 'src/app/models/model';
-import { RentalCalendarRequest } from 'src/app/models/request/model';
-import { CarOwnerChartDataRequest, CarRegisterRequest, DeleteCustomPriceRequest, PriceRepeatedCalendarRequest } from 'src/app/models/request/model';
+import { CarOwnerChartDataRequest, CarRegisterRequest, DeleteCustomRequest, RepeatedCalendarRequest } from 'src/app/models/request/model';
 import { BrandResponse, CalendarListingResponse, CarCalendarResponse, CarModelResponse, CarOwnerChartResponse, CarOwnerStatResponse, DayPriceCalendarResponse, DistrictResponse, FeatureResponse, ProvinceResponse, RegisteredCarResponse, RentalDetailsResponse, RentalListingResponse, WardResponse } from 'src/app/models/response/model';
 
 @Injectable({
@@ -125,17 +124,32 @@ export class CarOwnerService {
     };
     return this.httpClient.get<CarCalendarResponse[]>(`${GET_CAR_CALENDAR}`, this.httpOptions);
   }
+  getCarBusyCalendar(username: string, carId: number): Observable<CarCalendarResponse[]> {
+    this.httpOptions.params = {
+      username: username,
+      carId: carId
+    };
+    return this.httpClient.get<CarCalendarResponse[]>(`${GET_ALL_BUSY_CALENDAR}`, this.httpOptions);
+  }
 
   getPriceByDate(carId: number, startDate: number): Observable<DayPriceCalendarResponse> {
     return this.httpClient.post<DayPriceCalendarResponse>(`${GET_PRICE_BY_DATE}`, { carId, startDate });
   }
 
-  savePriceCalendar(request: PriceRepeatedCalendarRequest) {
+  savePriceCalendar(request: RepeatedCalendarRequest) {
     return this.httpClient.post(`${SAVE_CUSTOM_PRICE}`, request);
   }
 
-  deleteCustomPrice(request: DeleteCustomPriceRequest) {
+  deleteCustomPrice(request: DeleteCustomRequest) {
     return this.httpClient.post(`${DELETE_CUSTOM_PRICE}`, request);
+  }
+
+  saveBusyCalendar(request: RepeatedCalendarRequest) {
+    return this.httpClient.post(`${SAVE_CUSTOM_BUSY}`, request);
+  }
+
+  deleteCustomBusy(request: DeleteCustomRequest) {
+    return this.httpClient.post(`${DELETE_CUSTOM_BUSY}`, request);
   }
 
   getRentalCalendarByCarOwner(carId: number, username: string): Observable<CalendarListingResponse[]> {

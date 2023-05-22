@@ -46,11 +46,17 @@ export const CONFIRM_DELIVERED_CAR_TO_RENTER = "/api/rentals/confirmDeliveredCar
 export const COMPLETE_RENTAL = "/api/rentals/completeRental";
 export const SEARCH_CAR = "/api/cars/searchCar";
 
+//price repeated calendar
 export const GET_ALL_CALENDAR = "/api/rentals/findAllCalendar";
 export const GET_CAR_CALENDAR = "/api/calendar/getCalendar";
 export const GET_PRICE_BY_DATE = "/api/calendar/getPriceByDate";
 export const SAVE_CUSTOM_PRICE = "/api/calendar/saveCustomPrice";
 export const DELETE_CUSTOM_PRICE = "/api/calendar/deleteCustomPrice";
+
+//busy repeated calendar
+export const GET_ALL_BUSY_CALENDAR = "/api/calendar/getBusyCalendar";
+export const SAVE_CUSTOM_BUSY = "/api/calendar/saveCustomBusy";
+export const DELETE_CUSTOM_BUSY = "/api/calendar/deleteCustomBusy";
 
 export const GET_ALL_STAT_BY_OWNER = "/api/statistics/getAll";
 export const GET_CHART_DATA_OWNER = "/api/statistics/getChartData";

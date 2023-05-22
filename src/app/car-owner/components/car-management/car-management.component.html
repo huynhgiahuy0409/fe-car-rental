@@ -236,9 +236,7 @@
             pendingSize(day) }} chuyến chờ duyệt</p>
         <p style="margin: 5px" *ngIf="day.badgeTotal> 0  && acceptedSize(day)>0">{{acceptedSize(day)
             }} chuyến chờ bàn giao xe</p>
-        <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&!isBusy(day)">Có {{ day.events.length }} chuyến trong
-            ngày</p> -->
-        <!-- <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p> -->
+        <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p>
         <p style="margin: 5px" *ngIf="day.events.length>0&&hasCustomPrice(day)" class="cl-gem">Điều chỉnh giá :
             {{getPriceTitle(day)}}</p>
     </ng-template>
@@ -248,6 +246,6 @@
 
     <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="activeDayIsOpen"
         (dayClicked)="dayClicked($event.day)" [refresh]="refresh" (eventTimesChanged)="eventTimesChanged($event)"
-        [locale]="locale" [cellTemplate]="customCalendarCell" (beforeViewRender)="beforeMonthViewRender($event)"
-        (columnHeaderClicked)="clickDate($event.isoDayNumber)"></mwl-calendar-month-view>
+        [locale]="locale" [cellTemplate]="customCalendarCell"
+        (beforeViewRender)="beforeMonthViewRender($event)"></mwl-calendar-month-view>
 </div>

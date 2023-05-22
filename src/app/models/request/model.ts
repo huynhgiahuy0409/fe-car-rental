@@ -105,7 +105,7 @@ export interface CarChartDataRequest {
     category: number;
 }
 
-export interface PriceRepeatedCalendarRequest {
+export interface RepeatedCalendarRequest {
     carId: number;
     startDate: number;
     endDate: number;
@@ -113,7 +113,7 @@ export interface PriceRepeatedCalendarRequest {
     priority: RepeatedCalendarPriority;
 }
 
-export interface DeleteCustomPriceRequest {
+export interface DeleteCustomRequest {
     carId: number;
     startDate: number;
     endDate: number;
