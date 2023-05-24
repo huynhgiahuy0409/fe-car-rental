@@ -1,23 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule, Title } from '@angular/platform-browser';
-
-import { HttpClientModule } from '@angular/common/http';
-import {
-  MAT_DATE_LOCALE
-} from '@angular/material/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Title } from '@angular/platform-browser';
 import { I18NEXT_SERVICE, I18NextModule, I18NextTitle, ITranslationService } from 'angular-i18next';
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
-import { ToastrModule } from 'ngx-toastr';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import {
-  MaterialAngularModule,
-} from './material-angular/material-angular.module';
-import { MessageDialogComponent } from './message-dialog/message-dialog.component';
-
 
 export function appInit(i18next: ITranslationService) {
   return () =>
@@ -25,17 +11,17 @@ export function appInit(i18next: ITranslationService) {
       .use(HttpApi)
       .use(I18nextBrowserLanguageDetector)
       .init({
-        supportedLngs: ['en', 'vi'],
+        // @ts-ignore
+        whitelist: ['en', 'vi'],
         fallbackLng: 'vi',
-        debug: true, // set to false to clear console output
+        debug: true,
         returnEmptyString: false,
         ns: [
-          'translation'
+          '_languages'
         ],
-        defaultNS: 'translation',
-        ignoreJSONStructure: true,
+        defaultNS: '_languages',
         interpolation: {
-          escapeValue: false,
+          // format: I18NextModule.interpolationFormat(defaultInterpolationFormat)
           format: (value, format, locale) => {
             // Customize the currency formatting based on the locale and format
             if (format === 'currency') {
@@ -47,10 +33,11 @@ export function appInit(i18next: ITranslationService) {
             return value;
           }
         },
-        keySeparator: ".",
+        keySeparator: false,
         nsSeparator: false,
         backend: {
-          loadPath: 'assets/locales/{{lng}}.{{ns}}.json',
+          loadPath: '/assets/locales/{{ns}}.{{lng}}.json',
+          // loadPath: 'assets/locales/{{lng}}.json',
         },
         // lang detection plugin options
         detection: {
@@ -58,7 +45,7 @@ export function appInit(i18next: ITranslationService) {
           order: ['querystring', 'cookie'],
           // keys or params to lookup language from
           lookupCookie: 'lang',
-          lookupQuerystring: 'lng', // lng is a param in the url ex: (?lng=vi) will set languague to vietnamese
+          lookupQuerystring: 'lng',
           // cache user language on
           caches: ['localStorage', 'cookie'],
           // optional expire and domain for set cookie
@@ -70,7 +57,6 @@ export function appInit(i18next: ITranslationService) {
 export function localeIdFactory(i18next: ITranslationService) {
   return i18next.language;
 }
-
 export const I18N_PROVIDERS = [
   {
     provide: APP_INITIALIZER,
@@ -89,21 +75,13 @@ export const I18N_PROVIDERS = [
   }];
 
 @NgModule({
-  declarations: [AppComponent, MessageDialogComponent],
+  declarations: [],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialAngularModule,
-    HttpClientModule,
-    CoreModule,
-    ToastrModule.forRoot(),
+    CommonModule,
     I18NextModule.forRoot()
   ],
   providers: [
-    I18N_PROVIDERS,
-    { provide: MAT_DATE_LOCALE, useValue: 'vi-VN' }
-  ],
-  bootstrap: [AppComponent],
+    I18N_PROVIDERS
+  ]
 })
-export class AppModule { }
+export class I18nAngularModule { }

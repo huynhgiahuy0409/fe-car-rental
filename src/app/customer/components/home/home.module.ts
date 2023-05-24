@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
+import { BannerComponent } from './components/banner/banner.component';
+import { OwnerComponent } from './components/owner/owner.component';
+import { ProminentCarModule } from './components/prominent-car/prominent-car.module';
+import { ProminentPlaceModule } from './components/prominent-place/prominent-place.module';
+import { PromoComponent } from './components/promo/promo.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { BannerComponent } from './components/banner/banner.component';
-import { PromoComponent } from './components/promo/promo.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProminentPlaceModule } from './components/prominent-place/prominent-place.module';
-import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
-import { OwnerComponent } from './components/owner/owner.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ProminentCarModule } from './components/prominent-car/prominent-car.module';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,11 @@ import { ProminentCarModule } from './components/prominent-car/prominent-car.mod
     ProminentPlaceModule,
     ProminentCarModule,
     MaterialAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    I18NextModule
+  ],
+  providers: [
+    { provide: I18NEXT_NAMESPACE, useValue: ['_home.slogan'] }
   ]
 })
 export class HomeModule { }

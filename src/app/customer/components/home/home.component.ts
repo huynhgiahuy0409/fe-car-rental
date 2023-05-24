@@ -6,20 +6,24 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
     "responseType": 'text',
   };
-  constructor(private httpClient: HttpClient){
-    
+  constructor(private httpClient: HttpClient) {
+
   }
   ngOnInit(): void {
     console.log("home init");
   }
-  ngDestroy(){
+  ngDestroy() {
     console.log("home des");
+  }
+
+  getString(value: any) {
+    return String(value);
   }
 }

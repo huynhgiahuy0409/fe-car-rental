@@ -7,6 +7,7 @@ import { CustomerComponent } from './customer.component';
 import { OtpValidationComponent } from './components/auth/components/otp-validation/otp-validation.component';
 import { PageNotFoundComponent } from '../shared/layout/error/components/page-not-found/page-not-found.component';
 import { AuthGuard } from '../helper/auth.guard';
+import { I18NEXT_NAMESPACE_RESOLVER } from 'angular-i18next';
 
 const routes: Routes = [
   {
@@ -15,8 +16,10 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () =>
-          import('./components/home/home.module').then((m) => m.HomeModule),
+        loadChildren: () => import('./components/home/home.module').then((m) => m.HomeModule),
+        resolve: {
+          i18next: I18NEXT_NAMESPACE_RESOLVER
+        }
       },
       {
         path: '',
@@ -93,4 +96,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [],
 })
-export class CustomerRoutingModule {}
+export class CustomerRoutingModule { }

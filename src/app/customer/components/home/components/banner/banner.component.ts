@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component, OnInit, ViewEncapsulation
+  Component, Input, OnInit, ViewEncapsulation
 } from '@angular/core';
 import {
   FormBuilder, FormGroup,
@@ -70,6 +70,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
   interMunicipalFormGroup!: FormGroup;
   isValidMunicipalForm!: boolean;
   isValidUrbanForm!: boolean;
+
+  @Input('slogan') slogan!: string;
 
   constructor(private _fb: FormBuilder, private router: Router) {
     this.setHrsData();

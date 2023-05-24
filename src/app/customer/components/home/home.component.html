@@ -1,12 +1,14 @@
 <div class="home">
-    <app-banner></app-banner>
+    <app-banner [slogan]="getString('_home.slogan' | i18next)"></app-banner>
     <app-promo>
     </app-promo>
-    <app-prominent-place [primaryClr]="'var(--first-purple-color)'" [secondaryClr]="'var(--second-purple-color)'" [tertiaryClr]="'var(--third-purple-color)'">
+    <app-prominent-place [primaryClr]="'var(--first-purple-color)'" [secondaryClr]="'var(--second-purple-color)'"
+        [tertiaryClr]="'var(--third-purple-color)'">
         <h3 class="title-car"> ĐỊA ĐIỂM NỔI BẬT - XE TỰ LÁI</h3>
         <h3 class="airport-note"> Giao xe <br> sân bay</h3>
     </app-prominent-place>
-    <app-prominent-place [primaryClr]="'var(--first-dark-cyan-color)'" [secondaryClr]="'var(--second-dark-cyan-color)'" [tertiaryClr]="'var(--third-dark-cyan-color)'">
+    <app-prominent-place [primaryClr]="'var(--first-dark-cyan-color)'" [secondaryClr]="'var(--second-dark-cyan-color)'"
+        [tertiaryClr]="'var(--third-dark-cyan-color)'">
         <h3 class="title-car"> ĐỊA ĐIỂM NỔI BẬT - XE CÓ TÀI XẾ
         </h3>
         <h3 class="airport-note">Đưa đón <br> sân bay
