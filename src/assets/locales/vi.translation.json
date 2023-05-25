@@ -1,10 +1,46 @@
 {
+  "common": {
+    "shipping": "Giao xe",
+    "airport": "sân bay",
+    "pickup": "Đưa đón",
+    "selfDriveCar": "Xe tự lái",
+    "withDriverCar": "Xe có tài xế",
+    "location": "Địa điểm",
+    "startDate": "Ngày bắt đầu",
+    "endDate": "Ngày kết thúc",
+    "pickupPlace": "Điểm đón",
+    "dropoffPlace": "Điểm trả",
+    "urban": "Nội thành",
+    "interMunicipal": "Liên tỉnh",
+    "time": "Thời gian",
+    "end": "Kết thúc"
+  },
+  "error": {
+    "requiredAddress": "Vui lòng nhập địa chỉ hợp lệ",
+    "requiredDate": "Vui lòng chọn ngày hợp lệ",
+    "requiredHour": "Vui lòng chọn giờ hợp lệ"
+  },
   "_home": {
-    "slogan": "CAR RENTAL - CÙNG BẠN TRÊN MỌI \n HÀNH TRÌNH"
+    "popularSelfDrive": "ĐỊA ĐIỂM NỔI BẬT- XE TỰ LÁI",
+    "popularWithDriver": "ĐỊA ĐIỂM NỔI BẬT- CÓ TÀI XẾ",
+    "popularCarSelfDrive": "XE NỔI BẬT- XE TỰ LÁI",
+    "popularCarWithDriver": "XE NỔI BẬT- CÓ TÀI XẾ"
+  },
+  "_banner": {
+    "slogan": "CAR RENTAL - CÙNG BẠN TRÊN MỌI HÀNH TRÌNH",
+    "title": "đối tác bảo hiểm",
+    "selfDriveInputLabel": "Nhập thành phố, quận, địa chỉ,...",
+    "withDriverInputLabel": "Nhập thành phố, quận, địa chỉ,...",
+    "chooseDayLabel": "Chọn một ngày",
+    "chooseHourLabel": "Chọn giờ",
+    "findCarButton": "Tìm xe ngay",
+    "rentHours": "Số giờ thuê",
+    "route": "Lộ trình",
+    "pickupInputLabel": "Nhập địa điểm đón cụ thể",
+    "dropoffInputLabel": "Nhập địa điểm trả cụ thể"
   },
   "_languages": {
     "vi": "Tiếng Việt",
     "en": "English"
-  },
-  "test": "test vi"
+  }
 }

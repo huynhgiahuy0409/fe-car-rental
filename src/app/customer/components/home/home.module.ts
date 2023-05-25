@@ -31,7 +31,7 @@ import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
     I18NextModule
   ],
   providers: [
-    { provide: I18NEXT_NAMESPACE, useValue: ['_home.slogan'] }
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class HomeModule { }

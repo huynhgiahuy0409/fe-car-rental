@@ -71,8 +71,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
   isValidMunicipalForm!: boolean;
   isValidUrbanForm!: boolean;
 
-  @Input('slogan') slogan!: string;
-
   constructor(private _fb: FormBuilder, private router: Router) {
     this.setHrsData();
     this._setStartAndReturnHrOpts();
