@@ -9,6 +9,7 @@ import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
 import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
 import { RegisterFormComponent } from './register-form.component';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 const routes: Routes = [
   {
@@ -29,11 +30,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     NgxDropzoneModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    I18NextModule
   ],
   providers: [
     CarOwnerService,
-    UploadFileService
+    UploadFileService,
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class RegisterFormModule { }

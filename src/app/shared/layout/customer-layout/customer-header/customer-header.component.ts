@@ -1,18 +1,18 @@
 
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
+import { AuthService } from 'src/app/customer/services/auth.service';
+import { UserService } from 'src/app/customer/services/user.service';
 import { RedirectInfo } from 'src/app/models/model';
 import { CustomerLoginDialogComponent } from '../../../../customer/components/auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
-import { UserService } from 'src/app/customer/services/user.service';
-import { AuthService } from 'src/app/customer/services/auth.service';
-import { tap } from 'rxjs';
-import { Router } from '@angular/router';
+import { I18NextService } from 'angular-i18next';
 
 @Component({
   selector: 'app-customer-header',
@@ -28,31 +28,31 @@ export class CustomerHeaderComponent {
   activeNotification: boolean = false;
   userMenus: RedirectInfo[] = [
     {
-      label: 'Tài khoản',
+      label: this.i18nextService.t('header.account')?.toString() || "",
       path: '/account',
     },
     {
-      label: 'Xe yêu thích',
+      label: this.i18nextService.t('header.favoriteCar')?.toString() || "",
       path: '/my-favs',
     },
     {
-      label: 'Xe của tôi',
+      label: this.i18nextService.t('header.myCar')?.toString() || "",
       path: '',
     },
     {
-      label: 'Chuyến của tôi',
+      label: this.i18nextService.t('header.myTrip')?.toString() || "",
       path: '/my-trip',
     },
     {
-      label: 'Địa chỉ của tôi',
+      label: this.i18nextService.t('header.myAddress')?.toString() || "",
       path: '',
     },
     {
-      label: 'Khuyến mãi',
+      label: this.i18nextService.t('header.promotion')?.toString() || "",
       path: '/promo',
     },
     {
-      label: 'Đổi mật khẩu',
+      label: this.i18nextService.t('header.changePassword')?.toString() || "",
       path: '',
     },
   ];
@@ -60,8 +60,9 @@ export class CustomerHeaderComponent {
     public dialog: MatDialog,
     public userService: UserService,
     private _authService: AuthService,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private i18nextService: I18NextService
+  ) { }
   openLoginFormDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
@@ -103,12 +104,12 @@ export class CustomerHeaderComponent {
           tap((response) => {
             const { data, statusCode } = response;
             if (statusCode === 200) {
-              alert('Đăng xuất thành công');
+              alert(this.i18nextService.t("message.logoutSuccess"));
               this._authService.nexAccessToken(null);
               this._authService.removeRefreshToken();
               this.userService.nextUser(null);
               this._router.navigate(['/home'])
-            } 
+            }
           })
         )
         .subscribe();

@@ -4,87 +4,85 @@
             <mat-stepper [linear]="true" #stepper>
                 <mat-step [stepControl]="carInformationFormGroup">
                     <form [formGroup]="carInformationFormGroup">
-                        <ng-template matStepLabel>Thông tin</ng-template>
+                        <ng-template matStepLabel>{{"common.information"|i18next}}</ng-template>
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Biển số xe</h2>
-                            <p class="cl-danger register__car-subtitle">Lưu ý: Biển số sẽ không thể thay đổi sau khi
-                                đăng kí.</p>
+                            <h2>{{"calendar.carPlate"|i18next}}</h2>
+                            <p class="cl-danger register__car-subtitle">{{"registerCar.carPlateWarning"|i18next}}</p>
                         </div>
                         <mat-form-field class="input__car-form cl-black" appearance="outline">
-                            <mat-label class="cl-black">Biển số xe</mat-label>
-                            <input matInput placeholder="Biển số xe" formControlName="carNumberPlate" required>
+                            <mat-label class="cl-black">{{"calendar.carPlate"|i18next}}</mat-label>
+                            <input matInput [placeholder]="'calendar.carPlate'|i18next" formControlName="carNumberPlate"
+                                required>
                             <mat-error
                                 *ngIf="carInformationFormGroup.hasError('pattern') || !carInformationFormGroup.hasError('required')">
-                                Vui lòng nhập biển số xe hợp lệ
+                                {{"error.requiredCarPlate"|i18next}}
                             </mat-error>
                         </mat-form-field>
                         <!-- end form field -->
 
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Thông tin cơ bản</h2>
-                            <p class="cl-danger register__car-subtitle">Lưu ý: Các thông tin cơ bản sẽ không thể thay
-                                đổi sau khi đăng kí.
-                            </p>
+                            <h2>{{"registerCar.basicInformation"|i18next}}</h2>
+                            <p class="cl-danger register__car-subtitle">{{"registerCar.basicInformation"|i18next}}</p>
                         </div>
                         <div class="d-flex-bo flex-wrap-bo basic__information-container">
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
-                                <mat-label class="cl-black">Hãng xe</mat-label>
+                                <mat-label class="cl-black">{{"common.brand"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carBrand">
                                     <mat-option [value]="item.id"
                                         *ngFor="let item of fetchedBrands">{{item.name}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn hãng xe
+                                    {{"error.requiredCarBrand"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
-                                <mat-label class="cl-black">Mẫu xe</mat-label>
+                                <mat-label class="cl-black">{{"common.model"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carModel">
                                     <mat-option [value]="item.id"
                                         *ngFor="let item of fetchedCarModels">{{item.name}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn mẫu xe
+                                    {{"error.requiredCarModel"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
-                                <mat-label class="cl-black">Số ghế</mat-label>
+                                <mat-label class="cl-black">{{"common.seats"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carSeats">
                                     <mat-option *ngFor="let i of carSeatRange;" [value]="i">{{i}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn số ghế
+                                    {{"error.requiredCarSeats"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
-                                <mat-label class="cl-black">Năm sản xuất</mat-label>
+                                <mat-label class="cl-black">{{"common.yearOfManufacture"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carProdYear">
                                     <mat-option *ngFor="let i of carProduceYearRange;" [value]="i">{{i}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn năm sản xuất
+                                    {{"error.requiredYearOfManufacture"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
-                                <mat-label class="cl-black">Truyền động</mat-label>
+                                <mat-label class="cl-black">{{"common.transmission"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carTransmission">
-                                    <mat-option value="MANUAL">Số tự động</mat-option>
-                                    <mat-option value="AUTOMATIC">Số sàn</mat-option>
+                                    <mat-option value="MANUAL">{{"common.automaticTransmission"|i18next}}</mat-option>
+                                    <mat-option value="AUTOMATIC">{{"common.manualTransmission"|i18next}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn truyền động của xe
+                                    {{"error.requiredTransmission"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="basic__information-field cl-black" appearance="outline">
-                                <mat-label class="cl-black">Loại nhiên liệu</mat-label>
+                                <mat-label class="cl-black">{{"common.fuel"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carFuel">
-                                    <mat-option value="PETROL">Xăng</mat-option>
-                                    <mat-option value="DIESEL">Dầu diesel</mat-option>
+                                    <mat-option value="PETROL">{{"common.petrol"|i18next}}</mat-option>
+                                    <mat-option value="DIESEL">{{"common.diesel"|i18next}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn nhiên liệu của xe
+                                    {{"error.requiredFuel"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -92,34 +90,34 @@
 
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Mức tiêu thụ nhiên liệu</h2>
-                            <p class="text-secondary register__car-subtitle">Số lít nhiên liệu cho quãng đường 100km.
-                            </p>
+                            <h2>{{"common.fuelConsumption"|i18next}}</h2>
+                            <p class="text-secondary register__car-subtitle">
+                                {{"registerCar.oneHundredFuelConsumption"|i18next}}</p>
                         </div>
                         <div class="d-flex-bo flex-wrap-bo basic__information-container">
                             <mat-form-field class="basic__information-field" appearance="outline">
-                                <mat-label class="cl-black">Mức tiêu thụ nhiên liệu</mat-label>
-                                <input matInput placeholder="Mức tiêu thụ nhiên liệu"
+                                <mat-label class="cl-black">{{"common.fuelConsumption"|i18next}}</mat-label>
+                                <input matInput [placeholder]="'common.fuelConsumption'|i18next"
                                     formControlName="carFuelConsumption" type="number" required>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng nhập mức tiêu thụ hợp lệ
+                                    {{"error.requiredFuelConsumption"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <!-- end form field -->
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Màu sắc</h2>
+                            <h2>{{"common.color"|i18next}}</h2>
                         </div>
                         <div class="d-flex-bo flex-wrap-bo basic__information-container">
                             <mat-form-field class="basic__information-field" appearance="outline">
-                                <mat-label class="cl-black">Màu sắc</mat-label>
+                                <mat-label class="cl-black">{{"common.color"|i18next}}</mat-label>
                                 <mat-select matInput formControlName="carColor">
                                     <mat-option [value]="item.value"
                                         *ngFor="let item of colors">{{item.name}}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng chọn nhiên liệu của xe
+                                    {{"error.requiredColor"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -127,14 +125,14 @@
 
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Mô tả</h2>
+                            <h2>{{'common.description'|i18next}}</h2>
                         </div>
                         <div class="d-flex-bo flex-wrap-bo basic__information-container mr-t-10">
                             <mat-form-field class="w-fit" appearance="outline">
-                                <textarea matInput placeholder="Mô tả" formControlName="carDescription"
-                                    required></textarea>
+                                <textarea matInput [placeholder]="'common.description'|i18next"
+                                    formControlName="carDescription" required></textarea>
                                 <mat-error *ngIf="!carInformationFormGroup.hasError('required')">
-                                    Vui lòng nhập mô tả
+                                    {{"error.requiredDescription"|i18next}}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -142,7 +140,7 @@
 
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Tính năng</h2>
+                            <h2>{{"common.features"|i18next}}</h2>
                         </div>
                         <div
                             class="d-flex-bo flex-wrap-bo align-items-center-bo text-center car__information-features mr-t-10">
@@ -157,32 +155,32 @@
                         <!-- end form field -->
 
                         <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer">
-                            <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
-                            <button mat-button matStepperNext class="btn__primary">Kế tiếp</button>
+                            <button mat-button matStepperPrevious
+                                class="btn__secondary">{{"common.back"|i18next}}</button>
+                            <button mat-button matStepperNext class="btn__primary">{{"common.next"|i18next}}</button>
                         </div>
                     </form>
                 </mat-step>
 
                 <!-- second form -->
-                <mat-step [stepControl]="forRentFormGroup" label="Cho thuê">
+                <mat-step [stepControl]="forRentFormGroup" [label]="'registerCar.forRent'|i18next">
                     <form [formGroup]="forRentFormGroup">
                         <!-- start form field -->
                         <div class="register__car-title">
-                            <h2>Đơn giá thuê mặc định</h2>
-                            <p class="text-secondary register__car-subtitle">Đơn giá áp dụng cho tất cả các ngày. Bạn có
-                                thuể tuỳ chỉnh giá khác cho các ngày đặc biệt (cuối tuần, lễ, tết...) trong
-                                mục quản lý xe sau khi đăng kí.
+                            <h2>{{"registerCar.defaultPrice"|i18next}}</h2>
+                            <p class="text-secondary register__car-subtitle">{{"registerCar.defaultPriceTips"|i18next}}
                             </p>
-                            <p class="text-secondary register__car-subtitle">Giá đề xuất: {{recommendPriceInFormat}}
+                            <p class="text-secondary register__car-subtitle">{{"calendar.recommendPrice"|i18next}}:
+                                {{recommendPriceInFormat}}
                             </p>
                         </div>
                         <mat-form-field class="input__car-form" appearance="outline">
-                            <mat-label class="cl-black">Đơn giá thuê mặc định</mat-label>
-                            <input matInput placeholder="Đơn giá thuê mặc định" formControlName="defaultPrice"
-                                type="number" required>
+                            <mat-label class="cl-black">{{"registerCar.defaultPrice"|i18next}}</mat-label>
+                            <input matInput [placeholder]="'registerCar.defaultPrice'|i18next"
+                                formControlName="defaultPrice" type="number" required>
                             <mat-error
                                 *ngIf="carInformationFormGroup.hasError('pattern') || !carInformationFormGroup.hasError('required')">
-                                Vui lòng nhập đơn giá thuê mặc định hợp lệ
+                                {{"error.requiredDefaultPrice"|i18next}}
                             </mat-error>
                         </mat-form-field>
                         <!-- end form field -->
@@ -190,7 +188,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Giảm giá</h2>
+                                <h2>{{"common.discount"|i18next}}</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleDiscountGroup">
                                 <mat-slide-toggle formControlName="isDiscount">
@@ -201,7 +199,7 @@
                         <div *ngIf="toggleDiscountGroup.get('isDiscount')?.value===true"
                             [formGroup]="toggleDiscountGroup" class="d-flex-bo flex-wrap-bo discount__field-group">
                             <div class="discount__field mobile-fw-flex">
-                                <p class="discount__subtitle">Giảm giá thuê tuần (% trên đơn giá)</p>
+                                <p class="discount__subtitle">{{"common.discountWeek"|i18next}}</p>
                                 <mat-slider min="1" max="100" step="1">
                                     <input matSliderThumb formControlName="discountPercentByWeek">
                                 </mat-slider>
@@ -209,7 +207,7 @@
                                     {{toggleDiscountGroup.get('discountPercentByWeek')?.value+"%"}}</p>
                             </div>
                             <div class="discount__field flex-end mobile-fw-flex">
-                                <p class="discount__subtitle">Giảm giá thuê tháng (% trên đơn giá)</p>
+                                <p class="discount__subtitle">{{"common.discountMonth"|i18next}}</p>
                                 <mat-slider min="1" max="100" step="1">
                                     <input matSliderThumb formControlName="discountPercentByMonth">
                                 </mat-slider>
@@ -223,20 +221,16 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Đặt xe nhanh</h2>
+                                <h2>{{"common.fastRent"|i18next}}</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleFastRentGroup">
                                 <mat-slide-toggle formControlName="isFastRent">
                                 </mat-slide-toggle>
                             </div>
-                            <p class="cl-danger register__car-subtitle">Bật tính năng cho phép khách hàng đặt xe
-                                ngay lập tức không cần chủ xe phê duyệt. (Phù hợp với chủ xe không thường xuyên
-                                online hoặc kiểm tra điện thoại)
+                            <p class="cl-danger register__car-subtitle">
+                                {{"registerCar.fastRentTips"|i18next}}
                                 <br />
-                                Lưu ý : Bạn cần đảm bảo việc cần cập nhật lịch bận xe thường xuyên, trường hợp hủy
-                                chuyến sau
-                                khi khách đặt cọc vì chưa cập nhật
-                                lịch bận sẽ áp dụng phí hủy chuyến (100% tiền đặt cọc)
+                                {{"registerCar.fastRentWarning"|i18next}}
                             </p>
                         </div>
 
@@ -265,7 +259,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Địa chỉ xe</h2>
+                                <h2>{{"common.carAddress"|i18next}}</h2>
                             </div>
                         </div>
 
@@ -274,60 +268,63 @@
                             <div class="discount__status-field">
                                 <p>{{
                                     forRentFormGroup.get("defaultLocation")?.value !==""
-                                    ?forRentFormGroup.get("defaultLocation")?.value:"Địa chỉ mặc định để giao nhận xe."
+                                    ?forRentFormGroup.get("defaultLocation")?.value:'registerCar.defaultLocationLabel'|i18next
                                     }}</p>
                             </div>
                             <div class="discount__status-field ml-auto" (click)="toggleAddressModal()">
-                                <img src="https://n1-cstg.mioto.vn/v4/p/m/icons/features/map.png" alt="404" width="20">
+                                <img src="../../../../assets/images/map.png" alt="404" width="20">
                             </div>
                         </div>
-                        <p class="cl-danger register__car-subtitle" *ngIf="!addressFormGroup.hasError('required')">Vui
-                            lòng chọn địa chỉ giao nhận xe</p>
+                        <p class="cl-danger register__car-subtitle" *ngIf="!addressFormGroup.hasError('required')">
+                            {{"error.requiredAddressRegisterCar"|i18next}}</p>
 
                         <div id="myModal" class="modal__address" *ngIf="showAddressModal===true">
                             <div class="modal__address-content">
                                 <span class="close" (click)="toggleAddressModal()">&times;</span>
                                 <div class="modal__address-title">
-                                    <h2>Chỉnh sửa địa chỉ</h2>
+                                    <h2>{{"registerCar.changeAddressTitle"|i18next}}</h2>
                                 </div>
                                 <div class="modal__address-fields">
-                                    <h3>Địa chỉ <span class="cl-danger">*</span></h3>
+                                    <h3>{{"registerCar.address"|i18next}} <span class="cl-danger">*</span></h3>
                                     <div class="modal__address-field" [formGroup]="addressFormGroup">
-                                        <p class="text-secondary">Tỉnh/ Thành phố</p>
+                                        <p class="text-secondary">{{"common.city"|i18next}}</p>
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <mat-select matInput formControlName="city"
-                                                (selectionChange)="onChangeCity()" placeholder="Chọn Tỉnh/ Thành phố">
+                                                (selectionChange)="onChangeCity()"
+                                                [placeholder]="'common.chooseCity'|i18next">
                                                 <mat-option [value]="item.id"
                                                     *ngFor="let item of fetchedProvinces">{{item.name}}</mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="!addressFormGroup.hasError('required')">
-                                                Vui lòng chọn tỉnh/thành phố
+                                                {{"error.requiredCity"|i18next}}
                                             </mat-error>
                                         </mat-form-field>
-                                        <p class="text-secondary">Quận/ Huyện</p>
+                                        <p class="text-secondary">{{"common.district"|i18next}}</p>
                                         <mat-form-field appearance="outline" class="w-fit">
                                             <mat-select matInput formControlName="district"
-                                                (selectionChange)="onChangeDistrict()" placeholder="Chọn quận/ huyện">
+                                                (selectionChange)="onChangeDistrict()"
+                                                [placeholder]="'common.chooseDistrict'|i18next">
                                                 <mat-option [value]="item.id"
                                                     *ngFor="let item of fetchedDistricts">{{item.name}}</mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="!addressFormGroup.hasError('required')">
-                                                Vui lòng chọn quận/ huyện
+                                                {{"error.requiredDistrict"|i18next}}
                                             </mat-error>
                                         </mat-form-field>
-                                        <p class="text-secondary">Phường/ Xã</p>
+                                        <p class="text-secondary">{{"common.ward"|i18next}}</p>
                                         <mat-form-field appearance="outline" class="w-fit">
-                                            <mat-select matInput formControlName="ward" placeholder="Chọn Phường/ Xã">
+                                            <mat-select matInput formControlName="ward"
+                                                [placeholder]="'common.chooseWard'|i18next">
                                                 <mat-option [value]="item.id"
                                                     *ngFor="let item of fetchedWards">{{item.name}}</mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="!addressFormGroup.hasError('required')">
-                                                Vui lòng chọn phường/ xã
+                                                {{"error.requiredWard"|i18next}}
                                             </mat-error>
                                         </mat-form-field>
-                                        <p class="text-secondary">Đường</p>
+                                        <p class="text-secondary">{{"common.street"|i18next}}</p>
                                         <mat-form-field appearance="outline" class="w-fit">
-                                            <input matInput placeholder="Nhập tên đường/ tòa nhà"
+                                            <input matInput [placeholder]="'common.typeAddress'|i18next"
                                                 formControlName="street" required [matAutocomplete]="auto">
                                             <mat-autocomplete #auto="matAutocomplete">
                                                 <mat-option *ngFor="let option of fetchedLocation"
@@ -336,15 +333,14 @@
                                                 </mat-option>
                                             </mat-autocomplete>
                                             <mat-error *ngIf="!addressFormGroup.hasError('required')">
-                                                Vui lòng nhập đường hợp lệ
+                                                {{"error.requiredStreet"|i18next}}
                                             </mat-error>
                                         </mat-form-field>
-                                        <button class="btn__location-action bg-black" (click)="toggleAddressModal()">Hủy
-                                            bỏ</button>
+                                        <button class="btn__location-action bg-black"
+                                            (click)="toggleAddressModal()">{{"common.cancelAction"|i18next}}</button>
                                         <button class=" btn__location-action ml-10 bg-gemstone"
                                             [disabled]="this.addressFormGroup.status==='INVALID'?true:''"
-                                            (click)="onSubmitAddress()">Áp
-                                            dụng</button>
+                                            (click)="onSubmitAddress()">{{"common.confirmAction"|i18next}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -355,7 +351,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Giao xe tận nơi</h2>
+                                <h2>{{"common.deliveryToTenant"|i18next}}</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleDeliveryGroup">
                                 <mat-slide-toggle formControlName="isDeliveryToTenant">
@@ -366,7 +362,7 @@
                         <div *ngIf="toggleDeliveryGroup.get('isDeliveryToTenant')?.value===true"
                             [formGroup]="toggleDeliveryGroup" class="d-flex-bo flex-wrap-bo discount__field-group">
                             <div class="discount__field mobile-fw-flex">
-                                <p class="discount__subtitle">Phí giao nhận xe</p>
+                                <p class="discount__subtitle">{{"common.deliveryFee"|i18next}}</p>
                                 <mat-slider min="1000" max="20000" step="1000">
                                     <input matSliderThumb formControlName="deliveryFee">
                                 </mat-slider>
@@ -378,7 +374,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Giới hạn số km</h2>
+                                <h2>{{"common.limitDistance"|i18next}}</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleLimitDistanceGroup">
                                 <mat-slide-toggle formControlName="isLimitDistance">
@@ -389,22 +385,22 @@
                         <div *ngIf="toggleLimitDistanceGroup.get('isLimitDistance')?.value===true"
                             [formGroup]="toggleLimitDistanceGroup" class="d-flex-bo flex-wrap-bo discount__field-group">
                             <div class="discount__field mobile-fw-flex">
-                                <p class="discount__subtitle">Số km tối đa trong 1 ngày</p>
+                                <p class="discount__subtitle">{{"common.maximumKmInDay"|i18next}}</p>
                                 <mat-slider min="300" max="500" step="5">
                                     <input matSliderThumb formControlName="limitDistance">
                                 </mat-slider>
                                 <p class="discount__subtitle">
                                     {{toggleLimitDistanceGroup.get('limitDistance')?.value+"km"}}</p>
-                                <p class="text-secondary">Số km đề xuất: 400km</p>
+                                <p class="text-secondary">{{"common.recommendKmInDay"|i18next}}: 400km</p>
                             </div>
                             <div class="discount__field mobile-fw-flex">
-                                <p class="discount__subtitle">Phí vượt giới hạn (tính mỗi km)</p>
+                                <p class="discount__subtitle">{{"common.limitDistanceFee"|i18next}}</p>
                                 <mat-slider min="1000" max="5000" step="1000">
                                     <input matSliderThumb formControlName="limitDistanceFee">
                                 </mat-slider>
                                 <p class="discount__subtitle">
                                     {{toggleLimitDistanceGroup.get('limitDistanceFee')?.value+"Đ"}}</p>
-                                <p class="text-secondary">Phí đề xuất : 3000Đ</p>
+                                <p class="text-secondary">{{'common.recommendFee'|i18next}} : 3000Đ</p>
                             </div>
                         </div>
 
@@ -412,7 +408,7 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Có tài xế</h2>
+                                <h2>{{'common.withDriver'|i18next}}</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleWithDriverGroup">
                                 <mat-slide-toggle formControlName="isWithDriver">
@@ -425,7 +421,7 @@
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field"
                                 *ngIf="toggleWithDriverGroup.get('isWithDriver')?.value===true">
-                                <h2>Hỗ trợ đi liên tỉnh</h2>
+                                <h2>{{"common.supportIntermunipical"|i18next}}</h2>
                             </div>
                             <div class="discount__status-field ml-auto" [formGroup]="toggleWithDriverInterstateGroup"
                                 *ngIf="toggleWithDriverGroup.get('isWithDriver')?.value===true">
@@ -439,35 +435,34 @@
                         <div
                             class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                             <div class="discount__status-field">
-                                <h2>Điều khoản thuê xe</h2>
-                                <p class="text-secondary register__car-subtitle mb-0">Ghi rõ các yêu cầu để khách có thể
-                                    thuê xe.
-                                </p>
+                                <h2>{{"common.carRentalTermsAndConditions"|i18next}}</h2>
+                                <p class="text-secondary register__car-subtitle mb-0">
+                                    {{"registerCar.carRentalTermsAndConditionsTips"|i18next}}</p>
                             </div>
                         </div>
                         <div class="d-flex-bo flex-wrap-bo basic__information-container mr-t-10"
                             [formGroup]="forRentFormGroup">
                             <mat-form-field class="w-fit" appearance="outline">
                                 <textarea matInput
-                                    placeholder="VD: Không sử dụng xe vào mục đích phi pháp. Lái xe cẩn thận, giữ xe sạch sẽ, trả xe đúng giờ. Phụ thu 500k nếu hút thuốc lá trong xe."
+                                    [placeholder]="'registerCar.carRentalTermsAndConditionsPlaceholder'|i18next"
                                     formControlName="policies" rows="5"></textarea>
                             </mat-form-field>
                         </div>
 
                         <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer mt-0">
-                            <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
-                            <button mat-button matStepperNext class="btn__primary">Kế tiếp</button>
+                            <button mat-button matStepperPrevious
+                                class="btn__secondary">{{'common.back'|i18next}}</button>
+                            <button mat-button matStepperNext class="btn__primary">{{'common.next'|i18next}}</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step>
-                    <ng-template matStepLabel>Hình ảnh</ng-template>
+                    <ng-template matStepLabel>{{'common.image'|i18next}}</ng-template>
                     <div
                         class="register__car-title d-flex-bo flex-wrap-bo basic__information-container discount__status-container">
                         <div class="discount__status-field">
-                            <h2>Hình ảnh</h2>
-                            <p class="text-secondary register__car-subtitle mb-0">Đăng nhiều hình ở các góc độ khác nhau
-                                để tăng thông tin cho xe của bạn.
+                            <h2>{{'common.image'|i18next}}</h2>
+                            <p class="text-secondary register__car-subtitle mb-0">{{'registerCar.imagesTips'|i18next}}
                             </p>
                         </div>
                     </div>
@@ -477,8 +472,9 @@
                         <ngx-dropzone-label>
                             <i class="fa-solid fa-arrow-up-from-bracket ico__upload"></i>
                             <p>
-                                Kéo thả hình ảnh vào đây hoặc <button mat-raised-button class="btn__upload">chọn hình
-                                    ảnh</button>
+                                {{'registerCar.dragImage'|i18next}} <button mat-raised-button
+                                    class="btn__upload">{{'registerCar.chooseImage'|i18next}}
+                                </button>
                             </p>
                         </ngx-dropzone-label>
                         <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of cloneFiles"
@@ -488,10 +484,9 @@
                         </ngx-dropzone-image-preview>
                     </ngx-dropzone>
                     <div class="d-flex-bo flex-wrap-bo align-items-center-bo car__information__footer">
-                        <button mat-button matStepperPrevious class="btn__secondary">Quay lại</button>
+                        <button mat-button matStepperPrevious class="btn__secondary">{{'common.back'|i18next}}</button>
                         <button mat-button matStepperNext class="btn__primary" (click)="onSubmitRegisterCar()"
-                            [disabled]="cloneFiles.length<1">Hoàn
-                            thành</button>
+                            [disabled]="cloneFiles.length<1">{{'common.complete'|i18next}}</button>
                         <!-- <div>
                                 <button mat-button matStepperPrevious>Back</button>
                                 <button mat-button (click)="stepper.reset()">Reset</button>

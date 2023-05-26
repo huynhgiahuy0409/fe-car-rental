@@ -12,7 +12,7 @@ import { CalendarView } from 'angular-calendar';
             [(viewDate)]="viewDate"
             (viewDateChange)="viewDateChange.next(viewDate)"
           >
-            Tháng trước
+            {{'calendar.previousMonth'|i18next}}
           </div>
           <div
             class="btn btn-outline-secondary btn-action"
@@ -20,7 +20,7 @@ import { CalendarView } from 'angular-calendar';
             [(viewDate)]="viewDate"
             (viewDateChange)="viewDateChange.next(viewDate)"
           >
-            Hôm nay
+            {{'calendar.today'|i18next}}
           </div>
           <div
             class="btn btn-primary btn-action"
@@ -29,7 +29,7 @@ import { CalendarView } from 'angular-calendar';
             [(viewDate)]="viewDate"
             (viewDateChange)="viewDateChange.next(viewDate)"
           >
-            Tháng tiếp theo
+            {{'calendar.nextMonth'|i18next}}
           </div>
       <div>
         <h2>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h2>

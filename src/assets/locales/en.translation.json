@@ -5,5 +5,8 @@
   "_languages": {
     "vi": "Tiếng Việt",
     "en": "English"
+  },
+  "footer": {
+    "introduction": "Introduction about Car Rental"
   }
 }

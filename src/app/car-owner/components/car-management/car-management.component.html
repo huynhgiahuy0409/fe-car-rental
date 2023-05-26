@@ -1,16 +1,21 @@
 <div class="car__calendars-container bg-white">
-    <h2 class="text-center text-header">Lịch xe {{car_id}}</h2>
+    <h2 class="text-center text-header">{{"car.calendar"|i18next}} {{car_id}}</h2>
 
     <div class="options__control">
         <mat-radio-group [formControl]="optionControl">
             <mat-radio-button value="0">
-                <span class="cl-black">Tùy chỉnh giá<i class="fa-solid fa-clock-rotate-left"
-                        (click)="toggleShowModalPriceIterate()"></i></span>
+                <span class="cl-black">{{"calendar.customPrice"|i18next}}
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <!-- <i class="fa-solid fa-clock-rotate-left"
+                        (click)="toggleShowModalPriceIterate()"></i> -->
+                </span>
             </mat-radio-button>
-            <mat-radio-button value="1"><span class="cl-black">Thiết lập lịch bận <i
-                        class="fa-solid fa-clock-rotate-left"
-                        (click)="toggleShowModalTimeIterate()"></i></span></mat-radio-button>
-            <mat-radio-button value="2"><span class="cl-black">Xem danh sách chuyến <i
+            <mat-radio-button value="1"><span class="cl-black">{{"calendar.customBusyCalendar"|i18next}}
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <!-- <i class="fa-solid fa-clock-rotate-left"
+                        (click)="toggleShowModalTimeIterate()"></i> -->
+                </span></mat-radio-button>
+            <mat-radio-button value="2"><span class="cl-black">{{"calendar.viewRentalList"|i18next}} <i
                         class="fa-regular fa-eye"></i></span></mat-radio-button>
         </mat-radio-group>
     </div>
@@ -20,17 +25,16 @@
         <!-- Modal content -->
         <div class="modal-content iterate">
             <span class="close" (click)="toggleShowModalPriceIterate()">&times;</span>
-            <h2 class="text-center">Tùy chỉnh giá lặp lại</h2>
+            <h2 class="text-center">{{"calendar.customRepeatedPrice"|i18next}}</h2>
 
-            <p class="text-secondary sub__title-1">Nhập giá vào ngày trong tuần tương ứng. Nhập 0 nếu muốn dùng giá mặc
-                định.</p>
-            <p class="text-secondary sub__title-2">Giá đề xuất: 1300K</p>
+            <p class="text-secondary sub__title-1">{{"calendar.customRepeatedPriceSubTitle"|i18next}}</p>
+            <p class="text-secondary sub__title-2">{{"calendar.recommendPrice"|i18next}}: {{1300000|currency:"VND"}}</p>
 
             <div [formGroup]="priceIterateFormGroup">
                 <div class="price__iterate-group">
                     <div>
                         <span class="day__title">
-                            Thứ 2
+                            {{"common.monday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="monday">
@@ -39,7 +43,7 @@
                     </div>
                     <div>
                         <span class="day__title">
-                            Thứ 3
+                            {{"common.tuesday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="tuesday">
@@ -48,7 +52,7 @@
                     </div>
                     <div>
                         <span class="day__title">
-                            Thứ 4
+                            {{"common.wednesday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="wednesday">
@@ -57,7 +61,7 @@
                     </div>
                     <div>
                         <span class="day__title">
-                            Thứ 5
+                            {{"common.thursday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="thursday">
@@ -66,7 +70,7 @@
                     </div>
                     <div>
                         <span class="day__title">
-                            Thứ 6
+                            {{"common.friday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="friday">
@@ -75,7 +79,7 @@
                     </div>
                     <div>
                         <span class="day__title">
-                            Thứ 7
+                            {{"common.saturday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="saturday">
@@ -84,7 +88,7 @@
                     </div>
                     <div>
                         <span class="day__title-last">
-                            Chủ nhật
+                            {{"common.sunday"|i18next}}
                         </span>
                         <mat-form-field appearance="outline">
                             <input matInput type="number" formControlName="sunday">
@@ -93,9 +97,10 @@
                     </div>
                 </div>
                 <div class="iterate__option-group">
-                    <p class="text-secondary">Không chọn nếu muốn chu kì lặp không giới hạn</p>
+                    <p class="text-secondary">{{"calendar.unlimitedIterationCycle"|i18next}}</p>
                     <div>
-                        <mat-checkbox formControlName="limitIterateTime">Giới hạn thời gian lặp lại</mat-checkbox>
+                        <mat-checkbox
+                            formControlName="limitIterateTime">{{'calendar.limitedIterationCycle'|i18next}}</mat-checkbox>
                     </div>
                     <mat-form-field appearance="outline" class="w-fit">
                         <input matInput type="datetime" formControlName="limitIterateDate">
@@ -104,7 +109,8 @@
             </div>
 
             <div class="btn__actions">
-                <button class="w-fit btn btn-primary" (click)="toggleShowModalPriceIterate()">Xác nhận</button>
+                <button class="w-fit btn btn-primary"
+                    (click)="toggleShowModalPriceIterate()">{{"common.confirm"|i18next}}</button>
             </div>
         </div>
 
@@ -116,33 +122,34 @@
         <!-- Modal content -->
         <div class="modal-content iterate">
             <span class="close" (click)="toggleShowModalTimeIterate()">&times;</span>
-            <h2 class="limit__timerange-header">Thiết lập thời gian cho thuê</h2>
+            <h2 class="limit__timerange-header">{{"calendar.customRepeatedBusy"|i18next}}</h2>
             <div class="d-flex-bo flex-wrap-bo limit__timerange-group" [formGroup]="limitTimeRangeFormGroup">
                 <div class="limit__timerange-col">
                     <p>
-                        Bắt đầu từ
+                        {{"calendar.startFrom"|i18next}}
                     </p>
                     <mat-form-field appearance="outline">
                         <mat-select formControlName="from">
-                            <mat-option value="0">Hiện tại</mat-option>
+                            <mat-option value="0">{{"calendar.present"|i18next}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="limit__timerange-col">
                     <p>
-                        Cho đến
+                        {{"calendar.endDate"|i18next}}
                     </p>
                     <mat-form-field appearance="outline">
                         <mat-select formControlName="to">
-                            <mat-option value="3">3 tháng tới ( khuyến nghị )</mat-option>
-                            <mat-option value="4">4 tháng tới</mat-option>
-                            <mat-option value="5">5 tháng tới</mat-option>
-                            <mat-option value="6">6 tháng tới</mat-option>
+                            <mat-option value="3">3 {{"calendar.upcomingMonths"|i18next}} (
+                                {{"calendar.recommend"|i18next}} )</mat-option>
+                            <mat-option value="4">4 {{"calendar.upcomingMonths"|i18next}}</mat-option>
+                            <mat-option value="5">5 {{"calendar.upcomingMonths"|i18next}}</mat-option>
+                            <mat-option value="6">6 {{"calendar.upcomingMonths"|i18next}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
             </div>
-            <button class="btn btn-primary limit__timerange-btn">Lưu thay đổi</button>
+            <button class="btn btn-primary limit__timerange-btn">{{"common.saveChanges"|i18next}}</button>
         </div>
 
     </div>
@@ -151,17 +158,19 @@
         <!-- Modal content -->
         <div class="modal-content iterate">
             <span class="close" (click)="toggleShowModalPriceByDate()">&times;</span>
-            <h2 class="limit__timerange-header text-center">Tùy chỉnh giá {{getDateInFormat(clickedDate)}}</h2>
+            <h2 class="limit__timerange-header text-center">{{"calendar.customDatePrice"|i18next}}
+                {{getDateInFormat(clickedDate)}}</h2>
 
-            <p class="text-secondary">Nhập giá tùy chỉnh cho ngày này. Nhập 0 nếu muốn dùng giá mặc định .</p>
+            <p class="text-secondary">{{"calendar.customRepeatedPriceSubTitle"|i18next}}</p>
 
             <div [formGroup]="priceByDateFormGroup" class="price__date-group">
                 <mat-form-field appearance="outline">
                     <input matInput type="number" formControlName="price" [min]="0" [max]="8000">
                 </mat-form-field>K
             </div>
-            <p class="text-secondary">Giá đề xuất 1300K</p>
-            <button class="btn btn-primary limit__timerange-btn w-fit" (click)="saveCustomPrice()">Xác nhận</button>
+            <p class="text-secondary">{{"calendar.recommendPrice"|i18next}} {{1300000|currency:"VND"}}</p>
+            <button class="btn btn-primary limit__timerange-btn w-fit"
+                (click)="saveCustomPrice()">{{"common.confirm"|i18next}}</button>
         </div>
 
     </div>
@@ -172,19 +181,19 @@
                 <!-- <li>Giá mặc định</li> -->
                 <li>
                     <i class="fa-solid fa-square cl-danger"></i>
-                    Ngày đã đặt
+                    {{"calendar.rentedDay"|i18next}}
                 </li>
                 <li>
                     <i class="fa-solid fa-square cl-waiting-1"></i>
-                    Chờ duyệt
+                    {{"calendar.pendingApproval"|i18next}}
                 </li>
                 <li>
                     <i class="fa-solid fa-square cl-gem"></i>
-                    Chờ bàn giao xe
+                    {{"calendar.pendingDelivery"|i18next}}
                 </li>
                 <li class="cl-gem">
                     <i class="fa-solid fa-square cl-price"></i>
-                    Giá tùy chỉnh
+                    {{"calendar.customPrice"|i18next}}
                 </li>
                 <!-- <li>
                     <i class="fa-solid fa-clock-rotate-left"></i>
@@ -229,15 +238,16 @@
                 pendingSize(day) }}</span>
             <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
         </div>
-        <p style="margin: 5px" *ngIf="day.events.length===0">Trống</p>
+        <p style="margin: 5px" *ngIf="day.events.length===0">{{"calendar.empty"|i18next}}</p>
         <p style="margin: 5px" *ngIf="day.badgeTotal> 0  && rentedSize(day)>0">{{
-            rentedSize(day)}} chuyến đang hoạt động</p>
+            rentedSize(day)}} {{"calendar.activeRental"|i18next}}</p>
         <p style="margin: 5px" *ngIf="day.badgeTotal> 0 && pendingSize(day)>0">{{
-            pendingSize(day) }} chuyến chờ duyệt</p>
+            pendingSize(day) }} {{"calendar.pendingApprovalRental"|i18next}}</p>
         <p style="margin: 5px" *ngIf="day.badgeTotal> 0  && acceptedSize(day)>0">{{acceptedSize(day)
-            }} chuyến chờ bàn giao xe</p>
-        <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">Bận</p>
-        <p style="margin: 5px" *ngIf="day.events.length>0&&hasCustomPrice(day)" class="cl-gem">Điều chỉnh giá :
+            }} {{"calendar.pendingDeliveryRental"|i18next}}</p>
+        <p style="margin: 5px" *ngIf="day.events.length>0 &&isBusy(day)">{{"common.busy"|i18next}}</p>
+        <p style="margin: 5px" *ngIf="day.events.length>0&&hasCustomPrice(day)" class="cl-gem">
+            {{"calendar.changedPrice"|i18next}} :
             {{getPriceTitle(day)}}</p>
     </ng-template>
 

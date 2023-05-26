@@ -11,6 +11,7 @@ import { WheelSvgComponent } from '../../svg-as-template/wheel-svg/wheel-svg.com
 import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 
 
@@ -27,10 +28,14 @@ import { CoreModule } from 'src/app/core/core.module';
     CustomerRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    I18NextModule
   ],
   exports: [
     CustomerHeaderComponent,
     CustomerFooterComponent,
+  ],
+  providers: [
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class CustomerLayoutModule { }

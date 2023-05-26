@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { debounceTime, distinctUntilChanged, lastValueFrom, timer } from 'rxjs';
+import { debounceTime, distinctUntilChanged, lastValueFrom } from 'rxjs';
+import { UserService } from 'src/app/customer/services/user.service';
 import { COLORS, DELIVERY_TO_TENANT, DISTANCE_LIMIT, DISTANCE_UNIT, FEATURE_DIRECT_LINK, MONEY_UNIT } from 'src/app/models/constance';
-import { RentalStatus, ServiceType } from 'src/app/models/enum';
+import { ServiceType } from 'src/app/models/enum';
 import { Color, Location, LocationResponse } from 'src/app/models/model';
 import { CarRegisterRequest, ExtraFeeRequest } from 'src/app/models/request/model';
 import { BrandResponse, CarModelResponse, DistrictResponse, FeatureResponse, ProvinceResponse, WardResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { UploadFileService } from '../../services/upload-file.service';
-import { MatDialog } from '@angular/material/dialog';
 import { RedirectDialogComponent } from './redirect-dialog/redirect-dialog.component';
-import { UserService } from 'src/app/customer/services/user.service';
-import { AuthService } from 'src/app/customer/services/auth.service';
+import { I18NextService } from 'angular-i18next';
 
 @Component({
   selector: 'app-register-form',
@@ -33,7 +32,18 @@ export class RegisterFormComponent {
   fetchedWards!: WardResponse[];
   fetchedLocation!: Location[];
   fetchedBrands: BrandResponse[] = [];
-  colors: Color[] = COLORS;
+  colors: Color[] = [
+    { "value": "WHITE", "name": this.i18nextService.t("colors.white")?.toString() || "" },
+    { "value": "BLACK", "name": this.i18nextService.t("colors.black")?.toString() || "" },
+    { "value": "NAVYBLUE", "name": this.i18nextService.t("colors.navyBlue")?.toString() || "" },
+    { "value": "SILVER", "name": this.i18nextService.t("colors.silver")?.toString() || "" },
+    { "value": "GRAY", "name": this.i18nextService.t("colors.gray")?.toString() || "" },
+    { "value": "RED", "name": this.i18nextService.t("colors.red")?.toString() || "" },
+    { "value": "GREEN", "name": this.i18nextService.t("colors.green")?.toString() || "" },
+    { "value": "BROWN", "name": this.i18nextService.t("colors.brown")?.toString() || "" },
+    { "value": "YELLOW", "name": this.i18nextService.t("colors.yellow")?.toString() || "" },
+    { "value": "TURQUOISE", "name": this.i18nextService.t("colors.turquoise")?.toString() || "" }
+  ];
   files: File[] = [];
   fetchedCarModels: CarModelResponse[] = [];
   fetchedCarFeatures: FeatureResponse[] = [];
@@ -44,7 +54,7 @@ export class RegisterFormComponent {
 
   constructor(private _formBuilder: FormBuilder, private carServices: CarOwnerService,
     private uploadService: UploadFileService, private toastService: ToastrService,
-    private _matDialog: MatDialog, private userService: UserService) {
+    private _matDialog: MatDialog, private userService: UserService, private i18nextService: I18NextService) {
     this.carSeatRange = [];
     this.carProduceYearRange = [];
     this.carFeatures = [];

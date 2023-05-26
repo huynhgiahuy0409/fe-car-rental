@@ -49,11 +49,11 @@
                                             </div>
                                             <div id="dropdownMenu" class="dropdown-menu" *ngIf="activeUserMenu">
                                                 <ul>
-                                                <li [routerLink]="i.path" *ngFor="let i of userMenus">
+                                                    <li [routerLink]="i.path" *ngFor="let i of userMenus">
                                                         <a>{{ i.label }}</a>
                                                     </li>
                                                     <li (click)="onClickSignOut()">
-                                                        <a>Đăng xuất</a>
+                                                        <a>{{'common.logout'|i18next}}</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -68,7 +68,7 @@
                                                 <div class="badge">9+</div>
                                             </div>
                                             <div class="dropdown-menu" *ngIf="activeNotification">
-                                                <div class="notify__header">Mới</div>
+                                                <div class="notify__header">{{'common.new'|i18next}}</div>
                                                 <ul>
                                                     <li>
                                                         <a routerLink="/car-owner/rental-listing/details/1">
@@ -151,14 +151,14 @@
                                     <a class="h-item__link">
                                         <button class="sign-up-btn" mat-button
                                             (click)="openLoginFormDialog('400ms', '200ms')">
-                                            Đăng nhập
+                                            {{'common.login'|i18next}}
                                         </button>
                                     </a>
                                 </div>
                                 <div class="h-item h-item--genstome-hover">
                                     <a routerLink="/sign-up" class="h-item__link">
                                         <button class="sign-up-btn" mat-stroked-button>
-                                            Đăng ký
+                                            {{'common.register'|i18next}}
                                         </button>
                                     </a>
                                 </div>
@@ -173,7 +173,7 @@
                                     <div class="wheel-svg-wrapper mr-r-5">
                                         <app-wheel-svg></app-wheel-svg>
                                     </div>
-                                    <span>Trở thành chủ xe</span>
+                                    <span>{{'cta.becomeOwner'|i18next}}</span>
                                 </a>
                             </div>
                         </div>

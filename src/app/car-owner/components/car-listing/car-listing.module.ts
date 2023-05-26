@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarListingComponent } from './car-listing.component';
-import { RouterModule, Routes } from '@angular/router';
-import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
+import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
+import { CarListingComponent } from './car-listing.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,11 @@ const routes: Routes = [
     MaterialAngularModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    I18NextModule
+  ],
+  providers: [
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class CarListingModule { }

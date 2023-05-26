@@ -10,6 +10,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarHeaderModule } from '../calendar-header/calendar-header.module';
 import { CarOwnerService } from '../../services/car-owner.service';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 
 @NgModule({
@@ -28,9 +29,11 @@ import { CarOwnerService } from '../../services/car-owner.service';
     }),
     FlatpickrModule.forRoot(),
     CalendarHeaderModule,
+    I18NextModule
   ],
   providers: [
-    CarOwnerService
+    CarOwnerService,
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class CarManagementModule { }

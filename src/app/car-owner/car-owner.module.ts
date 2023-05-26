@@ -6,6 +6,7 @@ import { CarOwnerRoutingModule } from './car-owner-routing.module';
 import { CarOwnerComponent } from './car-owner.component';
 import { CalendarHeaderModule } from './components/calendar-header/calendar-header.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CarOwnerRoutingModule,
     CustomerLayoutModule,
     CalendarHeaderModule,
+    I18NextModule
+  ],
+  providers: [
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class CarOwnerModule { }
