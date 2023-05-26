@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { I18NextService } from 'angular-i18next';
+import { Component, Inject } from '@angular/core';
+import { I18NEXT_SERVICE, I18NextService, ITranslationService } from 'angular-i18next';
 import { RedirectInfo } from 'src/app/models/model';
 
 
@@ -9,7 +9,8 @@ import { RedirectInfo } from 'src/app/models/model';
   styleUrls: ['./customer-footer.component.scss']
 })
 export class CustomerFooterComponent {
-  constructor(private i18nextService: I18NextService) {
+  constructor(private i18nextService: I18NextService,
+    @Inject(I18NEXT_SERVICE) private iTranslationService: ITranslationService) {
   }
   policies: RedirectInfo[] = [
     {
@@ -66,4 +67,27 @@ export class CustomerFooterComponent {
     },
   ]
 
+  language = 'vi';
+  languages: string[] = ['en', 'vi'];
+
+  ngOnInit() {
+    this.iTranslationService.events.initialized.subscribe((e) => {
+      if (e) {
+        this.updateState(this.iTranslationService.language);
+      }
+    });
+  }
+
+  changeLanguage(lang: string) {
+    if (lang !== this.iTranslationService.language) {
+      this.iTranslationService.changeLanguage(lang).then(x => {
+        this.updateState(lang);
+        document.location.reload();
+      });
+    }
+  }
+
+  private updateState(lang: string) {
+    this.language = lang;
+  }
 }

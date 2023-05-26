@@ -101,10 +101,11 @@
     "completedRental": "Completed rental",
     "unableToPerformActionBeforeEndDate": "Unable to perform action before end date",
     "expired": "Expired",
-    "failed": "Thất bại",
-    "orderBy": "Sắp xếp theo",
-    "latest": "Mới nhất",
-    "oldest": "Cũ nhất"
+    "failed": "Failed",
+    "orderBy": "Order by",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "language": "Language"
   },
   "colors": {
     "white": "White",
