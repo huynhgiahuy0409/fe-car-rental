@@ -3,23 +3,23 @@
     <div class="rental__details-stepper bg-white">
         <mat-stepper linear #stepper>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Kiểm tra thông tin</ng-template>
+                <ng-template matStepLabel>{{'rentalDetails.checkInformation'|i18next}}</ng-template>
             </mat-step>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Duyệt cho thuê</ng-template>
+                <ng-template matStepLabel>{{'rentalDetails.acceptRental'|i18next}}</ng-template>
             </mat-step>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Đang cho thuê</ng-template>
+                <ng-template matStepLabel>{{'rentalDetails.rentaling'|i18next}}</ng-template>
             </mat-step>
             <mat-step [editable]="false">
-                <ng-template matStepLabel>Hoàn thành đơn thuê</ng-template>
+                <ng-template matStepLabel>{{'rentalDetails.completeRental'|i18next}}</ng-template>
             </mat-step>
         </mat-stepper>
     </div>
 
     <div class="rental__details-warning" *ngIf="isPending()">
-        <p>Bạn cần duyệt yêu cầu đặt xe trước thời hạn, nếu không hệ thống sẽ tự động hủy chuyến.</p>
-        <p>Thời gian còn lại: {{timeLeft}}</p>
+        <p>{{'rentalDetails.acceptRentalWarning'|i18next}}</p>
+        <p>{{'rentalDetails.timeLeft'|i18next}}: {{timeLeft}}</p>
     </div>
 
     <div class="d-flex-bo flex-wrap-bo rental__details-content bg-white" *ngIf="rental_details">
@@ -39,28 +39,28 @@
                 <div class="d-flex-bo flex-wrap-bo">
                     <div>
                         <p>
-                            Bắt đầu: {{getFormattedDate(rental_details.startDate)}}
+                            {{'rentalDetails.startTime'|i18next}}: {{getFormattedDate(rental_details.startDate)}}
                         </p>
                     </div>
                     <div class="ml-auto">
                         <p>
-                            Kết thúc: {{getFormattedDate(rental_details.endDate)}}
+                            {{'rentalDetails.endTime'|i18next}}: {{getFormattedDate(rental_details.endDate)}}
                         </p>
                     </div>
                 </div>
             </div>
             <div class="rental__details-limit">
-                <h2>Giới hạn quãng đường</h2>
-                <p *ngIf="rental_details.distanceLimit < 1">Không giới hạn quãng đường</p>
+                <h2>{{'rentalDetails.limitDistance'|i18next}}</h2>
+                <p *ngIf="rental_details.distanceLimit < 1">{{'rentalDetails.unlimitedDistance'|i18next}}</p>
                 <p *ngIf="rental_details.distanceLimit > 1">{{rental_details.distanceLimit}} KM</p>
             </div>
         </div>
         <div class="rental__details-column">
             <div class="renter__information text-center">
                 <a routerLink="/">
-                    <img src="https://n1-cstg.mioto.vn/v6/p/m/avatars_notify/common.jpg" alt="">
+                    <img src="../../../../../../assets/images/common.jpg" alt="avatar">
                 </a>
-                <p>Khách thuê</p>
+                <p>{{'common.renter'|i18next}}</p>
                 <h4>{{rental_details.customerName}}</h4>
                 <span>
                     <!-- customer rating by owner -->
@@ -72,41 +72,42 @@
                     <!-- <i class="fa-solid fa-star text-secondary"></i> -->
                 </span>
             </div>
-            <h3 class="renter__phone-title">Số điện thoại</h3>
+            <h3 class="renter__phone-title">{{'common.phone'|i18next}}</h3>
             <p class="renter__phone" *ngIf="!gtAcceptedRental()">**********</p>
             <p class="renter__phone" *ngIf="gtAcceptedRental()" style="padding-bottom:10px;">
                 {{rental_details.customerPhone}}</p>
-            <p *ngIf="!gtAcceptedRental()">Số điện thoại liên hệ sẽ được hiển thị sau khi đồng ý yêu cầu cho thuê</p>
+            <p *ngIf="!gtAcceptedRental()">{{'rentalDetails.phoneTips'|i18next}}</p>
             <span>
-                <i [class]="'fa-solid fa-square cl-'+getStatusClassname(rental_details.status)"></i> Trạng thái:
+                <i [class]="'fa-solid fa-square cl-'+getStatusClassname(rental_details.status)"></i>
+                {{'common.status'|i18next}}:
                 {{getRentalStatus(rental_details.status)}}
             </span>
-            <p *ngIf="isAccepted()" style="padding-top:10px;">Vui lòng liên hệ với khách thuê qua số điện thoại để thực
-                hiện bàn giao xe</p>
+            <p *ngIf="isAccepted()" style="padding-top:10px;">{{'rentalDetails.contactTips'|i18next}}</p>
         </div>
         <div class="rental__details-column">
-            <h2>Bảng tính giá</h2>
+            <h2>{{'rentalDetails.priceTable'|i18next}}</h2>
             <div class="table__price">
                 <div class="d-flex-bo flex-wrap-bo table__row">
                     <div class="table__title">
-                        <p>Đơn giá thuê</p>
+                        <p>{{'rentalDetails.rentalPrice'|i18next}}</p>
                     </div>
                     <div class="table__data">
-                        {{formatMoney(rental_details.price)}} / ngày
+                        {{formatMoney(rental_details.price)}} / {{'common.day'|i18next}}
                     </div>
                 </div>
                 <div class="d-flex-bo flex-wrap-bo table__row">
                     <div class="table__title">
-                        <p>Tổng phí thuê xe</p>
+                        <p>{{'rentalDetails.totalRentalPrice'|i18next}}</p>
                     </div>
                     <div class="table__data">
                         {{formatMoney(rental_details.price)}} x
-                        <strong>{{calculateDateDiff(rental_details.startDate,rental_details.endDate)}} ngày</strong>
+                        <strong>{{calculateDateDiff(rental_details.startDate,rental_details.endDate)}}
+                            {{'common.day'|i18next}}</strong>
                     </div>
                 </div>
                 <div class="d-flex-bo flex-wrap-bo table__row">
                     <div class="table__title">
-                        <strong>Tổng cộng</strong>
+                        <strong>{{'common.total'|i18next}}</strong>
                     </div>
                     <div class="table__data">
                         <strong>{{formatMoney(calculateTotalPrice(calculateDateDiff(rental_details.startDate,rental_details.endDate),rental_details.price))}}</strong>
@@ -115,28 +116,28 @@
             </div>
 
             <div class="cancel__policy-container">
-                <h2>Chính sách hủy chuyến</h2>
+                <h2>{{'rentalDetails.cancellationPolicies'|i18next}}</h2>
 
                 <div class="cancel__policies">
                     <div class="cancel__policy">
-                        - Thời điểm hủy chuyến <strong>
-                            <=7 </strong> ngày trước khởi hành, phí hủy chuyến <strong>50%</strong> tiền đã trả.
+                        - {{"rentalDetails.cancellationDate"|i18next}} <strong>
+                            <=7 </strong> {{'rentalDetails.beforeDate'|i18next}} <strong>50%</strong> tiền đã trả.
                     </div>
                     <div class="cancel__policy">
-                        - Thời điểm hủy chuyến <strong>
+                        - {{"rentalDetails.cancellationDate"|i18next}} <strong>
                             >7
-                        </strong> ngày trước khởi hành, phí hủy chuyến
-                        <strong>0%</strong> tiền đã trả.
+                        </strong> {{'rentalDetails.beforeDate'|i18next}}
+                        <strong>0%</strong> {{'rentalDetails.paidMoney'|i18next}}.
                     </div>
-                    <p class="small-note">* Tất cả các trường hợp hủy chuyến trong vòng <strong>1 giờ</strong> kể từ
-                        thời điểm thuê
-                        thành công sẽ không áp dụng việc tính Phí hủy chuyến</p>
+                    <p class="small-note">* {{'rentalDetails.smallCancellationRentalNote'|i18next}} <strong>1
+                            {{'common.hours'|i18next}}</strong>
+                        {{'rentalDetails.secondSmallCancellationRentalNote'|i18next}}</p>
                 </div>
             </div>
         </div>
         <div class="rental__details-column pt-0">
             <div class="renter__money-col">
-                <p>TIỀN ĐÃ TRẢ</p>
+                <p style="text-transform: uppercase;">{{'rentalDetails.paidMoney'|i18next}}</p>
                 <p class="primary-text">
                     {{formatMoney(calculateTotalPrice(calculateDateDiff(rental_details.startDate,rental_details.endDate),rental_details.price))}}
                 </p>
@@ -144,20 +145,17 @@
         </div>
     </div>
     <div class="btn__actions" *ngIf="isPending()">
-        <button class="btn__decline" (click)="onDeclineRentalRequest()">Từ chối yêu cầu</button>
-        <button class="btn__accept" (click)="onAcceptRentalRequest()">Đồng ý yêu cầu</button>
+        <button class="btn__decline" (click)="onDeclineRentalRequest()">{{'common.rejectRequest'|i18next}}</button>
+        <button class="btn__accept" (click)="onAcceptRentalRequest()">{{'common.acceptRequest'|i18next}}</button>
     </div>
 
     <div class="section-footer w-fit" *ngIf="isAccepted()">
-        <button mat-raised-button color="primary" (click)="onConfirmDeliveredCarToRenter()" class="w-fit">Xác nhận đã
-            bàn giao
-            xe</button>
+        <button mat-raised-button color="primary" (click)="onConfirmDeliveredCarToRenter()"
+            class="w-fit">{{'rentalDetails.confirmDelivery'|i18next}}</button>
     </div>
     <div class="section-footer w-fit" *ngIf="isRented()"
-        [matTooltip]="'Không thể thực hiện trước thời hạn kết thúc đơn'">
+        [matTooltip]="isSoonerThanEndDate()?('common.unableToPerformActionBeforeEndDate'|i18next):''">
         <button (click)="onCompleteRental()" mat-raised-button color="primary" class="w-fit"
-            [disabled]="isSoonerThanEndDate()">Hoàn
-            thành đơn
-            thuê</button>
+            [disabled]="isSoonerThanEndDate()">{{'common.completedRental'|i18next}}</button>
     </div>
 </div>

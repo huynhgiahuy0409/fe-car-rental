@@ -5,6 +5,7 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { RentalDetailsRoutingModule } from './details-routing.module';
 import { RentalDetailsComponent } from './details.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 
 
@@ -18,7 +19,11 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     RentalDetailsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialAngularModule
+    MaterialAngularModule,
+    I18NextModule
+  ],
+  providers: [
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class RentalDetailsModule { }

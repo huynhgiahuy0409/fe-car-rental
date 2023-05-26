@@ -88,7 +88,20 @@
     "supportIntermunipical": "Hỗ trợ đi liên tỉnh",
     "carRentalTermsAndConditions": "Điều khoản thuê xe",
     "image": "Hình ảnh",
-    "complete": "Hoàn thành"
+    "complete": "Hoàn thành",
+    "seconds": "giây",
+    "renter": "Khách thuê",
+    "phone": "Số điện thoại",
+    "day": "ngày",
+    "hours": "giờ",
+    "total": "Tổng cộng",
+    "rejectRequest": "Từ chối yêu cầu",
+    "acceptRequest": "Đồng ý yêu cầu",
+    "confirmDelivery": "Xác nhận đã bàn giao xe",
+    "completedRental": "Hoàn thành đơn thuê",
+    "unableToPerformActionBeforeEndDate": "Không thể thực hiện trước thời hạn kết thúc đơn",
+    "expired": "Hết hạn",
+    "failed": "Thất bại"
   },
   "colors": {
     "white": "Trắng",
@@ -152,7 +165,8 @@
   },
   "message": {
     "logoutSuccess": "Đăng xuất thành công",
-    "noData": "Không có dữ liệu"
+    "noData": "Không có dữ liệu",
+    "registerCarSuccess": "Đăng ký xe mới thành công ! Tự động chuyển hướng sau"
   },
   "footer": {
     "introduction": "Giới thiệu về Car Rental",
@@ -219,7 +233,8 @@
     "requiredCity": "Vui lòng chọn tỉnh/ thành phố",
     "requiredDistrict": "Vui lòng chọn quận/ huyện",
     "requiredWard": "Vui lòng chọn phường/ xã",
-    "requiredStreet": "Vui lòng nhập đường"
+    "requiredStreet": "Vui lòng nhập đường",
+    "expiredRental": "Yêu cầu thuê xe đã hết hạn. Tự động chuyển hướng sau 3 giây"
   },
   "_home": {
     "popularSelfDrive": "ĐỊA ĐIỂM NỔI BẬT- XE TỰ LÁI",
@@ -239,6 +254,37 @@
     "route": "Lộ trình",
     "pickupInputLabel": "Nhập địa điểm đón cụ thể",
     "dropoffInputLabel": "Nhập địa điểm trả cụ thể"
+  },
+  "rentalDetails": {
+    "checkInformation": "Kiểm tra thông tin",
+    "acceptRental": "Duyệt cho thuê",
+    "rentaling": "Đang cho thuê",
+    "completeRental": "Hoàn thành đơn thuê",
+    "acceptRentalWarning": "Bạn cần duyệt yêu cầu đặt xe trước thời hạn, nếu không hệ thống sẽ tự động hủy chuyến.",
+    "timeLeft": "Thời gian còn lại",
+    "rentalTime": "Thời gian thuê xe",
+    "startTime": "Bắt đầu",
+    "endTime": "Kết thúc",
+    "limitDistance": "Giới hạn quãng đường",
+    "unlimitedDistance": "Không giới hạn quãng đường",
+    "phoneTips": "Số điện thoại liên hệ sẽ được hiển thị sau khi đồng ý yêu cầu cho thuê",
+    "contactTips": "Vui lòng liên hệ với khách thuê qua số điện thoại để thực hiện bàn giao xe",
+    "priceTable": "Bảng tính giá",
+    "rentalPrice": "Đơn giá thuê",
+    "totalRentalPrice": "Tổng phí thuê xe",
+    "cancellationPolicies": "Chính sách hủy chuyến",
+    "cancellationDate": "Thời điểm hủy chuyến",
+    "beforeDate": "ngày trước khởi hành, phí hủy chuyến",
+    "paidMoney": "tiền đã trả",
+    "smallCancellationRentalNote": "Tất cả các trường hợp hủy chuyến trong vòng",
+    "secondSmallCancellationRentalNote": "kể từ thời điểm thuê thành công sẽ không áp dụng việc tính Phí hủy chuyến",
+    "rejectRentalContentConfirmation": "Bạn có chắc chắn muốn từ chối cho thuê xe này ?",
+    "acceptRentalTitle": "Xác nhận cho thuê",
+    "acceptRentalConfirmation": "Bạn có chắc chắn muốn cho thuê xe này ?",
+    "confirmDelivery": "Xác nhận đã bàn giao xe cho khách thuê",
+    "confirmDeliveryContent": "Bạn có chắc chắn muốn xác nhận đã bàn giao xe cho khách thuê ?",
+    "confirmCompletedRental": "Xác nhận đã hoàn thành đơn thuê",
+    "confirmCompletedRentalContent": "Bạn có chắc chắn muốn xác nhận đã hoàn thành đơn thuê ?"
   },
   "_languages": {
     "vi": "Tiếng Việt",

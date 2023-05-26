@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { differenceInDays, differenceInMilliseconds, format, formatDuration, intervalToDuration } from 'date-fns';
 import vi from 'date-fns/locale/vi';
-import { interval, timer, takeUntil, takeWhile, skipWhile, take } from 'rxjs';
+import { interval, takeWhile, timer } from 'rxjs';
 import { CarOwnerService } from 'src/app/car-owner/services/car-owner.service';
 import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
@@ -13,7 +13,7 @@ import { RentalStatus, RentalStatusVie } from 'src/app/models/enum';
 import { RentalDetailsResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { MatStepper } from '@angular/material/stepper';
+import { I18NextService } from 'angular-i18next';
 
 @Component({
   selector: 'app-details',
@@ -25,7 +25,8 @@ export class RentalDetailsComponent {
     private route: ActivatedRoute,
     private service: CarOwnerService,
     private _messageDialogService: MessageDialogService,
-    private _matDialog: MatDialog) { }
+    private _matDialog: MatDialog,
+    private i18nextService: I18NextService) { }
 
   rental_id!: number;
   duration: any;
@@ -83,10 +84,10 @@ export class RentalDetailsComponent {
             this.timeLeft = formatDuration(duration, { locale: vi, delimiter: " , " });
 
             if (diffInMs <= 0) {
-              this.timeLeft = 'Hết hạn';
+              this.timeLeft = this.i18nextService.t("common.expired")?.toString() || "";
               let dataDialog = {
-                title: 'Thất bại',
-                message: "Yêu cầu thuê xe đã hết hạn. Tự động chuyển hướng sau 3 giây",
+                title: this.i18nextService.t("common.failed"),
+                message: this.i18nextService.t("error.expiredRental"),
               };
               this._messageDialogService.openMessageDialog(
                 MessageDialogComponent,
@@ -164,6 +165,8 @@ export class RentalDetailsComponent {
   }
 
   isSoonerThanEndDate() {
+    console.log(this.rental_details.endDate > new Date().getTime());
+
     return this.rental_details.endDate > new Date().getTime();
   }
 
@@ -174,8 +177,8 @@ export class RentalDetailsComponent {
       data: {
         rental: this.rental_details,
         dialog: {
-          title: "Từ chối cho thuê",
-          content: "Bạn có chắc chắn muốn từ chối cho thuê xe này ?",
+          title: this.i18nextService.t("common.rejectRequest"),
+          content: this.i18nextService.t("rentalDetails.rejectRentalContentConfirmation"),
           type: "reject"
         }
       },
@@ -194,8 +197,8 @@ export class RentalDetailsComponent {
       data: {
         rental: this.rental_details,
         dialog: {
-          title: "Xác nhận cho thuê",
-          content: "Bạn có chắc chắn muốn cho thuê xe này ?",
+          title: this.i18nextService.t("rentalDetails.acceptRentalTitle"),
+          content: this.i18nextService.t("rentalDetails.acceptRentalConfirmation"),
           type: "accept"
         }
       },
@@ -214,8 +217,8 @@ export class RentalDetailsComponent {
       data: {
         rental: this.rental_details,
         dialog: {
-          title: "Xác nhận đã bàn giao xe cho khách thuê",
-          content: "Bạn có chắc chắn muốn xác nhận đã bàn giao xe cho khách thuê ?",
+          title: this.i18nextService.t("rentalDetails.confirmDelivery"),
+          content: this.i18nextService.t("rentalDetails.confirmDeliveryContent"),
           type: "delivered"
         }
       },
@@ -234,9 +237,9 @@ export class RentalDetailsComponent {
       data: {
         rental: this.rental_details,
         dialog: {
-          title: "Xác nhận đã hoàn thành đơn thuê",
-          content: "Bạn có chắc chắn muốn xác nhận đã hoàn thành đơn thuê ?",
-          type: "delivered"
+          title: this.i18nextService.t("rentalDetails.confirmCompletedRental"),
+          content: this.i18nextService.t("rentalDetails.confirmCompletedRentalContent"),
+          type: "complete"
         }
       },
     });
