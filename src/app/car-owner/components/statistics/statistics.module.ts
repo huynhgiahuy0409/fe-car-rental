@@ -5,6 +5,7 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CarOwnerService } from '../../services/car-owner.service';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 const routes: Routes = [
   {
@@ -19,10 +20,12 @@ const routes: Routes = [
     MaterialAngularModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    I18NextModule
   ],
   providers: [
-    CarOwnerService
+    CarOwnerService,
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class StatisticsModule { }

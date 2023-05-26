@@ -7,6 +7,7 @@ import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { endOfMonth, startOfMonth } from 'date-fns';
 import { CarOwnerChartDataRequest } from 'src/app/models/request/model';
 import { UserService } from 'src/app/customer/services/user.service';
+import { I18NextService } from 'angular-i18next';
 
 @Component({
   selector: 'app-statistics',
@@ -29,7 +30,7 @@ export class StatisticsComponent {
   };
 
 
-  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService, private userService: UserService) {
+  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService, private userService: UserService, private i18nextService: I18NextService) {
   }
 
   ngOnInit(): void {
@@ -103,7 +104,7 @@ export class StatisticsComponent {
         labels: res.map(item => item.month + "/" + item.year),
         datasets: [
           {
-            label: option === 0 ? "Doanh thu" : "Tổng số chuyến",
+            label: option === 0 ? this.i18nextService.t("statistics.revenue") : this.i18nextService.t("statistics.totalRental"),
             data: res.map(item => item.value),
           }
         ]

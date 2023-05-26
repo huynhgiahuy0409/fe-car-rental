@@ -101,7 +101,10 @@
     "completedRental": "Hoàn thành đơn thuê",
     "unableToPerformActionBeforeEndDate": "Không thể thực hiện trước thời hạn kết thúc đơn",
     "expired": "Hết hạn",
-    "failed": "Thất bại"
+    "failed": "Thất bại",
+    "orderBy": "Sắp xếp theo",
+    "latest": "Mới nhất",
+    "oldest": "Cũ nhất"
   },
   "colors": {
     "white": "Trắng",
@@ -285,6 +288,24 @@
     "confirmDeliveryContent": "Bạn có chắc chắn muốn xác nhận đã bàn giao xe cho khách thuê ?",
     "confirmCompletedRental": "Xác nhận đã hoàn thành đơn thuê",
     "confirmCompletedRentalContent": "Bạn có chắc chắn muốn xác nhận đã hoàn thành đơn thuê ?"
+  },
+  "rentalListing": {
+    "listing": "Danh sách chuyến cho thuê"
+  },
+  "statistics": {
+    "title": "Thống kê",
+    "avgRating": "Mức đánh giá",
+    "acceptedRentalRating": "Tỉ lệ chấp nhận",
+    "cancelledRentalRating": "Tỉ lệ hủy chuyến",
+    "totalRevenue": "Tổng doanh thu",
+    "totalRental": "Tổng số chuyến",
+    "totalCar": "Tổng số xe",
+    "category": "Danh mục",
+    "revenue": "Doanh thu",
+    "rental": "Số chuyến",
+    "fromDate": "Từ",
+    "toDate": "Đến",
+    "view": "Xem"
   },
   "_languages": {
     "vi": "Tiếng Việt",
