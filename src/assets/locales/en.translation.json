@@ -105,9 +105,7 @@
     "orderBy": "Order by",
     "latest": "Latest",
     "oldest": "Oldest",
-    "language": "Language",
-    "backToHome": "Back to home",
-    "understand": "Understand"
+    "language": "Language"
   },
   "colors": {
     "white": "White",
@@ -194,8 +192,7 @@
     "forRentCtaContent": "Register to become our partner now for the opportunity to earn additional monthly income.",
     "findOutNow": "Find out now",
     "registerCar": "Register car",
-    "registerSelfDrive": "Register as self drive car",
-    "loginNow": "Login now !"
+    "registerSelfDrive": "Register as self drive car"
   },
   "contract": {
     "chooseContract": "Choose contract type to download",
@@ -312,8 +309,43 @@
     "view": "View"
   },
   "search": {
-    "addressUrbanPlaceholder": "Enter a specific address",
-    "travelInCity": "Travel in city"
+    "addressUrbanPlaceholder": "Enter specific address",
+    "addressPlaceholder": "Enter your address",
+    "travelInCity": "Travel in city",
+    "title": "Search",
+    "roadmap": "Roadmap",
+    "travelOutsideCity": "Travel outside city, two-way trip",
+    "optimize": "Optimize",
+    "lowestPrice": "Lowest price",
+    "highestPrice": "Highest price",
+    "mostRated": "Most rated",
+    "price": "Price",
+    "carType": "Car type",
+    "brand": "Brand",
+    "car": "Car",
+    "discount": "Discount",
+    "basic": "Basic",
+    "advanced": "Advanced",
+    "clearAllFilter": "Clear all filter",
+    "noResult": "No result found",
+    "rental": "rental",
+    "freeDeliveryFee": "Free delivery fee",
+    "from": "From",
+    "to": "to",
+    "seat": "seat",
+    "lessThan": "Less than",
+    "less": "less",
+    "any": "Any",
+    "moreThan": "More than",
+    "before": "Before",
+    "after": "After",
+    "litre": "Litre",
+    "unlimited": "Unlimited",
+    "day": "day",
+    "free": "Free",
+    "fromLessThan": "From less than",
+    "AUTOMATIC": "Automatic",
+    "MANUAL": "Manual"
   },
   "_languages": {
     "vi": "Tiếng Việt",

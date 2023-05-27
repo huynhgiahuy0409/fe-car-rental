@@ -15,6 +15,7 @@ import { RouteCatchService } from '../../route-catch.service';
 import { SearchCarService } from '../../services/search-car.service';
 import { CarDetailComponent } from '../car/car-detail/car-detail.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { I18NextService } from 'angular-i18next';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -90,7 +91,8 @@ export class SearchResultComponent implements OnDestroy {
     private matDialog: MatDialog,
     private location: Location,
     private searchService: SearchCarService,
-    private carService: CarOwnerService
+    private carService: CarOwnerService,
+    private i18nextService: I18NextService
   ) { }
 
   searchBarFormGroup = this.formBuilder.group({
@@ -307,13 +309,13 @@ export class SearchResultComponent implements OnDestroy {
     const min = Number(this.searchOptionsFormGroup.value.minSeats);
     const max = Number(this.searchOptionsFormGroup.value.maxSeats);
     if (min > 2 && max < 10) {
-      return `Từ ${min} - ${max} chỗ`;
+      return `${this.i18nextService.t("search.from")} ${min} - ${max} ${this.i18nextService.t("search.seat")}`;
     } else if (min === 2 && max < 10) {
-      return `Dưới ${max}`;
+      return `${this.i18nextService.t("search.lessThan")} ${max}`;
     } else if (min === 2 && max > 9) {
-      return 'Bất kỳ';
+      return this.i18nextService.t("search.any");
     } else if (min > 2 && max > 9) {
-      return `Trên ${min}`;
+      return `${this.i18nextService.t("search.moreThan")} ${min}`;
     }
     return '';
   }
@@ -322,13 +324,13 @@ export class SearchResultComponent implements OnDestroy {
     const min = Number(this.searchOptionsFormGroup.value.minYears);
     const max = Number(this.searchOptionsFormGroup.value.maxYears);
     if (min > 2005 && max < this.todayDate.getFullYear()) {
-      return `Từ ${min} đến ${max}`;
+      return `${this.i18nextService.t("search.from")} ${min} ${this.i18nextService.t("search.to")} ${max}`;
     } else if (min === 2005 && max < this.todayDate.getFullYear()) {
-      return `Trước ${max}`;
+      return `${this.i18nextService.t("search.before")} ${max}`;
     } else if (min === 2005 && max > this.todayDate.getFullYear() - 1) {
-      return 'Bất kỳ';
+      return this.i18nextService.t("search.any");
     } else if (min > 2005 && max > this.todayDate.getFullYear() - 1) {
-      return `Sau ${min}`;
+      return `${this.i18nextService.t("search.after")} ${min}`;
     }
     return '';
   }
@@ -338,9 +340,9 @@ export class SearchResultComponent implements OnDestroy {
       this.searchOptionsFormGroup.value.fuelConsumption
     );
     if (fuelConsumption === 0) {
-      return 'Bất kỳ';
+      return this.i18nextService.t("search.any");
     } else {
-      return `Từ dưới ${fuelConsumption}L/100km`;
+      return `${this.i18nextService.t("search.from")} ${this.i18nextService.t("search.less")} ${fuelConsumption}${this.i18nextService.t("search.litre")}/100km`;
     }
   }
 
@@ -349,11 +351,11 @@ export class SearchResultComponent implements OnDestroy {
       this.searchOptionsFormGroup.value.limitDistance
     );
     if (limitDistance === 0) {
-      return "Không giới hạn";
+      return this.i18nextService.t("search.unlimited");
     } else if (limitDistance < 551) {
-      return `Trên ${limitDistance}km/ngày`;
+      return `${this.i18nextService.t("search.moreThan")} ${limitDistance}km/${this.i18nextService.t("search.day")}`;
     } else {
-      return 'Bất kỳ';
+      return this.i18nextService.t("search.any");
     }
   }
 
@@ -364,9 +366,9 @@ export class SearchResultComponent implements OnDestroy {
     if (limitDistanceFee === 0) {
       return 'Miễn phí';
     } else if (limitDistanceFee < 5001) {
-      return `Từ dưới ${limitDistanceFee}đ/km`;
+      return `${this.i18nextService.t("search.fromLessThan")} ${limitDistanceFee}đ/km`;
     } else {
-      return 'Bất kỳ';
+      return this.i18nextService.t("search.any");
     }
   }
 
@@ -489,16 +491,15 @@ export class SearchResultComponent implements OnDestroy {
     } else if (distanceLimit === 0) {
       data.distanceLimit = "noDistanceLimit";
     }
-
     let minSeats = this.searchOptionsFormGroup.value.minSeats;
     let maxSeats = this.searchOptionsFormGroup.value.maxSeats;
     let seatRangeTitle = this.getSeatRangeTitle();
-    if (seatRangeTitle !== "Bất kỳ") {
+    if (seatRangeTitle !== this.i18nextService.t("search.any")) {
       let finalSeats = "";
 
-      if (seatRangeTitle.includes("Dưới")) {
+      if (seatRangeTitle?.includes(this.i18nextService.t("search.lessThan") || "Dưới")) {
         finalSeats = "<" + maxSeats;
-      } else if (seatRangeTitle.includes("Trên")) {
+      } else if (seatRangeTitle?.includes(this.i18nextService.t("search.from") || "Trên")) {
         finalSeats = ">" + minSeats;
       } else {
         finalSeats = minSeats + "-" + maxSeats;
@@ -509,12 +510,12 @@ export class SearchResultComponent implements OnDestroy {
     let minYears = this.searchOptionsFormGroup.value.minYears;
     let maxYears = this.searchOptionsFormGroup.value.maxYears;
     let yearRangeTitle = this.getYearRangeTitle();
-    if (yearRangeTitle !== "Bất kỳ") {
+    if (yearRangeTitle !== this.i18nextService.t("search.any")) {
       let finalYears = "";
 
-      if (yearRangeTitle.includes("Trước")) {
+      if (yearRangeTitle?.includes(this.i18nextService.t("search.before") || "Trước")) {
         finalYears = "<" + maxYears;
-      } else if (yearRangeTitle.includes("Sau")) {
+      } else if (yearRangeTitle?.includes(this.i18nextService.t("search.after") || "Sau")) {
         finalYears = ">" + minYears;
       } else {
         finalYears = minYears + "-" + maxYears;
@@ -601,7 +602,8 @@ export class SearchResultComponent implements OnDestroy {
   }
 
   getTransmissionName(transmission: string) {
-    return TRANSMISSIONS.find(item => item.value === transmission)?.name;
+    const key = "search." + transmission;
+    return this.i18nextService.t(key);
   }
 
   toNumber(str: any) {

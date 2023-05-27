@@ -122,7 +122,8 @@
                                                     </div>
                                                     <div class="col l-6">
                                                         <mat-form-field appearance="fill" style="width: 100%">
-                                                            <mat-label>{{'_banner.chooseDayLabel'|i18next}} </mat-label>
+                                                            <mat-label>{{'_banner.chooseHourLabel'|i18next}}
+                                                            </mat-label>
                                                             <mat-select formControlName="endHour" required>
                                                                 <mat-option *ngFor="let hr of hrs" [value]="hr">
                                                                     {{ hr }}

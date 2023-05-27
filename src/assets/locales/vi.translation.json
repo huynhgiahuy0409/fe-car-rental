@@ -259,9 +259,7 @@
     "findCarButton": "Tìm xe ngay",
     "rentHours": "Số giờ thuê",
     "route": "Lộ trình",
-    "pickupInputLabel": "
-    "search":{},
- đón cụ thể",
+    "pickupInputLabel": "Nhập địa điểm đón cụ thể",
     "dropoffInputLabel": "Nhập địa điểm trả cụ thể"
   },
   "rentalDetails": {
@@ -313,9 +311,44 @@
     "toDate": "Đến",
     "view": "Xem"
   },
-  "search":{
-    "addressUrbanPlaceholder":"Nhập địa điểm cụ thể",
-    "travelInCity":"Di chuyển trong thành phố"
+  "search": {
+    "addressUrbanPlaceholder": "Nhập địa điểm cụ thể",
+    "addressPlaceholder": "Nhập địa chỉ muốn tìm kiếm",
+    "travelInCity": "Di chuyển trong thành phố",
+    "title": "Tìm kiếm",
+    "roadmap": "Lộ trình",
+    "travelOutsideCity": "Di chuyển ngoài thành phố, hành trình hai chiều",
+    "optimize": "Tối ưu",
+    "lowestPrice": "Giá thấp nhất",
+    "highestPrice": "Giá cao nhất",
+    "mostRated": "Đánh giá tốt nhất",
+    "any": "Bất kỳ",
+    "price": "Mức giá",
+    "carType": "Loại xe",
+    "brand": "Hãng xe",
+    "car": "xe",
+    "discount": "Xe giảm giá",
+    "basic": "Cơ bản",
+    "advanced": "Nâng cao",
+    "clearAllFilter": "Bỏ lọc",
+    "noResult": "Không tìm thấy xe nào.",
+    "rental": "chuyến",
+    "freeDeliveryFee": "Miễn phí giao xe",
+    "from": "Từ",
+    "to": "đến",
+    "seat": "chỗ",
+    "lessThan": "Dưới",
+    "less": "dưới",
+    "moreThan": "Trên",
+    "before": "Trước",
+    "after": "Sau",
+    "litre": "L",
+    "unlimited": "Không giới hạn",
+    "day": "ngày",
+    "free": "Miễn phí",
+    "fromLessThan": "Từ dưới",
+    "AUTOMATIC": "Tự động",
+    "MANUAL": "Số sàn"
   },
   "_languages": {
     "vi": "Tiếng Việt",
