@@ -31,19 +31,19 @@ export class StatisticsComponent {
 
 
   constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService, private userService: UserService, private i18nextService: I18NextService) {
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
   }
 
   ngOnInit(): void {
     this.createChart();
     //test user only
-    this.carOwnerService.getAllStatByOwner("hieu").subscribe(res => {
+    this.carOwnerService.getAllStatByOwner(this.username).subscribe(res => {
       this.stats_information = res;
     });
     this.fetchData();
 
-    this.userService.user$.subscribe(v => {
-      this.username = (v?.username!);
-    });
   }
 
   createChart() {
@@ -92,8 +92,7 @@ export class StatisticsComponent {
   fetchData() {
     const option = Number(this.dateRangeFormGroup.get('option')?.value);
     const request: CarOwnerChartDataRequest = {
-      username: "hieu", // test only
-      // username: this.username,
+      username: this.username, // test only
       startDate: Number(this.dateRangeFormGroup.value.fromDate?.getTime()),
       endDate: Number(this.dateRangeFormGroup.value.toDate?.getTime()),
       category: option

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarOwnerComponent } from './car-owner.component';
 import { AuthGuard } from '../helper/auth.guard';
+import { CarOwnerComponent } from './car-owner.component';
 
 const routes: Routes = [
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
         path: "rental-listing", loadChildren: () => import('./components/rental/rental.module').then(m => m.RentalModule)
       }
     ],
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
 ];
 

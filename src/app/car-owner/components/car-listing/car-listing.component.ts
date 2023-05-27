@@ -5,6 +5,7 @@ import { RegisteredCarResponse } from 'src/app/models/response/model';
 import { CarStatus } from 'src/app/models/enum';
 import { CAR_IMG } from 'src/app/models/constance';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
+import { UserService } from 'src/app/customer/services/user.service';
 
 @Component({
   selector: 'app-car-listing',
@@ -12,7 +13,11 @@ import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
   styleUrls: ['./car-listing.component.scss']
 })
 export class CarListingComponent {
-  constructor(private _formBuilder: FormBuilder, private carService: CarOwnerService) {
+  username!: string;
+  constructor(private _formBuilder: FormBuilder, private carService: CarOwnerService, private userService: UserService) {
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
   }
 
   readonly BASE_IMG: string = CAR_IMG;
@@ -26,7 +31,7 @@ export class CarListingComponent {
 
   ngOnInit(): void {
     //test user only
-    this.carService.getAllRegisteredCar("hieu").subscribe(
+    this.carService.getAllRegisteredCar(this.username).subscribe(
       (data) => {
         console.log(data);
         this.registeredCarList = data;

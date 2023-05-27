@@ -7,6 +7,7 @@ import { RentalDetailsResponse } from 'src/app/models/response/model';
 import { RentalDetailsComponent } from '../details.component';
 import { tap, catchError } from 'rxjs';
 import { MessageDialogComponent } from 'src/app/message-dialog/message-dialog.component';
+import { UserService } from 'src/app/customer/services/user.service';
 
 interface DialogData {
   title: string;
@@ -22,14 +23,18 @@ interface DialogData {
 export class ConfirmationDialogComponent {
   rental!: RentalDetailsResponse;
   dialog_data!: DialogData;
+  username!: string;
 
   constructor(private _progressSpinnerService: ProgressSpinnerService,
     private _messageDialogService: MessageDialogService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private matDialogRef: MatDialogRef<RentalDetailsComponent>,
-    private carOwnerService: CarOwnerService) {
+    private carOwnerService: CarOwnerService, private userService: UserService) {
     this.rental = data.rental;
     this.dialog_data = data.dialog;
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
   }
 
   onCancelAction() {
@@ -55,7 +60,7 @@ export class ConfirmationDialogComponent {
 
   acceptRental() {
     this._progressSpinnerService.next(true);               //test user
-    this.carOwnerService.acceptRental(this.rental.id, "hieu")
+    this.carOwnerService.acceptRental(this.rental.id, this.username)
       .pipe(
         tap((res) => {
           this._progressSpinnerService.next(false);
@@ -104,7 +109,7 @@ export class ConfirmationDialogComponent {
 
   rejectRental() {
     this._progressSpinnerService.next(true);               //test user
-    this.carOwnerService.rejectRental(this.rental.id, "hieu")
+    this.carOwnerService.rejectRental(this.rental.id, this.username)
       .pipe(
         tap((res) => {
           this._progressSpinnerService.next(false);
@@ -153,7 +158,7 @@ export class ConfirmationDialogComponent {
 
   completeRental() {
     this._progressSpinnerService.next(true);               //test user
-    this.carOwnerService.completeRental(this.rental.id, "hieu")
+    this.carOwnerService.completeRental(this.rental.id, this.username)
       .pipe(
         tap((res) => {
           this._progressSpinnerService.next(false);
@@ -202,7 +207,7 @@ export class ConfirmationDialogComponent {
 
   confirmDeliveredCarToRenter() {
     this._progressSpinnerService.next(true);               //test user
-    this.carOwnerService.confirmDeliveredCarToRenter(this.rental.id, "hieu")
+    this.carOwnerService.confirmDeliveredCarToRenter(this.rental.id, this.username)
       .pipe(
         tap((res) => {
           this._progressSpinnerService.next(false);

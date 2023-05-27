@@ -15,6 +15,7 @@ import { isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
+import { UserService } from 'src/app/customer/services/user.service';
 
 
 registerLocaleData(localeVietnam);
@@ -46,7 +47,12 @@ const colors: Record<string, EventColor> = {
   ],
 })
 export class CalendarsComponent {
-  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService) { }
+  username!: string;
+  constructor(private _formBuilder: FormBuilder, private carOwnerService: CarOwnerService, private userService: UserService) {
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
+  }
 
   sortedByFormGroup = this._formBuilder.group({
     sortedBy: ['0'],
@@ -63,7 +69,7 @@ export class CalendarsComponent {
 
   ngOnInit(): void {
     //test user only
-    this.carOwnerService.getAllCalendar("hieu").subscribe(res => {
+    this.carOwnerService.getAllCalendar(this.username).subscribe(res => {
       res.forEach(i => {
         this.events.push({
           start: new Date(i.startDate),

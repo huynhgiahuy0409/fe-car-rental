@@ -22,6 +22,7 @@ import { DeleteCustomRequest, RepeatedCalendarRequest } from 'src/app/models/req
 import { CarCalendarResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { CarOwnerService } from '../../services/car-owner.service';
+import { UserService } from 'src/app/customer/services/user.service';
 
 registerLocaleData(localeVietnam);
 const colors: Record<string, EventColor> = {
@@ -62,9 +63,13 @@ export class CarManagementComponent {
   car_id: number;
 
   calendar_list: CarCalendarResponse[] = [];
+  username!: string;
 
-  constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute, private carOwnerService: CarOwnerService, private toastrService: ToastrService) {
+  constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute, private carOwnerService: CarOwnerService, private toastrService: ToastrService, private userService: UserService) {
     this.car_id = Number(this.route.snapshot.paramMap.get('id'));
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
   }
 
   optionControl = new FormControl('0' as FloatLabelType);
@@ -131,7 +136,7 @@ export class CarManagementComponent {
   getCarCalendar() {
     //test user only
     this.events = [];
-    this.carOwnerService.getCarCalendar("hieu", this.car_id).subscribe(res => {
+    this.carOwnerService.getCarCalendar(this.username, this.car_id).subscribe(res => {
       console.log(res);
       // this.calendar_list = res;
       res.forEach((i) => {
@@ -149,7 +154,7 @@ export class CarManagementComponent {
 
   getCarRentalCalendar() {
     //test user only
-    this.carOwnerService.getRentalCalendarByCarOwner(this.car_id, "hieu").subscribe({
+    this.carOwnerService.getRentalCalendarByCarOwner(this.car_id, this.username).subscribe({
       next: (res) => {
         res.forEach(i => {
           this.rental_events.push({
@@ -169,7 +174,7 @@ export class CarManagementComponent {
   getCarBusyCalendar() {
     this.busy_events = [];
     //test user only
-    this.carOwnerService.getCarBusyCalendar("hieu", this.car_id).subscribe({
+    this.carOwnerService.getCarBusyCalendar(this.username, this.car_id).subscribe({
       next: (res) => {
         res.forEach((i) => {
           this.busy_events.push({
