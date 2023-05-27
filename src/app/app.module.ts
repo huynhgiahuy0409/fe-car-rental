@@ -18,7 +18,6 @@ import {
 } from './material-angular/material-angular.module';
 import { MessageDialogComponent } from './message-dialog/message-dialog.component';
 
-
 export function appInit(i18next: ITranslationService) {
   return () =>
     i18next

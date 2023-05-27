@@ -6,6 +6,7 @@ import { MaterialAngularModule } from 'src/app/material-angular/material-angular
 import { RentalListingComponent } from './rental-listing.component';
 import { CarOwnerService } from 'src/app/car-owner/services/car-owner.service';
 import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
+import { LazyImgDirective } from 'src/app/shared/directive/lazy-loading-img.directive';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     RentalListingComponent,
+    LazyImgDirective
   ],
   imports: [
     CommonModule,
