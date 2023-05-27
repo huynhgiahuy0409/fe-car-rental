@@ -12,6 +12,7 @@ import { ModuleDetailComponent } from './module-detail/module-detail.component';
 import { ModuleDealComponent } from './module-deal/module-deal.component';
 import { CoverComponent } from './cover/cover.component';
 import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module';
+import { RatingItemComponent } from './rating-item/rating-item.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CustomerRoutingModule } from 'src/app/customer/customer-routing.module'
     BookingConfirmComponent,
     ModuleDetailComponent,
     ModuleDealComponent,
-    CoverComponent
+    CoverComponent,
+    RatingItemComponent
   ],
   imports: [
     CommonModule,

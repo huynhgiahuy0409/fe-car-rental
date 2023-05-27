@@ -50,4 +50,11 @@ export class TimerUtilService {
       });
     }
   }
+  formatDuration(milliseconds: number) {
+    const hours = Math.floor(milliseconds / (1000 * 60 * 60));
+    const minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    return `${formattedHours}:${formattedMinutes}`;
+  }
 }

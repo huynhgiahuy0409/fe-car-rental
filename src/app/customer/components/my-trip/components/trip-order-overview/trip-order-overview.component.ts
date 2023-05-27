@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RentalCarResponse } from 'src/app/models/response/model';
 export interface PurchaseOrderOverview{
   ownerName: string,
   carName: string,
@@ -22,7 +23,11 @@ export interface PurchaseOrderOverview{
   templateUrl: './trip-order-overview.component.html',
   styleUrls: ['./trip-order-overview.component.scss']
 })
-export class TripOrderOverviewComponent {
+export class TripOrderOverviewComponent implements OnInit {
   @Input()
-  purchaseOrderOverview!: PurchaseOrderOverview
+  rentalCar!: RentalCarResponse
+  ngOnInit(): void {
+    let {car} = this.rentalCar
+  }
+
 }

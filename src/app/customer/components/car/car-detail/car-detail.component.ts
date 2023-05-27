@@ -1,5 +1,12 @@
 import { SD_MODE, WD_MODE } from './../../../../models/constance';
-import { AfterViewInit, Component, Inject, Input, OnInit, Optional } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  Optional,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -12,8 +19,13 @@ import { PromoEditComponent } from './dialog/promo-edit/promo-edit.component';
 import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confirm.component';
 import { Location } from '@angular/common';
 import { RouteCatchService } from 'src/app/customer/route-catch.service';
-import { CarDTO } from 'src/app/models/model';
-import { Observable } from 'rxjs';
+import { CarDTO, UserDTO } from 'src/app/models/model';
+import { Observable, map } from 'rxjs';
+import { CarService } from 'src/app/services/car.service';
+import { CarResponse } from 'src/app/models/response/model';
+import { UserService } from 'src/app/customer/services/user.service';
+import { CustomerLoginDialogComponent } from '../../auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
+import { FavCarService } from 'src/app/services/fav-car.service';
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
@@ -21,56 +33,82 @@ import { Observable } from 'rxjs';
 })
 export class CarDetailComponent implements OnInit, AfterViewInit {
   @Input()
-  car$!: Observable<CarDTO>
-  car!: CarDTO
+  car$!: Observable<CarResponse>;
   @Input()
   rentalMode!: 'sd' | 'wd';
   formType!: 'sd' | 'wd';
   isFavoriteCar: boolean = false;
   startAndReturnHrOptions: any;
   rentalHrOptions!: RentalHourOption[];
+  sdFormGroup!: FormGroup
   /*  */
   carBookingFG!: FormGroup;
+  curDate = new Date()
   constructor(
-    private timerUtilService: TimerUtilService,
+    public timerUtilService: TimerUtilService,
     private matDialog: MatDialog,
-    private __fb: FormBuilder,
+    private _fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private location: Location,
     private routeCatchService: RouteCatchService,
     private route: ActivatedRoute,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
+    private _userSerivice: UserService,
+    private _favCarService: FavCarService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    private carService: CarService
   ) {
     this.startAndReturnHrOptions =
-      this.timerUtilService.startAndReturnHrOptions;
-    this.carBookingFG = this.__fb.group({
+      timerUtilService.startAndReturnHrOptions;
+    
+    
+    this.carBookingFG = this._fb.group({
       pickUpDate: ['', Validators.required],
       returnDate: ['', Validators.required],
       pickUpTime: ['', Validators.required],
       returnTime: ['', Validators.required],
       deliveryLocation: ['', Validators.required],
     });
+  }
+  ngAfterViewInit(): void {
     if (this.rentalMode) {
       this.formType = this.data.rentalMode;
     }
-  }
-  ngAfterViewInit(): void {
-    if(this.data && this.data.rentalMode){
-      this.formType = this.data.rentalMode
+    if (this.data && this.data.rentalMode) {
+      this.formType = this.data.rentalMode === 'SD'? 'sd': 'wd';
     }
+    /* int FormGroup */
+    this.sdFormGroup = this._fb.group({
+      startDate: [new Date(), Validators.required],
+      startTime:  [this.startAndReturnHrOptions[0].value, Validators.required],
+      endDate:[new Date(), Validators.required],
+      endTime:[this.startAndReturnHrOptions[0].value, Validators.required],
+    })
+    this.sdFormGroup.valueChanges.subscribe(v => {
+      console.log(v)
+    })
   }
   startDate!: Date;
   endDate!: Date;
   address!: string;
   savedScrollPosition!: any;
   ngOnInit(): void {
+
+    let curUser: UserDTO | null = this._userSerivice.userValue;
+    this.car$ = this.carService.findOne(
+      this.data.carId,
+      curUser ? curUser.id : null
+    );
+
     this.route.queryParams.subscribe((params) => {
       this.startDate = new Date(+params['startDate']);
       this.endDate = new Date(+params['endDate']);
       this.address = params['address'];
     });
+
     this.savedScrollPosition = document.documentElement.scrollTop;
+
+    
   }
   editDeliveryLocation(title: string) {
     this.matDialog.open(DeliveryLocationEditComponent, {
@@ -100,5 +138,54 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       skipLocationChange: true,
     };
     this.router.navigate(['/find/filter'], navigationExtras);
+  }
+  updateFavCar(type: '-' | '+') {
+    let curUser: UserDTO | null = this._userSerivice.userValue;
+    if (!curUser) {
+      this.matDialog.open(CustomerLoginDialogComponent, {
+        enterAnimationDuration: '500',
+        exitAnimationDuration: '500',
+      });
+    } else {
+      if (type === '+') {
+        this._favCarService
+          .addFavCar(this.data.carId, curUser.id)
+          .subscribe((isAdd) => {
+            if (isAdd) {
+              alert('Đã thêm vào danh sách yêu thích');
+            } else {
+              alert('Thêm thất bại');
+            }
+            this.car$ = this.car$.pipe(
+              map((car) => {
+                let updateCar: CarResponse = {
+                  ...car,
+                  isFav: true,
+                };
+                return updateCar;
+              })
+            );
+          });
+      } else {
+        this._favCarService
+          .removeFavCar(this.data.carId, curUser.id)
+          .subscribe((isRemove) => {
+            if (isRemove) {
+              alert('Đã huỷ bỏ yêu thích');
+            } else {
+              alert('Huỷ thất bại');
+            }
+            this.car$ = this.car$.pipe(
+              map((car) => {
+                let updateCar: CarResponse = {
+                  ...car,
+                  isFav: false,
+                };
+                return updateCar;
+              })
+            );
+          });
+      }
+    }
   }
 }

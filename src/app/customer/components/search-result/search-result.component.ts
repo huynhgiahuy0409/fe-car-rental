@@ -409,11 +409,12 @@ export class SearchResultComponent implements OnDestroy {
       addedTypes: []
     });
   }
-
-  openCarDetailDialog(rentalMode: string) {
+  
+  openCarDetailDialog(rentalMode: string, carId: number){
     this.matDialog.open(CarDetailComponent, {
       data: {
         rentalMode: rentalMode,
+        carId: carId
       },
       panelClass: 'mat-dialog-bg',
       backdropClass: 'my-back-drop',

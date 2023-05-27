@@ -1,6 +1,6 @@
 import { RentalStatus, RepeatedCalendarType } from '../enum';
 import { CarStatus, OAuthProvider } from '../enum';
-import { JWTDTO, UserDTO } from './../model';
+import { AddressDTO, CarRatingDTO, FeatureDTO, JWTDTO, ModelDTO, ServiceFeeDTO, UserDTO } from './../model';
 export interface APIResponse<T> {
     data: T,
     message: string,
@@ -153,6 +153,7 @@ export interface SearchCarResponse {
     deliveryToTenantFee: number;
     type: string;
     totalPages: number;
+    serviceType: string
 }
 
 export interface CalendarListingResponse {
@@ -195,4 +196,57 @@ export interface DayPriceCalendarResponse {
     endDate: number;
     value: string;
     type: RepeatedCalendarType;
+}
+
+export interface SignInReResponse {
+  username: string;
+  password: string;
+}
+export interface AuthenticationResponse {
+  user: UserDTO;
+  accessToken: JWTDTO;
+  refreshToken: JWTDTO;
+}
+export interface SocialUserResponse {
+  email: string;
+  firstName: string;
+  lastName: string;
+  name: string;
+  photoUrl: string;
+  provider: string;
+  id: string;
+}
+
+export interface CarResponse {
+  plate: string;
+  description: string;
+  yearOfManufacture: number;
+  seats: number;
+  color: string;
+  fuel: string;
+  fuelConsumption: number;
+  transmission: string;
+  policies: string;
+  isFastRent: boolean;
+  status: string;
+  model: ModelDTO
+  features: FeatureDTO[]
+  user: UserDTO,
+  address: AddressDTO,
+  ratings: CarRatingDTO[],
+  isFav: boolean
+  serviceType: string
+  service: ServiceFeeDTO
+}
+export interface RentalCarResponse {
+  startDate: Date;
+  endDate: Date;
+  status: string;
+  rentalPrice: number;
+  car: CarResponse;
+  user: UserDTO;
+}
+export interface UserTripResponse {
+  rentalCars: RentalCarResponse[];
+  rentedCars: RentalCarResponse[];
 }

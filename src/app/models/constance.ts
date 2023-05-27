@@ -3,12 +3,6 @@ import { CarFeatureElement, City, Color } from "./model";
 import { CarAdminResponse, IdNameResponse } from "./response/model";
 export const TEXT_SPACE_REGEX = "^[a-zA-Z\\s]*$"
 export const NUMBER_REGEX = "^[0-9]*$"
-
-//rental status
-export const COMPLETE_STATUS = "Hoàn thành"
-export const COMPLETE_MESSAGE = "Chuyến xe đã kết thúc"
-
-//service type
 export const SD_MODE = "SELF_DRIVING"
 export const WD_MODE = "WITH_DRIVER"
 
