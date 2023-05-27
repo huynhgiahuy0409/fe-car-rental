@@ -8,18 +8,19 @@
                 </div>
                 <mat-tab-group animationDuration="500ms" [selectedIndex]="currentTab">
                     <mat-tab label="Nội thành">
-                        <p class="primary-text fw-bold option-title">Điểm đón</p>
+                        <p class="primary-text fw-bold option-title">{{'common.pickupPlace'|i18next}}</p>
                         <mat-form-field appearance="fill" class="w-fit">
                             <i class="fa-solid fa-map-pin primary-text
                                 prefix-label" matPrefix></i>
-                            <input matInput formControlName="addressUrban" placeholder="Nhập địa điểm cụ thể">
+                            <input matInput formControlName="addressUrban"
+                                [placeholder]="'search.addressUrbanPlaceholder'|i18next">
                         </mat-form-field>
-                        <p class="text-secondary">Di chuyển trong thành phố</p>
-                        <div class="distance-range">
+                        <p class="text-secondary">{{'search.travelInCity'|i18next}}</p>
+                        <!-- <div class="distance-range">
                             <p class="text-end primary-text">Số km được đi:
                                 <span>50Km</span>
                             </p>
-                        </div>
+                        </div> -->
                         <button class="w-fit btn-search__modal" (click)="getDomesticData();">tìm
                             kiếm</button>
                     </mat-tab>

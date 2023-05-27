@@ -105,7 +105,9 @@
     "orderBy": "Sắp xếp theo",
     "latest": "Mới nhất",
     "oldest": "Cũ nhất",
-    "language": "Ngôn ngữ"
+    "language": "Ngôn ngữ",
+    "backToHome": "Trở về trang chủ",
+    "understand": "Đã hiểu"
   },
   "colors": {
     "white": "Trắng",
@@ -192,7 +194,8 @@
     "forRentCtaContent": "Hãy đăng kí trở thành đối tác của chúng tôi ngay để có cơ hội kiếm thêm thu nhập hằng tháng.",
     "findOutNow": "Tìm hiểu ngay",
     "registerCar": "Đăng ký xe",
-    "registerSelfDrive": "Đăng ký xe tự lái"
+    "registerSelfDrive": "Đăng ký xe tự lái",
+    "loginNow": "Đăng nhập ngay !"
   },
   "contract": {
     "chooseContract": "Chọn loại hợp đồng bạn muốn xem",
@@ -256,7 +259,9 @@
     "findCarButton": "Tìm xe ngay",
     "rentHours": "Số giờ thuê",
     "route": "Lộ trình",
-    "pickupInputLabel": "Nhập địa điểm đón cụ thể",
+    "pickupInputLabel": "
+    "search":{},
+ đón cụ thể",
     "dropoffInputLabel": "Nhập địa điểm trả cụ thể"
   },
   "rentalDetails": {
@@ -307,6 +312,10 @@
     "fromDate": "Từ",
     "toDate": "Đến",
     "view": "Xem"
+  },
+  "search":{
+    "addressUrbanPlaceholder":"Nhập địa điểm cụ thể",
+    "travelInCity":"Di chuyển trong thành phố"
   },
   "_languages": {
     "vi": "Tiếng Việt",

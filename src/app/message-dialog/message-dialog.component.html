@@ -6,13 +6,15 @@
     <ng-container>
         <ng-container *ngFor="let navigatePage of navigatePages">
             <ng-container *ngIf="navigatePage === 'login' ">
-                <button color="primary" mat-raised-button (click)="openLoginDialog()" mat-dialog-close>Đăng nhập ngay!</button>
+                <button color="primary" mat-raised-button (click)="openLoginDialog()"
+                    mat-dialog-close>{{'cta.loginNow0'|i18next}}</button>
             </ng-container>
             <ng-container *ngIf="navigatePage === 'home' ">
-                <button color="primary" mat-button [routerLink]="['/home']" mat-dialog-close>Trở về trang chủ</button>
+                <button color="primary" mat-button [routerLink]="['/home']"
+                    mat-dialog-close>{{'common.backToHome'|i18next}}</button>
             </ng-container>
             <ng-container *ngIf="navigatePage === 'close' ">
-                <button color="primary" mat-button mat-dialog-close>Đã hiểu</button>
+                <button color="primary" mat-button mat-dialog-close>{{'common.understand'|i18next}}</button>
             </ng-container>
         </ng-container>
     </ng-container>

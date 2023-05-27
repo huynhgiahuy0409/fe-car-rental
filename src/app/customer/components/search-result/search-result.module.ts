@@ -8,6 +8,7 @@ import { SearchResultRoutingModule } from './search-result-routing.module';
 import { SearchResultComponent } from './search-result.component';
 import { CarOwnerService } from 'src/app/car-owner/services/car-owner.service';
 import { LoadingDotsComponent } from './loading-dots/loading-dots.component';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 
 
 @NgModule({
@@ -21,10 +22,12 @@ import { LoadingDotsComponent } from './loading-dots/loading-dots.component';
     MaterialAngularModule,
     ReactiveFormsModule,
     FormsModule,
-    CarDetailModule
+    CarDetailModule,
+    I18NextModule
   ],
   providers: [
-    CarOwnerService
+    CarOwnerService,
+    { provide: I18NEXT_NAMESPACE, useValue: [] }
   ]
 })
 export class SearchResultModule { }

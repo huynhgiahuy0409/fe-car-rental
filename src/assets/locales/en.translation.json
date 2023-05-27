@@ -105,7 +105,9 @@
     "orderBy": "Order by",
     "latest": "Latest",
     "oldest": "Oldest",
-    "language": "Language"
+    "language": "Language",
+    "backToHome": "Back to home",
+    "understand": "Understand"
   },
   "colors": {
     "white": "White",
@@ -192,7 +194,8 @@
     "forRentCtaContent": "Register to become our partner now for the opportunity to earn additional monthly income.",
     "findOutNow": "Find out now",
     "registerCar": "Register car",
-    "registerSelfDrive": "Register as self drive car"
+    "registerSelfDrive": "Register as self drive car",
+    "loginNow": "Login now !"
   },
   "contract": {
     "chooseContract": "Choose contract type to download",
@@ -307,6 +310,10 @@
     "fromDate": "From date",
     "toDate": "To date",
     "view": "View"
+  },
+  "search": {
+    "addressUrbanPlaceholder": "Enter a specific address",
+    "travelInCity": "Travel in city"
   },
   "_languages": {
     "vi": "Tiếng Việt",
