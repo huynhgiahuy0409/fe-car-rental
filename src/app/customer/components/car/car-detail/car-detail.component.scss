@@ -135,13 +135,12 @@
 
 .module-detail .car-detail__desc ul.features {
     display: flex;
-    flex: wrap;
-    text-align: center;
+    flex-wrap: wrap;
+    flex: 1
 }
 
 .module-detail .car-detail__desc ul.features li {
-
-    width: 50%;
+    width: 25%;
     margin-bottom: 1rem;
 }
 
@@ -161,6 +160,15 @@
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: var(--gemstone-color);
+}
+.module-detail .car-detail__desc .profile-mini .avatar .avatar-image span{
+    font-size: 2.4rem;
+    font-weight: 500;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
 }
 
 .module-detail .car-detail__desc .profile-mini .host-star {
@@ -490,6 +498,9 @@
 }
 
 // icon
+.icon-location{
+    background-position: 0 -24px;
+}
 .chair-icon {
     background-position: -115px -281px;
     width: 32px;

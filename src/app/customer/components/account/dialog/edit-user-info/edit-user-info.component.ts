@@ -36,7 +36,7 @@ export class EditUserInfoComponent {
     private _fb: FormBuilder,
     private _userService: UserService
   ) {
-    this.user = this._userService.userValue;
+    this.user = this._userService.userValue!;
     console.log(this.user);
 
     this.updatedUserFG = this._fb.group({

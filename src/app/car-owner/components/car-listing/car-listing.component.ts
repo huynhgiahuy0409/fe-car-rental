@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CarOwnerService } from '../../services/car-owner.service';
 import { RegisteredCarResponse } from 'src/app/models/response/model';
 import { CarStatus } from 'src/app/models/enum';
 import { CAR_IMG } from 'src/app/models/constance';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
+import { Observable } from 'rxjs';
+import { UserService } from 'src/app/customer/services/user.service';
+import { UserDTO } from 'src/app/models/model';
+import { FilterRequest, Paging } from 'src/app/models/request/model';
+import { CarResponse } from 'src/app/models/response/model';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-listing',
   templateUrl: './car-listing.component.html',
   styleUrls: ['./car-listing.component.scss']
 })
-export class CarListingComponent {
-  constructor(private _formBuilder: FormBuilder, private carService: CarOwnerService) {
+
+export class CarListingComponent implements OnInit{
+  cars$!: Observable<CarResponse[]>
+  initPaging!: Paging
+  initFilterRequest!: FilterRequest
+  constructor(private _formBuilder: FormBuilder, private _carService: CarService, private _userService: UserService, private carService: CarOwnerService) {
   }
 
   readonly BASE_IMG: string = CAR_IMG;
@@ -84,4 +94,16 @@ export class CarListingComponent {
     return Math.round(rate);
   }
 
+  
+  // ngOnInit(): void {
+  //   let curUser: UserDTO = this._userService.userValue!
+  //   this.initPaging = {
+  //     page: 0, 
+  //     size: 10
+  //   }
+  //   this.initFilterRequest = {
+  //     paging: this.initPaging
+  //   }
+  //   this.cars$ = this._carService.findAllCar(curUser.id, this.initFilterRequest)
+  // }
 }

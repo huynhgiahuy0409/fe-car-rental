@@ -20,8 +20,8 @@ export class UserService {
   public nextUser(user: UserDTO | null){
     this.userBehaviorSubject.next(user)
   }
-  get userValue(): UserDTO {
-    return this.userBehaviorSubject.value!
+  get userValue(): UserDTO | null {
+    return this.userBehaviorSubject.value
   }
   public updateUser(updatedUserRequest: UserDTO): Observable<APIResponse<string>> {
     // updatedUserRequest.dob = new Date(updatedUserRequest.dob)

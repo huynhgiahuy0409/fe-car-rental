@@ -81,11 +81,13 @@ export const I18N_PROVIDERS = [
     provide: Title,
     useClass: I18NextTitle
   },
-  {
-    provide: LOCALE_ID,
-    deps: [I18NEXT_SERVICE],
-    useFactory: localeIdFactory
-  }];
+  // {
+  //   provide: LOCALE_ID,
+  //   deps: [I18NEXT_SERVICE],
+  //   useFactory: localeIdFactory
+  // },
+  // { provide: LOCALE_ID, useValue: 'vi' }
+];
 
 @NgModule({
   declarations: [AppComponent, MessageDialogComponent],

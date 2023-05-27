@@ -5,7 +5,7 @@
                 alt="" />
             <div class="item-car__detail">
                 <div class="d-flex-bo align-items-center-bo justify-content-between-bo">
-                    <h4>MITSUBISHI OUTLANDER 2020</h4>
+                    <h4>{{car.model.name}} {{car.yearOfManufacture}}</h4>
                     <i class="icon-bo icon-insurance"></i>
                 </div>
                 <div class="group-line">
@@ -37,15 +37,20 @@
         <div class="desc-car">
             <div class="d-flex-bo align-items-center-bo justify-content-between-bo">
                 <div class="group-label">
-                    <span>Số tự động</span>
+                    <span *ngIf="car.transmission === 'AUTOMATIC'">Số tự động</span>
+                    <span *ngIf="car.transmission === 'MANUAL'">Số sàn</span>
                     <span>Giao xe tận nơi</span>
                 </div>
-                <h4 class="cl-gem price" [style.margin]="'margin: 0'">850K</h4>
+                <h4 class="cl-gem price" [style.margin]="'margin: 0'">{{car.service.defaultPrice | currency: 'VND' : 'symbol'}}</h4>
             </div>
             <div class="location">
                 <p class="d-flex-bo align-items-center-bo">
                     <i class="icon-bo location-icon"></i>
-                    Quận Phú Nhuận, Hồ Chí Minh
+                    {{ car.address.district.prefix }}
+                    {{ car.address.district.name }} ,{{
+                      car.address.province.domain
+                    }}
+                    {{ car.address.province.name }}
                 </p>
             </div>
         </div>

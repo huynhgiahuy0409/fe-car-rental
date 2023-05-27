@@ -17,12 +17,12 @@
     <div class="tab-list">
         <div class="grid m-wide">
             <div class="tab-item" *ngIf="modeType === 'sd'">
-                <ng-container *ngIf="sdItems; else notFavCarTemplateRef">
+                <ng-container *ngIf="sdFavCars.length > 0; else notFavCarTemplateRef">
                     <ng-container [ngTemplateOutlet]="sdItemsTemplateRef"></ng-container>
                 </ng-container>
             </div>
             <div class="tab-item" *ngIf="modeType === 'wd'">
-                <ng-container *ngIf="wdItems; else notFavCarTemplateRef">
+                <ng-container *ngIf="wdFavCars.length > 0; else notFavCarTemplateRef">
                     <ng-container [ngTemplateOutlet]="wdItemsTemplateRef"></ng-container>
                 </ng-container>
             </div>
@@ -39,15 +39,15 @@
 </div>
 <ng-template #sdItemsTemplateRef>
     <div class="row">
-        <div *ngFor="let i of sdItems" (click)="navigateCarDetail()" #imageCarouselItem class="car-card  col l-4 c-3">
-            <app-car-card></app-car-card>
+        <div *ngFor="let car of sdFavCars" (click)="navigateCarDetail()" #imageCarouselItem class="car-card  col l-4 c-3">
+            <app-car-card [car]="car"></app-car-card>
         </div>
     </div>
 </ng-template>
 <ng-template #wdItemsTemplateRef>
     <div class="row">
-        <div *ngFor="let i of wdItems" (click)="navigateCarDetail()" #imageCarouselItem class="car-card  col l-4 c-3">
-            <app-car-card></app-car-card>
+        <div *ngFor="let car of wdFavCars" (click)="navigateCarDetail()" #imageCarouselItem class="car-card  col l-4 c-3">
+            <app-car-card [car]="car"></app-car-card>
         </div>
     </div>
 </ng-template>

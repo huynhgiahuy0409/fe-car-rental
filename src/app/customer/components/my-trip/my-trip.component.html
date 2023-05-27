@@ -4,30 +4,30 @@
             <div class="row">
                 <div class="col l-12">
                     <div class="mat-tab-wrapper">
-                        <mat-tab-group animationDuration="2000ms" [(selectedIndex)]="sltTabIdx">
+                        <mat-tab-group animationDuration="2000ms" [(selectedIndex)]="sltTabIdx" *ngIf="(userTrip$ | async) as userTrip">
                             <mat-tab label="Chuyến hiện tại">
-                                <ng-container *ngIf="!curTrips; else curTrip">
+                                <ng-container *ngIf="(!userTrip.rentalCars); else rentalCarsTempRef">
                                     <ng-container [ngTemplateOutlet]="emptyTrip">
                                     </ng-container>
                                 </ng-container>
                             </mat-tab>
                             <mat-tab label="Lịch sử chuyến">
-                                <ng-container *ngIf="!tripHistList; else tripHistory">
+                                <ng-container *ngIf="(!userTrip.rentedCars); else rentedCarsTempRef">
                                     <ng-container [ngTemplateOutlet]="emptyTrip">
                                     </ng-container>
                                 </ng-container>
                             </mat-tab>
-                            <ng-template #curTrip>
+                            <ng-template #rentalCarsTempRef>
                                 <div class="row">
-                                    <div class="col l-12" *ngFor="let i of [1,1,1]">
-                                        <app-trip-order-overview></app-trip-order-overview> 
+                                    <div class="col l-12" *ngFor="let i of userTrip.rentalCars">
+                                        <app-trip-order-overview [rentalCar]="i"></app-trip-order-overview> 
                                     </div>
                                 </div>
                             </ng-template>
-                            <ng-template #tripHistory>
+                            <ng-template #rentedCarsTempRef>
                                 <div class="row">
-                                    <div class="col l-12" *ngFor="let tripHistItem of tripHistList">
-                                        <app-trip-order-overview [purchaseOrderOverview]="tripHistItem"></app-trip-order-overview> 
+                                    <div class="col l-12" *ngFor="let i of userTrip.rentedCars">
+                                        <app-trip-order-overview [rentalCar]="i"></app-trip-order-overview> 
                                     </div>
                                 </div>
                             </ng-template>
@@ -49,7 +49,3 @@
         <button mat-raised-button class="btn btn-m" color="primary">Tìm xe ngay</button>
     </div>
 </ng-template>
-<ng-template #hasTrip>
-    
-</ng-template>
-

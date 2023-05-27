@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { CarListingComponent } from './car-listing.component';
+import { CarItemComponent } from './car-item/car-item.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CarListingComponent
+    CarListingComponent,
+    CarItemComponent
   ],
   imports: [
     CommonModule,

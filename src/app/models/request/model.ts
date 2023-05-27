@@ -121,5 +121,13 @@ export interface DeleteCustomRequest {
 
 export interface RentalCalendarRequest {
     carId: number;
-    username: string;
+    username: string; 
+}
+
+export interface Paging{
+    page: number,
+    size: number
+}
+export interface FilterRequest{
+    paging: Paging
 }

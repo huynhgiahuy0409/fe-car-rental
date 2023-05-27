@@ -18,8 +18,8 @@ const routes: Routes = [
     CarCardComponent,
   ],
   imports: [
-    RouterModule.forChild(routes),
     CommonModule,
+    RouterModule.forChild(routes),
     SvgAsTemplateModule,
     MaterialAngularModule
   ]
