@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { CarListingComponent } from './car-listing.component';
-import { LazyImgDirective } from 'src/app/shared/directive/lazy-loading-img.directive';
 
 
 const routes: Routes = [
@@ -20,8 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CarListingComponent,
-    LazyImgDirective
+    CarListingComponent
   ],
   imports: [
     CommonModule,

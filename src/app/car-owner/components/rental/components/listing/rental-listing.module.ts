@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
+import { CarOwnerService } from 'src/app/car-owner/services/car-owner.service';
 import { MaterialAngularModule } from 'src/app/material-angular/material-angular.module';
 import { RentalListingComponent } from './rental-listing.component';
-import { CarOwnerService } from 'src/app/car-owner/services/car-owner.service';
-import { I18NEXT_NAMESPACE, I18NextModule } from 'angular-i18next';
-import { LazyImgDirective } from 'src/app/shared/directive/lazy-loading-img.directive';
 
 const routes: Routes = [
   {
@@ -17,8 +16,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RentalListingComponent,
-    LazyImgDirective
+    RentalListingComponent
   ],
   imports: [
     CommonModule,
