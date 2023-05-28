@@ -254,6 +254,7 @@ export interface CarResponse {
   appServiceFee: number;
   totalFee: number;
   discountPrice: number;
+  isDenyRent: boolean
 }
 export interface RentalCarResponse {
   startDate: Date;

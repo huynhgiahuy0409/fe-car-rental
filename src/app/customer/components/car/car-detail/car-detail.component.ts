@@ -128,11 +128,6 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     let curUser: UserDTO | null = this._userSerivice.userValue;
     let userId: number | null = curUser ? curUser.id : null;
-    // this.route.queryParams.subscribe((params) => {
-    //   this.startDate = new Date(+params['startDate']);
-    //   this.endDate = new Date(+params['endDate']);
-    //   this.address = params['address'];
-    // });
     this.car$ = this.sdFormGroup.valueChanges.pipe(
       switchMap((value) => {
         return this.carService.findOne(

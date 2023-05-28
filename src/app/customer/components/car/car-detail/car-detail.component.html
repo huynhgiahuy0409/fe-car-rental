@@ -331,7 +331,7 @@
                     <div class="space m"></div>
                     <p>
                       <i class="icon-bo icon-location"></i>
-                      {{ car.address.district.prefix }}
+                      {{ car.address.district.prefix }},
                       {{ car.address.district.name }} ,{{
                         car.address.province.domain
                       }}
@@ -490,11 +490,17 @@
         </div>
         <strong>Thời gian kết thúc 10:00 10/03/2023</strong>
         <div class="space m"></div>
-        <div class="notice-message" *ngIf="false">
+        <div class="notice-message" *ngIf="car.isDenyRent">
           <p>
             <i class="icon-bo icon-notice"></i>
             Xe bận trong khoảng thời gian trên. Vui lòng đặt xe khác hoặc thay
             đổi lịch trình thích hợp.
+          </p>
+        </div>
+        <div class="notice-message" *ngIf="!car.isDenyRent" style="color:rgb(0, 165, 80)">
+          <p>
+            <i class="fa-solid fa-circle-check"></i>
+            Thời gian thuê xe hợp lý
           </p>
         </div>
       </div>
@@ -726,11 +732,17 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="notice-message" *ngIf="false">
+        <div class="notice-message" *ngIf="car.isDenyRent">
           <p>
             <i class="icon-bo icon-notice"></i>
             Xe bận trong khoảng thời gian trên. Vui lòng đặt xe khác hoặc thay
             đổi lịch trình thích hợp.
+          </p>
+        </div>
+        <div class="notice-message" *ngIf="!car.isDenyRent" style="color:rgb(0, 165, 80)">
+          <p>
+            <i class="fa-solid fa-circle-check"></i>
+            Thời gian thuê xe hợp lý
           </p>
         </div>
         <div class="line-form notice-form">
@@ -808,7 +820,7 @@
               ></path>
             </svg>
             <span>
-              {{ car.address.district.prefix }}
+              {{ car.address.district.prefix }},
               {{ car.address.district.name }} ,{{
                 car.address.province.domain
               }}
@@ -911,10 +923,6 @@
               <strong> {{ car.rentalDay }} ngày</strong>
             </p>
           </div>
-          <!-- <div class="group">
-                        <p>Phí giao nhận xe</p>
-                        <p>110 000 (6,5 km)</p>
-                    </div> -->
           <div class="group has-line">
             <strong>Tổng cộng</strong>
             <strong>{{ car.totalFee | currency : "VND" }}</strong>
@@ -933,6 +941,7 @@
         class="btn btn-l w-fit"
         (click)="confirmBooking(car)"
         color="primary"
+        [disabled]="car.isDenyRent"
       >
         Đặt xe
       </button>

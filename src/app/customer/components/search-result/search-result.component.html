@@ -223,7 +223,8 @@
         </div>
         <div class="d-flex-bo flex-wrap-bo search__result" *ngIf="searchResult.length > 0">
             <div class="search__result-box" *ngFor="let item
-                of searchResult"  (click)="openCarDetailDialog(item.serviceType, item.id)">
+            of searchResult"  (click)="openCarDetailDialog(item.serviceType, item.id)">
+            {{item.id}}
                 <div class="bx__shadow bg-white" style="border-radius: 5px; overflow: hidden;">
                     <div class="img__title-container">
                         <img [src]="BASE_CAR+item.bannerUrl" [alt]="item.id">

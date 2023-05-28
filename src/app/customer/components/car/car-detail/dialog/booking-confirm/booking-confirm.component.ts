@@ -33,7 +33,7 @@ export class BookingConfirmComponent {
   }
   bookCar(){
     let startTime: number = this.sdFormValue.startDate.getTime() + this.sdFormValue.startTime
-    let endTime: number = this.sdFormValue.startDate.getTime() + this.sdFormValue.startTime
+    let endTime: number = this.sdFormValue.endDate.getTime() + this.sdFormValue.endTime
     let curUser: UserDTO | null = this._userService.userValue
     if(curUser){
       let bookingRequest: BookingRequest = {
