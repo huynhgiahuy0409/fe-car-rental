@@ -14,6 +14,7 @@ import { RentalDetailsResponse } from 'src/app/models/response/model';
 import { getMoneyFormat } from 'src/app/shared/utils/MoneyUtils';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { I18NextService } from 'angular-i18next';
+import { UserService } from 'src/app/customer/services/user.service';
 
 @Component({
   selector: 'app-details',
@@ -21,12 +22,19 @@ import { I18NextService } from 'angular-i18next';
   styleUrls: ['./details.component.scss']
 })
 export class RentalDetailsComponent {
+  username!: string;
   constructor(
     private route: ActivatedRoute,
     private service: CarOwnerService,
     private _messageDialogService: MessageDialogService,
     private _matDialog: MatDialog,
-    private i18nextService: I18NextService) { }
+    private i18nextService: I18NextService,
+    private userService: UserService
+  ) {
+    this.userService.user$.subscribe(v => {
+      this.username = (v?.username!);
+    });
+  }
 
   rental_id!: number;
   duration: any;
@@ -93,6 +101,10 @@ export class RentalDetailsComponent {
                 MessageDialogComponent,
                 dataDialog
               );
+              this.service.rejectRental(this.rental_id, this.username).subscribe(res => {
+                console.log("reject status", res);
+
+              });
               timer(3000).subscribe(() => {
                 window.location.href = '/car-owner/rental-listing';
               })

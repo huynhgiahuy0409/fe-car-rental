@@ -12,7 +12,7 @@
         <div class="empty-column text-center" *ngIf="sortedRentalList.length < 1">
             <p>{{'message.noData'|i18next}}</p>
         </div>
-        <div class="rental__listing-column bx__shadow-1" *ngIf="sortedRentalList.length > 1">
+        <div class="rental__listing-column bx__shadow-1" *ngIf="sortedRentalList.length > 0">
             <h2 style="text-transform: uppercase;">{{'rentalListing.listing'|i18next}}</h2>
             <div class="d-flex-bo flex-wrap-bo rental__list" *ngFor="let item of sortedRentalList">
                 <!-- start rental item -->
