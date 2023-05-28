@@ -583,7 +583,7 @@ export class SearchResultComponent implements OnDestroy {
     let additionalParam = "";
     if (this.withDriver) {
       if (this.urbanArea)
-        additionalParam = "&withDriver=true&urbanArea=true";
+        additionalParam = `&address=${this.searchBarFormGroup.value.addressUrban}&withDriver=true&urbanArea=true`;
       else
         additionalParam = "&pickUpPlace=" + this.searchBarFormGroup.value.pickUpPlace + "&destinationPlace=" + this.searchBarFormGroup.value.destinationPlace + "&withDriver=true&interMunicipal=true";
     } else {

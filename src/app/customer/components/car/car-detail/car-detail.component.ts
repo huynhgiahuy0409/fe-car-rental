@@ -88,21 +88,32 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       console.log(v)
     })
 
-
     const path = this.location.path();//get url path
     const params = path.split("/find/filter?")[1] //get all param
     const splitted = params.split('&'); //split param into array ex:['startDate=1','endDate=2']
 
-    this.startDate = new Date(Number(splitted[0].split('=')[1])); //get startDate value
-    this.endDate = new Date(Number(splitted[1].split('=')[1])); //get endDate value
-    this.address = splitted[2].split('=')[1]; //get address value
+    console.log("split", splitted);
+    if (splitted.length > 5) {
+      //wd intermunicipal
+      console.log("wd intermunicipal");
 
-    this.sdFormGroup.patchValue({
-      startDate: new Date(this.startDate),
-      startTime: new Date(this.startDate).getHours() * 60 * 60 * 1000 + new Date(this.startDate).getMinutes() * 60 * 1000,//get hour and minute in milliseconds
-      endDate: new Date(this.endDate),
-      endTime: new Date(this.endDate).getHours() * 60 * 60 * 1000 + new Date(this.endDate).getMinutes() * 60 * 1000//get hour and minute in milliseconds
-    })
+    } else if (splitted.length === 5) {
+      //wd urban
+      console.log("wd urban");
+    } else {
+      //self drive
+      console.log("self drive");
+      this.startDate = new Date(Number(splitted[0].split('=')[1])); //get startDate value
+      this.endDate = new Date(Number(splitted[1].split('=')[1])); //get endDate value
+      this.address = splitted[2].split('=')[1]; //get address value
+
+      this.sdFormGroup.patchValue({
+        startDate: new Date(this.startDate),
+        startTime: new Date(this.startDate).getHours() * 60 * 60 * 1000 + new Date(this.startDate).getMinutes() * 60 * 1000,//get hour and minute in milliseconds
+        endDate: new Date(this.endDate),
+        endTime: new Date(this.endDate).getHours() * 60 * 60 * 1000 + new Date(this.endDate).getMinutes() * 60 * 1000//get hour and minute in milliseconds
+      })
+    }
   }
   startDate!: Date;
   endDate!: Date;
