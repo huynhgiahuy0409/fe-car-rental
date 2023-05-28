@@ -98,10 +98,6 @@ export class CarListingComponent implements OnInit {
     return Math.round(rate);
   }
 
-  ltPending(status: CarStatus) {
-    return status <= CarStatus.PENDING_APPROVAL;
-  }
-
   // ngOnInit(): void {
   //   let curUser: UserDTO = this._userService.userValue!
   //   this.initPaging = {
