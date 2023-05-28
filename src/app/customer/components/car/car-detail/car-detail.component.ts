@@ -60,8 +60,8 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
   ) {
     this.startAndReturnHrOptions =
       timerUtilService.startAndReturnHrOptions;
-    
-    
+
+
     this.carBookingFG = this._fb.group({
       pickUpDate: ['', Validators.required],
       returnDate: ['', Validators.required],
@@ -75,17 +75,33 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       this.formType = this.data.rentalMode;
     }
     if (this.data && this.data.rentalMode) {
-      this.formType = this.data.rentalMode === 'SD'? 'sd': 'wd';
+      this.formType = this.data.rentalMode === 'SD' ? 'sd' : 'wd';
     }
     /* int FormGroup */
     this.sdFormGroup = this._fb.group({
       startDate: [new Date(), Validators.required],
-      startTime:  [this.startAndReturnHrOptions[0].value, Validators.required],
-      endDate:[new Date(), Validators.required],
-      endTime:[this.startAndReturnHrOptions[0].value, Validators.required],
+      startTime: [this.startAndReturnHrOptions[0].value, Validators.required],
+      endDate: [new Date(), Validators.required],
+      endTime: [this.startAndReturnHrOptions[0].value, Validators.required],
     })
     this.sdFormGroup.valueChanges.subscribe(v => {
       console.log(v)
+    })
+
+
+    const path = this.location.path();//get url path
+    const params = path.split("/find/filter?")[1] //get all param
+    const splitted = params.split('&'); //split param into array ex:['startDate=1','endDate=2']
+
+    this.startDate = new Date(Number(splitted[0].split('=')[1])); //get startDate value
+    this.endDate = new Date(Number(splitted[1].split('=')[1])); //get endDate value
+    this.address = splitted[2].split('=')[1]; //get address value
+
+    this.sdFormGroup.patchValue({
+      startDate: new Date(this.startDate),
+      startTime: new Date(this.startDate).getHours() * 60 * 60 * 1000 + new Date(this.startDate).getMinutes() * 60 * 1000,//get hour and minute in milliseconds
+      endDate: new Date(this.endDate),
+      endTime: new Date(this.endDate).getHours() * 60 * 60 * 1000 + new Date(this.endDate).getMinutes() * 60 * 1000//get hour and minute in milliseconds
     })
   }
   startDate!: Date;
@@ -100,16 +116,16 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       curUser ? curUser.id : null
     );
 
-    this.route.queryParams.subscribe((params) => {
-      this.startDate = new Date(+params['startDate']);
-      this.endDate = new Date(+params['endDate']);
-      this.address = params['address'];
-    });
+    // this.route.queryParams.subscribe((params) => {
+    //   this.startDate = new Date(+params['startDate']);
+    //   this.endDate = new Date(+params['endDate']);
+    //   this.address = params['address'];
+    //   console.log("hello", this.startDate, this.endDate, this.address);
+    // });
 
     this.savedScrollPosition = document.documentElement.scrollTop;
-
-    
   }
+
   editDeliveryLocation(title: string) {
     this.matDialog.open(DeliveryLocationEditComponent, {
       enterAnimationDuration: '500ms',

@@ -43,14 +43,14 @@
                         </div>
                         <div class="car__listing-action">
                             <button routerLink="/car/huy/312" class="btn__detail">{{"car.viewDetails"|i18next}}</button>
-                            <button [routerLink]="'/car-owner/car-listing/'+item.id"
-                                class="btn__management">{{"car.carManagement"|i18next}}</button>
+                            <button [routerLink]="'/car-owner/car-listing/'+item.id" class="btn__management"
+                                [disabled]="ltPending(item.status)">{{"car.carManagement"|i18next}}</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-  <!-- <div class="d-flex-bo flex-wrap-bo car__listing-content">
+        <!-- <div class="d-flex-bo flex-wrap-bo car__listing-content">
     <div class="car__listing-column bx__shadow-1" [formGroup]="myCarsFormGroup">
       <h2>TRẠNG THÁI</h2>
       <mat-form-field class="w-fit cl-black" appearance="outline">
@@ -73,4 +73,4 @@
       </div>
     </div>
   </div> -->
-</div>
+    </div>

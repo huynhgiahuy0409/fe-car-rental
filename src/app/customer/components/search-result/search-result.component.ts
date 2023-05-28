@@ -16,6 +16,7 @@ import { SearchCarService } from '../../services/search-car.service';
 import { CarDetailComponent } from '../car/car-detail/car-detail.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { I18NextService } from 'angular-i18next';
+import { startOfDay } from 'date-fns';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -409,8 +410,8 @@ export class SearchResultComponent implements OnDestroy {
       addedTypes: []
     });
   }
-  
-  openCarDetailDialog(rentalMode: string, carId: number){
+
+  openCarDetailDialog(rentalMode: string, carId: number) {
     this.matDialog.open(CarDetailComponent, {
       data: {
         rentalMode: rentalMode,
@@ -432,8 +433,8 @@ export class SearchResultComponent implements OnDestroy {
       this.isEmpty = false;
     }
 
-    let startDate = this.searchBarFormGroup.value.startDate;
-    let endDate = this.searchBarFormGroup.value.endDate;
+    let startDate = new Date(startOfDay(this.searchBarFormGroup.value.startDate!).getTime() + this.searchBarFormGroup.value.startHours!);
+    let endDate = new Date(startOfDay(this.searchBarFormGroup.value.endDate!).getTime() + this.searchBarFormGroup.value.endHours!);
     let priceMin = this.searchOptionsFormGroup.value.priceMin;
     let priceMax: any = this.searchOptionsFormGroup.value.priceMax;
     let sortBy = Number(this.searchOptionsFormGroup.value.sortedBy);
@@ -550,6 +551,7 @@ export class SearchResultComponent implements OnDestroy {
     console.log("values", this.searchOptionsFormGroup.value);
 
     console.log(data);
+
     this.searchService.searchCar(data).subscribe({
       next: (res) => {
         console.log(res);
@@ -574,6 +576,20 @@ export class SearchResultComponent implements OnDestroy {
         this.setCarTypeQuantity();
       }
     });
+    // withDriver = true;
+    // urbanArea = true;
+
+    // & pickUpPlace=ho & destinationPlace=chi % 20minhjj & withDriver=true & interMunicipal=true
+    let additionalParam = "";
+    if (this.withDriver) {
+      if (this.urbanArea)
+        additionalParam = "&withDriver=true&urbanArea=true";
+      else
+        additionalParam = "&pickUpPlace=" + this.searchBarFormGroup.value.pickUpPlace + "&destinationPlace=" + this.searchBarFormGroup.value.destinationPlace + "&withDriver=true&interMunicipal=true";
+    } else {
+      additionalParam = "&address=" + this.searchBarFormGroup.value.address;
+    }
+    this.location.replaceState(`find/filter?startDate=${startDate?.getTime()}&endDate=${endDate?.getTime()}${additionalParam}`);
   }
 
   loadMore() {

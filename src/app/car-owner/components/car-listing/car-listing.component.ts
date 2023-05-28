@@ -18,7 +18,7 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-listing.component.scss']
 })
 
-export class CarListingComponent implements OnInit{
+export class CarListingComponent implements OnInit {
   cars$!: Observable<CarResponse[]>
   initPaging!: Paging
   initFilterRequest!: FilterRequest
@@ -98,7 +98,10 @@ export class CarListingComponent implements OnInit{
     return Math.round(rate);
   }
 
-  
+  ltPending(status: CarStatus) {
+    return status <= CarStatus.PENDING_APPROVAL;
+  }
+
   // ngOnInit(): void {
   //   let curUser: UserDTO = this._userService.userValue!
   //   this.initPaging = {
