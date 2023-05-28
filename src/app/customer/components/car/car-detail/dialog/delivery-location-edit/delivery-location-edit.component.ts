@@ -11,6 +11,7 @@ export class DeliveryLocationEditComponent {
   @Input()
   title!: string 
   constructor(private matDialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any){
+    console.log(data)
   }
   chooseFromMap(){
     this.matDialog.open(MyLocationComponent, {

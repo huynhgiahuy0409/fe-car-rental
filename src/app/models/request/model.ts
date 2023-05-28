@@ -131,3 +131,10 @@ export interface Paging{
 export interface FilterRequest{
     paging: Paging
 }
+export interface BookingRequest{
+    startTime: number;
+    endTime: number;
+    userId: number;
+    carId: number;
+    promoId?: number;
+}

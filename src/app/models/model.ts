@@ -172,6 +172,7 @@ export interface ServiceFeeDTO {
 export interface ExtraFeeDTO {
   name: string
   limitValue: number
+  code: string
   unit: string
   fee: number
 }
