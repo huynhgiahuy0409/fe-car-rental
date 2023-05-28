@@ -15,11 +15,16 @@ export class CarService {
   public findAllCar(
     ownerId: number,
     filterRequest: FilterRequest,
-    startTime: number,
-    endTime: number
+    
   ): Observable<CarResponse[]> {
     let url = URL_API.concat(`/api/cars/${ownerId}`);
     return this._httpClient.post<CarResponse[]>(url, filterRequest, {
+      responseType: 'json',
+    });
+  }
+  public findFeaturesCars(serviceTypeId: number): Observable<CarResponse[]> {
+    let url = URL_API.concat(`/api/cars/feature/service-type/${serviceTypeId}`);
+    return this._httpClient.get<CarResponse[]>(url, {
       responseType: 'json',
     });
   }

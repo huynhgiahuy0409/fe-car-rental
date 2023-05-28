@@ -13,7 +13,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { TransitionCheckState } from '@angular/material/checkbox';
-import { first, last } from 'rxjs';
+import { Observable, first, last, of } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
@@ -58,60 +58,126 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   isAutoActive: boolean = false;
   @Input()
   initTranslateItemPercent: 100 | -100 | 50 | -50 | 0 = 0;
-  initTranslatePercent!: number
-  constructor(private ref: ChangeDetectorRef, private render: Renderer2) {
-    
-  }
+  initTranslatePercent!: number;
+  @Input()
+  list$!: Observable<any[]>;
+  constructor(private ref: ChangeDetectorRef, private render: Renderer2) {}
   ngOnInit(): void {}
   ngAfterViewInit() {
-    this.listWidth = this.list.nativeElement.offsetWidth;
-    this.itemWidth = this.list.nativeElement.firstChild.offsetWidth;
-    this.itemsOfPart = this.listWidth / this.itemWidth;
-    let itemWidthPercent = 100 / this.itemsOfPart
-    this.positionX = -this.currentIdx * itemWidthPercent;
-    this.list.nativeElement.style.transform = `translateX(${this.positionX}%)`;
-    let specLength = this.specItems.length;
-    /* 
-      Process duplicate items of spectItems
-    */
-    let preDuplicateItems = [...this.specItems].splice(
-      specLength - this.itemsOfPart,
-      specLength
-    );
-    let lastDuplicateItems = [...this.specItems].splice(0, this.itemsOfPart);
-    this.specItems.unshift(...preDuplicateItems);
-    this.specItems.push(...lastDuplicateItems);
-    this.firstIdx = this.itemsOfPart;
-    this.lastIdx = this.firstIdx + specLength - 1;
-    this.step = this.isPerItemInStep === true ? 1 : this.itemsOfPart;
+    if (this.list$) {
+      this.list$.subscribe((v) => {
+        this.listWidth = this.list.nativeElement.offsetWidth;
+        this.itemWidth = this.list.nativeElement.firstChild.offsetWidth;
+        this.itemsOfPart = this.listWidth / this.itemWidth;
+        let itemWidthPercent = 100 / this.itemsOfPart;
+        this.positionX = -this.currentIdx * itemWidthPercent;
+        this.list.nativeElement.style.transform = `translateX(${this.positionX}%)`;
+        this.specItems = v;
+        let specLength = this.specItems.length;
+        /* 
+            Process duplicate items of spectItems
+          */
+        let preDuplicateItems = [...this.specItems].splice(
+          specLength - this.itemsOfPart,
+          specLength
+        );
+
+        let lastDuplicateItems = [...this.specItems].splice(
+          0,
+          this.itemsOfPart
+        );
+        this.specItems.unshift(...preDuplicateItems);
+        this.specItems.push(...lastDuplicateItems);
+
+        this.firstIdx = this.itemsOfPart;
+        this.lastIdx = this.firstIdx + specLength - 1;
+        this.step = this.isPerItemInStep === true ? 1 : this.itemsOfPart;
+        this.currentIdx = this.firstIdx;
+        this.lastBlockIdx = this.lastIdx - this.step + 1;
+        this.remainderItems = !this.isPerItemInStep
+          ? this.specItems.length % this.itemsOfPart
+          : 0;
+        this.remainderItemWidth =
+          this.itemWidth * (this.specItems.length % this.itemsOfPart);
+        let blockNumber = Math.floor(specLength / this.step);
+        let dotsLength =
+          this.remainderItems > 0 ? blockNumber + 1 : blockNumber;
+        for (let index = 0; index < dotsLength; index++) {
+          if (index === dotsLength - 1) {
+            this.dotsView.push(this.lastBlockIdx);
+          } else {
+            this.dotsView.push(index * this.step + this.itemsOfPart);
+          }
+        }
+        this.positionX = -this.currentIdx * (100 / this.itemsOfPart);
+        this.initTranslatePercent =
+          (this.initTranslateItemPercent * (100 / this.itemsOfPart)) / 100;
+        this.list.nativeElement.style.transform = `translateX(${
+          this.positionX - this.initTranslatePercent
+        }%)`;
+        if (this.isAutoActive) {
+          setInterval(() => {
+            this.processCarousel(this.currentIdx + this.step);
+          }, 5000);
+        }
+        console.log(this.specItems);
+
+        this.ref.detectChanges();
+      });
+    } else {
+      this.listWidth = this.list.nativeElement.offsetWidth;
+      this.itemWidth = this.list.nativeElement.firstChild.offsetWidth;
+      this.itemsOfPart = this.listWidth / this.itemWidth;
+      let itemWidthPercent = 100 / this.itemsOfPart;
+      this.positionX = -this.currentIdx * itemWidthPercent;
+      this.list.nativeElement.style.transform = `translateX(${this.positionX}%)`;
+      let specLength = this.specItems.length;
+      /* 
+          Process duplicate items of spectItems
+        */
+      let preDuplicateItems = [...this.specItems].splice(
+        specLength - this.itemsOfPart,
+        specLength
+      );
+
+      let lastDuplicateItems = [...this.specItems].splice(0, this.itemsOfPart);
+      this.specItems.unshift(...preDuplicateItems);
+      this.specItems.push(...lastDuplicateItems);
+
+      this.firstIdx = this.itemsOfPart;
+      this.lastIdx = this.firstIdx + specLength - 1;
+      this.step = this.isPerItemInStep === true ? 1 : this.itemsOfPart;
       this.currentIdx = this.firstIdx;
-    this.lastBlockIdx = this.lastIdx - this.step + 1;
-    this.remainderItems = !this.isPerItemInStep
-      ? this.specItems.length % this.itemsOfPart
-      : 0;
-    this.remainderItemWidth =
-      this.itemWidth * (this.specItems.length % this.itemsOfPart);
-    let blockNumber = Math.floor(specLength / this.step);
-    let dotsLength = this.remainderItems > 0 ? blockNumber + 1 : blockNumber;
-    for (let index = 0; index < dotsLength; index++) {
-      if (index === dotsLength - 1) {
-        this.dotsView.push(this.lastBlockIdx);
-      } else {
-        this.dotsView.push(index * this.step + this.itemsOfPart);
+      this.lastBlockIdx = this.lastIdx - this.step + 1;
+      this.remainderItems = !this.isPerItemInStep
+        ? this.specItems.length % this.itemsOfPart
+        : 0;
+      this.remainderItemWidth =
+        this.itemWidth * (this.specItems.length % this.itemsOfPart);
+      let blockNumber = Math.floor(specLength / this.step);
+      let dotsLength = this.remainderItems > 0 ? blockNumber + 1 : blockNumber;
+      for (let index = 0; index < dotsLength; index++) {
+        if (index === dotsLength - 1) {
+          this.dotsView.push(this.lastBlockIdx);
+        } else {
+          this.dotsView.push(index * this.step + this.itemsOfPart);
+        }
       }
+      this.positionX = -this.currentIdx * (100 / this.itemsOfPart);
+      this.initTranslatePercent =
+        (this.initTranslateItemPercent * (100 / this.itemsOfPart)) / 100;
+      this.list.nativeElement.style.transform = `translateX(${
+        this.positionX - this.initTranslatePercent
+      }%)`;
+      if (this.isAutoActive) {
+        setInterval(() => {
+          this.processCarousel(this.currentIdx + this.step);
+        }, 5000);
+      }
+      console.log(this.specItems);
+
+      this.ref.detectChanges();
     }
-    this.positionX = -this.currentIdx * (100 / this.itemsOfPart);
-    this.initTranslatePercent =  (this.initTranslateItemPercent * (100 / this.itemsOfPart)) / 100
-    this.list.nativeElement.style.transform = `translateX(${
-      this.positionX -
-      this.initTranslatePercent
-    }%)`;
-    if (this.isAutoActive) {
-      setInterval(() => {
-        this.processCarousel(this.currentIdx + this.step);
-      }, 5000);
-    }
-    this.ref.detectChanges();
   }
   processCarousel(passedIdx: number) {
     this.currentIdx = passedIdx;
@@ -140,8 +206,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     this.positionX = -(this.currentIdx * (100 / this.itemsOfPart));
     this.positionX = -this.currentIdx * (100 / this.itemsOfPart);
     this.list.nativeElement.style.transform = `translateX(${
-      this.positionX -
-      this.initTranslatePercent
+      this.positionX - this.initTranslatePercent
     }%)`;
     this.render.addClass(
       this.carouselArrowNext.nativeElement,
@@ -162,8 +227,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
       this.list.nativeElement.style.transitionDuration = `0ms`;
       this.positionX = -this.currentIdx * (100 / this.itemsOfPart);
       this.list.nativeElement.style.transform = `translateX(${
-        this.positionX -
-        this.initTranslatePercent
+        this.positionX - this.initTranslatePercent
       }%)`;
       this.render.removeClass(
         this.carouselArrowNext.nativeElement,

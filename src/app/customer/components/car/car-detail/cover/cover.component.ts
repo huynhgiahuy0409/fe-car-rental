@@ -1,4 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ImageResponse } from 'src/app/models/response/model';
 import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
 
 @Component({
@@ -7,6 +9,8 @@ import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
   styleUrls: ['./cover.component.scss']
 })
 export class CoverComponent {
+  @Input()
+  images$!: Observable<ImageResponse[]>
   isFavoriteCar: boolean = false
   activeDot!: any
   unActiveDot!:any

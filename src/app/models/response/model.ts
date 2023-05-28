@@ -254,7 +254,13 @@ export interface CarResponse {
   appServiceFee: number;
   totalFee: number;
   discountPrice: number;
-  isDenyRent: boolean
+  isDenyRent: boolean;
+  images: ImageResponse[]
+  thumb: ImageResponse
+}
+export interface ImageResponse {
+  imageUrl: string;
+  isThumbnail: boolean;
 }
 export interface RentalCarResponse {
   startDate: Date;
