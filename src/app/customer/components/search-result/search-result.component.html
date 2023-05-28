@@ -221,8 +221,8 @@
             <p class="text-center">{{'search.noResult'|i18next}}</p>
         </div>
         <div class="d-flex-bo flex-wrap-bo search__result" *ngIf="searchResult.length > 0">
-            <div class="search__result-box bg-white bx__shadow" *ngFor="let item
-                of searchResult"  (click)="openCarDetailDialog(item.serviceType, item.id)">
+            <div class="search__result-box bg-white bx__shadow cursor-pointer" *ngFor=" let item of searchResult"
+                (click)="openCarDetailDialog(item.serviceType, item.id)">
                 {{item.serviceType}}
                 {{item.id}}
                 <div class="img__title-container">
