@@ -53,11 +53,21 @@
                                                         [matAutocomplete]="pickUpPlaceOfSelfDrivingAuto"
                                                         formControlName="address" required />
                                                     <mat-autocomplete #pickUpPlaceOfSelfDrivingAuto="matAutocomplete">
-                                                        <mat-option *ngFor="
+                                                        <!-- <mat-option *ngFor="
                                 let option of filteredAddressOptions | async
                               " [value]="option">
                                                             {{ option }}
-                                                        </mat-option>
+                                                        </mat-option> -->
+                                                        <mat-option value="Thành Phố Hồ Chí Minh">Thành Phố Hồ Chí
+                                                            Minh</mat-option>
+                                                        <mat-option value="Thành Phố Hà Nội">Thành Phố Hà
+                                                            Nội</mat-option>
+                                                        <mat-option value="Thành Phố Đà Nẵng">Thành Phố Đà
+                                                            Nẵng</mat-option>
+                                                        <mat-option value="Đại Học Nông Lâm">Đại Học Nông
+                                                            Lâm</mat-option>
+                                                        <mat-option value="Đại Học Quốc Gia">Đại Học Quốc
+                                                            Gia</mat-option>
                                                     </mat-autocomplete>
                                                     <mat-error *ngIf="!selfDrivingFormGroup.hasError('required')">
                                                         {{'error.requiredAddress'|i18next}}
@@ -164,11 +174,22 @@
                                                             <input formControlName="pickUpPlace" type="text" matInput
                                                                 [matAutocomplete]="auto" required />
                                                             <mat-autocomplete #auto="matAutocomplete">
-                                                                <mat-option *ngFor="
+                                                                <!-- <mat-option *ngFor="
                                     let option of filteredAddressOptions | async
                                   " [value]="option">
                                                                     {{ option }}
-                                                                </mat-option>
+                                                                </mat-option> -->
+                                                                <mat-option value="Thành Phố Hồ Chí Minh">Thành Phố Hồ
+                                                                    Chí
+                                                                    Minh</mat-option>
+                                                                <mat-option value="Thành Phố Hà Nội">Thành Phố Hà
+                                                                    Nội</mat-option>
+                                                                <mat-option value="Thành Phố Đà Nẵng">Thành Phố Đà
+                                                                    Nẵng</mat-option>
+                                                                <mat-option value="Đại Học Nông Lâm">Đại Học Nông
+                                                                    Lâm</mat-option>
+                                                                <mat-option value="Đại Học Quốc Gia">Đại Học Quốc
+                                                                    Gia</mat-option>
                                                             </mat-autocomplete>
                                                             <mat-error
                                                                 *ngIf="!driverServiceFormGroup.hasError('required')">
@@ -201,7 +222,7 @@
                                                             </div>
                                                             <div class="col l-6">
                                                                 <mat-form-field appearance="fill" style="width: 100%">
-                                                                    <mat-label>{{'_banner.chooseDayLabel'|i18next}}</mat-label>
+                                                                    <mat-label>{{'_banner.chooseHourLabel'|i18next}}</mat-label>
                                                                     <mat-select formControlName="startHour" required>
                                                                         <mat-option
                                                                             *ngFor="let option of startAndReturnHrOptions"
@@ -243,7 +264,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="search-form__control"
+                                                    <!-- <div class="search-form__control"
                                                         *ngIf="withDriverTimeUp && this.driverServiceFormGroup.get('startTime')?.get('rentalHours')?.value !== -1">
                                                         <div class="row">
                                                             <div class="col l-12">
@@ -251,7 +272,7 @@
                                                                     {{getFinalDateInFormat()}}</p>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div formGroupName="endTime" class="search-form__control"
                                                         *ngIf="this.driverServiceFormGroup.get('startTime')?.get('rentalHours')?.value === -1">
                                                         <label class="home-label w-fit">Kết thúc</label>
@@ -310,11 +331,22 @@
                                                             <input formControlName="pickUpPlace" type="text" matInput
                                                                 [matAutocomplete]="autoCom" />
                                                             <mat-autocomplete #autoCom="matAutocomplete">
-                                                                <mat-option *ngFor="
+                                                                <!-- <mat-option *ngFor="
                                     let option of filteredAddressMunicipal | async
                                   " [value]="option">
                                                                     {{ option }}
-                                                                </mat-option>
+                                                                </mat-option> -->
+                                                                <mat-option value="Thành Phố Hồ Chí Minh">Thành Phố Hồ
+                                                                    Chí
+                                                                    Minh</mat-option>
+                                                                <mat-option value="Thành Phố Hà Nội">Thành Phố Hà
+                                                                    Nội</mat-option>
+                                                                <mat-option value="Thành Phố Đà Nẵng">Thành Phố Đà
+                                                                    Nẵng</mat-option>
+                                                                <mat-option value="Đại Học Nông Lâm">Đại Học Nông
+                                                                    Lâm</mat-option>
+                                                                <mat-option value="Đại Học Quốc Gia">Đại Học Quốc
+                                                                    Gia</mat-option>
                                                             </mat-autocomplete>
                                                             <mat-error
                                                                 *ngIf="!interMunicipalFormGroup.hasError('required')">
@@ -327,11 +359,22 @@
                                                             <input formControlName="destinationPlace" type="text"
                                                                 matInput [matAutocomplete]="autoComp" />
                                                             <mat-autocomplete #autoComp="matAutocomplete">
-                                                                <mat-option *ngFor="
+                                                                <!-- <mat-option *ngFor="
                                     let option of filteredAddressMunicipal | async
                                   " [value]="option">
                                                                     {{ option }}
-                                                                </mat-option>
+                                                                </mat-option> -->
+                                                                <mat-option value="Thành Phố Hồ Chí Minh">Thành Phố Hồ
+                                                                    Chí
+                                                                    Minh</mat-option>
+                                                                <mat-option value="Thành Phố Hà Nội">Thành Phố Hà
+                                                                    Nội</mat-option>
+                                                                <mat-option value="Thành Phố Đà Nẵng">Thành Phố Đà
+                                                                    Nẵng</mat-option>
+                                                                <mat-option value="Đại Học Nông Lâm">Đại Học Nông
+                                                                    Lâm</mat-option>
+                                                                <mat-option value="Đại Học Quốc Gia">Đại Học Quốc
+                                                                    Gia</mat-option>
                                                             </mat-autocomplete>
                                                             <mat-error
                                                                 *ngIf="!interMunicipalFormGroup.hasError('required')">
@@ -410,7 +453,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="search-form__control"
+                                                    <!-- <div class="search-form__control"
                                                         *ngIf="withMunDriverTimeUp && this.interMunicipalFormGroup.get('startTime')?.get('rentalHours')?.value !== -1">
                                                         <div class="row">
                                                             <div class="col l-12">
@@ -418,7 +461,7 @@
                                                                     {{getFinalDateMunicipal()}}</p>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="search-form__control"
                                                         *ngIf="this.interMunicipalFormGroup.get('startTime')?.get('rentalHours')?.value === -1"

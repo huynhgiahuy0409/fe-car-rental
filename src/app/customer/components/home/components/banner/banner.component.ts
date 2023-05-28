@@ -13,7 +13,7 @@ import {
   MAT_DATE_LOCALE
 } from '@angular/material/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { format } from 'date-fns';
+import { format, startOfDay } from 'date-fns';
 import {
   combineLatest,
   debounceTime, map,
@@ -70,6 +70,13 @@ export class BannerComponent implements OnInit, AfterViewInit {
   interMunicipalFormGroup!: FormGroup;
   isValidMunicipalForm!: boolean;
   isValidUrbanForm!: boolean;
+
+  today = new Date();
+  tomorrow = addDays(new Date(), 1);
+  startDayOfToday = startOfDay(this.today);
+  startDayOfTomorrow = startOfDay(this.tomorrow);
+  hoursToday = this.today.getHours() * 60 * 60 * 1000 + this.today.getMinutes() * 60 * 1000;
+  hoursTomorrow = this.tomorrow.getHours() * 60 * 60 * 1000 + this.tomorrow.getMinutes() * 60 * 1000;
 
   constructor(private _fb: FormBuilder, private router: Router) {
     this.setHrsData();
