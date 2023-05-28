@@ -1,6 +1,7 @@
 <!-- <button (click)="getSearchResult()">search 1</button> -->
+<!-- bg-white bx__shadow -->
 <div class="search__result-container bx__shadow-1">
-    <div class="d-flex-bo flex-wrap-bo search__bar bg-white bx__shadow" [formGroup]="searchBarFormGroup">
+    <div class="d-flex-bo flex-wrap-bo search__bar bg-white" [formGroup]="searchBarFormGroup">
         <div class="search__option-modal" *ngIf="showRoadTabModel">
             <div class="search__option-box bx__shadow-1">
                 <div class="text-end" (click)="toggleShowRoadTabModel()">
@@ -221,44 +222,45 @@
             <p class="text-center">{{'search.noResult'|i18next}}</p>
         </div>
         <div class="d-flex-bo flex-wrap-bo search__result" *ngIf="searchResult.length > 0">
-            <div class="search__result-box bg-white bx__shadow cursor-pointer" *ngFor=" let item of searchResult"
-                (click)="openCarDetailDialog(item.serviceType, item.id)">
-                {{item.serviceType}}
-                {{item.id}}
-                <div class="img__title-container">
-                    <img [src]="BASE_CAR+item.bannerUrl" [alt]="item.id">
-                    <div class="img__title">
-                        <h4>{{item.modelName}}</h4>
-                        <p *ngIf="item.avgRating>0">{{item.avgRating}}<i class="fa-solid fa-star primary-text"></i> •
-                            {{item.totalCompletedRental}}
-                            {{'search.rental'|i18next}}
-                        </p>
-                        <p *ngIf="item.avgRating==0">
-                            {{item.totalCompletedRental}}
-                            {{'search.rental'|i18next}}
-                        </p>
-                    </div>
-                </div>
-                <div class="d-flex-bo flex-wrap-bo search__result-information">
-                    <div class="tags">
-                        <div class="d-flex-bo flex-wrap-bo">
-                            <div class="search__result-tag">
-                                {{getTransmissionName(item.transmission)}}
-                            </div>
-                            <div class="search__result-tag" *ngIf="item.deliveryToTenantFee > 0">
-                                {{'common.deliveryToTenant'|i18next}}
-                            </div>
-                            <div class="search__result-tag" *ngIf="item.deliveryToTenantFee === 0">
-                                {{'search.freeDeliveryFee'|i18next}}
-                            </div>
+            <div class="search__result-box" *ngFor="let item
+                of searchResult" (click)="openCarDetailDialog(item.serviceType, item.id)">
+                <div class="bx__shadow bg-white" style="border-radius: 5px; overflow: hidden;">
+                    <div class="img__title-container">
+                        <img [src]="BASE_CAR+item.bannerUrl" [alt]="item.id">
+                        <div class="img__title">
+                            <h4>{{item.modelName}}</h4>
+                            <p *ngIf="item.avgRating>0">{{item.avgRating}}<i class="fa-solid fa-star primary-text"></i>
+                                •
+                                {{item.totalCompletedRental}}
+                                {{'search.rental'|i18next}}
+                            </p>
+                            <p *ngIf="item.avgRating==0">
+                                {{item.totalCompletedRental}}
+                                {{'search.rental'|i18next}}
+                            </p>
                         </div>
                     </div>
-                    <div class="price">
-                        <h3 class="primary-text">{{getMoneyFormat(item.price)}}</h3>
+                    <div class="d-flex-bo flex-wrap-bo search__result-information">
+                        <div class="tags">
+                            <div class="d-flex-bo flex-wrap-bo">
+                                <div class="search__result-tag">
+                                    {{getTransmissionName(item.transmission)}}
+                                </div>
+                                <div class="search__result-tag" *ngIf="item.deliveryToTenantFee > 0">
+                                    {{'common.deliveryToTenant'|i18next}}
+                                </div>
+                                <div class="search__result-tag" *ngIf="item.deliveryToTenantFee === 0">
+                                    {{'search.freeDeliveryFee'|i18next}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <h3 class="primary-text">{{getMoneyFormat(item.price)}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="box__location">
-                    <i class="fa-solid fa-location-dot"></i> {{item.location}}
+                    <div class="box__location">
+                        <i class="fa-solid fa-location-dot"></i> {{item.location}}
+                    </div>
                 </div>
             </div>
         </div>

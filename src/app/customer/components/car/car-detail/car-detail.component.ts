@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { SD_MODE, WD_MODE } from './../../../../models/constance';
 import {
   AfterViewInit,
@@ -20,7 +21,7 @@ import { BookingConfirmComponent } from './dialog/booking-confirm/booking-confir
 import { Location } from '@angular/common';
 import { RouteCatchService } from 'src/app/customer/route-catch.service';
 import { CarDTO, UserDTO } from 'src/app/models/model';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of, switchAll, switchMap } from 'rxjs';
 import { CarService } from 'src/app/services/car.service';
 import { CarResponse } from 'src/app/models/response/model';
 import { UserService } from 'src/app/customer/services/user.service';
@@ -40,10 +41,26 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
   isFavoriteCar: boolean = false;
   startAndReturnHrOptions: any;
   rentalHrOptions!: RentalHourOption[];
-  sdFormGroup!: FormGroup
+  sdFormGroup!: FormGroup;
   /*  */
   carBookingFG!: FormGroup;
-  curDate = new Date()
+  curDate = new Date();
+  initStartDate!: Date;
+  initEndDate!: Date;
+  initStartTime!: number;
+  initEndTime!: number;
+  get startDateControl() {
+    return this.sdFormGroup.get('startDate')
+  }
+  get endDateControl() {
+    return this.sdFormGroup.get('endDate')
+  }
+  get startTimeControl() {
+    return this.sdFormGroup.get('startTime')
+  }
+  get endtimeControl() {
+    return this.sdFormGroup.get('endTime')
+  }
   constructor(
     public timerUtilService: TimerUtilService,
     private matDialog: MatDialog,
@@ -58,9 +75,7 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
     private carService: CarService
   ) {
-    this.startAndReturnHrOptions =
-      timerUtilService.startAndReturnHrOptions;
-
+    this.startAndReturnHrOptions = timerUtilService.startAndReturnHrOptions;
 
     this.carBookingFG = this._fb.group({
       pickUpDate: ['', Validators.required],
@@ -68,6 +83,15 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       pickUpTime: ['', Validators.required],
       returnTime: ['', Validators.required],
       deliveryLocation: ['', Validators.required],
+    });
+    /* int FormGroup */
+    this.reformatDate();
+    this.sdFormGroup = this._fb.group({
+      startDate: [this.initStartDate, Validators.required],
+      startTime: [this.initStartTime, Validators.required],
+      endDate: [this.endDate, Validators.required],
+      endTime: [this.initEndTime, Validators.required],
+      promoId: [""]
     });
   }
   ngAfterViewInit(): void {
@@ -78,35 +102,17 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
       this.formType = this.data.rentalMode === 'SD' ? 'sd' : 'wd';
     }
     /* int FormGroup */
-    this.sdFormGroup = this._fb.group({
-      startDate: [new Date(), Validators.required],
-      startTime: [this.startAndReturnHrOptions[0].value, Validators.required],
-      endDate: [new Date(), Validators.required],
-      endTime: [this.startAndReturnHrOptions[0].value, Validators.required],
-    })
-    this.sdFormGroup.valueChanges.subscribe(v => {
-      console.log(v)
-    })
-
     const path = this.location.path();//get url path
     const params = path.split("/find/filter?")[1] //get all param
     const splitted = params.split('&'); //split param into array ex:['startDate=1','endDate=2']
-
-    console.log("split", splitted);
     if (splitted.length > 5) {
       //wd intermunicipal
-      console.log("wd intermunicipal");
-
     } else if (splitted.length === 5) {
       //wd urban
-      console.log("wd urban");
     } else {
-      //self drive
-      console.log("self drive");
       this.startDate = new Date(Number(splitted[0].split('=')[1])); //get startDate value
       this.endDate = new Date(Number(splitted[1].split('=')[1])); //get endDate value
       this.address = splitted[2].split('=')[1]; //get address value
-
       this.sdFormGroup.patchValue({
         startDate: new Date(this.startDate),
         startTime: new Date(this.startDate).getHours() * 60 * 60 * 1000 + new Date(this.startDate).getMinutes() * 60 * 1000,//get hour and minute in milliseconds
@@ -120,44 +126,58 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
   address!: string;
   savedScrollPosition!: any;
   ngOnInit(): void {
-
     let curUser: UserDTO | null = this._userSerivice.userValue;
-    this.car$ = this.carService.findOne(
-      this.data.carId,
-      curUser ? curUser.id : null
-    );
-
+    let userId: number | null = curUser ? curUser.id : null;
     // this.route.queryParams.subscribe((params) => {
     //   this.startDate = new Date(+params['startDate']);
     //   this.endDate = new Date(+params['endDate']);
     //   this.address = params['address'];
-    //   console.log("hello", this.startDate, this.endDate, this.address);
     // });
+    this.car$ = this.sdFormGroup.valueChanges.pipe(
+      switchMap((value) => {
+        return this.carService.findOne(
+          this.data.carId,
+          userId,
+          value.startDate.getTime() + value.startTime,
+          value.endDate.getTime() + value.endTime,
+          value.promoId
+        );
+      })
+    );
 
     this.savedScrollPosition = document.documentElement.scrollTop;
   }
-
-  editDeliveryLocation(title: string) {
+  editDeliveryLocation(title: string, car: CarResponse) {
     this.matDialog.open(DeliveryLocationEditComponent, {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
       data: {
         title: title,
+        car: car
       },
     });
   }
   editPromo() {
-    this.matDialog.open(PromoEditComponent, {
+    let diaRef = this.matDialog.open(PromoEditComponent, {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
     });
+    diaRef.afterClosed().subscribe(
+      (value => {
+        this.sdFormGroup.patchValue({ "promoId": value.data.promoId })
+      })
+    )
   }
-  confirmBooking() {
+  confirmBooking(car: CarResponse) {
     this.matDialog.open(BookingConfirmComponent, {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
       width: '80%',
       height: '100vh',
+      data: {
+        car: car,
+        sdFormValue: this.sdFormGroup.value
+      }
     });
   }
   onClose() {
@@ -214,5 +234,14 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
           });
       }
     }
+  }
+  private reformatDate() {
+    this.initStartDate = new Date();
+    this.initStartDate.setHours(0, 0, 0, 0);
+    this.initEndDate = new Date();
+    this.initEndDate.setDate(this.initStartDate.getDate() + 1);
+    this.initEndDate.setHours(0, 0, 0, 0);
+    this.initStartTime = 0;
+    this.initEndTime = 0;
   }
 }

@@ -490,7 +490,7 @@
         </div>
         <strong>Thời gian kết thúc 10:00 10/03/2023</strong>
         <div class="space m"></div>
-        <div class="notice-message">
+        <div class="notice-message" *ngIf="false">
           <p>
             <i class="icon-bo icon-notice"></i>
             Xe bận trong khoảng thời gian trên. Vui lòng đặt xe khác hoặc thay
@@ -511,7 +511,8 @@
                   editDeliveryLocation(
                     'Địa
                               điểm đưa
-                              đón'
+                              đón',
+                    car
                   )
                 "
               >
@@ -524,7 +525,8 @@
                 editDeliveryLocation(
                   'Địa
                           điểm đưa
-                          đón'
+                          đón',
+                  car
                 )
               "
             >
@@ -548,7 +550,8 @@
                 (click)="
                   editDeliveryLocation(
                     'Địa điểm đưa
-                              đón'
+                              đón',
+                    car
                   )
                 "
               >
@@ -567,7 +570,8 @@
                 (click)="
                   editDeliveryLocation(
                     'Địa điểm đưa
-                              đón'
+                              đón',
+                    car
                   )
                 "
               >
@@ -644,7 +648,7 @@
       <button
         mat-raised-button
         class="btn btn-l w-fit"
-        (click)="confirmBooking()"
+        (click)="confirmBooking(car)"
         color="primary"
       >
         Đặt xe
@@ -655,7 +659,9 @@
   <ng-template #selfDrivingForm>
     <form [formGroup]="sdFormGroup" action="">
       <div class="price">
-        <h1>{{ car.service.defaultPrice | currency: 'VND'}}<span>/ngày</span></h1>
+        <h1>
+          {{ car.service.defaultPrice | currency : "VND" }}<span>/ngày</span>
+        </h1>
       </div>
       <div class="line-form has-timer">
         <label for="" class="label">Ngày nhận xe</label>
@@ -720,7 +726,7 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="notice-message">
+        <div class="notice-message" *ngIf="false">
           <p>
             <i class="icon-bo icon-notice"></i>
             Xe bận trong khoảng thời gian trên. Vui lòng đặt xe khác hoặc thay
@@ -729,32 +735,32 @@
         </div>
         <div class="line-form notice-form">
           <div class="d-flex-bo justify-content-between-bo">
-            <p>Thời gian nhận xe</p>
-            <p>
+            <span>Thời gian nhận xe</span>
+            <div>
               <span
                 >{{
-                  sdFormGroup.get("startDate")!.value | date : "shortDate"
+                  sdFormGroup.get("startDate")!.value | date:'dd/MM/yyyy'
                 }}-</span
               >{{
                 timerUtilService.formatDuration(
                   sdFormGroup.get("startTime")!.value
                 )
               }}
-            </p>
+            </div>
           </div>
           <div class="d-flex-bo justify-content-between-bo">
-            <p>Thời gian trả xe</p>
-            <p>
+            <span>Thời gian trả xe</span>
+            <div>
               <span
                 >{{
-                  sdFormGroup.get("endDate")!.value | date : "shortDate"
+                  sdFormGroup.get("endDate")!.value | date:'dd/MM/yyyy'
                 }}-</span
               >{{
                 timerUtilService.formatDuration(
                   sdFormGroup.get("endTime")!.value
                 )
               }}
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -766,7 +772,8 @@
             (click)="
               editDeliveryLocation(
                 'Địa điểm giao nhận
-                      xe'
+                      xe',
+                car
               )
             "
             >Thay đổi</span
@@ -800,26 +807,33 @@
                 fill-rule="evenodd"
               ></path>
             </svg>
-            <span
-              >Quang Trung, Phường 11, Quận Gò Vấp, Thành phố Hồ Chí Minh, Việt
-              Nam</span
+            <span>
+              {{ car.address.district.prefix }}
+              {{ car.address.district.name }} ,{{
+                car.address.province.domain
+              }}
+              {{ car.address.province.name }}</span
             >
           </a>
         </div>
-        <div class="line-form notice-form">
-          <div class="d-flex-bo justify-content-between-bo">
-            <p>Giao nhận xe tận nơi trong</p>
-            <p>20 km</p>
-          </div>
-          <div class="d-flex-bo justify-content-between-bo">
-            <p>Miễn phí giao nhận trong</p>
-            <p>1 km</p>
-          </div>
-          <div class="d-flex-bo justify-content-between-bo">
-            <p>Phí giao nhận xe (2 chiều)</p>
-            <p>20 000đ/km</p>
-          </div>
-        </div>
+        <ng-container *ngFor="let extraFee of car.service.extraFeeList">
+          <ng-container *ngIf="extraFee.code === 'delivery'">
+            <div class="line-form notice-form">
+              <div class="d-flex-bo justify-content-between-bo">
+                <p>Giao nhận xe tận nơi trong</p>
+                <p>{{ extraFee.limitValue }}{{ extraFee.unit }}</p>
+              </div>
+              <div class="d-flex-bo justify-content-between-bo">
+                <p>Phí giao xe vượt quá</p>
+                <p>{{ extraFee.fee }}/{{ extraFee.unit }}</p>
+              </div>
+              <ng-template #notDelivery>
+                Chủ xem không giao xe (Địa chỉ cụ thể sẽ được hiển thị sau khi
+                thanh toán)
+              </ng-template>
+            </div>
+          </ng-container>
+        </ng-container>
       </div>
       <div class="line-form local">
         <label for="" class="label"> Phụ phí </label>
@@ -827,43 +841,46 @@
           class="box-extra-fee"
           *ngFor="let extraFee of car.service.extraFeeList"
         >
-          <ng-container *ngIf="extraFee.unit === 'km'">
+          <ng-container *ngIf="extraFee.code === 'distance'">
             <div class="d-flex-bo justify-content-between-bo">
               <p>{{ extraFee.name }}</p>
-              <p>{{ extraFee.fee | currency: 'VND' }}/{{ extraFee.unit }}</p>
+              <p>{{ extraFee.fee | currency : "VND" }}/{{ extraFee.unit }}</p>
             </div>
             <div class="note-fee">
               Phụ phí phát sinh nếu lộ trình di chuyển vượt quá
-              <strong>{{ extraFee.limitValue }}{{ extraFee.unit }}</strong> khi thuê xe 1 ngày
+              <strong>{{ extraFee.limitValue }}{{ extraFee.unit }}</strong> khi
+              thuê xe 1 ngày
             </div>
           </ng-container>
-          <ng-container *ngIf="extraFee.unit === 'h'">
+          <ng-container *ngIf="extraFee.code === 'time'">
             <div class="d-flex-bo justify-content-between-bo">
               <p>{{ extraFee.name }}</p>
-              <p>{{ extraFee.fee | currency: 'VND' }}/{{ extraFee.unit }}</p>
+              <p>{{ extraFee.fee | currency : "VND" }}/{{ extraFee.unit }}</p>
             </div>
             <div class="note-fee">
               Phụ phí phát sinh nếu hoàn trả xe trễ giờ. Trường hợp trễ quá
-              <strong>{{ extraFee.limitValue }}{{ extraFee.unit }}</strong>, phụ phí thêm 1 ngày
-              thuê
+              <strong>{{ extraFee.limitValue }}{{ extraFee.unit }}</strong
+              >, phụ phí thêm 1 ngày thuê
             </div>
           </ng-container>
-          <ng-container *ngIf="extraFee.unit === 'cleaning'">
+          <ng-container *ngIf="extraFee.code === 'cleaning'">
             <div class="d-flex-bo justify-content-between-bo">
               <p>{{ extraFee.name }}</p>
-              <p>{{ extraFee.fee | currency: 'VND' }}</p>
+              <p>{{ extraFee.fee | currency : "VND" }}</p>
             </div>
             <div class="note-fee">
-                Phụ phí phát sinh khi xe hoàn trả không đảm bảo vệ sinh (nhiều vết bẩn, bùn cát, sình lầy...)
+              Phụ phí phát sinh khi xe hoàn trả không đảm bảo vệ sinh (nhiều vết
+              bẩn, bùn cát, sình lầy...)
             </div>
           </ng-container>
-          <ng-container *ngIf="extraFee.unit === 'deodorization'">
+          <ng-container *ngIf="extraFee.code === 'deodorization'">
             <div class="d-flex-bo justify-content-between-bo">
               <p>{{ extraFee.name }}</p>
-              <p>{{ extraFee.fee | currency: 'VND' }}</p>
+              <p>{{ extraFee.fee | currency : "VND" }}</p>
             </div>
             <div class="note-fee">
-                Phụ phí phát sinh khi xe hoàn trả bị ám mùi khó chịu (mùi thuốc lá, thực phẩm nặng mùi...)
+              Phụ phí phát sinh khi xe hoàn trả bị ám mùi khó chịu (mùi thuốc
+              lá, thực phẩm nặng mùi...)
             </div>
           </ng-container>
         </div>
@@ -873,27 +890,34 @@
         <div class="bill-wrapper">
           <div class="group">
             <p>Đơn giá thuê</p>
-            <p>1 090 000 / ngày</p>
+            <p>{{ car.service.defaultPrice | currency : "VND" }}/ ngày</p>
           </div>
           <div class="group">
             <p>Phí dịch vụ</p>
-            <p>1 090 000 / ngày</p>
+            <p>{{ car.insuranceFee | currency : "VND"}}</p>
           </div>
           <div class="group">
             <p>Phí bảo hiểm</p>
-            <p>1 090 000 / ngày</p>
+            <p>{{ car.appServiceFee | currency : "VND" }}</p>
+          </div>
+          <div class="group" *ngIf="car.discountPrice > 0">
+            <p>Áp dung mã giảm</p>
+            <p>-{{ car.discountPrice | currency : "VND"}}</p>
           </div>
           <div class="group has-line">
             <p>Tổng phí thuê xe</p>
-            <p>1 253 500 x <strong> 2 ngày</strong></p>
+            <p>
+              {{ car.rentalFee | currency : "VND" }} x
+              <strong> {{ car.rentalDay }} ngày</strong>
+            </p>
           </div>
-          <div class="group">
-            <p>Phí giao nhận xe</p>
-            <p>110 000 (6,5 km)</p>
-          </div>
+          <!-- <div class="group">
+                        <p>Phí giao nhận xe</p>
+                        <p>110 000 (6,5 km)</p>
+                    </div> -->
           <div class="group has-line">
             <strong>Tổng cộng</strong>
-            <strong>1 385 300đ</strong>
+            <strong>{{ car.totalFee | currency : "VND" }}</strong>
           </div>
           <div class="space m"></div>
           <div class="promotion-code d-flex-bo flex-row-reverse-bo">
@@ -907,7 +931,7 @@
       <button
         mat-raised-button
         class="btn btn-l w-fit"
-        (click)="confirmBooking()"
+        (click)="confirmBooking(car)"
         color="primary"
       >
         Đặt xe

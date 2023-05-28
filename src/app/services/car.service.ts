@@ -7,26 +7,40 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { URL_API } from '../models/constance';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarService {
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) {}
 
   public findAllCar(
     ownerId: number,
-    filterRequest: FilterRequest
+    filterRequest: FilterRequest,
+    startTime: number,
+    endTime: number
   ): Observable<CarResponse[]> {
     let url = URL_API.concat(`/api/cars/${ownerId}`);
     return this._httpClient.post<CarResponse[]>(url, filterRequest, {
       responseType: 'json',
     });
   }
-  public findOne(carId: number, userId: number | null): Observable<CarResponse>{
+  public findOne(
+    carId: number,
+    userId: number | null,
+    startTime: number,
+    endTime: number,
+    promoId?: number
+  ): Observable<CarResponse> {
     let params = new HttpParams();
-    if(userId){
-      params = params.set('userId', userId);
-    }
-    let url = URL_API.concat(`/api/cars/${carId}`);
+      params = params
+        .set('startTime', startTime)
+        .set('endTime', endTime);
+      if(userId){
+        params = params.set("userId", userId)
+      }
+      if(promoId){
+        params = params.set("promoId", promoId)
+      }
+    let url = URL_API.concat(`/api/cars/detail/${carId}`);
     return this._httpClient.get<CarResponse>(url, {
       params: params,
       responseType: 'json',
