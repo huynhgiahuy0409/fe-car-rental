@@ -221,16 +221,16 @@
         <div class="d-flex-bo empty-data" *ngIf="isEmpty">
             <p class="text-center">{{'search.noResult'|i18next}}</p>
         </div>
-        <div class="d-flex-bo flex-wrap-bo search__result" *ngIf="searchResult.length > 0">
+        <div class="d-flex-bo flex-wrap-bo search__result cursor-pointer" *ngIf="searchResult.length > 0">
             <div class="search__result-box" *ngFor="let item
-            of searchResult"  (click)="openCarDetailDialog(item.serviceType, item.id)">
-            {{item.id}}
+                of searchResult" (click)="openCarDetailDialog(item.serviceType, item.id)">
                 <div class="bx__shadow bg-white" style="border-radius: 5px; overflow: hidden;">
                     <div class="img__title-container">
                         <img [src]="BASE_CAR+item.bannerUrl" [alt]="item.id">
                         <div class="img__title">
                             <h4>{{item.modelName}}</h4>
-                            <p *ngIf="item.avgRating>0">{{item.avgRating}}<i class="fa-solid fa-star primary-text"></i> •
+                            <p *ngIf="item.avgRating>0">{{item.avgRating}}<i class="fa-solid fa-star primary-text"></i>
+                                •
                                 {{item.totalCompletedRental}}
                                 {{'search.rental'|i18next}}
                             </p>
