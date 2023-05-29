@@ -3,12 +3,12 @@
         <div class="status-wrap">
             <div class="status-message">
                 <i class="fa-solid fa-car mr-r-5"></i>
-                <span *ngIf="rentalCar.status === 'PENDING'">Đang thuê</span>
+                <span *ngIf="rentalCar.status === 'RENTED'">Đang thuê</span>
                 <span *ngIf="rentalCar.status === 'COMPLETED'">Hoàn thành</span>
             </div>
             <div class="status">
                 <div class="dot active"></div>
-                <p [style]="'margin: 0'" *ngIf="rentalCar.status === 'PENDING'"> Đang trong chuyến</p>
+                <p [style]="'margin: 0'" *ngIf="rentalCar.status === 'RENTED'"> Đang trong chuyến</p>
                 <p [style]="'margin: 0'" *ngIf="rentalCar.status === 'COMPLETED'"> Đã kết thúc chuyến</p>
             </div>
         </div>

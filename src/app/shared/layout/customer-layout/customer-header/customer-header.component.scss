@@ -67,7 +67,18 @@
 
 .dropdown #dropdownMenuButton .avatar {
     border: 2px solid hsla(0, 0%, 100%, 0.25);
+    background-color: var(--gemstone-color);
+    position: relative;
 }
+.dropdown #dropdownMenuButton .avatar .name{
+    position: absolute;
+    font-size: 1.6rem;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .dropdown #dropdownMenuButton .username {
     user-select: none;

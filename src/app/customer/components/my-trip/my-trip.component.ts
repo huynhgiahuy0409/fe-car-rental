@@ -25,6 +25,7 @@ export class MyTripComponent implements OnInit {
   ngOnInit(): void {
     let curUser: UserDTO = this._userService.userValue!
     this.userTrip$ = this.carRentalService.findUserTrip(curUser.id)
+    this.userTrip$.subscribe(v => console.log(v))
   }
   openFilterDialog() {
     this.matDialog.open(FilterComponent, {

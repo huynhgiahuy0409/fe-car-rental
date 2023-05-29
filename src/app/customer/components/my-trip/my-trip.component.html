@@ -6,13 +6,14 @@
                     <div class="mat-tab-wrapper">
                         <mat-tab-group animationDuration="2000ms" [(selectedIndex)]="sltTabIdx" *ngIf="(userTrip$ | async) as userTrip">
                             <mat-tab label="Chuyến hiện tại">
-                                <ng-container *ngIf="(!userTrip.rentalCars); else rentalCarsTempRef">
+                                <ng-container *ngIf="userTrip.rentalCars.length == 0; else rentalCarsTempRef">
+                                    <a href="">aaa</a>
                                     <ng-container [ngTemplateOutlet]="emptyTrip">
                                     </ng-container>
                                 </ng-container>
                             </mat-tab>
                             <mat-tab label="Lịch sử chuyến">
-                                <ng-container *ngIf="(!userTrip.rentedCars); else rentedCarsTempRef">
+                                <ng-container *ngIf="userTrip.rentedCars.length == 0; else rentedCarsTempRef">
                                     <ng-container [ngTemplateOutlet]="emptyTrip">
                                     </ng-container>
                                 </ng-container>
