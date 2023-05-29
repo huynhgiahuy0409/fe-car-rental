@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
   RentalHourOption,
   TimerUtilService,
@@ -73,7 +73,8 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
     private _userSerivice: UserService,
     private _favCarService: FavCarService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
-    private carService: CarService
+    private carService: CarService,
+    private matDialogRef: MatDialogRef<CarDetailComponent>
   ) {
     this.startAndReturnHrOptions = timerUtilService.startAndReturnHrOptions;
 
@@ -175,7 +176,7 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
     });
   }
   confirmBooking(car: CarResponse) {
-    this.matDialog.open(BookingConfirmComponent, {
+    let confirmRef = this.matDialog.open(BookingConfirmComponent, {
       enterAnimationDuration: '500ms',
       exitAnimationDuration: '500ms',
       width: '80%',
@@ -185,6 +186,9 @@ export class CarDetailComponent implements OnInit, AfterViewInit {
         sdFormValue: this.sdFormGroup.value,
       },
     });
+    confirmRef.afterClosed().subscribe(_ => {
+      this.matDialogRef.close()
+    })
   }
   onClose() {
     const navigationExtras: NavigationExtras = {

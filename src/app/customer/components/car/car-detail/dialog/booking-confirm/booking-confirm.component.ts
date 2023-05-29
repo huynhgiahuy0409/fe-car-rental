@@ -1,5 +1,5 @@
 import { Component, Inject, Optional } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { is } from 'date-fns/locale';
 import { CustomerLoginDialogComponent } from 'src/app/customer/components/auth/components/dialogs/customer-login-dialog/customer-login-dialog.component';
 import { MessageDialogService } from 'src/app/customer/services/message-dialog.service';
@@ -26,7 +26,9 @@ export class BookingConfirmComponent {
     private _carRentalService: CarRentalService,
     private _userService: UserService,
     private _matDialog: MatDialog,
-    private _messDialogService: MessageDialogService
+    private _messDialogService: MessageDialogService,
+    private matDialogRef: MatDialogRef<BookingConfirmComponent>
+    
   ) {
     this.car = data.car;
     this.sdFormValue = data.sdFormValue;
@@ -50,7 +52,10 @@ export class BookingConfirmComponent {
             message: "Quý khách đã đặt xe thành công! Vui lòng đợi chủ xe xác nhận",
             navigatePages: ['home'],
           };
-          this._messDialogService.openMessageDialog(MessageDialogComponent, dataDialog)
+          let messRef = this._messDialogService.openMessageDialog(MessageDialogComponent, dataDialog)
+          messRef.afterClosed().subscribe(_ => {
+            this.matDialogRef.close()
+          })
         }
       })
     }else{
